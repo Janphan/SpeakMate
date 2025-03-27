@@ -19,7 +19,7 @@ const SignInScreen = ({ navigation }) => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             Alert.alert("Success", "Logged in successfully!");
-            navigation.replace("Home"); // Navigate to Home after login
+            navigation.replace("HomeScreen"); // Navigate to Home after login
         } catch (error) {
             Alert.alert("Error", error.message);
         }
@@ -51,7 +51,7 @@ const SignInScreen = ({ navigation }) => {
                 <Text style={styles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
+            <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
                 <Text style={styles.link}>Don't have an account? Sign Up</Text>
             </TouchableOpacity>
         </View>
