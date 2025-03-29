@@ -13,3 +13,9 @@
 - Sign in
 
 - Sign up 
+
+## Learnings
+
+- Nested navigation
+
+- Firebase authentication
