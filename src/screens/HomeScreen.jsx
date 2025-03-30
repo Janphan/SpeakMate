@@ -1,12 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { PaperProvider, IconButton } from 'react-native-paper';
 
 export default function HomeScreen({ navigation }) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Welcome to AI Voice Chat App</Text>
-
-        </View>
+        <PaperProvider>
+            <View style={styles.container}>
+                <Text style={styles.title}>Let's talk</Text>
+                <IconButton
+                    icon="volume-high"  // Speaker Icon
+                    size={50}
+                    onPress={() => {
+                        navigation.navigate("CallScreen")
+                    }}
+                    style={styles.speakerIcon}
+                />
+            </View>
+        </PaperProvider>
     );
 }
 
@@ -46,4 +56,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         color: "#007bff",
     },
+    speakerIcon: {
+        marginTop: 20,
+    }
 });
