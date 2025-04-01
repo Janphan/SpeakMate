@@ -1,18 +1,27 @@
-import OpenAI from 'openai';
+import axios from 'axios';
+import { OPENAI_API_KEY } from '@env';
 
-const openai = new OpenAI({
-    apiKey: "YOUR_OPENAI_API_KEY",
-});
-
-export async function getAIResponse(userText) {
+// Send text to OpenAI and get AI response
+export const getOpenAIResponse = async (userText) => {
     try {
-        const response = await openai.chat.completions.create({
-            model: "gpt-4",
-            messages: [{ role: "user", content: userText }],
-        });
-        return response.choices[0].message.content;
+        const response = await axios.post(
+            "https://api.openai.com/v1/chat/completions",
+            {
+                model: "gpt-4o-mini",
+                messages: [{ role: "user", content: userText }],
+                temperature: 0.7,
+            },
+            {
+                headers: {
+                    "Authorization": `Bearer ${OPENAI_API_KEY}`,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        return response.data.choices[0].message.content.trim();
     } catch (error) {
-        console.error("Error fetching AI response:", error);
-        return "Sorry, I couldn't process that.";
+        console.error("OpenAI API Error:", error);
+        return "I'm sorry, I couldn't understand that.";
     }
-}
+};

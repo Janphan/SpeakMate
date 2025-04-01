@@ -1,96 +1,91 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
-import { recordVoice, speakText } from "../services/SpeechService"
-import { getAIResponse } from '../services/AIService';
+import React, { useState } from 'react';
+import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { Audio } from 'expo-av';
+import { convertAudioToText } from '../services/speechToText'; // Google STT
+import { getOpenAIResponse } from "../services/AIService" // OpenAI API
+import { speakText } from '../services/textToSpeech'; // Expo TTS
+import AIResponseDisplay from './AIResponseDisplay'; // Display responses
+import RecordingControls from './RecordingControls'; // Start/Stop recording
+import { requestPermissions } from './PermissionsHandler'; // Handle permissions
+import base64 from 'react-native-base64'
 
-export default function CallScreen({ navigation }) {
-    const [transcription, setTranscription] = useState("");
-    const [aiResponse, setAIResponse] = useState("");
+const CallScreen = ({ navigation }) => {
+    const [recording, setRecording] = useState(null);
+    const [transcription, setTranscription] = useState('');
+    const [aiResponse, setAiResponse] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleCall = async () => {
-        setTranscription("Listening...");
+    // 🔴 Start Recording
+    const startRecording = async () => {
+        try {
+            console.log("Requesting microphone permissions...");
+            const hasPermission = await requestPermissions();
+            if (!hasPermission) return;
 
-        // Step 1: Record voice and convert to text
-        await recordVoice(setTranscription);
+            await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
 
-        // Step 2: Wait for transcription and send to OpenAI
-        if (transcription) {
-            const response = await getAIResponse(transcription);
-            setAIResponse(response);
-
-            // Step 3: Speak out AI response
-            speakText(response);
+            const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.LOW_QUALITY);
+            setRecording(recording)
+            console.log("Recording started...");
+        } catch (error) {
+            console.error("Failed to start recording:", error);
         }
+    };
+
+    // 🛑 Stop Recording & Process Audio
+    const stopRecording = async () => {
+        setIsLoading(true);
+        if (!recording) return;
+
+        await recording.stopAndUnloadAsync();
+        const uri = recording.getURI();
+
+        console.log("uri: ", uri)
+        console.log("data: ", base64.encode(recording.base64))
+        setRecording(null);
+        console.log("Recording stopped. Sending audio for transcription...");
+
+        const transcript = await convertAudioToText(base64.encode(recording));
+        setTranscription(transcript);
+
+        if (transcript) {
+            processOpenAIResponse(transcript);
+        } else {
+            setIsLoading(false);
+        }
+    };
+
+    // 🤖 Send Text to OpenAI and Speak Response
+    const processOpenAIResponse = async (text) => {
+        console.log("Sending text to OpenAI:", text);
+        const aiReply = await getOpenAIResponse(text);
+        setAiResponse(aiReply);
+        console.log("OpenAI Response:", aiReply);
+
+        speakText(aiReply); // 🔊 Speak AI response
+        setIsLoading(false);
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.callingText}>Calling AI Voice Chat...</Text>
+            <Text style={styles.title}>AI Voice Assistant</Text>
 
-            {/* Transcribed Text */}
-            <Text style={styles.transcription}>{transcription}</Text>
+            {/* Recording Buttons */}
+            <RecordingControls startRecording={startRecording} stopRecording={stopRecording} recording={recording} />
 
-            {/* AI Response */}
-            <Text style={styles.response}>{aiResponse}</Text>
+            {/* Loading Indicator */}
+            {isLoading && <ActivityIndicator size="large" color="blue" />}
 
-            {/* Call Button */}
-            <IconButton
-                icon="phone"
-                size={50}
-                iconColor="white"
-                containerColor="green"
-                style={styles.callButton}
-                onPress={handleCall}
-            />
-
-            {/* Hang Up Button */}
-            <IconButton
-                icon="phone-hangup"
-                size={50}
-                iconColor="white"
-                containerColor="red"
-                style={styles.hangUpButton}
-                onPress={() => navigation.goBack()}
-            />
+            {/* AI & User Text Display */}
+            <AIResponseDisplay transcription={transcription} aiResponse={aiResponse} />
         </View>
     );
-}
+};
 
+// 🔵 Styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white', // Black background for call UI
-    },
-    callingText: {
-        color: 'black',
-        fontSize: 22,
-        marginBottom: 10,
-    },
-    timer: {
-        color: 'black',
-        fontSize: 28,
-        fontWeight: 'bold',
-        marginBottom: 40,
-    },
-    hangUpButton: {
-        backgroundColor: 'red',
-        borderRadius: 30,
-        padding: 10,
-    },
-    transcription: {
-        color: 'yellow',
-        fontSize: 18,
-        marginBottom: 20,
-    },
-    response: {
-        color: 'lightgreen',
-        fontSize: 18,
-        marginBottom: 40,
-    },
-    callButton: {
-        marginBottom: 20,
-    },
+    container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' },
+    title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
 });
+
+export default CallScreen;

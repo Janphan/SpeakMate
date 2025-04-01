@@ -42,4 +42,13 @@
 
 - openai
 
-- axios
+- axios (to send the recorded audio to Google Cloud)
+
+- expo-av (to record audio)
+
+- react-native-dotenv
+
+<!-- 
+Consider free alternatives like: ✅ Google Gemini API (limited free access)
+✅ Hugging Face Models (open-source LLMs)
+✅ Local LLMs (like Llama 2, Whisper for STT) -->

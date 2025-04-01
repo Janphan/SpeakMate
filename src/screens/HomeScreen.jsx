@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
                 <IconButton
                     icon="volume-high"  // Speaker Icon
                     size={50}
-                    onPress={speak}
+                    onPress={() => { speak; navigation.navigate("CallScreen") }}
                     style={styles.speakerIcon}
                 />
             </View>
