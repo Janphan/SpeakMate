@@ -1,8 +1,19 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { PaperProvider, IconButton } from 'react-native-paper';
+import * as Speech from 'expo-speech';
 
 export default function HomeScreen({ navigation }) {
+    const speak = () => {
+        Speech.speak('Hello, how can I assist you today?'), {
+            language: "en-US",
+            pitch: 1.0,
+            rate: 1.0,
+            onDone: () => console.log("Speech finished"),
+            onError: (error) => console.log("Speech error:", error),
+        };
+    };
+
     return (
         <PaperProvider>
             <View style={styles.container}>
@@ -10,9 +21,7 @@ export default function HomeScreen({ navigation }) {
                 <IconButton
                     icon="volume-high"  // Speaker Icon
                     size={50}
-                    onPress={() => {
-                        navigation.navigate("CallScreen")
-                    }}
+                    onPress={speak}
                     style={styles.speakerIcon}
                 />
             </View>

@@ -33,3 +33,13 @@
 - Google Text-to-Speech (TTS) → Convert AI response to speech
 
 - OpenAI API → Generate a response based on the user’s speech
+
+- expo-speech: Google Text-to-Speech (Phone is not in silent mode)
+
+- expo-av : Required for microphone/audio permissions
+
+- @react-native-async-storage/async-storage 
+
+- openai
+
+- axios
