@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import { Audio } from 'expo-av';
-import { convertAudioToText } from '../services/speechToText'; // Google STT
+import { convertAudioToText } from '../services/speechToText'; // Whishper
 import { getOpenAIResponse } from "../services/AIService" // OpenAI API
 import { speakText } from '../services/textToSpeech'; // Expo TTS
 import AIResponseDisplay from './AIResponseDisplay'; // Display responses
 import RecordingControls from './RecordingControls'; // Start/Stop recording
 import { requestPermissions } from './PermissionsHandler'; // Handle permissions
-import base64 from 'react-native-base64'
 
 const CallScreen = ({ navigation }) => {
     const [recording, setRecording] = useState(null);
@@ -19,18 +18,32 @@ const CallScreen = ({ navigation }) => {
     const startRecording = async () => {
         try {
             console.log("Requesting microphone permissions...");
-            const hasPermission = await requestPermissions();
-            if (!hasPermission) return;
+            const { granted } = await Audio.requestPermissionsAsync();
+            if (!granted) {
+                alert("Permission to access microphone is required!");
+                return;
+            }
 
-            await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
+            await Audio.setAudioModeAsync({
+                allowsRecordingIOS: true,
+                playsInSilentModeIOS: true,
+            });
 
-            const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.LOW_QUALITY);
-            setRecording(recording)
+            const recording = new Audio.Recording();
+            await recording.prepareToRecordAsync({
+                isMeteringEnabled: true,
+                android: { extension: '.m4a', outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4 },
+                ios: { extension: '.m4a', audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_HIGH, sampleRate: 44100, numberOfChannels: 1, bitRate: 128000, outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC },
+            });
+
+            await recording.startAsync();
+            setRecording(recording);
             console.log("Recording started...");
         } catch (error) {
             console.error("Failed to start recording:", error);
         }
     };
+
 
     // 🛑 Stop Recording & Process Audio
     const stopRecording = async () => {
@@ -41,17 +54,23 @@ const CallScreen = ({ navigation }) => {
         const uri = recording.getURI();
 
         console.log("uri: ", uri)
-        console.log("data: ", base64.encode(recording.base64))
         setRecording(null);
         console.log("Recording stopped. Sending audio for transcription...");
+        // console.log("data: ", AudioEncoder.encode(uri))
 
-        const transcript = await convertAudioToText(base64.encode(recording));
-        setTranscription(transcript);
+        try {
+            const transcript = await convertAudioToText(uri);
+            setTranscription(transcript);
 
-        if (transcript) {
-            processOpenAIResponse(transcript);
-        } else {
+            if (transcript) {
+                processOpenAIResponse(transcript);
+            } else {
+                setIsLoading(false);
+            }
+        } catch (error) {
+            console.error("Transcription error:", error);
             setIsLoading(false);
+            setTranscription("Transcription failed.");
         }
     };
 

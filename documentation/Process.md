@@ -1,10 +1,10 @@
-## Set up Firebase
+# Set up Firebase
 
 - install firebase
 
 - install react-native-dotenv to use .env
 
-## Set up navigation between pages
+# Set up navigation between pages
 
 - Install navigation stack/tab
 
@@ -14,11 +14,22 @@
 
 - Sign up 
 
-## Learnings
+# Learnings
 
 - Nested navigation
 
 - Firebase authentication
+
+## Set up OpenAI Whisper/ Set up Google STT and TTS API
+
+## Speech To Text
+### Whisper AI openAI
+- FileSystem next not support Expo Go - not possible to test
+- Try FileSystem to upload audio record from phone to API
+URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipart
+
+### Audio File handling
+
 
 ## Dependencies
 
