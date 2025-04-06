@@ -63,3 +63,7 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 Consider free alternatives like: ✅ Google Gemini API (limited free access)
 ✅ Hugging Face Models (open-source LLMs)
 ✅ Local LLMs (like Llama 2, Whisper for STT) -->
+
+## Resources
+
+- https://github.com/Galaxies-dev/ai-voice-recorder
