@@ -33,7 +33,7 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 
 ## Dependencies
 
-- Firebase
+- Firebase: NOTE_COLLECTION;
 
 - react-native-paper
 
@@ -58,6 +58,8 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 - expo-av (to record audio)
 
 - react-native-dotenv
+
+- sonner-native : display toast notifications within your mobile applications
 
 <!-- 
 Consider free alternatives like: ✅ Google Gemini API (limited free access)

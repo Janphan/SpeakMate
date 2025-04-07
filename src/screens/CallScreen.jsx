@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import { Audio } from 'expo-av';
-import { convertAudioToText } from '../services/speechToText'; // Whishper
-import { getOpenAIResponse } from "../services/AIService" // OpenAI API
-import { speakText } from '../services/textToSpeech'; // Expo TTS
-import AIResponseDisplay from './AIResponseDisplay'; // Display responses
-import RecordingControls from './RecordingControls'; // Start/Stop recording
-import { requestPermissions } from './PermissionsHandler'; // Handle permissions
+import { convertAudioToText } from '../api/speechToText';
+import { getOpenAIResponse } from "../api/AIService"
+import { speakText } from '../api/textToSpeech';
+import AIResponseDisplay from './AIResponseDisplay';
+import RecordingControls from './RecordingControls';
 
 const CallScreen = ({ navigation }) => {
     const [recording, setRecording] = useState(null);
@@ -17,11 +16,12 @@ const CallScreen = ({ navigation }) => {
     // 🔴 Start Recording
     const startRecording = async () => {
         try {
-            console.log("Requesting microphone permissions...");
-            const { granted } = await Audio.requestPermissionsAsync();
-            if (!granted) {
-                alert("Permission to access microphone is required!");
-                return;
+            const permissionResponse = await Audio.requestPermissionsAsync();
+
+            if (permissionResponse.status === 'granted') {
+                console.log('Permission granted');
+            } else {
+                Alert.alert('Permission not granted');
             }
 
             await Audio.setAudioModeAsync({
@@ -29,20 +29,14 @@ const CallScreen = ({ navigation }) => {
                 playsInSilentModeIOS: true,
             });
 
-            const recording = new Audio.Recording();
-            await recording.prepareToRecordAsync({
-                isMeteringEnabled: true,
-                android: { extension: '.m4a', outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4 },
-                ios: { extension: '.m4a', audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_HIGH, sampleRate: 44100, numberOfChannels: 1, bitRate: 128000, outputFormat: Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC },
-            });
-
-            await recording.startAsync();
+            const { recording } = await Audio.Recording.createAsync(
+                Audio.RecordingOptionsPresets.HIGH_QUALITY
+            );
             setRecording(recording);
-            console.log("Recording started...");
-        } catch (error) {
-            console.error("Failed to start recording:", error);
+        } catch (err) {
+            console.error('Failed to start recording', err);
         }
-    };
+    }
 
 
     // 🛑 Stop Recording & Process Audio
@@ -58,9 +52,16 @@ const CallScreen = ({ navigation }) => {
         console.log("Recording stopped. Sending audio for transcription...");
         // console.log("data: ", AudioEncoder.encode(uri))
 
+        if (!uri) {
+            console.error('Failed to get URI for recording');
+            return;
+        }
+        // router.push(`/new-recording?uri=${encodeURIComponent(uri)}`);
+
         try {
             const transcript = await convertAudioToText(uri);
             setTranscription(transcript);
+            console.log("transcript", transcript)
 
             if (transcript) {
                 processOpenAIResponse(transcript);
