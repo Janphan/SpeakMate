@@ -1,9 +1,23 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { PaperProvider, IconButton } from 'react-native-paper';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { PaperProvider, IconButton, Menu } from 'react-native-paper';
 import * as Speech from 'expo-speech';
 
 export default function HomeScreen({ navigation }) {
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const openMenu = () => setMenuVisible(true);
+    const closeMenu = () => setMenuVisible(false);
+
+    const handleSignOut = async () => {
+        try {
+            await signOut(auth);
+            navigation.replace("SignInScreen"); // Navigate back to SignInScreen
+        } catch (error) {
+            console.error("Sign out error:", error.message);
+        }
+    };
+
     const speak = () => {
         Speech.speak('Hello, how can I assist you today?'), {
             language: "en-US",
@@ -17,6 +31,26 @@ export default function HomeScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
+                {/* Hamburger Menu in the top-left corner */}
+                <View style={styles.menuContainer}>
+                    <Menu
+                        visible={menuVisible}
+                        onDismiss={closeMenu}
+                        anchor={
+                            <IconButton
+                                icon="menu"
+                                size={30}
+                                onPress={openMenu}
+                                style={styles.menuIcon}
+                            />
+                        }
+                    >
+                        <Menu.Item onPress={handleSignOut} title="Sign Out" />
+                        <Menu.Item onPress={() => console.log("Settings pressed")} title="Settings" />
+                        <Menu.Item onPress={() => console.log("Help pressed")} title="Help" />
+                    </Menu>
+                </View>
+
                 <Text style={styles.title}>Let's talk</Text>
                 <IconButton
                     icon="volume-high"
@@ -67,5 +101,18 @@ const styles = StyleSheet.create({
     },
     speakerIcon: {
         marginTop: 20,
-    }
+    },
+    menuContainer: {
+        position: "absolute",
+        top: 40, // Adjust for status bar height
+        left: 20,
+    },
+    menuIcon: {
+        alignSelf: "flex-start",
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: "bold",
+        marginBottom: 20,
+    },
 });
