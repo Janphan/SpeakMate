@@ -34,6 +34,7 @@
 
 - Need to figure out what is a good prompt
 
+
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
 ## Speech To Text
@@ -86,6 +87,7 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 
 - npx expo install expo-auth-session expo-google-auth-session
 
+
 <!-- 
 Consider free alternatives like: ✅ Google Gemini API (limited free access)
 ✅ Hugging Face Models (open-source LLMs)
@@ -100,3 +102,5 @@ Consider free alternatives like: ✅ Google Gemini API (limited free access)
 - Ytb: https://www.youtube.com/watch?v=86iUP4fwl8c
 
 - OpenAI Whisper: https://platform.openai.com/docs/api-reference/realtime-server-events/response/done
+
+- Material Design Icon : https://pictogrammers.github.io/@mdi/font/6.5.95/
