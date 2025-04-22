@@ -30,6 +30,10 @@
 
 - Set up Credentials for Expo (client id) Create OAuth 2.0 Client IDs for iOS and Android
 
+- Continue with the ideas of having the english tutor. AI voices seems to be too "robotic"
+
+- Need to figure out what is a good prompt
+
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
 ## Speech To Text
