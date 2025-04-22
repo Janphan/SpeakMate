@@ -1,13 +1,58 @@
 // src/screens/SignInScreen.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api/firebaseConfig"
+import * as WebBrowser from 'expo-web-browser';
+import * as Google from 'expo-auth-session/providers/google';
+import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import { EXPO_CLIENT_ID, WEB_CLIENT_ID, IOS_CLIENT_ID, ANDROID_CLIENT_ID } from '@env';
+
+WebBrowser.maybeCompleteAuthSession();
 
 const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+
+    //sign in with google
+
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        expoClientId: EXPO_CLIENT_ID,         // For Expo Go testing
+        iosClientId: IOS_CLIENT_ID,           // For iOS standalone or dev client
+        androidClientId: ANDROID_CLIENT_ID,   // For Android standalone or dev client
+        webClientId: WEB_CLIENT_ID,           // Optional (if using web too)
+    });
+
+    useEffect(() => {
+        if (response?.type === 'success') {
+            const { id_token } = response.authentication;
+            const credential = GoogleAuthProvider.credential(id_token);
+            signInWithCredential(auth, credential)
+                .then(() => {
+                    Alert.alert("Signed in successfully!");
+                    navigation.replace("HomeScreen");
+                })
+                .catch((error) => {
+                    console.error(error);
+                    Alert.alert("Firebase error", error.message);
+                });
+        }
+    }, [response]);
+
+    //show logged in user
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('User is signed in:', user.email);
+            } else {
+                console.log('User is signed out');
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const handleSignIn = async () => {
         if (!email || !password) {
@@ -54,6 +99,11 @@ const SignInScreen = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
                 <Text style={styles.link}>Don't have an account? Sign Up</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => promptAsync()} disabled={!request}>
+                <Text >Sign in with Google</Text>
+            </TouchableOpacity>
+
         </View>
     );
 };

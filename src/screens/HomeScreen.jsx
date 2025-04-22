@@ -19,7 +19,7 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.container}>
                 <Text style={styles.title}>Let's talk</Text>
                 <IconButton
-                    icon="volume-high"  // Speaker Icon
+                    icon="volume-high"
                     size={50}
                     onPress={() => { speak; navigation.navigate("CallScreen") }}
                     style={styles.speakerIcon}

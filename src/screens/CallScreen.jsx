@@ -13,7 +13,7 @@ const CallScreen = ({ navigation }) => {
     const [aiResponse, setAiResponse] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    // 🔴 Start Recording
+    // Start Recording
     const startRecording = async () => {
         try {
             const permissionResponse = await Audio.requestPermissionsAsync();
@@ -38,8 +38,7 @@ const CallScreen = ({ navigation }) => {
         }
     }
 
-
-    // 🛑 Stop Recording & Process Audio
+    // Stop Recording & Process Audio
     const stopRecording = async () => {
         setIsLoading(true);
         if (!recording) return;
@@ -50,13 +49,11 @@ const CallScreen = ({ navigation }) => {
         console.log("uri: ", uri)
         setRecording(null);
         console.log("Recording stopped. Sending audio for transcription...");
-        // console.log("data: ", AudioEncoder.encode(uri))
 
         if (!uri) {
             console.error('Failed to get URI for recording');
             return;
         }
-        // router.push(`/new-recording?uri=${encodeURIComponent(uri)}`);
 
         try {
             const transcript = await convertAudioToText(uri);
@@ -75,34 +72,27 @@ const CallScreen = ({ navigation }) => {
         }
     };
 
-    // 🤖 Send Text to OpenAI and Speak Response
+    // Send Text to OpenAI and Speak Response
     const processOpenAIResponse = async (text) => {
         console.log("Sending text to OpenAI:", text);
         const aiReply = await getOpenAIResponse(text);
         setAiResponse(aiReply);
         console.log("OpenAI Response:", aiReply);
 
-        speakText(aiReply); // 🔊 Speak AI response
+        speakText(aiReply); // Speak AI response
         setIsLoading(false);
     };
 
     return (
         <View style={styles.container}>
             <Text style={styles.title}>AI Voice Assistant</Text>
-
-            {/* Recording Buttons */}
             <RecordingControls startRecording={startRecording} stopRecording={stopRecording} recording={recording} />
-
-            {/* Loading Indicator */}
             {isLoading && <ActivityIndicator size="large" color="blue" />}
-
-            {/* AI & User Text Display */}
             <AIResponseDisplay transcription={transcription} aiResponse={aiResponse} />
         </View>
     );
 };
 
-// 🔵 Styles
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' },
     title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
