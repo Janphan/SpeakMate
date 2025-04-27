@@ -1,8 +1,8 @@
 // src/screens/SignInScreen.js
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api/firebaseConfig"
+import { auth } from "../api/firebaseConfig";
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
@@ -16,13 +16,12 @@ const SignInScreen = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
-    //sign in with google
-
+    // Google Sign-In
     const [request, response, promptAsync] = Google.useAuthRequest({
-        expoClientId: EXPO_CLIENT_ID,         // For Expo Go testing
-        iosClientId: IOS_CLIENT_ID,           // For iOS standalone or dev client
-        androidClientId: ANDROID_CLIENT_ID,   // For Android standalone or dev client
-        webClientId: WEB_CLIENT_ID,           // Optional (if using web too)
+        expoClientId: EXPO_CLIENT_ID,
+        iosClientId: IOS_CLIENT_ID,
+        androidClientId: ANDROID_CLIENT_ID,
+        webClientId: WEB_CLIENT_ID,
     });
 
     useEffect(() => {
@@ -72,54 +71,67 @@ const SignInScreen = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Sign In</Text>
+        <ImageBackground
+            source={{ uri: "https://ai.myspeakingscore.com/wp-content/uploads/2024/05/AI-assisted-English-Language-Learning-1024x585.webp" }}
+            style={styles.background}
+        >
+            <View style={styles.container}>
+                <Text style={styles.title}>Sign In</Text>
 
-            <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                style={styles.input}
-            />
+                <TextInput
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    style={styles.input}
+                />
 
-            <TextInput
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-                style={styles.input}
-            />
+                <TextInput
+                    placeholder="Password"
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                    style={styles.input}
+                />
 
-            <TouchableOpacity onPress={handleSignIn} style={styles.button} disabled={loading}>
-                <Text style={styles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={handleSignIn} style={styles.button} disabled={loading}>
+                    <Text style={styles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
-                <Text style={styles.link}>Don't have an account? Sign Up</Text>
-            </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
+                    <Text style={styles.link}>Don't have an account? Sign Up</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => promptAsync()} disabled={!request}>
-                <Text >Sign in with Google</Text>
-            </TouchableOpacity>
-
-        </View>
+                <TouchableOpacity
+                    onPress={() => promptAsync()}
+                    disabled={!request}
+                    style={styles.googleButton}
+                >
+                    <Text style={styles.googleButtonText}>Sign in with Google</Text>
+                </TouchableOpacity>
+            </View>
+        </ImageBackground >
     );
 };
 
 const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        resizeMode: "cover",
+    },
     container: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-        backgroundColor: "#fff",
+        backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
     },
     title: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "bold",
         marginBottom: 20,
+        fontFamily: "sans-serif", // Add custom font if needed
     },
     input: {
         width: "100%",
@@ -128,6 +140,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         borderRadius: 8,
         marginBottom: 10,
+        backgroundColor: "#fff",
     },
     button: {
         backgroundColor: "#007bff",
@@ -135,6 +148,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: "100%",
         alignItems: "center",
+        marginBottom: 10,
     },
     buttonText: {
         color: "#fff",
@@ -143,6 +157,19 @@ const styles = StyleSheet.create({
     link: {
         marginTop: 15,
         color: "#007bff",
+        fontWeight: "bold",
+    },
+    googleButton: {
+        backgroundColor: "#db4437",
+        padding: 15,
+        borderRadius: 8,
+        width: "100%",
+        alignItems: "center",
+        marginTop: 20,
+    },
+    googleButtonText: {
+        color: "#fff",
+        fontWeight: "bold",
     },
 });
 
