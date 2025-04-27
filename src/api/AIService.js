@@ -3,18 +3,24 @@ import { OPENAI_API_KEY } from '@env';
 
 // Wrap user input in a custom instruction prompt
 export const getOpenAIResponse = async (userText) => {
+    if (!userText) {
+        return "Please provide a sentence for correction.";
+    }
     const customPrompt = `
-You are an English tutor. Your task is to help improve the user's English sentence while maintaining the original meaning. 
-Then, based on the topic of the user's message, ask a natural follow-up question to encourage further conversation.
+You are an English tutor focused on helping users improve their English. When the user provides a sentence, your task is to:
+
+1. Gently correct and improve the user's sentence while maintaining the original meaning.
+2. Ask a natural, casual follow-up question related to the topic of their sentence to encourage further conversation.
+
+Respond in a way that blends the correction and the follow-up question seamlessly, as if you were responding naturally in a conversation. 
+Avoid using numbered lists or distinct sections. 
+Maintain a friendly and helpful tone.
 
 Here is the student's sentence:
 "${userText}"
 
-Respond with:
-1. Gently correct and improve the student’s sentence without being too formal.
-2. Ask a natural, casual follow-up question related to the topic, like you're having a conversation.
-
-Use a friendly and helpful tone.`;
+Tutor's response:
+`;
 
     try {
         const response = await axios.post(

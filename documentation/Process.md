@@ -87,6 +87,8 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 
 - npx expo install expo-auth-session expo-google-auth-session
 
+- react-navigation/bottom-tabs
+
 
 <!-- 
 Consider free alternatives like: ✅ Google Gemini API (limited free access)
