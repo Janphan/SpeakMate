@@ -2,7 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from '@expo/vector-icons'; // For tab icons
+import { Ionicons } from '@expo/vector-icons';
+import { IconButton } from 'react-native-paper';
 
 import HomeScreen from "./src/screens/HomeScreen"
 import SignInScreen from './src/screens/SignInScreen';
@@ -22,6 +23,16 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        headerShown: route.name !== 'Home',
+        tabBarStyle: {
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          elevation: 0,
+          backgroundColor: '#fff',
+          borderTopWidth: 0,
+        },
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -42,7 +53,18 @@ function TabNavigator() {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Home" component={HomeScreen}
+        options={{
+          headerRight: () => (
+            <IconButton
+              icon="cog"
+              size={24}
+              onPress={() => navigation.navigate("SettingsScreen")}
+              style={{ marginRight: 10 }}
+            />
+          ), headerTitle: "",
+        }}
+      />
       <Tab.Screen name="Calls" component={CallScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Vocab" component={VocabScreen} />
@@ -54,7 +76,9 @@ function TabNavigator() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignInScreen">
+      <Stack.Navigator initialRouteName="SignInScreen"
+        screenOptions={{ headerShown: false, }}
+      >
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="HomeScreen" component={TabNavigator} />

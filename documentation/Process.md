@@ -34,6 +34,11 @@
 
 - Need to figure out what is a good prompt
 
+- Styling:
++ Icon usage
++ Handling tabs and slack at the same time
++ Use some new props: headerShown, headerRight, headerTitle to adjust to show/not to show tab names etc to control the visibility of tab names or titles within a header
+
 
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
