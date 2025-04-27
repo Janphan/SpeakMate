@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
 import { Audio } from 'expo-av';
 import { convertAudioToText } from '../api/speechToText';
-import { getOpenAIResponse } from "../api/AIService"
+import { getOpenAIResponse } from "../api/AIService";
 import { speakText } from '../api/textToSpeech';
 import AIResponseDisplay from './AIResponseDisplay';
 import RecordingControls from './RecordingControls';
+import { IconButton } from 'react-native-paper';
 
-const CallScreen = ({ navigation }) => {
+export default function DialogueScreen({ navigation }) {
     const [recording, setRecording] = useState(null);
     const [transcription, setTranscription] = useState('');
     const [aiResponse, setAiResponse] = useState('');
@@ -36,7 +37,7 @@ const CallScreen = ({ navigation }) => {
         } catch (err) {
             console.error('Failed to start recording', err);
         }
-    }
+    };
 
     // Stop Recording & Process Audio
     const stopRecording = async () => {
@@ -46,7 +47,7 @@ const CallScreen = ({ navigation }) => {
         await recording.stopAndUnloadAsync();
         const uri = recording.getURI();
 
-        console.log("uri: ", uri)
+        console.log("uri: ", uri);
         setRecording(null);
         console.log("Recording stopped. Sending audio for transcription...");
 
@@ -58,7 +59,7 @@ const CallScreen = ({ navigation }) => {
         try {
             const transcript = await convertAudioToText(uri);
             setTranscription(transcript);
-            console.log("transcript", transcript)
+            console.log("transcript", transcript);
 
             if (transcript) {
                 processOpenAIResponse(transcript);
@@ -85,17 +86,29 @@ const CallScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            {/* Back to Home Icon */}
+            <IconButton
+                icon="arrow-left"
+                size={24}
+                onPress={() => navigation.navigate("HomeScreen")}
+                style={styles.backButton}
+            />
             <Text style={styles.title}>AI Voice Assistant</Text>
             <RecordingControls startRecording={startRecording} stopRecording={stopRecording} recording={recording} />
             {isLoading && <ActivityIndicator size="large" color="blue" />}
             <AIResponseDisplay transcription={transcription} aiResponse={aiResponse} />
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' },
     title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
+    backButton: {
+        position: 'absolute',
+        top: 40, // Adjust for status bar height
+        left: 20,
+        zIndex: 10,
+    },
 });
 
-export default CallScreen;

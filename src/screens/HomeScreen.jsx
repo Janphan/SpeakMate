@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
                 <IconButton
                     icon="volume-high"
                     size={50}
-                    onPress={() => { speak(); navigation.navigate("CallScreen"); }}
+                    onPress={() => { speak(); navigation.navigate("DialogueScreen"); }}
                     style={styles.speakerIcon}
                 />
             </View>

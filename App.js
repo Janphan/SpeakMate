@@ -9,11 +9,12 @@ import HomeScreen from "./src/screens/HomeScreen"
 import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import SignOutScreen from "./src/screens/SignOutScreen";
-import CallScreen from './src/screens/CallScreen';
 import SettingsScreen from "./src/screens/SettingsScreen";
+import DialogueScreen from './src/screens/DialogueScreen';
 
 import ProgressScreen from './src/screens/ProgressScreen';
 import VocabScreen from './src/screens/VocabScreen';
+import CallsScreen from './src/screens/CallsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -65,7 +66,7 @@ function TabNavigator() {
           ), headerTitle: "",
         }}
       />
-      <Tab.Screen name="Calls" component={CallScreen} />
+      <Tab.Screen name="Calls" component={CallsScreen} />
       <Tab.Screen name="Progress" component={ProgressScreen} />
       <Tab.Screen name="Vocab" component={VocabScreen} />
 
@@ -82,7 +83,7 @@ export default function App() {
         <Stack.Screen name="SignInScreen" component={SignInScreen} />
         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
         <Stack.Screen name="HomeScreen" component={TabNavigator} />
-        {/* <Stack.Screen name="CallScreen" component={CallScreen} /> */}
+        <Stack.Screen name="DialogueScreen" component={DialogueScreen} />
         <Stack.Screen name="SignOutScreen" component={SignOutScreen} />
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
       </Stack.Navigator>
