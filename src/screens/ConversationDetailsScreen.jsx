@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
+import { db } from '../api/firebaseConfig';
+import { IconButton } from 'react-native-paper';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -51,6 +52,13 @@ export default function ConversationDetailsScreen({ route, navigation }) {
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContainer}>
+            {/* Go Back Button */}
+            <IconButton
+                icon="arrow-left"
+                size={24}
+                onPress={() => navigation.goBack()} // Go back to the previous screen
+                style={styles.backButton}
+            />
             <View style={styles.container}>
                 <Text style={styles.header}>Conversation Details</Text>
                 <View style={styles.card}>
@@ -124,5 +132,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'red',
         textAlign: 'center',
+    },
+    backButton: {
+        position: 'absolute',
+        top: 40, // Adjust for status bar height
+        left: 20,
+        zIndex: 10,
     },
 });
