@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 import { Audio } from 'expo-av';
 import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse } from "../api/AIService";
@@ -23,6 +23,7 @@ export default function DialogueScreen({ navigation }) {
                 console.log('Permission granted');
             } else {
                 Alert.alert('Permission not granted');
+                return;
             }
 
             await Audio.setAudioModeAsync({
@@ -84,6 +85,22 @@ export default function DialogueScreen({ navigation }) {
         setIsLoading(false);
     };
 
+    // End the Conversation
+    const endConversation = () => {
+        Alert.alert(
+            "End Conversation",
+            "Are you sure you want to end the conversation?",
+            [
+                { text: "Cancel", style: "cancel" },
+                {
+                    text: "End",
+                    style: "destructive",
+                    onPress: () => navigation.navigate("HomeScreen"),
+                },
+            ]
+        );
+    };
+
     return (
         <View style={styles.container}>
             {/* Back to Home Icon */}
@@ -94,9 +111,21 @@ export default function DialogueScreen({ navigation }) {
                 style={styles.backButton}
             />
             <Text style={styles.title}>AI Voice Assistant</Text>
-            <RecordingControls startRecording={startRecording} stopRecording={stopRecording} recording={recording} />
+            <RecordingControls
+                startRecording={startRecording}
+                stopRecording={stopRecording}
+                recording={recording}
+            />
             {isLoading && <ActivityIndicator size="large" color="blue" />}
             <AIResponseDisplay transcription={transcription} aiResponse={aiResponse} />
+            {/* End Conversation Icon */}
+            <IconButton
+                icon="stop-circle"
+                size={40}
+                onPress={endConversation}
+                style={styles.endButton}
+                color="red"
+            />
         </View>
     );
 }
@@ -108,6 +137,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 40, // Adjust for status bar height
         left: 20,
+        zIndex: 10,
+    },
+    endButton: {
+        position: 'absolute',
+        bottom: 40, // Adjust for spacing at the bottom
+        right: 20,
         zIndex: 10,
     },
 });
