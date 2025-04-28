@@ -103,6 +103,10 @@ const SignInScreen = ({ navigation }) => {
                     <Text style={styles.link}>Don't have an account? Sign Up</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => navigation.navigate("ResetPasswordScreen")}>
+                    <Text style={styles.link}>Forgot Password?</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity
                     onPress={() => promptAsync()}
                     disabled={!request}

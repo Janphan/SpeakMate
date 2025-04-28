@@ -39,6 +39,8 @@
 + Handling tabs and slack at the same time
 + Use some new props: headerShown, headerRight, headerTitle to adjust to show/not to show tab names etc to control the visibility of tab names or titles within a header
 
+- Add Scenarios: Create predefined prompts for different conversation scenarios.
+
 
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
@@ -58,7 +60,8 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 
 - Prebuild and testing log in by google account with Iphone/samsung.
 
-- Set up OAuth,  Accessed blocked denied etc
+- Signin with Google: Set up OAuth,  Accessed blocked denied etc. The "Access blocked" error when using Google Sign-In typically occurs due to misconfiguration in your Google API credentials or the OAuth consent screen
+ + Platform-Specific Configurations: iOS and Android require additional setup (e.g., google-services.json for Android, GoogleService-Info.plist for iOS).
 
 ## Dependencies
 
@@ -111,3 +114,5 @@ Consider free alternatives like: ✅ Google Gemini API (limited free access)
 - OpenAI Whisper: https://platform.openai.com/docs/api-reference/realtime-server-events/response/done
 
 - Material Design Icon : https://pictogrammers.github.io/@mdi/font/6.5.95/
+
+- Expo Build : https://docs.expo.dev/build/introduction/
