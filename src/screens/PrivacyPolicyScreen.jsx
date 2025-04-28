@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-export default function ProfileScreen({ navigation }) {
+export default function PrivacyPolicyScreen({ navigation }) {
     return (
         <View style={styles.container}>
             {/* Go Back Button */}
@@ -12,7 +12,7 @@ export default function ProfileScreen({ navigation }) {
                 onPress={() => navigation.goBack()} // Go back to the previous screen
                 style={styles.backButton}
             />
-            <Text style={styles.text}>Profile Info Screen</Text>
+            <Text style={styles.text}>Privacy Policy Screen</Text>
         </View>
     );
 }

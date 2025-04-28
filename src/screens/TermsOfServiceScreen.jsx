@@ -2,17 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { IconButton } from 'react-native-paper';
 
-export default function ProfileScreen({ navigation }) {
+export default function TermsOfServiceScreen({ navigation }) {
     return (
         <View style={styles.container}>
             {/* Go Back Button */}
             <IconButton
                 icon="arrow-left"
                 size={24}
-                onPress={() => navigation.goBack()} // Go back to the previous screen
+                onPress={() => navigation.goBack()}
                 style={styles.backButton}
             />
-            <Text style={styles.text}>Profile Info Screen</Text>
+            <Text style={styles.text}>Terms of Service Screen</Text>
         </View>
     );
 }
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
         position: 'absolute',
-        top: 40, // Adjust for status bar height
+        top: 40,
         left: 20,
         zIndex: 10,
     },

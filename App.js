@@ -15,6 +15,9 @@ import DialogueScreen from './src/screens/DialogueScreen';
 import ProgressScreen from './src/screens/ProgressScreen';
 import VocabScreen from './src/screens/VocabScreen';
 import CallsScreen from './src/screens/CallsScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import TermsOfServiceScreen from './src/screens/TermsOfServiceScreen';
+import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -86,6 +89,9 @@ export default function App() {
         <Stack.Screen name="DialogueScreen" component={DialogueScreen} />
         <Stack.Screen name="SignOutScreen" component={SignOutScreen} />
         <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="TermsOfServiceScreen" component={TermsOfServiceScreen} />
+        <Stack.Screen name="PrivacyPolicyScreen" component={PrivacyPolicyScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
