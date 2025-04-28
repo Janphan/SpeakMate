@@ -1,37 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 export default function CallsScreen({ navigation }) {
-    // Placeholder data for call history
-    const callHistory = [
-        { id: '1', title: 'Dialogue with AI - 1', timestamp: '2025-04-25 10:00 AM' },
-        { id: '2', title: 'Dialogue with AI - 2', timestamp: '2025-04-26 02:30 PM' },
-        { id: '3', title: 'Dialogue with AI - 3', timestamp: '2025-04-27 09:15 AM' },
-    ];
+    const [conversations, setConversations] = useState([]);
+
+    useEffect(() => {
+        const fetchConversations = async () => {
+            try {
+                const q = query(collection(db, 'conversations'), orderBy('timestamp', 'desc'));
+                const querySnapshot = await getDocs(q);
+                const data = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setConversations(data);
+            } catch (error) {
+                console.error('Error fetching conversations:', error);
+            }
+        };
+
+        fetchConversations();
+    }, []);
 
     const renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.item}
-            onPress={() => navigation.navigate('DialogueScreen', { dialogueId: item.id })}
+            onPress={() => navigation.navigate('DialogueScreen', { conversationId: item.id })}
         >
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.timestamp}>{item.timestamp}</Text>
+            <Text style={styles.title}>{item.userInput}</Text>
+            <Text style={styles.timestamp}>{new Date(item.timestamp.toDate()).toLocaleString()}</Text>
         </TouchableOpacity>
     );
 
     return (
         <View style={styles.container}>
-            {/* Back to Home Icon */}
-            <IconButton
-                icon="arrow-left"
-                size={24}
-                onPress={() => navigation.goBack()}
-                style={styles.backButton}
-            />
-            <Text style={styles.header}>Call History</Text>
+            <Text style={styles.header}>Conversation History</Text>
             <FlatList
-                data={callHistory}
+                data={conversations}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.list}

@@ -7,6 +7,8 @@ import { speakText } from '../api/textToSpeech';
 import AIResponseDisplay from './AIResponseDisplay';
 import RecordingControls from './RecordingControls';
 import { IconButton } from 'react-native-paper';
+import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function DialogueScreen({ navigation }) {
     const [recording, setRecording] = useState(null);
@@ -85,6 +87,20 @@ export default function DialogueScreen({ navigation }) {
         setIsLoading(false);
     };
 
+    // Save Conversation to Firestore
+    const saveConversation = async () => {
+        try {
+            await addDoc(collection(db, 'conversations'), {
+                userInput: transcription,
+                aiResponse: aiResponse,
+                timestamp: new Date(),
+            });
+            console.log('Conversation saved to Firestore');
+        } catch (error) {
+            console.error('Error saving conversation:', error);
+        }
+    };
+
     // End the Conversation
     const endConversation = () => {
         Alert.alert(
@@ -95,7 +111,10 @@ export default function DialogueScreen({ navigation }) {
                 {
                     text: "End",
                     style: "destructive",
-                    onPress: () => navigation.navigate("HomeScreen"),
+                    onPress: async () => {
+                        await saveConversation(); // Save the conversation to Firestore
+                        navigation.navigate("HomeScreen"); // Navigate back to HomeScreen
+                    },
                 },
             ]
         );
