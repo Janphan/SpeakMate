@@ -41,7 +41,7 @@
 
 - Add Scenarios: Create predefined prompts for different conversation scenarios.
 
-
+- Set up Firebase Database
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
 ## Speech To Text

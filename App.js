@@ -19,6 +19,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import TermsOfServiceScreen from './src/screens/TermsOfServiceScreen';
 import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
+import ConversationDetailsScreen from './src/screens/ConversationDetailsScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -94,6 +95,11 @@ export default function App() {
         <Stack.Screen name="TermsOfServiceScreen" component={TermsOfServiceScreen} />
         <Stack.Screen name="PrivacyPolicyScreen" component={PrivacyPolicyScreen} />
         <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
+        <Stack.Screen
+          name="ConversationDetailsScreen"
+          component={ConversationDetailsScreen}
+          options={{ title: 'Conversation Details' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

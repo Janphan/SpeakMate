@@ -27,7 +27,7 @@ export default function CallsScreen({ navigation }) {
     const renderItem = ({ item }) => (
         <TouchableOpacity
             style={styles.item}
-            onPress={() => navigation.navigate('DialogueScreen', { conversationId: item.id })}
+            onPress={() => navigation.navigate('ConversationDetailsScreen', { conversationId: item.id })}
         >
             <Text style={styles.title}>{item.userInput}</Text>
             <Text style={styles.timestamp}>{new Date(item.timestamp.toDate()).toLocaleString()}</Text>
