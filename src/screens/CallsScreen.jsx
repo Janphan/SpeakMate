@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { PaperProvider, IconButton } from 'react-native-paper';
 
 export default function CallsScreen({ navigation }) {
     const [conversations, setConversations] = useState([]);
@@ -35,28 +36,39 @@ export default function CallsScreen({ navigation }) {
     );
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Conversation History</Text>
-            <FlatList
-                data={conversations}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-                contentContainerStyle={styles.list}
-            />
-        </View>
+        <PaperProvider>
+            <View style={styles.container}>
+                <IconButton
+                    icon="cog"
+                    size={30}
+                    onPress={() => navigation.navigate("SettingsScreen")}
+                    style={styles.settingsIcon}
+                />
+                <Text style={styles.header}>Conversation History</Text>
+                <FlatList
+                    data={conversations}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.list}
+                />
+            </View>
+        </PaperProvider>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        padding: 20,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 90,
+        backgroundColor: "#fff",
     },
     header: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        marginTop: 10,
         textAlign: 'center',
     },
     list: {
@@ -77,5 +89,15 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#666',
         marginTop: 5,
+    },
+    settingsIcon: {
+        position: "absolute",
+        top: 40,
+        right: 20,
+        opacity: 0.7,
+        backgroundColor: "#fff",
+        borderRadius: 50,
+        elevation: 2,
+        shadowColor: "#000",
     },
 });

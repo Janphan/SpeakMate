@@ -71,9 +71,9 @@ function TabNavigator() {
           ), headerTitle: "",
         }}
       />
-      <Tab.Screen name="Calls" component={CallsScreen} />
-      <Tab.Screen name="Progress" component={ProgressScreen} />
-      <Tab.Screen name="Vocab" component={VocabScreen} />
+      <Tab.Screen name="Calls" component={CallsScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Progress" component={ProgressScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Vocab" component={VocabScreen} options={{ headerShown: false }} />
 
     </Tab.Navigator>
   );
