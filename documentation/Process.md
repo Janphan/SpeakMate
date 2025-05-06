@@ -42,6 +42,20 @@
 - Add Scenarios: Create predefined prompts for different conversation scenarios.
 
 - Set up Firebase Database
+
+## Expo update version leading to new challenge in fixing bug
+In React Native projects, the Metro bundler is responsible for resolving and bundling JavaScript modules. However, with the introduction of the exports field in package.json by modern JavaScript libraries, compatibility issues can arise. Specifically, some libraries or configurations may not fully support Metro's handling of the exports field, leading to runtime errors such as: 
+[runtime not ready]: Error: Component auth has not been registered yet, js engine: hermes
+to address this issue, a workaround involves disabling package.json:exports in the Metro configuration:
+config.resolver.unstable_enablePackageExports = false;
+Relevance to Thesis
+This challenge underscores the evolving complexity of JavaScript module resolution in cross-platform frameworks like React Native. It highlights the need for:
+
+Improved compatibility between Metro and modern JavaScript standards.
+Better documentation and tooling to help developers debug and resolve such issues.
+Awareness of trade-offs when applying workarounds in real-world projects.
+By addressing this challenge in your thesis, you can emphasize the importance of balancing modern JavaScript practices with the constraints of existing tools and frameworks.
+
 ## Set up OpenAI Whisper/ Set up Google STT and TTS API
 
 ## Speech To Text
@@ -116,3 +130,5 @@ Consider free alternatives like: ✅ Google Gemini API (limited free access)
 - Material Design Icon : https://pictogrammers.github.io/@mdi/font/6.5.95/
 
 - Expo Build : https://docs.expo.dev/build/introduction/
+
+- Expo update https://github.com/expo/expo/discussions/36551 fix bug sollution
