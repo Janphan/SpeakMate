@@ -11,6 +11,7 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import SignOutScreen from "./src/screens/SignOutScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import DialogueScreen from './src/screens/DialogueScreen';
+import LetTalk from './src/screens/LetTalk';
 
 import ProgressScreen from './src/screens/ProgressScreen';
 import VocabScreen from './src/screens/VocabScreen';
@@ -100,6 +101,7 @@ export default function App() {
           component={ConversationDetailsScreen}
           options={{ title: 'Conversation Details' }}
         />
+        <Stack.Screen name="LetTalk" component={LetTalk} />
       </Stack.Navigator>
     </NavigationContainer>
   );

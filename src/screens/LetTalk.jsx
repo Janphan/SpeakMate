@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { PaperProvider, IconButton, Menu, Button } from 'react-native-paper';
+import { PaperProvider, IconButton } from 'react-native-paper';
 import * as Speech from 'expo-speech';
 
-export default function HomeScreen({ navigation }) {
+export default function LetTalk({ navigation, route }) {
+    const { level } = route.params || {};
     const [visible, setVisible] = useState(false);
-    const [selectedLevel, setSelectedLevel] = useState('band 5-6');
 
     const speak = () => {
         Speech.speak('Hello, how can I assist you today?', {
             language: "en-US",
             pitch: 1.0,
             rate: 1.0,
-            onDone: () => console.log("Speech finished"),
+            onDone: () => {
+                // Uncomment the next line if you want to navigate after speaking
+                // navigation.navigate("DialogueScreen");
+            },
             onError: (error) => console.log("Speech error:", error),
         });
     };
@@ -20,7 +23,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
-                {/* Settings Icon in the top-left corner */}
+                {/* Settings Icon in the top-right corner */}
                 <IconButton
                     icon="cog"
                     size={30}
@@ -30,13 +33,13 @@ export default function HomeScreen({ navigation }) {
 
                 {/* Main Content */}
                 <Text style={styles.title}>Let's talk</Text>
+                <Text>Selected Level: {level}</Text>
                 <IconButton
                     icon="volume-high"
                     size={50}
-                    onPress={() => { speak(); navigation.navigate("DialogueScreen"); }}
+                    onPress={speak}
                     style={styles.speakerIcon}
                 />
-
             </View>
         </PaperProvider>
     );
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     },
     settingsIcon: {
         position: "absolute",
-        top: 40, // Adjust for status bar height
+        top: 40,
         right: 20,
         opacity: 0.7,
         backgroundColor: "#fff",
