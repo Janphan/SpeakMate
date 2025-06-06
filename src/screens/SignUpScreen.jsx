@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import { auth } from '../api/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signUpUser } from '../api/auth'; 
 
 export default function SignUpScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
 
     const handleSignUp = async () => {
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            alert('Sign up successful!');
+            await signUpUser(email, password, name);
+            alert('Sign up successful!!');
             navigation.navigate("HomeScreen");
         } catch (error) {
             alert(error.message);
@@ -24,6 +24,13 @@ export default function SignUpScreen({ navigation }) {
         >
             <View style={styles.container}>
                 <Text style={styles.title}>Sign Up</Text>
+                <TextInput
+                    placeholder="Name"
+                    value={name}
+                    onChangeText={setName}
+                    style={styles.input}
+                    autoCapitalize="words"
+                />
                 <TextInput
                     placeholder="Email"
                     value={email}

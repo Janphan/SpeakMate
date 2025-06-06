@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { PaperProvider, IconButton } from 'react-native-paper';
 
 
-export default function VocabScreen() {
+export default function VocabScreen({navigation}) {
     return (
         <PaperProvider>
             <IconButton

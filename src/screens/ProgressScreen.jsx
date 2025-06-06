@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { PaperProvider, IconButton } from 'react-native-paper';
 
 
-export default function ProgressScreen() {
+export default function ProgressScreen({navigation}) {
     return (
         <PaperProvider>
             <View style={styles.container}>
