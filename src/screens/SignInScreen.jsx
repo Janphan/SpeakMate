@@ -16,29 +16,29 @@ const SignInScreen = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // Google Sign-In
-    const [request, response, promptAsync] = Google.useAuthRequest({
-        expoClientId: EXPO_CLIENT_ID,
-        iosClientId: IOS_CLIENT_ID,
-        androidClientId: ANDROID_CLIENT_ID,
-        webClientId: WEB_CLIENT_ID,
-    });
+    // // Google Sign-In
+    // const [request, response, promptAsync] = Google.useAuthRequest({
+    //     expoClientId: EXPO_CLIENT_ID,
+    //     iosClientId: IOS_CLIENT_ID,
+    //     androidClientId: ANDROID_CLIENT_ID,
+    //     webClientId: WEB_CLIENT_ID,
+    // });
 
-    useEffect(() => {
-        if (response?.type === 'success') {
-            const { id_token } = response.authentication;
-            const credential = GoogleAuthProvider.credential(id_token);
-            signInWithCredential(auth, credential)
-                .then(() => {
-                    Alert.alert("Signed in successfully!");
-                    navigation.replace("HomeScreen");
-                })
-                .catch((error) => {
-                    console.error(error);
-                    Alert.alert("Firebase error", error.message);
-                });
-        }
-    }, [response]);
+    // useEffect(() => {
+    //     if (response?.type === 'success') {
+    //         const { id_token } = response.authentication;
+    //         const credential = GoogleAuthProvider.credential(id_token);
+    //         signInWithCredential(auth, credential)
+    //             .then(() => {
+    //                 Alert.alert("Signed in successfully!");
+    //                 navigation.replace("HomeScreen");
+    //             })
+    //             .catch((error) => {
+    //                 console.error(error);
+    //                 Alert.alert("Firebase error", error.message);
+    //             });
+    //     }
+    // }, [response]);
 
     //show logged in user
     useEffect(() => {
@@ -107,13 +107,13 @@ const SignInScreen = ({ navigation }) => {
                     <Text style={styles.link}>Forgot Password?</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => promptAsync()}
                     disabled={!request}
                     style={styles.googleButton}
                 >
                     <Text style={styles.googleButtonText}>Sign in with Google</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </ImageBackground >
     );
