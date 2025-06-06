@@ -23,14 +23,14 @@ export default function HomeScreen({ navigation }) {
                         {user.photoURL && (
                             <Image source={{ uri: user.photoURL }} style={styles.avatar} />
                         )}
-                        <Text style={styles.userName}>{user.displayName || "No Name"}</Text>
-                        <Text style={styles.userEmail}>{user.email}</Text>
+                        <Text style={styles.userName}>Welcome {user.displayName || "No Name"}</Text>
+                        {/* <Text style={styles.userEmail}>{user.email}</Text> */}
                     </View>
                 )}
 
                 {/* Level Selection Menu */}
                 <View style={styles.menuContainer}>
-                    <Text style={styles.menuTitle}>Select Level</Text>
+                    <Text style={styles.menuTitle}>Choose Your Level</Text>
                     <Menu
                         visible={visible}
                         onDismiss={() => setVisible(false)}

@@ -111,6 +111,8 @@ URL: https://docs.expo.dev/versions/latest/sdk/filesystem/#uploadoptionsmultipar
 
 - react-navigation/bottom-tabs
 
+- npm install expo-image-picker
+
 
 <!-- 
 Consider free alternatives like: ✅ Google Gemini API (limited free access)
