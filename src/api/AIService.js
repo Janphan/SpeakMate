@@ -41,7 +41,7 @@ Tutor's response:
             },
             {
                 headers: {
-                    "Authorization": `Bearer ${OPENAI_API_KEY}`,
+                    "Authorization": "Bearer " + OPENAI_API_KEY,
                     "Content-Type": "application/json",
                 },
             }
