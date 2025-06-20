@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
 import { PaperProvider, IconButton } from 'react-native-paper';
 
 export default function CallsScreen({ navigation }) {
@@ -32,8 +32,35 @@ export default function CallsScreen({ navigation }) {
         >
             <Text style={styles.title}>{item.userInput}</Text>
             <Text style={styles.timestamp}>{new Date(item.timestamp.toDate()).toLocaleString()}</Text>
+        <IconButton
+                icon="delete"
+                size={24}
+                onPress={() => handleDelete(item.id)}
+                style={styles.deleteIcon}
+            />
         </TouchableOpacity>
     );
+    const handleDelete = async (id) => {
+        Alert.alert(
+            "Delete Conversation",
+            "Are you sure you want to delete this conversation?",
+            [
+                { text: "Cancel", style: "cancel" },
+                { text: "Delete",
+                    style: "destructive",
+                    onPress: async () => {
+                        try {
+                            await deleteDoc(doc(db, 'conversations', id));
+                            setConversations((prev) => prev.filter((item) => item.id !== id));
+                            Alert.alert("Deleted", "Conversation deleted successfully.");
+                        } catch (error) {
+                            Alert.alert("Error", "Failed to delete conversation.");
+                        }
+                    }
+                }
+            ]
+        )
+    };
 
     return (
         <PaperProvider>
@@ -99,5 +126,12 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         elevation: 2,
         shadowColor: "#000",
+    },
+    deleteIcon: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: '#ffeaea',
+        borderRadius: 20,
     },
 });

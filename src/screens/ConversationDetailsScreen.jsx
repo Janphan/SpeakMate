@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
-import { doc, getDoc } from 'firebase/firestore';
+import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert } from 'react-native';
+import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
-import { IconButton } from 'react-native-paper';
+import { IconButton, Button } from 'react-native-paper';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -33,6 +33,29 @@ export default function ConversationDetailsScreen({ route, navigation }) {
 
         fetchConversation();
     }, [conversationId]);
+
+    const handleDelete = async () => {
+        Alert.alert(
+            "Delete Conversation",
+            "Are you sure you want to delete this conversation?",
+            [
+                { text: "Cancel", style: "cancel" },
+                {
+                    text: "Delete",
+                    style: "destructive",
+                    onPress: async () => {
+                        try {
+                            await deleteDoc(doc(db, 'conversations', conversationId));
+                            Alert.alert("Deleted", "Conversation deleted successfully.");
+                            navigation.goBack();
+                        } catch (error) {
+                            Alert.alert("Error", "Failed to delete conversation.");
+                        }
+                    }
+                }
+            ]
+        );
+    };
 
     if (isLoading) {
         return (
@@ -75,6 +98,14 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                         {new Date(conversation.timestamp.toDate()).toLocaleString()}
                     </Text>
                 </View>
+                <IconButton
+                icon="delete"
+                size={24}
+                    onPress={handleDelete}
+                    style={styles.deleteIcon}
+                >
+                    Delete Conversation
+                </IconButton>
             </View>
         </ScrollView>
     );
@@ -98,6 +129,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 5,
+        marginBottom: 20,
     },
     header: {
         fontSize: 26,
@@ -138,5 +170,11 @@ const styles = StyleSheet.create({
         top: 40, // Adjust for status bar height
         left: 20,
         zIndex: 10,
+    },
+    deleteIcon: {
+        position: 'centered',
+        backgroundColor: '#ffeaea',
+        borderRadius: 20,
+        marginTop: 20,
     },
 });
