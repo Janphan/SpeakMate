@@ -21,6 +21,7 @@ import TermsOfServiceScreen from './src/screens/TermsOfServiceScreen';
 import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import ConversationDetailsScreen from './src/screens/ConversationDetailsScreen';
+import TopicList from './src/screens/TopicList';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -102,6 +103,8 @@ export default function App() {
           options={{ title: 'Conversation Details' }}
         />
         <Stack.Screen name="LetTalk" component={LetTalk} />
+        <Stack.Screen name="TopicList" component={TopicList} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

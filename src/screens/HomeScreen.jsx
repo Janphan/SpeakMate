@@ -42,7 +42,7 @@ export default function HomeScreen({ navigation }) {
                         onPress={() => {
                             setMenuVisible(false);
                             navigation.navigate("SignOutScreen");
-                            navigation.navigate("LetTalk", { level: 'band 5-6' });
+                            navigation.navigate("TopicList", { level: 'band 5-6' });
                         }}
                         title="Log Out"
                     />
@@ -77,7 +77,7 @@ export default function HomeScreen({ navigation }) {
                                 onPress={() => {
                                     setSelectedLevel('band 5-6');
                                     setVisible(false);
-                                    navigation.navigate("LetTalk", { level: 'band 5-6' });
+                                    navigation.navigate("TopicList", { level: 'band 5-6' });
                                 }}
                                 title="band 5-6"
                             />
