@@ -30,7 +30,7 @@ export default function CallsScreen({ navigation }) {
             style={styles.item}
             onPress={() => navigation.navigate('ConversationDetailsScreen', { conversationId: item.id })}
         >
-            <Text style={styles.title}>{item.userInput}</Text>
+            <Text style={styles.title}>{item.header}</Text>
             <Text style={styles.timestamp}>{new Date(item.timestamp.toDate()).toLocaleString()}</Text>
         <IconButton
                 icon="delete"

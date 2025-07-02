@@ -4,7 +4,7 @@ import { PaperProvider, IconButton } from 'react-native-paper';
 import * as Speech from 'expo-speech';
 
 export default function LetTalk({ navigation, route }) {
-    const { level } = route.params || {};
+    const { level, topic } = route.params || {};
     const [visible, setVisible] = useState(false);
 
     const speak = () => {
@@ -37,7 +37,7 @@ export default function LetTalk({ navigation, route }) {
                 <IconButton
                     icon="volume-high"
                     size={50}
-                    onPress={() => { speak(); navigation.navigate("DialogueScreen"); }}
+                    onPress={() => { speak(); navigation.navigate("DialogueScreen", {topic, level}); }}
                     style={styles.speakerIcon}
                 />
             </View>

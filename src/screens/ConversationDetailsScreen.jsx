@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert } from 'react-native';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
-import { IconButton, Button } from 'react-native-paper';
+import { IconButton } from 'react-native-paper';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -74,24 +74,37 @@ export default function ConversationDetailsScreen({ route, navigation }) {
     }
 
     return (
-        <ScrollView contentContainerStyle={styles.scrollContainer}>
-            {/* Go Back Button */}
-            <IconButton
-                icon="arrow-left"
-                size={24}
-                onPress={() => navigation.goBack()} // Go back to the previous screen
-                style={styles.backButton}
-            />
-            <View style={styles.container}>
+        <View style={styles.outerContainer}>
+            {/* Fixed Header and Back Button */}
+            <View style={styles.headerRow}>
+                <IconButton
+                    icon="arrow-left"
+                    size={24}
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                />
                 <Text style={styles.header}>Conversation Details</Text>
-                <View style={styles.card}>
-                    <Text style={styles.label}>User Input:</Text>
-                    <Text style={styles.content}>{conversation.userInput}</Text>
-                </View>
-                <View style={styles.card}>
-                    <Text style={styles.label}>AI Response:</Text>
-                    <Text style={styles.content}>{conversation.aiResponse}</Text>
-                </View>
+            </View>
+            {/* Scrollable Content */}
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
+                <Text style={styles.message}>{conversation.header}</Text>
+                {conversation.messages && conversation.messages.length > 0 ? (
+                    // Group messages in pairs: AI first, then user
+                    Array.from({ length: Math.ceil(conversation.messages.length / 2) }).map((_, idx) => {
+                        const aiMsg = conversation.messages[idx * 2];
+                        const userMsg = conversation.messages[idx * 2 + 1];
+                        return (
+                            <View key={idx} style={styles.card}>
+                                <Text style={styles.label}>AI:</Text>
+                                <Text style={styles.content}>{aiMsg ? aiMsg.content : ''}</Text>
+                                <Text style={[styles.label, { marginTop: 10 }]}>You:</Text>
+                                <Text style={styles.content}>{userMsg ? userMsg.content : ''}</Text>
+                            </View>
+                        );
+                    })
+                ) : (
+                    <Text style={styles.content}>No messages found.</Text>
+                )}
                 <View style={styles.card}>
                     <Text style={styles.label}>Timestamp:</Text>
                     <Text style={styles.content}>
@@ -99,25 +112,47 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                     </Text>
                 </View>
                 <IconButton
-                icon="delete"
-                size={24}
+                    icon="delete"
+                    size={24}
                     onPress={handleDelete}
                     style={styles.deleteIcon}
                 >
                     Delete Conversation
                 </IconButton>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    scrollContainer: {
-        flexGrow: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+    outerContainer: {
+        flex: 1,
         backgroundColor: '#f5f5f5',
+    },
+    headerRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: 40,
+        paddingBottom: 10,
+        paddingHorizontal: 10,
+        backgroundColor: '#fff',
+        zIndex: 10,
+        elevation: 2,
+    },
+    backButton: {
+        marginRight: 10,
+        backgroundColor: '#fff',
+    },
+    header: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#007bff',
+        flex: 1,
+    },
+    scrollContainer: {
+        alignItems: 'center',
         paddingVertical: 20,
+        paddingHorizontal: 0,
     },
     container: {
         width: '90%',
@@ -129,13 +164,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 5,
-        marginBottom: 20,
-    },
-    header: {
-        fontSize: 26,
-        fontWeight: 'bold',
-        color: '#007bff',
-        textAlign: 'center',
         marginBottom: 20,
     },
     card: {
@@ -165,16 +193,16 @@ const styles = StyleSheet.create({
         color: 'red',
         textAlign: 'center',
     },
-    backButton: {
-        position: 'absolute',
-        top: 40, // Adjust for status bar height
-        left: 20,
-        zIndex: 10,
-    },
     deleteIcon: {
-        position: 'centered',
         backgroundColor: '#ffeaea',
         borderRadius: 20,
         marginTop: 20,
+        alignSelf: 'center',
+    },
+    message: {
+        fontSize: 16,
+        color: '#222',
+        marginBottom: 10,
+        textAlign: 'center',
     },
 });

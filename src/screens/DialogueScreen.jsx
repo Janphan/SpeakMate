@@ -9,12 +9,17 @@ import RecordingControls from './RecordingControls';
 import { IconButton } from 'react-native-paper';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, addDoc } from 'firebase/firestore';
+import { auth } from '../api/firebaseConfig'; // Firebase Auth instance
+import uuid from 'react-native-uuid';
 
-export default function DialogueScreen({ navigation }) {
+export default function DialogueScreen({ navigation, route }) {
     const [recording, setRecording] = useState(null);
     const [transcription, setTranscription] = useState('');
     const [aiResponse, setAiResponse] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const { topic, level } = route.params || {}; 
+
+    console.log("DialogueScreen - Topic:", topic, "Level:", level);
 
     // Start Recording
     const startRecording = async () => {
@@ -78,22 +83,29 @@ export default function DialogueScreen({ navigation }) {
 
     // Send Text to OpenAI and Speak Response
     const processOpenAIResponse = async (text) => {
-        console.log("Sending text to OpenAI:", text);
-        const aiReply = await getOpenAIResponse(text);
+        setIsLoading(true);
+        // Pass topic and level here!
+        const aiReply = await getOpenAIResponse(topic.title, level);
         setAiResponse(aiReply);
-        console.log("OpenAI Response:", aiReply);
-
-        speakText(aiReply); // Speak AI response
+        speakText(aiReply);
         setIsLoading(false);
     };
 
     // Save Conversation to Firestore
     const saveConversation = async () => {
         try {
+            // When starting a new conversation
             await addDoc(collection(db, 'conversations'), {
-                userInput: transcription,
-                aiResponse: aiResponse,
+                sessionId: uuid.v4(),
+                userId: auth.currentUser ? auth.currentUser.uid : null,
                 timestamp: new Date(),
+                messages: [
+                    { role: 'ai', content: aiResponse },
+                    { role: 'user', content: transcription }
+                ],
+                topic: topic.title,
+                level: level,
+                header: `Conversation on ${topic.title} at level ${level}`,
             });
             console.log('Conversation saved to Firestore');
         } catch (error) {
@@ -112,13 +124,18 @@ export default function DialogueScreen({ navigation }) {
                     text: "End",
                     style: "destructive",
                     onPress: async () => {
-                        await saveConversation(); // Save the conversation to Firestore
-                        navigation.navigate("HomeScreen"); // Navigate back to HomeScreen
+                        await saveConversation(); 
+                        navigation.navigate("HomeScreen"); 
                     },
                 },
             ]
         );
     };
+
+    // Build the messages array for display
+    const messages = [];
+    if (aiResponse) messages.push({ role: 'ai', content: aiResponse });
+    if (transcription) messages.push({ role: 'user', content: transcription });
 
     return (
         <View style={styles.container}>
@@ -136,7 +153,7 @@ export default function DialogueScreen({ navigation }) {
                 recording={recording}
             />
             {isLoading && <ActivityIndicator size="large" color="blue" />}
-            <AIResponseDisplay transcription={transcription} aiResponse={aiResponse} />
+            <AIResponseDisplay messages={messages} />
             {/* End Conversation Icon */}
             <IconButton
                 icon="stop-circle"
@@ -154,13 +171,13 @@ const styles = StyleSheet.create({
     title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
     backButton: {
         position: 'absolute',
-        top: 40, // Adjust for status bar height
+        top: 40, 
         left: 20,
         zIndex: 10,
     },
     endButton: {
         position: 'absolute',
-        bottom: 40, // Adjust for spacing at the bottom
+        bottom: 40, 
         right: 20,
         zIndex: 10,
     },
