@@ -18,7 +18,7 @@ Start the interview immediately with a friendly greeting and the first question 
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
             {
-                model: "gpt-4o",
+                model: "gpt-4o-mini",
                 messages: [
                     {
                         role: "system",

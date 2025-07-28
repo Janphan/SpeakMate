@@ -3,12 +3,13 @@ import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert } from 're
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
 import { IconButton } from 'react-native-paper';
+import AIResponseDisplay from './AIResponseDisplay';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const { conversationId } = route.params || {}; // Get conversationId from navigation params
+    const { conversationId } = route.params || {}; 
 
     useEffect(() => {
         const fetchConversation = async () => {
@@ -73,6 +74,8 @@ export default function ConversationDetailsScreen({ route, navigation }) {
         );
     }
 
+    const { messages } = conversation; // Destructure messages from conversation
+
     return (
         <View style={styles.outerContainer}>
             {/* Fixed Header and Back Button */}
@@ -88,20 +91,8 @@ export default function ConversationDetailsScreen({ route, navigation }) {
             {/* Scrollable Content */}
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <Text style={styles.message}>{conversation.header}</Text>
-                {conversation.messages && conversation.messages.length > 0 ? (
-                    // Group messages in pairs: AI first, then user
-                    Array.from({ length: Math.ceil(conversation.messages.length / 2) }).map((_, idx) => {
-                        const aiMsg = conversation.messages[idx * 2];
-                        const userMsg = conversation.messages[idx * 2 + 1];
-                        return (
-                            <View key={idx} style={styles.card}>
-                                <Text style={styles.label}>AI:</Text>
-                                <Text style={styles.content}>{aiMsg ? aiMsg.content : ''}</Text>
-                                <Text style={[styles.label, { marginTop: 10 }]}>You:</Text>
-                                <Text style={styles.content}>{userMsg ? userMsg.content : ''}</Text>
-                            </View>
-                        );
-                    })
+                {messages && messages.length > 0 ? (
+                    <AIResponseDisplay messages={messages} />
                 ) : (
                     <Text style={styles.content}>No messages found.</Text>
                 )}
