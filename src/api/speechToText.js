@@ -7,7 +7,7 @@ const OPENAI_WHISPER_URL = "https://api.openai.com/v1/audio/transcriptions";
 export const convertAudioToText = async (audioUri) => {
     try {
         console.log("Converting audio file to text...");
-        
+
         const response = await FileSystem.uploadAsync(OPENAI_WHISPER_URL, audioUri, {
             fieldName: 'file',
             httpMethod: 'POST',
