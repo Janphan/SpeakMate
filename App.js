@@ -23,6 +23,8 @@ import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import ConversationDetailsScreen from './src/screens/ConversationDetailsScreen';
 import TopicList from './src/screens/TopicList';
 
+import { initializeQuestionBanks } from './src/api/initializeQuestions';
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -82,6 +84,7 @@ function TabNavigator() {
 }
 
 export default function App() {
+  initializeQuestionBanks();
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SignInScreen"

@@ -1,20 +1,33 @@
 import axios from 'axios';
 import { OPENAI_API_KEY } from '@env';
+import { db } from './firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 
-// You pass the topic and level as arguments now
+// Get a random question for the topic from Firestore and start the interview
 export const getOpenAIResponse = async (topic, level) => {
     const systemPrompt = `
-You are an IELTS speaking examiner, named "LetTalk".
-You will conduct a simulated IELTS Speaking Part 1 interview with a learner at Band ${level} level.
-The learner is preparing for the IELTS exam and needs to practice speaking skills.
-Focus ONLY on the topic: "${topic}".
-Ask questions strictly related to "${topic}".
-Ask one question at a time. Use simple, natural language appropriate for Band ${level}.
-Wait for the user's answer before continuing.
-Start the interview immediately with a friendly greeting and the first question about "${topic}".
+You are an IELTS speaking examiner named "LetTalk".
+ONLY ask the user one question at a time from the provided list of questions about "${topic}".
+Do NOT add greetings, explanations, or feedback.
+Do NOT answer the question yourself.
+Just ask the next question from the list.
+Use simple, natural language appropriate for Band ${level}.
     `;
 
     try {
+        // Fetch the question document by topic (topic is the document ID)
+        const questionDocRef = doc(db, 'questions', topic);
+        const questionDocSnap = await getDoc(questionDocRef);
+        let firstQuestion = `Let's begin. Tell me about ${topic.toLowerCase()}.`;
+        if (questionDocSnap.exists()) {
+            const questions = questionDocSnap.data().questions;
+            if (questions && questions.length > 0) {
+                // Pick a random question
+                const randomIndex = Math.floor(Math.random() * questions.length);
+                firstQuestion = questions[randomIndex];
+            }
+        }
+
         const response = await axios.post(
             "https://api.openai.com/v1/chat/completions",
             {
@@ -26,7 +39,7 @@ Start the interview immediately with a friendly greeting and the first question 
                     },
                     {
                         role: "user",
-                        content: "Start the interview.",
+                        content: firstQuestion,
                     }
                 ],
                 temperature: 0.8,
