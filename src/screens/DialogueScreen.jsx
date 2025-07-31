@@ -109,7 +109,7 @@ export default function DialogueScreen({ navigation, route }) {
                 messages: msg_list,
                 topic: topic.title,
                 level: level,
-                header: `Conversation on ${topic.title} at level ${level}`,
+                header: `${topic.title} - level ${level}`,
             });
             console.log('Conversation saved to Firestore');
         } catch (error) {
