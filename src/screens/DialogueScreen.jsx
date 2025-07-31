@@ -14,10 +14,11 @@ import uuid from 'react-native-uuid';
 
 export default function DialogueScreen({ navigation, route }) {
     const [recording, setRecording] = useState(null);
-    const [transcription, setTranscription] = useState('');
-    const [aiResponse, setAiResponse] = useState('');
+    // const [transcription, setTranscription] = useState([]);
+    // const [aiResponse, setAiResponse] = useState([]);
+    const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const { topic, level } = route.params || {}; 
+    const { topic, level } = route.params || {};
 
     console.log("DialogueScreen - Topic:", topic, "Level:", level);
 
@@ -66,7 +67,8 @@ export default function DialogueScreen({ navigation, route }) {
 
         try {
             const transcript = await convertAudioToText(uri);
-            setTranscription(transcript);
+            setMsgList(previous => [...previous, { role: 'user', content: transcript }]);
+            // setTranscription(previous => [...previous, transcript]);
             console.log("transcript", transcript);
 
             if (transcript) {
@@ -86,7 +88,8 @@ export default function DialogueScreen({ navigation, route }) {
         setIsLoading(true);
         // Pass topic and level here!
         const aiReply = await getOpenAIResponse(topic.title, level);
-        setAiResponse(aiReply);
+        setMsgList(previous => [...previous, { role: 'ai', content: aiReply }]);
+        // setAiResponse(previous => [...previous, aiReply]);
         speakText(aiReply);
         setIsLoading(false);
     };
@@ -99,10 +102,11 @@ export default function DialogueScreen({ navigation, route }) {
                 sessionId: uuid.v4(),
                 userId: auth.currentUser ? auth.currentUser.uid : null,
                 timestamp: new Date(),
-                messages: [
-                    { role: 'ai', content: aiResponse },
-                    { role: 'user', content: transcription }
-                ],
+                // messages: [
+                //     { role: 'ai', content: aiResponse },
+                //     { role: 'user', content: transcription }
+                // ],
+                messages: msg_list,
                 topic: topic.title,
                 level: level,
                 header: `Conversation on ${topic.title} at level ${level}`,
@@ -124,8 +128,8 @@ export default function DialogueScreen({ navigation, route }) {
                     text: "End",
                     style: "destructive",
                     onPress: async () => {
-                        await saveConversation(); 
-                        navigation.navigate("HomeScreen"); 
+                        await saveConversation();
+                        navigation.navigate("HomeScreen");
                     },
                 },
             ]
@@ -133,9 +137,9 @@ export default function DialogueScreen({ navigation, route }) {
     };
 
     // Build the messages array for display
-    const messages = [];
-    if (aiResponse) messages.push({ role: 'ai', content: aiResponse });
-    if (transcription) messages.push({ role: 'user', content: transcription });
+    // const messages = [];
+    // if (aiResponse) messages.push({ role: 'ai', content: aiResponse });
+    // if (transcription) messages.push({ role: 'user', content: transcription });
 
     return (
         <View style={styles.container}>
@@ -153,7 +157,7 @@ export default function DialogueScreen({ navigation, route }) {
                 recording={recording}
             />
             {isLoading && <ActivityIndicator size="large" color="blue" />}
-            <AIResponseDisplay messages={messages} />
+            <AIResponseDisplay messages={msg_list} />
             {/* End Conversation Icon */}
             <IconButton
                 icon="stop-circle"
@@ -171,13 +175,13 @@ const styles = StyleSheet.create({
     title: { fontSize: 24, fontWeight: 'bold', marginBottom: 20 },
     backButton: {
         position: 'absolute',
-        top: 40, 
+        top: 40,
         left: 20,
         zIndex: 10,
     },
     endButton: {
         position: 'absolute',
-        bottom: 40, 
+        bottom: 40,
         right: 20,
         zIndex: 10,
     },
