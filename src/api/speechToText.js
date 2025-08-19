@@ -18,6 +18,8 @@ export const convertAudioToText = async (audioUri) => {
             },
             parameters: {
                 model: "whisper-1",
+                response_format: "verbose_json",
+                timestamp_granularities: `["word"]`,
             },
         });
 
@@ -27,6 +29,7 @@ export const convertAudioToText = async (audioUri) => {
         }
 
         const responseData = JSON.parse(response.body);
+        console.log("Transcription full:", responseData);
         console.log("Transcription:", responseData.text);
         return responseData.text;
     } catch (error) {
