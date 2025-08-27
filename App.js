@@ -22,6 +22,7 @@ import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
 import ConversationDetailsScreen from './src/screens/ConversationDetailsScreen';
 import TopicList from './src/screens/TopicList';
+import Feedback from './src/screens/Feedback';
 
 import { initializeQuestionBanks } from './src/api/initializeQuestions';
 
@@ -107,6 +108,7 @@ export default function App() {
         />
         <Stack.Screen name="LetTalk" component={LetTalk} />
         <Stack.Screen name="TopicList" component={TopicList} />
+        <Stack.Screen name="Feedback" component={Feedback} />
 
       </Stack.Navigator>
     </NavigationContainer>

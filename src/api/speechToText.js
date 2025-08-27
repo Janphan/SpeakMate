@@ -31,7 +31,7 @@ export const convertAudioToText = async (audioUri) => {
         const responseData = JSON.parse(response.body);
         console.log("Transcription full:", responseData);
         console.log("Transcription:", responseData.text);
-        return responseData.text;
+        return responseData;
     } catch (error) {
         console.error("Error in Whisper STT:", error);
         return null;

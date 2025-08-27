@@ -11,6 +11,7 @@ import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, addDoc } from 'firebase/firestore';
 import { auth } from '../api/firebaseConfig'; // Firebase Auth instance
 import uuid from 'react-native-uuid';
+import { analyzeSpeech } from '../utils/speechAnalysis';
 
 export default function DialogueScreen({ navigation, route }) {
     const [recording, setRecording] = useState(null);
@@ -18,6 +19,7 @@ export default function DialogueScreen({ navigation, route }) {
     // const [aiResponse, setAiResponse] = useState([]);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [analysisResult, setAnalysisResult] = useState(null);
     const { topic, level } = route.params || {};
 
     console.log("DialogueScreen - Topic:", topic, "Level:", level);
@@ -66,7 +68,10 @@ export default function DialogueScreen({ navigation, route }) {
         }
 
         try {
-            const transcript = await convertAudioToText(uri);
+            const responseData = await convertAudioToText(uri);
+            const transcript = responseData.text; // or however your responseData provides the transcript
+            const analysisResult = analyzeSpeech(responseData);
+            setAnalysisResult(analysisResult);
             setMsgList(previous => [...previous, { role: 'user', content: transcript }]);
             // setTranscription(previous => [...previous, transcript]);
             console.log("transcript", transcript);
@@ -129,7 +134,7 @@ export default function DialogueScreen({ navigation, route }) {
                     style: "destructive",
                     onPress: async () => {
                         await saveConversation();
-                        navigation.navigate("HomeScreen");
+                        navigation.navigate("Feedback", { analysis: analysisResult });
                     },
                 },
             ]
