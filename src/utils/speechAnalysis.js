@@ -53,17 +53,32 @@ export function analyzeSpeech(responseData) {
             }
         }
     }
+    // 2. Inside segments (estimate)
+    // Assume natural articulation ~2.5 words/sec (~150 WPM).
+    const avgWordsPerSecond = 2.5;
+    const avgPauseLength = 1.0; // assume each hidden pause ~1s
+    for (const seg of segments) {
+        const segDuration = seg.end - seg.start;
+        const segWords = seg.text.trim().split(/\s+/).length;
+        const expectedDuration = segWords / avgWordsPerSecond;
+        const extraTime = segDuration - expectedDuration;
 
+        if (extraTime > 0.5) {
+            // Estimate how many ~1s pauses are hidden inside
+            pauseCount += Math.round(extraTime / avgPauseLength);
+        }
+    }
     // Normalize pause frequency to pauses per 30 seconds
     const pauseFrequency = totalDuration > 0 ? (pauseCount / (totalDuration / 30)) : 0;
 
-    // Determine fluency band
+    // Determine fluency band (more forgiving)
     let fluencyBand = 'Below Band 5';
-    if (wpm >= 120 && wpm <= 140 && pauseFrequency >= 1 && pauseFrequency <= 3) {
+    const roundedPause = Math.round(pauseFrequency);
+    if (wpm >= 120 && wpm <= 140 && roundedPause >= 1 && roundedPause <= 3) {
         fluencyBand = 'Band 6';
-    } else if (wpm >= 110 && wpm <= 130 && pauseFrequency >= 2 && pauseFrequency <= 4) {
+    } else if (wpm >= 110 && wpm <= 130 && roundedPause >= 2 && roundedPause <= 4) {
         fluencyBand = 'Band 5.5';
-    } else if (wpm >= 90 && wpm < 110 && pauseFrequency >= 3 && pauseFrequency <= 5) {
+    } else if (wpm >= 90 && wpm < 110 && roundedPause >= 3 && roundedPause <= 5) {
         fluencyBand = 'Band 5';
     }
 
@@ -75,22 +90,31 @@ export function analyzeSpeech(responseData) {
 
     // Feedback
     const feedback = [];
+
+    // Feedback by band
+    if (fluencyBand === 'Band 5') {
+        feedback.push('Your fluency is at Band 5. Work on increasing speed slightly and reducing pauses.');
+    } else if (fluencyBand === 'Band 5.5') {
+        feedback.push('Good! You are around Band 5.5. A little more consistency in pacing and pauses can move you higher.');
+    } else if (fluencyBand === 'Band 6') {
+        feedback.push('Excellent! Your speech rate and pauses are aligned with Band 6.');
+    } else {
+        feedback.push('Your fluency is below Band 5. Focus on increasing speed and reducing hesitations.');
+    }
+
+    // Extra corrective advice
     if (wpm < 90) {
-        feedback.push('- Speaking pace is too slow. Aim for 90–110 WPM for better fluency.');
+        feedback.push('Speaking pace is too slow. Aim for at least 90–110 WPM.');
     } else if (wpm > 140) {
-        feedback.push('- You are doing great! Your level can increase to new band soon');
+        feedback.push('Your pace is very fast. Slow down slightly to stay clear and natural.');
     }
+
     if (pauseFrequency > 5) {
-        feedback.push('- Too many pauses. Aim for 1–3 pauses per 30 seconds (Band 6).');
-    } else if (pauseFrequency < 1 && wpm < 100) {
-        feedback.push('- Too few pauses may indicate rushed speech. Allow natural breaks.');
+        feedback.push('Too many pauses. Aim for fewer breaks (1–3 pauses per 30s).');
+    } else if (pauseFrequency < 1) {
+        feedback.push('Very few pauses. Add natural breaks to sound more coherent.');
     }
-    if (segment.avg_logprob < -0.7) {
-        feedback.push('- Pronunciation may be unclear. Practice clear enunciation.');
-    }
-    if (segment.no_speech_prob > 0.1) {
-        feedback.push('- Background noise detected. Record in a quiet environment.');
-    }
+
 
     // Log results
     console.log(`Speech Analysis:

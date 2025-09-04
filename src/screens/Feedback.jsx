@@ -3,15 +3,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 // Feedback expects an 'analysis' prop from analyzeSpeech()
-const Feedback = ({ route }) => {
-    const navigation = useNavigation();
+const Feedback = ({ route, navigation }) => {
     const analysis = route?.params?.analysis;
 
     if (!analysis) {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>No feedback available.</Text>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
                     <Text style={styles.buttonText}>Back to Home</Text>
                 </TouchableOpacity>
             </View>
@@ -39,7 +38,7 @@ const Feedback = ({ route }) => {
                     <Text style={styles.feedbackItem}>No specific feedback.</Text>
                 )}
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('HomeScreen')}>
                 <Text style={styles.buttonText}>Back to Home</Text>
             </TouchableOpacity>
         </View>

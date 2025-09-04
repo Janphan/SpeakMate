@@ -115,6 +115,8 @@ export default function DialogueScreen({ navigation, route }) {
                 topic: topic.title,
                 level: level,
                 header: `${topic.title} - level ${level}`,
+                feedback: analysisResult.feedback,
+                analysisResult: analysisResult,
             });
             console.log('Conversation saved to Firestore');
         } catch (error) {

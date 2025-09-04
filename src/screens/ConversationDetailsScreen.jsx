@@ -9,7 +9,7 @@ export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const { conversationId } = route.params || {}; 
+    const { conversationId } = route.params || {};
 
     useEffect(() => {
         const fetchConversation = async () => {
@@ -92,10 +92,37 @@ export default function ConversationDetailsScreen({ route, navigation }) {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <Text style={styles.message}>{conversation.header}</Text>
                 {messages && messages.length > 0 ? (
-                    <AIResponseDisplay messages={messages} />
+                    <View style={styles.conversationCard}>
+                        <Text style={styles.conversationTitle}>💬 Conversation</Text>
+                        {messages.map((msg, idx) => (
+                            <View key={idx} style={styles.conversationItemRow}>
+                                <Text style={[styles.conversationRole, msg.role === 'ai' ? styles.aiRole : styles.userRole]}>
+                                    {msg.role === 'ai' ? 'AI:' : 'You:'}
+                                </Text>
+                                <Text style={styles.conversationText}>{msg.content}</Text>
+                            </View>
+                        ))}
+                    </View>
                 ) : (
                     <Text style={styles.content}>No messages found.</Text>
                 )}
+                <View style={styles.feedbackCard}>
+                    <Text style={styles.feedbackTitle}>📝 Feedback</Text>
+                    {Array.isArray(conversation.feedback) ? (
+                        conversation.feedback.length > 0 ? (
+                            conversation.feedback.map((item, idx) => (
+                                <View key={idx} style={styles.feedbackItemRow}>
+                                    <Text style={styles.feedbackBullet}>•</Text>
+                                    <Text style={styles.feedbackText}>{item}</Text>
+                                </View>
+                            ))
+                        ) : (
+                            <Text style={styles.feedbackText}>No feedback available.</Text>
+                        )
+                    ) : (
+                        <Text style={styles.feedbackText}>{conversation.feedback || 'No feedback available.'}</Text>
+                    )}
+                </View>
                 <View style={styles.card}>
                     <Text style={styles.label}>Timestamp:</Text>
                     <Text style={styles.content}>
@@ -195,5 +222,84 @@ const styles = StyleSheet.create({
         color: '#222',
         marginBottom: 10,
         textAlign: 'center',
+    },
+    conversationCard: {
+        backgroundColor: '#f7faff',
+        borderRadius: 10,
+        padding: 18,
+        marginBottom: 18,
+        shadowColor: '#007bff',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.10,
+        shadowRadius: 3,
+        elevation: 2,
+        width: '95%',
+        alignSelf: 'center',
+    },
+    conversationTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#007bff',
+        marginBottom: 10,
+        textAlign: 'left',
+    },
+    conversationItemRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 8,
+    },
+    conversationRole: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginRight: 8,
+    },
+    aiRole: {
+        color: '#1a7f37',
+    },
+    userRole: {
+        color: '#3a5ca8',
+    },
+    conversationText: {
+        fontSize: 16,
+        color: '#333',
+        flex: 1,
+        lineHeight: 22,
+    },
+    feedbackCard: {
+        backgroundColor: '#eaf3fa',
+        borderRadius: 10,
+        padding: 18,
+        marginBottom: 18,
+        shadowColor: '#007bff',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.12,
+        shadowRadius: 4,
+        elevation: 3,
+        width: '95%',
+        alignSelf: 'center',
+    },
+    feedbackTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#007bff',
+        marginBottom: 10,
+        textAlign: 'left',
+    },
+    feedbackItemRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        marginBottom: 6,
+    },
+    feedbackBullet: {
+        fontSize: 18,
+        color: '#007bff',
+        marginRight: 6,
+        marginTop: 1,
+    },
+    feedbackText: {
+        fontSize: 16,
+        color: '#333',
+        flex: 1,
+        lineHeight: 22,
     },
 });
