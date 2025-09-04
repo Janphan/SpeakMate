@@ -59,9 +59,11 @@ export function analyzeSpeech(responseData) {
 
     // Determine fluency band
     let fluencyBand = 'Below Band 5';
-    if (wpm >= 100 && wpm <= 120 && pauseFrequency >= 1 && pauseFrequency <= 3) {
+    if (wpm >= 120 && wpm <= 140 && pauseFrequency >= 1 && pauseFrequency <= 3) {
         fluencyBand = 'Band 6';
-    } else if (wpm >= 80 && wpm < 100 && pauseFrequency >= 3 && pauseFrequency <= 5) {
+    } else if (wpm >= 110 && wpm <= 130 && pauseFrequency >= 2 && pauseFrequency <= 4) {
+        fluencyBand = 'Band 5.5';
+    } else if (wpm >= 90 && wpm < 110 && pauseFrequency >= 3 && pauseFrequency <= 5) {
         fluencyBand = 'Band 5';
     }
 
@@ -73,10 +75,10 @@ export function analyzeSpeech(responseData) {
 
     // Feedback
     const feedback = [];
-    if (wpm < 80) {
-        feedback.push('- Speaking pace is too slow. Aim for 80–120 WPM for better fluency.');
-    } else if (wpm > 120) {
-        feedback.push('- Speaking pace is too fast. Aim for 80–120 WPM for clarity.');
+    if (wpm < 90) {
+        feedback.push('- Speaking pace is too slow. Aim for 90–110 WPM for better fluency.');
+    } else if (wpm > 140) {
+        feedback.push('- You are doing great! Your level can increase to new band soon');
     }
     if (pauseFrequency > 5) {
         feedback.push('- Too many pauses. Aim for 1–3 pauses per 30 seconds (Band 6).');
@@ -92,8 +94,8 @@ export function analyzeSpeech(responseData) {
 
     // Log results
     console.log(`Speech Analysis:
-    - Words Per Minute: ${wpm.toFixed(2)} (Band 5: 80–100, Band 6: 100–120)
-    - Pause Frequency: ${pauseFrequency.toFixed(2)} pauses per 30s (Band 5: 3–5, Band 6: 1–3)
+    - Words Per Minute: ${wpm.toFixed(2)} (Band 5: 90–110, Band 5.5: 110–130, Band 6: 140–150)
+    - Pause Frequency: ${pauseFrequency.toFixed(2)} pauses per 30s (Band 5: 3–5, Band 5.5: 2–4, Band 6: 1–2)
     - Fluency Band: ${fluencyBand}
     - Pronunciation Clarity: ${clarityScore} (avg_logprob: ${segment.avg_logprob || 'N/A'})
     - Total Duration: ${totalDuration.toFixed(2)}s
