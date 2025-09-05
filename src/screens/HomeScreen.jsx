@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Menu, Button, IconButton } from 'react-native-paper';
 import * as Speech from 'expo-speech';
 import { getAuth } from 'firebase/auth';
-import { signup_signin_style } from '../utils/mystyle';
+import { signup_signin_style, mystyle } from '../utils/mystyle';
 
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
@@ -72,6 +72,8 @@ export default function HomeScreen({ navigation }) {
                                     <Text style={signup_signin_style.buttonText}>Choose your level</Text>
                                 </TouchableOpacity>
                             }
+                            anchorPosition='bottom'
+                            contentStyle={mystyle.menuItemStyle}
                         >
                             <Menu.Item
                                 onPress={() => {

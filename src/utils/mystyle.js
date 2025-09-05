@@ -1,5 +1,9 @@
 const mystyle = {
     signin_background: "https://i.pinimg.com/736x/a4/a1/9b/a4a19b940987cb322cf4d75079a8ddc8.jpg",
+    menuItemStyle: {
+        backgroundColor: "#c0e3a9",
+        width: "100%",
+    },
 };
 
 const signup_signin_style = {
