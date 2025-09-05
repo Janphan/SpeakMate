@@ -8,6 +8,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { EXPO_CLIENT_ID, WEB_CLIENT_ID, IOS_CLIENT_ID, ANDROID_CLIENT_ID } from '@env';
+import { mystyle, signup_signin_style } from '../mystyle';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -72,7 +73,7 @@ const SignInScreen = ({ navigation }) => {
 
     return (
         <ImageBackground
-            source={{ uri: "https://i.pinimg.com/736x/a4/a1/9b/a4a19b940987cb322cf4d75079a8ddc8.jpg" }}
+            source={{ uri: mystyle.signin_background }}
             style={styles.background}
         >
             <View style={styles.container}>
@@ -119,62 +120,6 @@ const SignInScreen = ({ navigation }) => {
     );
 };
 
-const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: "cover",
-    },
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 20,
-        // backgroundColor: "rgba(255, 255, 255, 1.0)", // Semi-transparent background
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: "bold",
-        marginBottom: 20,
-        fontFamily: "sans-serif", // Add custom font if needed
-    },
-    input: {
-        width: "100%",
-        padding: 12,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderRadius: 8,
-        marginBottom: 10,
-        backgroundColor: "#fff",
-    },
-    button: {
-        backgroundColor: "#5e7055",
-        padding: 15,
-        borderRadius: 8,
-        width: "100%",
-        alignItems: "center",
-        marginBottom: 10,
-    },
-    buttonText: {
-        color: "#fff",
-        fontWeight: "bold",
-    },
-    link: {
-        marginTop: 15,
-        color: "#black",
-        fontWeight: "bold",
-    },
-    googleButton: {
-        backgroundColor: "#db4437",
-        padding: 15,
-        borderRadius: 8,
-        width: "100%",
-        alignItems: "center",
-        marginTop: 20,
-    },
-    googleButtonText: {
-        color: "#fff",
-        fontWeight: "bold",
-    },
-});
+const styles = StyleSheet.create(signup_signin_style);
 
 export default SignInScreen;
