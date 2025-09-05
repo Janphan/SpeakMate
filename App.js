@@ -41,7 +41,7 @@ function TabNavigator() {
           left: 0,
           right: 0,
           elevation: 0,
-          backgroundColor: '#fff',
+          backgroundColor: '#c2e4ab',
           borderTopWidth: 0,
         },
         tabBarIcon: ({ focused, color, size }) => {
@@ -60,7 +60,7 @@ function TabNavigator() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: '#5e7055',
         tabBarInactiveTintColor: 'gray',
       })}
     >

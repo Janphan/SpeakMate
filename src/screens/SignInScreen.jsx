@@ -72,7 +72,7 @@ const SignInScreen = ({ navigation }) => {
 
     return (
         <ImageBackground
-            source={{ uri: "https://ai.myspeakingscore.com/wp-content/uploads/2024/05/AI-assisted-English-Language-Learning-1024x585.webp" }}
+            source={{ uri: "https://i.pinimg.com/736x/a4/a1/9b/a4a19b940987cb322cf4d75079a8ddc8.jpg" }}
             style={styles.background}
         >
             <View style={styles.container}>
@@ -107,13 +107,13 @@ const SignInScreen = ({ navigation }) => {
                     <Text style={styles.link}>Forgot Password?</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => promptAsync()}
                     disabled={!request}
                     style={styles.googleButton}
                 >
                     <Text style={styles.googleButtonText}>Sign in with Google</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </ImageBackground >
     );
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-        backgroundColor: "rgba(255, 255, 255, 0.8)", // Semi-transparent background
+        // backgroundColor: "rgba(255, 255, 255, 1.0)", // Semi-transparent background
     },
     title: {
         fontSize: 28,
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     button: {
-        backgroundColor: "#007bff",
+        backgroundColor: "#5e7055",
         padding: 15,
         borderRadius: 8,
         width: "100%",
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     },
     link: {
         marginTop: 15,
-        color: "#007bff",
+        color: "#black",
         fontWeight: "bold",
     },
     googleButton: {
