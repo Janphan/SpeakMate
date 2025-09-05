@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Menu, Button, IconButton } from 'react-native-paper';
 import * as Speech from 'expo-speech';
 import { getAuth } from 'firebase/auth';
+import { signup_signin_style } from '../utils/mystyle';
 
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
@@ -57,20 +58,19 @@ export default function HomeScreen({ navigation }) {
                             {user.photoURL && (
                                 <Image source={{ uri: user.photoURL }} style={styles.avatar} />
                             )}
-                            <Text style={styles.userName}>Welcome {user.displayName || "No Name"}</Text>
+                            <Text style={styles.userName}>Welcome {user.displayName || "No Name"} 💖</Text>
                         </View>
                     )}
 
                     {/* Level Selection Menu */}
                     <View style={styles.menuContainer}>
-                        <Text style={styles.menuTitle}>Choose Your Level</Text>
                         <Menu
                             visible={visible}
                             onDismiss={() => setVisible(false)}
                             anchor={
-                                <Button mode="outlined" onPress={() => setVisible(true)}>
-                                    {selectedLevel}
-                                </Button>
+                                <TouchableOpacity onPress={() => setVisible(true)} style={signup_signin_style.button}>
+                                    <Text style={signup_signin_style.buttonText}>Choose your level</Text>
+                                </TouchableOpacity>
                             }
                         >
                             <Menu.Item
@@ -80,6 +80,18 @@ export default function HomeScreen({ navigation }) {
                                     navigation.navigate("TopicList", { level: 'band 5-6' });
                                 }}
                                 title="band 5-6"
+                            />
+                            <Menu.Item
+                                onPress={() => {
+                                    setVisible(false);
+                                }}
+                                title="band 6-7"
+                            />
+                            <Menu.Item
+                                onPress={() => {
+                                    setVisible(false);
+                                }}
+                                title="band 7-8"
                             />
                         </Menu>
                     </View>
@@ -105,16 +117,20 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     userName: {
-        fontSize: 20,
+        fontSize: 30,
         fontWeight: "bold",
+        color: "#5e7055",
     },
     menuContainer: {
         padding: 16,
-        alignItems: "center",
+        width: "100%",
+        // alignItems: "center",
+        border: "5px solid #000",
     },
     menuTitle: {
         fontSize: 18,
         marginBottom: 8,
+        color: "#617256",
     },
     settingsIcon: {
         position: "absolute",

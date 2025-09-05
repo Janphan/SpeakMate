@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { signUpUser } from '../api/auth';
-import { mystyle, signup_signin_style } from '../mystyle';
+import { mystyle, signup_signin_style } from '../utils/mystyle';
 
 export default function SignUpScreen({ navigation }) {
     const [email, setEmail] = useState('');

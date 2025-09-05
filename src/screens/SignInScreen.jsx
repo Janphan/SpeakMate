@@ -8,7 +8,7 @@ import * as Google from 'expo-auth-session/providers/google';
 import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
 import { EXPO_CLIENT_ID, WEB_CLIENT_ID, IOS_CLIENT_ID, ANDROID_CLIENT_ID } from '@env';
-import { mystyle, signup_signin_style } from '../mystyle';
+import { mystyle, signup_signin_style } from '../utils/mystyle';
 
 WebBrowser.maybeCompleteAuthSession();
 
