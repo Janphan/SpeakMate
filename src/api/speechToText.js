@@ -1,39 +1,34 @@
-import { OPENAI_API_KEY } from '@env';
-import * as FileSystem from 'expo-file-system';
-
-const OPENAI_WHISPER_URL = "https://api.openai.com/v1/audio/transcriptions";
-
+import axios from "axios";
+import { OPENAI_API_KEY } from "@env";
 
 export const convertAudioToText = async (audioUri) => {
     try {
-        console.log("Converting audio file to text...");
-
-        const response = await FileSystem.uploadAsync(OPENAI_WHISPER_URL, audioUri, {
-            fieldName: 'file',
-            httpMethod: 'POST',
-            uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-            headers: {
-                "Authorization": "Bearer " + OPENAI_API_KEY,
-                "Content-Type": 'multipart/form-data',
-            },
-            parameters: {
-                model: "whisper-1",
-                response_format: "verbose_json",
-                timestamp_granularities: `["word"]`,
-            },
+        const formData = new FormData();
+        formData.append("file", {
+            uri: audioUri,
+            type: "audio/m4a",
+            name: "speech.m4a",
         });
+        formData.append("model", "whisper-1");
+        formData.append("response_format", "verbose_json");
+        formData.append("timestamp_granularities[]", "word");
+        formData.append("timestamp_granularities[]", "segment");
 
-        if (response.status !== 200) {
-            console.error("Whisper API Error:", response.body);
-            return null;
-        }
-
-        const responseData = JSON.parse(response.body);
-        console.log("Transcription full:", responseData);
-        console.log("Transcription:", responseData.text);
-        return responseData;
+        const response = await axios.post(
+            "https://api.openai.com/v1/audio/transcriptions",
+            formData,
+            {
+                headers: {
+                    "Authorization": `Bearer ${OPENAI_API_KEY}`,
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
+        console.log("Transcription response data:", response.data);
+        console.log("Transcription:", response.data.text);
+        return response.data;
     } catch (error) {
-        console.error("Error in Whisper STT:", error);
+        console.error("Axios upload error:", error);
         return null;
     }
 };
