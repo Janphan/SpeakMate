@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Alert, Button } from 'react-native';
 import { Audio } from 'expo-av';
 import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse } from "../api/AIService";
 import { speakText } from '../api/textToSpeech';
 import AIResponseDisplay from './AIResponseDisplay';
-import RecordingControls from './RecordingControls';
 import { IconButton } from 'react-native-paper';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, addDoc } from 'firebase/firestore';
@@ -16,7 +15,7 @@ import { analyzeSpeech } from '../utils/speechAnalysis';
 export default function DialogueScreen({ navigation, route }) {
     const [recording, setRecording] = useState(null);
     // const [transcription, setTranscription] = useState([]);
-    // const [aiResponse, setAiResponse] = useState([]);
+    const [aiResponse, setAiResponse] = useState(false);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [analysisResult, setAnalysisResult] = useState(null);
@@ -45,6 +44,7 @@ export default function DialogueScreen({ navigation, route }) {
                 Audio.RecordingOptionsPresets.HIGH_QUALITY
             );
             setRecording(recording);
+            setAiResponse(false);
         } catch (err) {
             console.error('Failed to start recording', err);
         }
@@ -95,7 +95,8 @@ export default function DialogueScreen({ navigation, route }) {
         const aiReply = await getOpenAIResponse(topic.title, level);
         setMsgList(previous => [...previous, { role: 'ai', content: aiReply }]);
         // setAiResponse(previous => [...previous, aiReply]);
-        speakText(aiReply);
+        const isSpeaking = speakText(aiReply);
+        setAiResponse(isSpeaking);
         setIsLoading(false);
     };
 
@@ -158,11 +159,15 @@ export default function DialogueScreen({ navigation, route }) {
                 style={styles.backButton}
             />
             <Text style={styles.title}>AI Voice Assistant</Text>
-            <RecordingControls
+            {/* <RecordingControls
                 startRecording={startRecording}
                 stopRecording={stopRecording}
                 recording={recording}
-            />
+            /> */}
+            <View>
+                <Button title="Start Recording" onPress={startRecording} disabled={!aiResponse} />
+                <Button title="Stop Recording" onPress={stopRecording} disabled={recording === null} />
+            </View>
             {isLoading && <ActivityIndicator size="large" color="blue" />}
             <AIResponseDisplay messages={msg_list} />
             {/* End Conversation Icon */}

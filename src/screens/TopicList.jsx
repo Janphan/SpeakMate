@@ -14,8 +14,8 @@ export default function TopicList({ navigation, route }) {
     const { level } = route.params || {};
 
     const handleTopicPress = (topic) => {
-        navigation.navigate('LetTalk', { topic, level });
-        alert(`Selected topic: ${topic.title}`);
+        navigation.navigate("DialogueScreen", { topic, level });
+        // alert(`Selected topic: ${topic.title}`);
     };
 
     return (

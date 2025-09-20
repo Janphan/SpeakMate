@@ -37,7 +37,7 @@ export default function LetTalk({ navigation, route }) {
                 <IconButton
                     icon="volume-high"
                     size={50}
-                    onPress={() => { speak(); navigation.navigate("DialogueScreen", {topic, level}); }}
+                    onPress={() => { speak(); navigation.navigate("DialogueScreen", { topic, level }); }}
                     style={styles.speakerIcon}
                 />
             </View>

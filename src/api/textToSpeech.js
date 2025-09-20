@@ -5,5 +5,10 @@ export const speakText = (text) => {
         language: "en-US",
         pitch: 1.0,
         rate: 1.0,
+        onDone: () => {
+            // Speech finished
+            console.log('Speech is done!');
+            return true;
+        },
     });
 };
