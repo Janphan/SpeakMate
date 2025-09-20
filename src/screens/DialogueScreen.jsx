@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Alert, Button } from 'react-native';
 import { Audio } from 'expo-av';
 import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse } from "../api/AIService";
-import { speakText } from '../api/textToSpeech';
 import AIResponseDisplay from './AIResponseDisplay';
 import { IconButton } from 'react-native-paper';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
@@ -11,17 +10,33 @@ import { collection, addDoc } from 'firebase/firestore';
 import { auth } from '../api/firebaseConfig'; // Firebase Auth instance
 import uuid from 'react-native-uuid';
 import { analyzeSpeech } from '../utils/speechAnalysis';
+import * as Speech from 'expo-speech';
+
 
 export default function DialogueScreen({ navigation, route }) {
     const [recording, setRecording] = useState(null);
     // const [transcription, setTranscription] = useState([]);
-    const [aiResponse, setAiResponse] = useState(false);
+    const [aiResponse, setAiResponse] = useState(true);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [analysisResult, setAnalysisResult] = useState(null);
     const { topic, level } = route.params || {};
 
     console.log("DialogueScreen - Topic:", topic, "Level:", level);
+
+    // Text-to-Speech
+    const speakText = (text) => {
+        Speech.speak(text, {
+            language: "en-US",
+            pitch: 1.0,
+            rate: 1.0,
+            onDone: () => {
+                // Speech finished
+                console.log('Speech is done!');
+                setAiResponse(true);
+            },
+        });
+    };
 
     // Start Recording
     const startRecording = async () => {
@@ -95,8 +110,7 @@ export default function DialogueScreen({ navigation, route }) {
         const aiReply = await getOpenAIResponse(topic.title, level);
         setMsgList(previous => [...previous, { role: 'ai', content: aiReply }]);
         // setAiResponse(previous => [...previous, aiReply]);
-        const isSpeaking = speakText(aiReply);
-        setAiResponse(isSpeaking);
+        speakText(aiReply);
         setIsLoading(false);
     };
 
