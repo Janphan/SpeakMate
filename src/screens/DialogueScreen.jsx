@@ -5,9 +5,9 @@ import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse } from "../api/AIService";
 import AIResponseDisplay from './AIResponseDisplay';
 import { IconButton } from 'react-native-paper';
-import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
+import { db } from '../api/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
-import { auth } from '../api/firebaseConfig'; // Firebase Auth instance
+import { auth } from '../api/firebaseConfig';
 import uuid from 'react-native-uuid';
 import { analyzeSpeech } from '../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
@@ -19,8 +19,9 @@ export default function DialogueScreen({ navigation, route }) {
     const [aiResponse, setAiResponse] = useState(true);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [analysisResult, setAnalysisResult] = useState(null);
+    // const [analysisResult, setAnalysisResult] = useState(null);
     const { topic, level } = route.params || {};
+    const [responseDataList, setResponseDataList] = useState([]);
 
     console.log("DialogueScreen - Topic:", topic, "Level:", level);
 
@@ -84,9 +85,8 @@ export default function DialogueScreen({ navigation, route }) {
 
         try {
             const responseData = await convertAudioToText(uri);
-            const transcript = responseData.text; // or however your responseData provides the transcript
-            const analysisResult = analyzeSpeech(responseData);
-            setAnalysisResult(analysisResult);
+            const transcript = responseData.text;
+            setResponseDataList(prev => [...prev, responseData]);
             setMsgList(previous => [...previous, { role: 'user', content: transcript }]);
             // setTranscription(previous => [...previous, transcript]);
             console.log("transcript", transcript);
@@ -115,7 +115,7 @@ export default function DialogueScreen({ navigation, route }) {
     };
 
     // Save Conversation to Firestore
-    const saveConversation = async () => {
+    const saveConversation = async (analysedSpeech) => {
         try {
             // When starting a new conversation
             await addDoc(collection(db, 'conversations'), {
@@ -130,8 +130,8 @@ export default function DialogueScreen({ navigation, route }) {
                 topic: topic.title,
                 level: level,
                 header: `${topic.title} - level ${level}`,
-                feedback: analysisResult.feedback,
-                analysisResult: analysisResult,
+                feedback: analysedSpeech.feedback,
+                analysisResult: analysedSpeech,
             });
             console.log('Conversation saved to Firestore');
         } catch (error) {
@@ -141,6 +141,8 @@ export default function DialogueScreen({ navigation, route }) {
 
     // End the Conversation
     const endConversation = () => {
+        const analysedSpeech = analyzeSpeech(responseDataList);
+        console.log("Analysis Result:", analysedSpeech);
         Alert.alert(
             "End Conversation",
             "Are you sure you want to end the conversation?",
@@ -150,8 +152,8 @@ export default function DialogueScreen({ navigation, route }) {
                     text: "End",
                     style: "destructive",
                     onPress: async () => {
-                        await saveConversation();
-                        navigation.navigate("Feedback", { analysis: analysisResult });
+                        await saveConversation(analysedSpeech);
+                        navigation.navigate("Feedback", { analysis: analysedSpeech });
                     },
                 },
             ]
