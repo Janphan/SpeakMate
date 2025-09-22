@@ -13,7 +13,7 @@ import SettingsScreen from "./src/screens/SettingsScreen";
 import DialogueScreen from './src/screens/DialogueScreen';
 import LetTalk from './src/screens/LetTalk';
 
-import ProgressScreen from './src/screens/ProgressScreen';
+import StatisticsScreen from './src/screens/StatisticsScreen';
 import VocabScreen from './src/screens/VocabScreen';
 import CallsScreen from './src/screens/CallsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
@@ -77,7 +77,7 @@ function TabNavigator() {
         }}
       />
       <Tab.Screen name="Calls" component={CallsScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Progress" component={ProgressScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Progress" component={StatisticsScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Vocab" component={VocabScreen} options={{ headerShown: false }} />
 
     </Tab.Navigator>
@@ -109,6 +109,7 @@ export default function App() {
         <Stack.Screen name="LetTalk" component={LetTalk} />
         <Stack.Screen name="TopicList" component={TopicList} />
         <Stack.Screen name="Feedback" component={Feedback} />
+        <Stack.Screen name="StatisticsScreen" component={StatisticsScreen} />
 
       </Stack.Navigator>
     </NavigationContainer>

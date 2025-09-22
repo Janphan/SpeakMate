@@ -187,6 +187,7 @@ export function analyzeSpeech(responses) {
         fluencyBand,
         clarityScore,
         feedback,
+        totalWords,
         individualResults: results,
     };
 }

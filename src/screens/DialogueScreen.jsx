@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Alert, Button } from 'react-native';
 import { Audio } from 'expo-av';
 import { convertAudioToText } from '../api/speechToText';
@@ -22,6 +22,12 @@ export default function DialogueScreen({ navigation, route }) {
     // const [analysisResult, setAnalysisResult] = useState(null);
     const { topic, level } = route.params || {};
     const [responseDataList, setResponseDataList] = useState([]);
+    const [sessionStartTime, setSessionStartTime] = useState(null);
+
+    // Initialize session start time when component mounts
+    useEffect(() => {
+        setSessionStartTime(new Date());
+    }, []);
 
     console.log("DialogueScreen - Topic:", topic, "Level:", level);
 
@@ -117,15 +123,19 @@ export default function DialogueScreen({ navigation, route }) {
     // Save Conversation to Firestore
     const saveConversation = async (analysedSpeech) => {
         try {
+            const sessionEndTime = new Date();
+            const sessionDuration = sessionStartTime
+                ? Math.round((sessionEndTime - sessionStartTime) / 1000)
+                : 0; // Duration in seconds
+
             // When starting a new conversation
             await addDoc(collection(db, 'conversations'), {
                 sessionId: uuid.v4(),
                 userId: auth.currentUser ? auth.currentUser.uid : null,
                 timestamp: new Date(),
-                // messages: [
-                //     { role: 'ai', content: aiResponse },
-                //     { role: 'user', content: transcription }
-                // ],
+                sessionStartTime: sessionStartTime,
+                sessionEndTime: sessionEndTime,
+                sessionDuration: sessionDuration, // in seconds
                 messages: msg_list,
                 topic: topic.title,
                 level: level,
@@ -160,11 +170,6 @@ export default function DialogueScreen({ navigation, route }) {
         );
     };
 
-    // Build the messages array for display
-    // const messages = [];
-    // if (aiResponse) messages.push({ role: 'ai', content: aiResponse });
-    // if (transcription) messages.push({ role: 'user', content: transcription });
-
     return (
         <View style={styles.container}>
             {/* Back to Home Icon */}
@@ -175,11 +180,6 @@ export default function DialogueScreen({ navigation, route }) {
                 style={styles.backButton}
             />
             <Text style={styles.title}>AI Voice Assistant</Text>
-            {/* <RecordingControls
-                startRecording={startRecording}
-                stopRecording={stopRecording}
-                recording={recording}
-            /> */}
             <View>
                 <Button title="Start Recording" onPress={startRecording} disabled={!aiResponse} />
                 <Button title="Stop Recording" onPress={stopRecording} disabled={recording === null} />

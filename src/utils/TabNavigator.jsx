@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { IconButton } from 'react-native-paper';
 
 import HomeScreen from "../screens/HomeScreen"
-import ProgressScreen from '../screens/ProgressScreen';
+import StatisticsScreen from '../screens/StatisticsScreen';
 import VocabScreen from '../screens/VocabScreen';
 import CallsScreen from '../screens/CallsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -55,7 +55,7 @@ export default function TabNavigator() {
                 }}
             />
             <Tab.Screen name="Calls" component={CallsScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Progress" component={ProgressScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Progress" component={StatisticsScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Vocab" component={VocabScreen} options={{ headerShown: false }} />
 
         </Tab.Navigator>
