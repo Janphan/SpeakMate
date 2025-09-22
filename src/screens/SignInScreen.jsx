@@ -51,8 +51,8 @@ const SignInScreen = ({ navigation }) => {
             style={styles.background}
         >
             <View style={styles.container}>
-                <Text style={styles.title}>Sign In</Text>
-
+                <Text style={styles.title}>SpeakMate</Text>
+                <Text style={styles.subtitle}>Welcome Back! Please Sign In.</Text>
                 <TextInput
                     placeholder="✉️ Email"
                     value={email}

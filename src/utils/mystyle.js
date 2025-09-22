@@ -62,6 +62,17 @@ const signup_signin_style = {
         color: "#fff",
         fontWeight: "bold",
     },
+    eyeIcon: {
+        position: 'absolute',
+        right: 10,
+        padding: 5,
+    },
+    subtitle: {
+        fontSize: 16,
+        color: "#333",
+        marginBottom: 20,
+        fontFamily: "sans-serif",
+    },
 }
 
 export { mystyle, signup_signin_style };
