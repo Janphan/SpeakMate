@@ -1,0 +1,3282 @@
+[
+    {
+        "id": 1,
+        "word": "abandon",
+        "definition": "to leave behind or give up completely",
+        "example": "The project was abandoned due to lack of funding.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 2,
+        "word": "abstract",
+        "definition": "existing in thought or as an idea but not having a physical or concrete existence",
+        "example": "The concept of justice is abstract and can be interpreted differently.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 3,
+        "word": "accommodate",
+        "definition": "to provide with something needed; to make fit or suitable",
+        "example": "The hotel can accommodate up to 200 guests.",
+        "topic": "Business",
+        "level": "Band 6"
+    },
+    {
+        "id": 4,
+        "word": "accumulate",
+        "definition": "to gather or collect, often in gradual degrees",
+        "example": "Snow began to accumulate on the mountain peaks.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 5,
+        "word": "accurate",
+        "definition": "correct in all details; exact",
+        "example": "The weather forecast was surprisingly accurate.",
+        "topic": "General",
+        "level": "Band 5"
+    },
+    {
+        "id": 6,
+        "word": "acknowledge",
+        "definition": "to accept or admit the existence or truth of",
+        "example": "He acknowledged his mistake and apologized.",
+        "topic": "Social",
+        "level": "Band 6"
+    },
+    {
+        "id": 7,
+        "word": "acquire",
+        "definition": "to gain possession of",
+        "example": "She hopes to acquire new skills through this training program.",
+        "topic": "Education",
+        "level": "Band 6"
+    },
+    {
+        "id": 8,
+        "word": "adapt",
+        "definition": "to adjust or change to suit conditions",
+        "example": "Animals must adapt to their environment to survive.",
+        "topic": "Nature",
+        "level": "Band 6"
+    },
+    {
+        "id": 9,
+        "word": "adequate",
+        "definition": "sufficient for a specific requirement",
+        "example": "The salary is adequate for covering basic living expenses.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 10,
+        "word": "adjacent",
+        "definition": "next to or adjoining something else",
+        "example": "The library is adjacent to the main campus building.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 11,
+        "word": "advocate",
+        "definition": "to publicly support or recommend",
+        "example": "Many doctors advocate for regular exercise to prevent disease.",
+        "topic": "Health",
+        "level": "Band 7"
+    },
+    {
+        "id": 12,
+        "word": "aggregate",
+        "definition": "a whole formed by combining several elements",
+        "example": "The aggregate score of all tests determines the final grade.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 13,
+        "word": "allocate",
+        "definition": "to distribute resources or duties for a particular purpose",
+        "example": "The government will allocate more funds to education next year.",
+        "topic": "Government",
+        "level": "Band 7"
+    },
+    {
+        "id": 14,
+        "word": "ambiguous",
+        "definition": "open to more than one interpretation; not having one obvious meaning",
+        "example": "The contract terms were ambiguous and caused confusion.",
+        "topic": "Business",
+        "level": "Band 7"
+    },
+    {
+        "id": 15,
+        "word": "amend",
+        "definition": "to change or modify for the better",
+        "example": "The constitution can be amended with proper procedures.",
+        "topic": "Government",
+        "level": "Band 7"
+    },
+    {
+        "id": 16,
+        "word": "analogy",
+        "definition": "a comparison between two things for the purpose of explanation",
+        "example": "He used the analogy of a river to explain how electricity flows.",
+        "topic": "Education",
+        "level": "Band 7"
+    },
+    {
+        "id": 17,
+        "word": "annual",
+        "definition": "occurring once every year",
+        "example": "The company holds its annual meeting in December.",
+        "topic": "Business",
+        "level": "Band 5"
+    },
+    {
+        "id": 18,
+        "word": "anticipate",
+        "definition": "to expect or predict",
+        "example": "We anticipate a significant increase in sales this quarter.",
+        "topic": "Business",
+        "level": "Band 6"
+    },
+    {
+        "id": 19,
+        "word": "apparent",
+        "definition": "clearly visible or understood; obvious",
+        "example": "It was apparent that she had been crying.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 20,
+        "word": "append",
+        "definition": "to add something as an attachment or supplement",
+        "example": "Please append your signature to the document.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 21,
+        "word": "appreciate",
+        "definition": "to recognize the full worth of",
+        "example": "I appreciate all the help you've given me.",
+        "topic": "Social",
+        "level": "Band 5"
+    },
+    {
+        "id": 22,
+        "word": "arbitrary",
+        "definition": "based on random choice or personal whim",
+        "example": "The decision seemed arbitrary and unfair to many employees.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 23,
+        "word": "aspect",
+        "definition": "a particular part or feature of something",
+        "example": "One important aspect of the job is teamwork.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 24,
+        "word": "assemble",
+        "definition": "to gather together in one place for a common purpose",
+        "example": "Students assembled in the auditorium for the graduation ceremony.",
+        "topic": "Education",
+        "level": "Band 6"
+    },
+    {
+        "id": 25,
+        "word": "assess",
+        "definition": "to evaluate or estimate the nature, ability, or quality of",
+        "example": "Teachers assess students' progress through regular tests.",
+        "topic": "Education",
+        "level": "Band 6"
+    },
+    {
+        "id": 26,
+        "word": "assign",
+        "definition": "to allocate a job or duty",
+        "example": "The manager will assign tasks to each team member.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 27,
+        "word": "assume",
+        "definition": "to suppose to be the case, without proof",
+        "example": "I assume you've already finished your homework.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 28,
+        "word": "attain",
+        "definition": "to achieve or reach",
+        "example": "She worked hard to attain her goal of becoming a doctor.",
+        "topic": "Goals",
+        "level": "Band 6"
+    },
+    {
+        "id": 29,
+        "word": "attribute",
+        "definition": "a quality or feature regarded as a characteristic",
+        "example": "Patience is an important attribute for a good teacher.",
+        "topic": "Personal Development",
+        "level": "Band 6"
+    },
+    {
+        "id": 30,
+        "word": "author",
+        "definition": "the originator of any written work",
+        "example": "The author spent three years writing her first novel.",
+        "topic": "Literature",
+        "level": "Band 5"
+    },
+    {
+        "id": 31,
+        "word": "automate",
+        "definition": "to make a process operate automatically",
+        "example": "The factory decided to automate the production line.",
+        "topic": "Technology",
+        "level": "Band 7"
+    },
+    {
+        "id": 32,
+        "word": "benefit",
+        "definition": "an advantage or profit gained from something",
+        "example": "The main benefit of exercise is improved health.",
+        "topic": "Health",
+        "level": "Band 5"
+    },
+    {
+        "id": 33,
+        "word": "bias",
+        "definition": "prejudice in favor of or against one thing, person, or group",
+        "example": "The news report showed a clear bias toward one political party.",
+        "topic": "Media",
+        "level": "Band 7"
+    },
+    {
+        "id": 34,
+        "word": "brief",
+        "definition": "short in duration, extent, or length",
+        "example": "Please give a brief summary of the main points.",
+        "topic": "General",
+        "level": "Band 5"
+    },
+    {
+        "id": 35,
+        "word": "capable",
+        "definition": "having the ability or qualities necessary for something",
+        "example": "She is capable of handling multiple projects simultaneously.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 36,
+        "word": "cease",
+        "definition": "to bring or come to an end",
+        "example": "The rain will cease by tomorrow morning.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 37,
+        "word": "challenge",
+        "definition": "a call to take part in a contest or competition",
+        "example": "Learning a new language is always a challenge.",
+        "topic": "Education",
+        "level": "Band 5"
+    },
+    {
+        "id": 38,
+        "word": "channel",
+        "definition": "a medium for communication or the passage of information",
+        "example": "Social media has become an important channel for marketing.",
+        "topic": "Technology",
+        "level": "Band 6"
+    },
+    {
+        "id": 39,
+        "word": "circumstance",
+        "definition": "a fact or condition connected with or relevant to an event or action",
+        "example": "Under the circumstances, we had no choice but to cancel the event.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 40,
+        "word": "cite",
+        "definition": "to quote as evidence for justification",
+        "example": "The researcher cited several studies to support her argument.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 41,
+        "word": "clarify",
+        "definition": "to make clear or easier to understand",
+        "example": "Could you clarify what you mean by 'sustainable development'?",
+        "topic": "Communication",
+        "level": "Band 6"
+    },
+    {
+        "id": 42,
+        "word": "coherent",
+        "definition": "logical and consistent",
+        "example": "His argument was coherent and well-structured.",
+        "topic": "Communication",
+        "level": "Band 7"
+    },
+    {
+        "id": 43,
+        "word": "coincide",
+        "definition": "to occur at or during the same time",
+        "example": "The festival coincides with the harvest season.",
+        "topic": "Events",
+        "level": "Band 6"
+    },
+    {
+        "id": 44,
+        "word": "collapse",
+        "definition": "to fall down or give way",
+        "example": "The old building collapsed during the earthquake.",
+        "topic": "Disasters",
+        "level": "Band 6"
+    },
+    {
+        "id": 45,
+        "word": "commence",
+        "definition": "to begin or start",
+        "example": "The ceremony will commence at 3 PM sharp.",
+        "topic": "Events",
+        "level": "Band 6"
+    },
+    {
+        "id": 46,
+        "word": "commodity",
+        "definition": "a raw material or primary agricultural product that can be bought and sold",
+        "example": "Coffee is one of the world's most traded commodities.",
+        "topic": "Economics",
+        "level": "Band 7"
+    },
+    {
+        "id": 47,
+        "word": "compatible",
+        "definition": "able to exist or occur together without conflict",
+        "example": "These software programs are compatible with each other.",
+        "topic": "Technology",
+        "level": "Band 6"
+    },
+    {
+        "id": 48,
+        "word": "compile",
+        "definition": "to collect information and arrange it in a list or book",
+        "example": "She compiled a list of all the participants.",
+        "topic": "Academic",
+        "level": "Band 6"
+    },
+    {
+        "id": 49,
+        "word": "complement",
+        "definition": "a thing that completes or brings to perfection",
+        "example": "The wine perfectly complements the seafood dish.",
+        "topic": "Food",
+        "level": "Band 6"
+    },
+    {
+        "id": 50,
+        "word": "comprehensive",
+        "definition": "complete and including everything that is necessary",
+        "example": "The report provides a comprehensive analysis of the market.",
+        "topic": "Business",
+        "level": "Band 7"
+    },
+    {
+        "id": 51,
+        "word": "conceive",
+        "definition": "to form or devise a plan or idea in the mind",
+        "example": "It's difficult to conceive of a world without technology.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 52,
+        "word": "conclude",
+        "definition": "to bring to an end; to reach a decision",
+        "example": "We can conclude that the experiment was successful.",
+        "topic": "Academic",
+        "level": "Band 6"
+    },
+    {
+        "id": 53,
+        "word": "concurrent",
+        "definition": "existing, happening, or done at the same time",
+        "example": "She was taking three concurrent courses this semester.",
+        "topic": "Education",
+        "level": "Band 7"
+    },
+    {
+        "id": 54,
+        "word": "conduct",
+        "definition": "to organize and carry out",
+        "example": "The professor will conduct a survey among students.",
+        "topic": "Academic",
+        "level": "Band 6"
+    },
+    {
+        "id": 55,
+        "word": "confine",
+        "definition": "to keep or restrict someone or something within certain limits",
+        "example": "Please confine your comments to the main topic.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 56,
+        "word": "confirm",
+        "definition": "to establish the truth or correctness of something",
+        "example": "Please confirm your attendance at the meeting.",
+        "topic": "Business",
+        "level": "Band 5"
+    },
+    {
+        "id": 57,
+        "word": "conform",
+        "definition": "to comply with rules, standards, or laws",
+        "example": "All products must conform to safety regulations.",
+        "topic": "Business",
+        "level": "Band 6"
+    },
+    {
+        "id": 58,
+        "word": "consent",
+        "definition": "permission for something to happen",
+        "example": "You need parental consent to participate in the trip.",
+        "topic": "Social",
+        "level": "Band 6"
+    },
+    {
+        "id": 59,
+        "word": "consequent",
+        "definition": "following as a result or effect",
+        "example": "The drought and consequent crop failure affected food prices.",
+        "topic": "Agriculture",
+        "level": "Band 7"
+    },
+    {
+        "id": 60,
+        "word": "considerable",
+        "definition": "notably large in size, amount, or extent",
+        "example": "There was considerable improvement in his performance.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 61,
+        "word": "constant",
+        "definition": "occurring continuously over a period of time",
+        "example": "The constant noise from construction was annoying.",
+        "topic": "General",
+        "level": "Band 5"
+    },
+    {
+        "id": 62,
+        "word": "constitute",
+        "definition": "to be part of a whole",
+        "example": "These documents constitute evidence of the agreement.",
+        "topic": "Legal",
+        "level": "Band 7"
+    },
+    {
+        "id": 63,
+        "word": "constraint",
+        "definition": "a limitation or restriction",
+        "example": "Budget constraints forced us to cancel the project.",
+        "topic": "Business",
+        "level": "Band 6"
+    },
+    {
+        "id": 64,
+        "word": "consult",
+        "definition": "to seek information or advice from someone",
+        "example": "You should consult a doctor about that persistent cough.",
+        "topic": "Health",
+        "level": "Band 5"
+    },
+    {
+        "id": 65,
+        "word": "consume",
+        "definition": "to use up a resource",
+        "example": "Understanding the meaning of \"consume\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 66,
+        "word": "contemporary",
+        "definition": "living or occurring at the same time",
+        "example": "Understanding the meaning of \"contemporary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 67,
+        "word": "contradict",
+        "definition": "to assert the opposite of a statement",
+        "example": "Understanding the meaning of \"contradict\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 68,
+        "word": "contribute",
+        "definition": "to give in order to help achieve or provide something",
+        "example": "Understanding the meaning of \"contribute\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 69,
+        "word": "controversy",
+        "definition": "disagreement, typically when prolonged, public, and heated",
+        "example": "Understanding the meaning of \"controversy\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 70,
+        "word": "convene",
+        "definition": "to come together for a meeting or activity",
+        "example": "Understanding the meaning of \"convene\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 71,
+        "word": "converse",
+        "definition": "to engage in conversation",
+        "example": "Understanding the meaning of \"converse\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 72,
+        "word": "convert",
+        "definition": "to change something into a different form",
+        "example": "Understanding the meaning of \"convert\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 73,
+        "word": "convince",
+        "definition": "to persuade someone to do or believe something",
+        "example": "Understanding the meaning of \"convince\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 74,
+        "word": "cooperate",
+        "definition": "to work jointly towards the same end",
+        "example": "Understanding the meaning of \"cooperate\" is important for communication.",
+        "topic": "Work",
+        "level": "Band 7"
+    },
+    {
+        "id": 75,
+        "word": "coordinate",
+        "definition": "to bring different elements into a harmonious or efficient relationship",
+        "example": "Understanding the meaning of \"coordinate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 76,
+        "word": "core",
+        "definition": "the central or most important part",
+        "example": "Understanding the meaning of \"core\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 77,
+        "word": "corporate",
+        "definition": "relating to a large company or group",
+        "example": "Understanding the meaning of \"corporate\" is important for communication.",
+        "topic": "Business",
+        "level": "Band 7"
+    },
+    {
+        "id": 78,
+        "word": "correspond",
+        "definition": "to have a close similarity; to match or agree almost exactly",
+        "example": "Understanding the meaning of \"correspond\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 79,
+        "word": "criteria",
+        "definition": "principles or standards by which something may be judged",
+        "example": "Understanding the meaning of \"criteria\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 80,
+        "word": "crucial",
+        "definition": "decisive or critical, especially in the success or failure of something",
+        "example": "Understanding the meaning of \"crucial\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 81,
+        "word": "currency",
+        "definition": "a system of money in general use in a particular country",
+        "example": "Understanding the meaning of \"currency\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 82,
+        "word": "cycle",
+        "definition": "a series of events that are regularly repeated",
+        "example": "Understanding the meaning of \"cycle\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 83,
+        "word": "data",
+        "definition": "facts and statistics collected together for reference or analysis",
+        "example": "Understanding the meaning of \"data\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 84,
+        "word": "debate",
+        "definition": "a formal discussion on a particular topic",
+        "example": "Understanding the meaning of \"debate\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 85,
+        "word": "decade",
+        "definition": "a period of ten years",
+        "example": "Understanding the meaning of \"decade\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 86,
+        "word": "decline",
+        "definition": "to become smaller, fewer, or less; decrease",
+        "example": "Understanding the meaning of \"decline\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 87,
+        "word": "deduce",
+        "definition": "to arrive at a fact or conclusion by reasoning",
+        "example": "Understanding the meaning of \"deduce\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 88,
+        "word": "definite",
+        "definition": "clearly stated or decided; not vague or doubtful",
+        "example": "Understanding the meaning of \"definite\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 89,
+        "word": "demonstrate",
+        "definition": "to show clearly by giving proof or evidence",
+        "example": "Understanding the meaning of \"demonstrate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 90,
+        "word": "denote",
+        "definition": "to be a sign of; indicate",
+        "example": "Understanding the meaning of \"denote\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 91,
+        "word": "depress",
+        "definition": "to make someone feel sad or without hope",
+        "example": "Understanding the meaning of \"depress\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 92,
+        "word": "derive",
+        "definition": "to obtain something from a specified source",
+        "example": "Understanding the meaning of \"derive\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 93,
+        "word": "design",
+        "definition": "to plan and make decisions about something that is being built or created",
+        "example": "Understanding the meaning of \"design\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 94,
+        "word": "detect",
+        "definition": "to discover or identify the presence of something",
+        "example": "Understanding the meaning of \"detect\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 95,
+        "word": "deviate",
+        "definition": "to depart from an established course",
+        "example": "Understanding the meaning of \"deviate\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 96,
+        "word": "dimension",
+        "definition": "an aspect or feature of a situation, problem, or thing",
+        "example": "Understanding the meaning of \"dimension\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 97,
+        "word": "diminish",
+        "definition": "to make or become less",
+        "example": "Understanding the meaning of \"diminish\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 98,
+        "word": "discrete",
+        "definition": "individually separate and distinct",
+        "example": "Understanding the meaning of \"discrete\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 99,
+        "word": "displace",
+        "definition": "to take over the place, position, or role of",
+        "example": "Understanding the meaning of \"displace\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 100,
+        "word": "display",
+        "definition": "to show or exhibit",
+        "example": "Understanding the meaning of \"display\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 101,
+        "word": "dispose",
+        "definition": "to get rid of by throwing away or giving or selling to someone else",
+        "example": "Understanding the meaning of \"dispose\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 102,
+        "word": "distinct",
+        "definition": "recognizably different in nature from something else",
+        "example": "Understanding the meaning of \"distinct\" is important for communication.",
+        "topic": "Nature",
+        "level": "Band 6"
+    },
+    {
+        "id": 103,
+        "word": "distort",
+        "definition": "to change the shape or sound of something so that it seems strange",
+        "example": "Understanding the meaning of \"distort\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 104,
+        "word": "distribute",
+        "definition": "to give shares of something; to spread over an area",
+        "example": "Understanding the meaning of \"distribute\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 105,
+        "word": "diverse",
+        "definition": "showing a great deal of variety",
+        "example": "Understanding the meaning of \"diverse\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 106,
+        "word": "document",
+        "definition": "a piece of written, printed, or electronic matter that provides information",
+        "example": "Understanding the meaning of \"document\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 107,
+        "word": "domain",
+        "definition": "an area of territory owned or controlled by a ruler or government",
+        "example": "Understanding the meaning of \"domain\" is important for communication.",
+        "topic": "Government",
+        "level": "Band 6"
+    },
+    {
+        "id": 108,
+        "word": "dominate",
+        "definition": "to have control or power over",
+        "example": "Understanding the meaning of \"dominate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 109,
+        "word": "draft",
+        "definition": "a preliminary version of a written work",
+        "example": "Understanding the meaning of \"draft\" is important for communication.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 110,
+        "word": "duration",
+        "definition": "the time during which something continues",
+        "example": "Understanding the meaning of \"duration\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 111,
+        "word": "dynamic",
+        "definition": "characterized by constant change, activity, or progress",
+        "example": "Understanding the meaning of \"dynamic\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 112,
+        "word": "eliminate",
+        "definition": "to completely remove or get rid of",
+        "example": "Understanding the meaning of \"eliminate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 113,
+        "word": "emerge",
+        "definition": "to come into view or become exposed",
+        "example": "Understanding the meaning of \"emerge\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 114,
+        "word": "emphasis",
+        "definition": "special importance or value given to something",
+        "example": "Understanding the meaning of \"emphasis\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 115,
+        "word": "empirical",
+        "definition": "based on observation or experience rather than theory",
+        "example": "Understanding the meaning of \"empirical\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 116,
+        "word": "enable",
+        "definition": "to make possible",
+        "example": "Understanding the meaning of \"enable\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 117,
+        "word": "encounter",
+        "definition": "to unexpectedly experience or be faced with",
+        "example": "Understanding the meaning of \"encounter\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 118,
+        "word": "enhance",
+        "definition": "to improve the quality, amount, or value of something",
+        "example": "Understanding the meaning of \"enhance\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 119,
+        "word": "enormous",
+        "definition": "very large in size, quantity, or extent",
+        "example": "Understanding the meaning of \"enormous\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 120,
+        "word": "ensure",
+        "definition": "to make certain that something will occur",
+        "example": "Understanding the meaning of \"ensure\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 121,
+        "word": "entity",
+        "definition": "something that exists independently",
+        "example": "Understanding the meaning of \"entity\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 122,
+        "word": "environment",
+        "definition": "the surroundings or conditions in which a person, animal, or plant lives",
+        "example": "Understanding the meaning of \"environment\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 123,
+        "word": "equate",
+        "definition": "to consider one thing to be the same as or equal to another",
+        "example": "Understanding the meaning of \"equate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 124,
+        "word": "equip",
+        "definition": "to supply with necessary items for a particular purpose",
+        "example": "Understanding the meaning of \"equip\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 125,
+        "word": "erode",
+        "definition": "to gradually wear away",
+        "example": "Understanding the meaning of \"erode\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 126,
+        "word": "establish",
+        "definition": "to set up on a firm or permanent basis",
+        "example": "Understanding the meaning of \"establish\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 127,
+        "word": "estimate",
+        "definition": "to roughly calculate or judge the value, number, quantity, or extent of",
+        "example": "Understanding the meaning of \"estimate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 128,
+        "word": "evaluate",
+        "definition": "to judge or calculate the quality, importance, amount, or value of something",
+        "example": "Understanding the meaning of \"evaluate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 129,
+        "word": "eventually",
+        "definition": "in the end, especially after a long delay",
+        "example": "Understanding the meaning of \"eventually\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 130,
+        "word": "evident",
+        "definition": "clearly seen or understood; obvious",
+        "example": "Understanding the meaning of \"evident\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 131,
+        "word": "exclude",
+        "definition": "to deliberately not include something",
+        "example": "Understanding the meaning of \"exclude\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 132,
+        "word": "exhibit",
+        "definition": "to show publicly",
+        "example": "Understanding the meaning of \"exhibit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 133,
+        "word": "expand",
+        "definition": "to increase in size, number, or importance",
+        "example": "Understanding the meaning of \"expand\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 134,
+        "word": "expert",
+        "definition": "a person with a high level of knowledge or skill",
+        "example": "Understanding the meaning of \"expert\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 135,
+        "word": "explicit",
+        "definition": "stated clearly and in detail",
+        "example": "Understanding the meaning of \"explicit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 136,
+        "word": "exploit",
+        "definition": "to make full use of and derive benefit from",
+        "example": "Understanding the meaning of \"exploit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 137,
+        "word": "expose",
+        "definition": "to make something visible by uncovering it",
+        "example": "Understanding the meaning of \"expose\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 138,
+        "word": "external",
+        "definition": "belonging to or forming the outer surface or structure",
+        "example": "Understanding the meaning of \"external\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 139,
+        "word": "extract",
+        "definition": "to remove or take out",
+        "example": "Understanding the meaning of \"extract\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 140,
+        "word": "facilitate",
+        "definition": "to make an action or process easier",
+        "example": "Understanding the meaning of \"facilitate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 141,
+        "word": "factor",
+        "definition": "a circumstance, fact, or influence that contributes to a result",
+        "example": "Understanding the meaning of \"factor\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 142,
+        "word": "feature",
+        "definition": "a distinctive attribute or aspect",
+        "example": "Understanding the meaning of \"feature\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 143,
+        "word": "federal",
+        "definition": "having or relating to a system of government",
+        "example": "Understanding the meaning of \"federal\" is important for communication.",
+        "topic": "Government",
+        "level": "Band 6"
+    },
+    {
+        "id": 144,
+        "word": "file",
+        "definition": "a collection of documents or records",
+        "example": "Understanding the meaning of \"file\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 145,
+        "word": "final",
+        "definition": "coming at the end; last",
+        "example": "Understanding the meaning of \"final\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 146,
+        "word": "finite",
+        "definition": "having limits or bounds",
+        "example": "Understanding the meaning of \"finite\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 147,
+        "word": "flexible",
+        "definition": "able to bend easily without breaking",
+        "example": "Understanding the meaning of \"flexible\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 148,
+        "word": "fluctuate",
+        "definition": "to rise and fall irregularly in number or amount",
+        "example": "Understanding the meaning of \"fluctuate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 149,
+        "word": "focus",
+        "definition": "the center of interest or activity",
+        "example": "Understanding the meaning of \"focus\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 150,
+        "word": "format",
+        "definition": "the way in which something is arranged or set out",
+        "example": "Understanding the meaning of \"format\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 151,
+        "word": "found",
+        "definition": "to establish or originate",
+        "example": "Understanding the meaning of \"found\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 152,
+        "word": "framework",
+        "definition": "a basic structure underlying a system",
+        "example": "Understanding the meaning of \"framework\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 153,
+        "word": "function",
+        "definition": "an activity or purpose natural to or intended for a person or thing",
+        "example": "Understanding the meaning of \"function\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 154,
+        "word": "fund",
+        "definition": "a sum of money saved or made available for a particular purpose",
+        "example": "Understanding the meaning of \"fund\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 155,
+        "word": "fundamental",
+        "definition": "forming a necessary base or core; of central importance",
+        "example": "Understanding the meaning of \"fundamental\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 156,
+        "word": "furthermore",
+        "definition": "in addition; besides",
+        "example": "Understanding the meaning of \"furthermore\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 157,
+        "word": "generate",
+        "definition": "to produce or create",
+        "example": "Understanding the meaning of \"generate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 158,
+        "word": "generation",
+        "definition": "all of the people born and living at about the same time",
+        "example": "Understanding the meaning of \"generation\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 159,
+        "word": "global",
+        "definition": "relating to the whole world",
+        "example": "Understanding the meaning of \"global\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 160,
+        "word": "grade",
+        "definition": "a particular level of rank, quality, proficiency, or value",
+        "example": "Understanding the meaning of \"grade\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 161,
+        "word": "grant",
+        "definition": "to agree to give or allow",
+        "example": "Understanding the meaning of \"grant\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 162,
+        "word": "guarantee",
+        "definition": "a formal assurance that certain conditions will be fulfilled",
+        "example": "Understanding the meaning of \"guarantee\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 163,
+        "word": "guideline",
+        "definition": "a general rule, principle, or piece of advice",
+        "example": "Understanding the meaning of \"guideline\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 164,
+        "word": "hence",
+        "definition": "as a consequence; for this reason",
+        "example": "Understanding the meaning of \"hence\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 165,
+        "word": "highlight",
+        "definition": "to emphasize or make prominent",
+        "example": "Understanding the meaning of \"highlight\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 166,
+        "word": "hypothesis",
+        "definition": "a supposition or proposed explanation",
+        "example": "Understanding the meaning of \"hypothesis\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 167,
+        "word": "identical",
+        "definition": "similar in every detail; exactly alike",
+        "example": "Understanding the meaning of \"identical\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 168,
+        "word": "identify",
+        "definition": "to recognize or be able to name someone or something",
+        "example": "Understanding the meaning of \"identify\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 169,
+        "word": "ideology",
+        "definition": "a system of ideas and ideals",
+        "example": "Understanding the meaning of \"ideology\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 170,
+        "word": "illustrate",
+        "definition": "to explain or make clear by examples",
+        "example": "Understanding the meaning of \"illustrate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 171,
+        "word": "impact",
+        "definition": "the effect or influence of one person, thing, or action",
+        "example": "Understanding the meaning of \"impact\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 172,
+        "word": "implement",
+        "definition": "to put into effect",
+        "example": "Understanding the meaning of \"implement\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 173,
+        "word": "implicit",
+        "definition": "implied though not plainly expressed",
+        "example": "Understanding the meaning of \"implicit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 174,
+        "word": "imply",
+        "definition": "to strongly suggest the truth or existence of something",
+        "example": "Understanding the meaning of \"imply\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 175,
+        "word": "incentive",
+        "definition": "a thing that motivates or encourages someone to do something",
+        "example": "Understanding the meaning of \"incentive\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 176,
+        "word": "incidence",
+        "definition": "the occurrence, rate, or frequency of something",
+        "example": "Understanding the meaning of \"incidence\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 177,
+        "word": "incline",
+        "definition": "to feel willing or favorably disposed toward",
+        "example": "Understanding the meaning of \"incline\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 178,
+        "word": "income",
+        "definition": "money received, especially on a regular basis",
+        "example": "Understanding the meaning of \"income\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 179,
+        "word": "incorporate",
+        "definition": "to include or contain as part of something else",
+        "example": "Understanding the meaning of \"incorporate\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 7"
+    },
+    {
+        "id": 180,
+        "word": "indicate",
+        "definition": "to point out or show",
+        "example": "Understanding the meaning of \"indicate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 181,
+        "word": "individual",
+        "definition": "single; separate",
+        "example": "Understanding the meaning of \"individual\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 182,
+        "word": "induce",
+        "definition": "to succeed in persuading or leading someone to do something",
+        "example": "Understanding the meaning of \"induce\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 183,
+        "word": "inevitable",
+        "definition": "certain to happen; unavoidable",
+        "example": "Understanding the meaning of \"inevitable\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 184,
+        "word": "infer",
+        "definition": "to deduce or conclude from evidence",
+        "example": "Understanding the meaning of \"infer\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 185,
+        "word": "inhibit",
+        "definition": "to hinder, restrain, or prevent",
+        "example": "Understanding the meaning of \"inhibit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 186,
+        "word": "initial",
+        "definition": "existing or occurring at the beginning",
+        "example": "Understanding the meaning of \"initial\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 187,
+        "word": "initiative",
+        "definition": "the ability to assess and initiate things independently",
+        "example": "Understanding the meaning of \"initiative\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 188,
+        "word": "innovate",
+        "definition": "to make changes in something established",
+        "example": "Understanding the meaning of \"innovate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 189,
+        "word": "input",
+        "definition": "what is put in, taken in, or operated on by any process or system",
+        "example": "Understanding the meaning of \"input\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 190,
+        "word": "insert",
+        "definition": "to put or place in",
+        "example": "Understanding the meaning of \"insert\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 191,
+        "word": "insight",
+        "definition": "the capacity to gain an accurate understanding",
+        "example": "Understanding the meaning of \"insight\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 192,
+        "word": "inspect",
+        "definition": "to look at closely",
+        "example": "Understanding the meaning of \"inspect\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 193,
+        "word": "instance",
+        "definition": "an example or single occurrence of something",
+        "example": "Understanding the meaning of \"instance\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 194,
+        "word": "institute",
+        "definition": "to set in motion or establish",
+        "example": "Understanding the meaning of \"institute\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 195,
+        "word": "integrate",
+        "definition": "to combine one thing with another",
+        "example": "Understanding the meaning of \"integrate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 196,
+        "word": "integrity",
+        "definition": "the quality of being honest and having strong moral principles",
+        "example": "Understanding the meaning of \"integrity\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 197,
+        "word": "intense",
+        "definition": "of extreme force, degree, or strength",
+        "example": "Understanding the meaning of \"intense\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 198,
+        "word": "interact",
+        "definition": "to act in such a way as to have an effect on another",
+        "example": "Understanding the meaning of \"interact\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 199,
+        "word": "intermediate",
+        "definition": "coming between two things in time, place, character, etc.",
+        "example": "Understanding the meaning of \"intermediate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 200,
+        "word": "internal",
+        "definition": "of or situated on the inside",
+        "example": "Understanding the meaning of \"internal\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 201,
+        "word": "interpret",
+        "definition": "to explain the meaning of",
+        "example": "Understanding the meaning of \"interpret\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 202,
+        "word": "interval",
+        "definition": "an intervening time or space",
+        "example": "Understanding the meaning of \"interval\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 203,
+        "word": "intervene",
+        "definition": "to come between so as to prevent or alter a result",
+        "example": "Understanding the meaning of \"intervene\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 204,
+        "word": "intrinsic",
+        "definition": "belonging naturally; essential",
+        "example": "Understanding the meaning of \"intrinsic\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 205,
+        "word": "invest",
+        "definition": "to put money to use by purchase or expenditure",
+        "example": "Understanding the meaning of \"invest\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 206,
+        "word": "investigate",
+        "definition": "to carry out research or study into",
+        "example": "Understanding the meaning of \"investigate\" is important for communication.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 207,
+        "word": "invoke",
+        "definition": "to call on for assistance or as an authority",
+        "example": "Understanding the meaning of \"invoke\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 208,
+        "word": "involve",
+        "definition": "to include as a necessary part or result",
+        "example": "Understanding the meaning of \"involve\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 209,
+        "word": "isolate",
+        "definition": "to separate from others",
+        "example": "Understanding the meaning of \"isolate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 210,
+        "word": "issue",
+        "definition": "an important topic or problem for debate or discussion",
+        "example": "Understanding the meaning of \"issue\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 211,
+        "word": "item",
+        "definition": "an individual article or unit",
+        "example": "Understanding the meaning of \"item\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 212,
+        "word": "job",
+        "definition": "a paid position of regular employment",
+        "example": "Understanding the meaning of \"job\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 213,
+        "word": "journal",
+        "definition": "a newspaper or magazine that deals with a particular subject",
+        "example": "Understanding the meaning of \"journal\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 214,
+        "word": "justify",
+        "definition": "to show or prove to be right or reasonable",
+        "example": "Understanding the meaning of \"justify\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 215,
+        "word": "label",
+        "definition": "a small piece of paper, fabric, or similar material attached to an object",
+        "example": "Understanding the meaning of \"label\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 216,
+        "word": "labor",
+        "definition": "work, especially hard physical work",
+        "example": "Understanding the meaning of \"labor\" is important for communication.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 217,
+        "word": "layer",
+        "definition": "a sheet, quantity, or thickness of material",
+        "example": "Understanding the meaning of \"layer\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 218,
+        "word": "lecture",
+        "definition": "an educational talk to an audience",
+        "example": "Understanding the meaning of \"lecture\" is important for communication.",
+        "topic": "Education",
+        "level": "Band 6"
+    },
+    {
+        "id": 219,
+        "word": "legal",
+        "definition": "permitted by law",
+        "example": "Understanding the meaning of \"legal\" is important for communication.",
+        "topic": "Legal",
+        "level": "Band 6"
+    },
+    {
+        "id": 220,
+        "word": "legislate",
+        "definition": "to make or enact laws",
+        "example": "Understanding the meaning of \"legislate\" is important for communication.",
+        "topic": "Legal",
+        "level": "Band 7"
+    },
+    {
+        "id": 221,
+        "word": "levy",
+        "definition": "to impose a tax, fee, or fine",
+        "example": "Understanding the meaning of \"levy\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 222,
+        "word": "liberal",
+        "definition": "open to new behavior or opinions",
+        "example": "Understanding the meaning of \"liberal\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 223,
+        "word": "license",
+        "definition": "a permit from an authority to own or use something",
+        "example": "Understanding the meaning of \"license\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 224,
+        "word": "likewise",
+        "definition": "in the same way; also",
+        "example": "Understanding the meaning of \"likewise\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 225,
+        "word": "link",
+        "definition": "a relationship between two things or situations",
+        "example": "Understanding the meaning of \"link\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 226,
+        "word": "locate",
+        "definition": "to find the position of something",
+        "example": "Understanding the meaning of \"locate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 227,
+        "word": "logic",
+        "definition": "reasoning conducted according to strict principles",
+        "example": "Understanding the meaning of \"logic\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 228,
+        "word": "maintain",
+        "definition": "to keep in existence or continuance",
+        "example": "Understanding the meaning of \"maintain\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 229,
+        "word": "major",
+        "definition": "important, serious, or significant",
+        "example": "Understanding the meaning of \"major\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 230,
+        "word": "manual",
+        "definition": "done with the hands",
+        "example": "Understanding the meaning of \"manual\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 231,
+        "word": "mature",
+        "definition": "fully developed physically; full-grown",
+        "example": "Understanding the meaning of \"mature\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 232,
+        "word": "mediate",
+        "definition": "to intervene between people in a dispute",
+        "example": "Understanding the meaning of \"mediate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 233,
+        "word": "medium",
+        "definition": "an agency or means of doing something",
+        "example": "Understanding the meaning of \"medium\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 234,
+        "word": "mental",
+        "definition": "relating to the mind",
+        "example": "Understanding the meaning of \"mental\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 235,
+        "word": "method",
+        "definition": "a particular procedure for accomplishing something",
+        "example": "Understanding the meaning of \"method\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 236,
+        "word": "migrate",
+        "definition": "to move from one region or habitat to another",
+        "example": "Understanding the meaning of \"migrate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 237,
+        "word": "minimize",
+        "definition": "to reduce to the smallest possible amount",
+        "example": "Understanding the meaning of \"minimize\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 238,
+        "word": "minimum",
+        "definition": "the least or smallest amount possible",
+        "example": "Understanding the meaning of \"minimum\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 239,
+        "word": "minor",
+        "definition": "lesser in importance, seriousness, or significance",
+        "example": "Understanding the meaning of \"minor\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 240,
+        "word": "mode",
+        "definition": "a way or manner in which something occurs",
+        "example": "Understanding the meaning of \"mode\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 241,
+        "word": "modify",
+        "definition": "to make partial or minor changes to something",
+        "example": "Understanding the meaning of \"modify\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 242,
+        "word": "monitor",
+        "definition": "to observe and check the progress or quality of something",
+        "example": "Understanding the meaning of \"monitor\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 243,
+        "word": "motivate",
+        "definition": "to provide someone with a reason for doing something",
+        "example": "Understanding the meaning of \"motivate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 244,
+        "word": "mutual",
+        "definition": "experienced or done by each of two or more parties",
+        "example": "Understanding the meaning of \"mutual\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 245,
+        "word": "network",
+        "definition": "a group or system of interconnected people or things",
+        "example": "Understanding the meaning of \"network\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 246,
+        "word": "neutral",
+        "definition": "not supporting or helping either side in a conflict",
+        "example": "Understanding the meaning of \"neutral\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 247,
+        "word": "notion",
+        "definition": "a conception of or belief about something",
+        "example": "Understanding the meaning of \"notion\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 248,
+        "word": "objective",
+        "definition": "not influenced by personal feelings or opinions",
+        "example": "Understanding the meaning of \"objective\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 249,
+        "word": "obtain",
+        "definition": "to get, acquire, or secure",
+        "example": "Understanding the meaning of \"obtain\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 250,
+        "word": "occupy",
+        "definition": "to reside or have one's place of business in",
+        "example": "Understanding the meaning of \"occupy\" is important for communication.",
+        "topic": "Business",
+        "level": "Band 6"
+    },
+    {
+        "id": 251,
+        "word": "occur",
+        "definition": "to happen; take place",
+        "example": "Understanding the meaning of \"occur\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 252,
+        "word": "offset",
+        "definition": "to counteract something by having an equal and opposite force or effect",
+        "example": "Understanding the meaning of \"offset\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 253,
+        "word": "ongoing",
+        "definition": "continuing; still in progress",
+        "example": "Understanding the meaning of \"ongoing\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 254,
+        "word": "option",
+        "definition": "a thing that is or may be chosen",
+        "example": "Understanding the meaning of \"option\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 255,
+        "word": "orient",
+        "definition": "to align or position something relative to a known point",
+        "example": "Understanding the meaning of \"orient\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 256,
+        "word": "output",
+        "definition": "the amount of something produced by a person, machine, or industry",
+        "example": "Understanding the meaning of \"output\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 257,
+        "word": "overall",
+        "definition": "taking everything into account",
+        "example": "Understanding the meaning of \"overall\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 258,
+        "word": "overlap",
+        "definition": "to extend over so as to cover partly",
+        "example": "Understanding the meaning of \"overlap\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 259,
+        "word": "panel",
+        "definition": "a flat or curved component, typically rectangular",
+        "example": "Understanding the meaning of \"panel\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 260,
+        "word": "paradigm",
+        "definition": "a typical example or pattern of something",
+        "example": "Understanding the meaning of \"paradigm\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 261,
+        "word": "parameter",
+        "definition": "a numerical or other measurable factor",
+        "example": "Understanding the meaning of \"parameter\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 262,
+        "word": "participate",
+        "definition": "to take part in an action or endeavor",
+        "example": "Understanding the meaning of \"participate\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 7"
+    },
+    {
+        "id": 263,
+        "word": "partner",
+        "definition": "a person who takes part in an undertaking with another",
+        "example": "Understanding the meaning of \"partner\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 264,
+        "word": "perceive",
+        "definition": "to become aware or conscious of something",
+        "example": "Understanding the meaning of \"perceive\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 265,
+        "word": "percent",
+        "definition": "one part in every hundred",
+        "example": "Understanding the meaning of \"percent\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 266,
+        "word": "period",
+        "definition": "a length or portion of time",
+        "example": "Understanding the meaning of \"period\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 267,
+        "word": "persist",
+        "definition": "to continue firmly in an opinion or course of action",
+        "example": "Understanding the meaning of \"persist\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 268,
+        "word": "phase",
+        "definition": "a distinct period or stage in a process",
+        "example": "Understanding the meaning of \"phase\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 269,
+        "word": "phenomenon",
+        "definition": "a fact or situation that is observed to exist",
+        "example": "Understanding the meaning of \"phenomenon\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 270,
+        "word": "policy",
+        "definition": "a course or principle of action adopted or proposed",
+        "example": "Understanding the meaning of \"policy\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 271,
+        "word": "portion",
+        "definition": "a part of a whole",
+        "example": "Understanding the meaning of \"portion\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 272,
+        "word": "pose",
+        "definition": "to present or constitute",
+        "example": "Understanding the meaning of \"pose\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 273,
+        "word": "positive",
+        "definition": "consisting in or characterized by the presence of features",
+        "example": "Understanding the meaning of \"positive\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 274,
+        "word": "potential",
+        "definition": "having or showing the capacity to develop into something",
+        "example": "Understanding the meaning of \"potential\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 275,
+        "word": "precise",
+        "definition": "marked by exactness and accuracy",
+        "example": "Understanding the meaning of \"precise\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 276,
+        "word": "predict",
+        "definition": "to say or estimate that something will happen",
+        "example": "Understanding the meaning of \"predict\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 277,
+        "word": "predominant",
+        "definition": "present as the strongest or main element",
+        "example": "Understanding the meaning of \"predominant\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 278,
+        "word": "preliminary",
+        "definition": "denoting an action or event preceding or done in preparation",
+        "example": "Understanding the meaning of \"preliminary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 279,
+        "word": "presume",
+        "definition": "to suppose that something is the case",
+        "example": "Understanding the meaning of \"presume\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 280,
+        "word": "previous",
+        "definition": "existing or occurring before in time or order",
+        "example": "Understanding the meaning of \"previous\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 281,
+        "word": "primary",
+        "definition": "of chief importance; principal",
+        "example": "Understanding the meaning of \"primary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 282,
+        "word": "prime",
+        "definition": "of first importance; main",
+        "example": "Understanding the meaning of \"prime\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 283,
+        "word": "principal",
+        "definition": "first in order of importance",
+        "example": "Understanding the meaning of \"principal\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 284,
+        "word": "prior",
+        "definition": "existing or coming before in time",
+        "example": "Understanding the meaning of \"prior\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 285,
+        "word": "priority",
+        "definition": "a thing that is regarded as more important than another",
+        "example": "Understanding the meaning of \"priority\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 286,
+        "word": "proceed",
+        "definition": "to begin or continue a course of action",
+        "example": "Understanding the meaning of \"proceed\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 287,
+        "word": "process",
+        "definition": "a series of actions or steps taken to achieve an end",
+        "example": "Understanding the meaning of \"process\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 288,
+        "word": "professional",
+        "definition": "relating to or connected with a profession",
+        "example": "Understanding the meaning of \"professional\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 289,
+        "word": "prohibit",
+        "definition": "to formally forbid something by law",
+        "example": "Understanding the meaning of \"prohibit\" is important for communication.",
+        "topic": "Legal",
+        "level": "Band 6"
+    },
+    {
+        "id": 290,
+        "word": "project",
+        "definition": "an individual or collaborative enterprise",
+        "example": "Understanding the meaning of \"project\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 291,
+        "word": "promote",
+        "definition": "to support or actively encourage",
+        "example": "Understanding the meaning of \"promote\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 292,
+        "word": "proportion",
+        "definition": "a part, share, or number considered in comparative relation",
+        "example": "Understanding the meaning of \"proportion\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 7"
+    },
+    {
+        "id": 293,
+        "word": "prospect",
+        "definition": "the possibility or likelihood of some future event",
+        "example": "Understanding the meaning of \"prospect\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 294,
+        "word": "protocol",
+        "definition": "the official procedure or system of rules",
+        "example": "Understanding the meaning of \"protocol\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 295,
+        "word": "psychology",
+        "definition": "the scientific study of the human mind and its functions",
+        "example": "Understanding the meaning of \"psychology\" is important for communication.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 296,
+        "word": "publication",
+        "definition": "the action of making something generally known",
+        "example": "Understanding the meaning of \"publication\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 297,
+        "word": "publish",
+        "definition": "to prepare and issue for public sale",
+        "example": "Understanding the meaning of \"publish\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 298,
+        "word": "purchase",
+        "definition": "to acquire by paying for",
+        "example": "Understanding the meaning of \"purchase\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 299,
+        "word": "pursue",
+        "definition": "to follow or chase",
+        "example": "Understanding the meaning of \"pursue\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 300,
+        "word": "qualitative",
+        "definition": "relating to, measuring, or measured by the quality of something",
+        "example": "Understanding the meaning of \"qualitative\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 301,
+        "word": "quote",
+        "definition": "to repeat or copy out a group of words",
+        "example": "Understanding the meaning of \"quote\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 302,
+        "word": "radical",
+        "definition": "relating to or affecting the fundamental nature of something",
+        "example": "Understanding the meaning of \"radical\" is important for communication.",
+        "topic": "Nature",
+        "level": "Band 6"
+    },
+    {
+        "id": 303,
+        "word": "range",
+        "definition": "the area of variation between upper and lower limits",
+        "example": "Understanding the meaning of \"range\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 304,
+        "word": "ratio",
+        "definition": "the quantitative relation between two amounts",
+        "example": "Understanding the meaning of \"ratio\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 305,
+        "word": "rational",
+        "definition": "based on or in accordance with reason or logic",
+        "example": "Understanding the meaning of \"rational\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 306,
+        "word": "react",
+        "definition": "to respond to something",
+        "example": "Understanding the meaning of \"react\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 307,
+        "word": "recover",
+        "definition": "to return to a normal state of health, mind, or strength",
+        "example": "Understanding the meaning of \"recover\" is important for communication.",
+        "topic": "Health",
+        "level": "Band 6"
+    },
+    {
+        "id": 308,
+        "word": "redefine",
+        "definition": "to define again or differently",
+        "example": "Understanding the meaning of \"redefine\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 309,
+        "word": "reduce",
+        "definition": "to make smaller or less in amount",
+        "example": "Understanding the meaning of \"reduce\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 310,
+        "word": "reflect",
+        "definition": "to throw back without absorbing",
+        "example": "Understanding the meaning of \"reflect\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 311,
+        "word": "regime",
+        "definition": "a government, especially an authoritarian one",
+        "example": "Understanding the meaning of \"regime\" is important for communication.",
+        "topic": "Government",
+        "level": "Band 6"
+    },
+    {
+        "id": 312,
+        "word": "region",
+        "definition": "an area, especially part of a country or the world",
+        "example": "Understanding the meaning of \"region\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 313,
+        "word": "register",
+        "definition": "to record or enroll formally",
+        "example": "Understanding the meaning of \"register\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 314,
+        "word": "regulate",
+        "definition": "to control or maintain the rate or speed of",
+        "example": "Understanding the meaning of \"regulate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 315,
+        "word": "reinforce",
+        "definition": "to strengthen or support",
+        "example": "Understanding the meaning of \"reinforce\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 316,
+        "word": "reject",
+        "definition": "to refuse to accept",
+        "example": "Understanding the meaning of \"reject\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 317,
+        "word": "relax",
+        "definition": "to make or become less tense or anxious",
+        "example": "Understanding the meaning of \"relax\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 318,
+        "word": "release",
+        "definition": "to allow or enable to escape from confinement",
+        "example": "Understanding the meaning of \"release\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 319,
+        "word": "relevant",
+        "definition": "closely connected or appropriate to what is being done",
+        "example": "Understanding the meaning of \"relevant\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 320,
+        "word": "rely",
+        "definition": "to depend on with full trust",
+        "example": "Understanding the meaning of \"rely\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 321,
+        "word": "remove",
+        "definition": "to take away or off from the position occupied",
+        "example": "Understanding the meaning of \"remove\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 322,
+        "word": "require",
+        "definition": "to need for a particular purpose",
+        "example": "Understanding the meaning of \"require\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 323,
+        "word": "research",
+        "definition": "the systematic investigation into and study of materials and sources",
+        "example": "Understanding the meaning of \"research\" is important for communication.",
+        "topic": "Academic",
+        "level": "Band 6"
+    },
+    {
+        "id": 324,
+        "word": "reside",
+        "definition": "to have one's permanent home in a particular place",
+        "example": "Understanding the meaning of \"reside\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 325,
+        "word": "resolve",
+        "definition": "to settle or find a solution",
+        "example": "Understanding the meaning of \"resolve\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 326,
+        "word": "resource",
+        "definition": "a stock or supply of money, materials, staff, and other assets",
+        "example": "Understanding the meaning of \"resource\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 327,
+        "word": "respond",
+        "definition": "to say something in reply",
+        "example": "Understanding the meaning of \"respond\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 328,
+        "word": "restore",
+        "definition": "to bring back to a former condition",
+        "example": "Understanding the meaning of \"restore\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 329,
+        "word": "restrict",
+        "definition": "to limit the movement or actions",
+        "example": "Understanding the meaning of \"restrict\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 330,
+        "word": "retain",
+        "definition": "to keep possession of",
+        "example": "Understanding the meaning of \"retain\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 331,
+        "word": "reveal",
+        "definition": "to make known to others",
+        "example": "Understanding the meaning of \"reveal\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 332,
+        "word": "reverse",
+        "definition": "to turn in the opposite direction",
+        "example": "Understanding the meaning of \"reverse\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 333,
+        "word": "revise",
+        "definition": "to reconsider and alter",
+        "example": "Understanding the meaning of \"revise\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 334,
+        "word": "revolution",
+        "definition": "a forcible overthrow of a government",
+        "example": "Understanding the meaning of \"revolution\" is important for communication.",
+        "topic": "Government",
+        "level": "Band 7"
+    },
+    {
+        "id": 335,
+        "word": "rigid",
+        "definition": "unable to bend or be forced out of shape",
+        "example": "Understanding the meaning of \"rigid\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 336,
+        "word": "role",
+        "definition": "the function assumed or part played by a person or thing",
+        "example": "Understanding the meaning of \"role\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 337,
+        "word": "route",
+        "definition": "a way or course taken in getting from a starting point to a destination",
+        "example": "Understanding the meaning of \"route\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 338,
+        "word": "scenario",
+        "definition": "a postulated sequence or development of events",
+        "example": "Understanding the meaning of \"scenario\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 339,
+        "word": "schedule",
+        "definition": "a plan for carrying out a process or procedure",
+        "example": "Understanding the meaning of \"schedule\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 340,
+        "word": "scheme",
+        "definition": "a large-scale systematic plan or arrangement",
+        "example": "Understanding the meaning of \"scheme\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 341,
+        "word": "scope",
+        "definition": "the extent of the area or subject matter",
+        "example": "Understanding the meaning of \"scope\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 342,
+        "word": "section",
+        "definition": "any of the more or less distinct parts into which something is divided",
+        "example": "Understanding the meaning of \"section\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 343,
+        "word": "sector",
+        "definition": "an area or portion that is distinct from others",
+        "example": "Understanding the meaning of \"sector\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 344,
+        "word": "secure",
+        "definition": "to fix or attach firmly",
+        "example": "Understanding the meaning of \"secure\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 345,
+        "word": "seek",
+        "definition": "to attempt to find",
+        "example": "Understanding the meaning of \"seek\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 346,
+        "word": "select",
+        "definition": "to carefully choose as being the best or most suitable",
+        "example": "Understanding the meaning of \"select\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 347,
+        "word": "sequence",
+        "definition": "a particular order in which related things follow each other",
+        "example": "Understanding the meaning of \"sequence\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 348,
+        "word": "shift",
+        "definition": "to move or cause to move from one place to another",
+        "example": "Understanding the meaning of \"shift\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 349,
+        "word": "significant",
+        "definition": "sufficiently great or important",
+        "example": "Understanding the meaning of \"significant\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 350,
+        "word": "simulate",
+        "definition": "to imitate the appearance or character of",
+        "example": "Understanding the meaning of \"simulate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 351,
+        "word": "site",
+        "definition": "an area of ground on which a town, building, or monument is constructed",
+        "example": "Understanding the meaning of \"site\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 352,
+        "word": "so-called",
+        "definition": "used to show that something or someone is commonly designated by the name or term specified",
+        "example": "Understanding the meaning of \"so-called\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 353,
+        "word": "source",
+        "definition": "a place, person, or thing from which something comes",
+        "example": "Understanding the meaning of \"source\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 354,
+        "word": "specify",
+        "definition": "to identify clearly and definitely",
+        "example": "Understanding the meaning of \"specify\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 355,
+        "word": "sphere",
+        "definition": "a round solid figure",
+        "example": "Understanding the meaning of \"sphere\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 356,
+        "word": "stable",
+        "definition": "not likely to change or fail",
+        "example": "Understanding the meaning of \"stable\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 357,
+        "word": "statistic",
+        "definition": "a fact or piece of data from a study",
+        "example": "Understanding the meaning of \"statistic\" is important for communication.",
+        "topic": "Academic",
+        "level": "Band 7"
+    },
+    {
+        "id": 358,
+        "word": "status",
+        "definition": "the relative social, professional, or other standing",
+        "example": "Understanding the meaning of \"status\" is important for communication.",
+        "topic": "Social",
+        "level": "Band 6"
+    },
+    {
+        "id": 359,
+        "word": "strategy",
+        "definition": "a plan of action",
+        "example": "Understanding the meaning of \"strategy\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 360,
+        "word": "stress",
+        "definition": "pressure or tension exerted on a material object",
+        "example": "Understanding the meaning of \"stress\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 361,
+        "word": "structure",
+        "definition": "the arrangement of and relations between the parts",
+        "example": "Understanding the meaning of \"structure\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 7"
+    },
+    {
+        "id": 362,
+        "word": "style",
+        "definition": "a particular procedure by which something is done",
+        "example": "Understanding the meaning of \"style\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 363,
+        "word": "submit",
+        "definition": "to present for consideration",
+        "example": "Understanding the meaning of \"submit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 364,
+        "word": "subsequent",
+        "definition": "coming after something in time",
+        "example": "Understanding the meaning of \"subsequent\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 365,
+        "word": "substitute",
+        "definition": "a person or thing acting or serving in place of another",
+        "example": "Understanding the meaning of \"substitute\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 366,
+        "word": "successor",
+        "definition": "a person or thing that succeeds another",
+        "example": "Understanding the meaning of \"successor\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 367,
+        "word": "sufficient",
+        "definition": "enough; adequate",
+        "example": "Understanding the meaning of \"sufficient\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 368,
+        "word": "sum",
+        "definition": "the total amount resulting from the addition of two or more numbers",
+        "example": "Understanding the meaning of \"sum\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 369,
+        "word": "summary",
+        "definition": "a brief statement or account of the main points",
+        "example": "Understanding the meaning of \"summary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 370,
+        "word": "supplement",
+        "definition": "something that completes or enhances something else",
+        "example": "Understanding the meaning of \"supplement\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 371,
+        "word": "survey",
+        "definition": "to look closely at or examine",
+        "example": "Understanding the meaning of \"survey\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 372,
+        "word": "symbol",
+        "definition": "a mark or character used as a conventional representation",
+        "example": "Understanding the meaning of \"symbol\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 373,
+        "word": "synthesize",
+        "definition": "to combine into a coherent whole",
+        "example": "Understanding the meaning of \"synthesize\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 374,
+        "word": "system",
+        "definition": "a set of connected things or parts",
+        "example": "Understanding the meaning of \"system\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 6"
+    },
+    {
+        "id": 375,
+        "word": "tactic",
+        "definition": "an action or strategy carefully planned",
+        "example": "Understanding the meaning of \"tactic\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 376,
+        "word": "target",
+        "definition": "a person, object, or place selected as the aim",
+        "example": "Understanding the meaning of \"target\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 377,
+        "word": "task",
+        "definition": "a piece of work to be done",
+        "example": "Understanding the meaning of \"task\" is important for communication.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 378,
+        "word": "team",
+        "definition": "a group of people working together",
+        "example": "Understanding the meaning of \"team\" is important for communication.",
+        "topic": "Work",
+        "level": "Band 6"
+    },
+    {
+        "id": 379,
+        "word": "technique",
+        "definition": "a way of carrying out a particular task",
+        "example": "Understanding the meaning of \"technique\" is important for communication.",
+        "topic": "Art",
+        "level": "Band 7"
+    },
+    {
+        "id": 380,
+        "word": "technology",
+        "definition": "the application of scientific knowledge",
+        "example": "Understanding the meaning of \"technology\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 381,
+        "word": "temporary",
+        "definition": "lasting for only a limited period of time",
+        "example": "Understanding the meaning of \"temporary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 382,
+        "word": "terminate",
+        "definition": "to bring to an end",
+        "example": "Understanding the meaning of \"terminate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 383,
+        "word": "text",
+        "definition": "the main body of a book or other piece of writing",
+        "example": "Understanding the meaning of \"text\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 384,
+        "word": "theme",
+        "definition": "the subject of a talk, piece of writing, or exhibition",
+        "example": "Understanding the meaning of \"theme\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 385,
+        "word": "theory",
+        "definition": "a supposition or a system of ideas",
+        "example": "Understanding the meaning of \"theory\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 386,
+        "word": "topic",
+        "definition": "a matter dealt with in a text, discourse, or conversation",
+        "example": "Understanding the meaning of \"topic\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 387,
+        "word": "trace",
+        "definition": "to find or discover by investigation",
+        "example": "Understanding the meaning of \"trace\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 388,
+        "word": "tradition",
+        "definition": "the transmission of customs or beliefs",
+        "example": "Understanding the meaning of \"tradition\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 389,
+        "word": "transfer",
+        "definition": "to move from one place to another",
+        "example": "Understanding the meaning of \"transfer\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 390,
+        "word": "transform",
+        "definition": "to make a thorough or dramatic change",
+        "example": "Understanding the meaning of \"transform\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 391,
+        "word": "transmit",
+        "definition": "to send from one person or place to another",
+        "example": "Understanding the meaning of \"transmit\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 392,
+        "word": "trend",
+        "definition": "a general direction in which something is developing",
+        "example": "Understanding the meaning of \"trend\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 393,
+        "word": "trigger",
+        "definition": "to cause an event or situation to happen",
+        "example": "Understanding the meaning of \"trigger\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 394,
+        "word": "ultimate",
+        "definition": "being or happening at the end of a process",
+        "example": "Understanding the meaning of \"ultimate\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 395,
+        "word": "undergo",
+        "definition": "to experience or be subjected to",
+        "example": "Understanding the meaning of \"undergo\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 396,
+        "word": "underlie",
+        "definition": "to be the cause or basis of something",
+        "example": "Understanding the meaning of \"underlie\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 397,
+        "word": "undertake",
+        "definition": "to commit oneself to and begin",
+        "example": "Understanding the meaning of \"undertake\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 398,
+        "word": "uniform",
+        "definition": "remaining the same in all cases",
+        "example": "Understanding the meaning of \"uniform\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 399,
+        "word": "unique",
+        "definition": "being the only one of its kind",
+        "example": "Understanding the meaning of \"unique\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 400,
+        "word": "utilize",
+        "definition": "to make practical and effective use of",
+        "example": "Understanding the meaning of \"utilize\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 401,
+        "word": "valid",
+        "definition": "having a sound basis in logic or fact",
+        "example": "Understanding the meaning of \"valid\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 402,
+        "word": "vary",
+        "definition": "to differ in size, amount, degree, or nature",
+        "example": "Understanding the meaning of \"vary\" is important for communication.",
+        "topic": "Nature",
+        "level": "Band 6"
+    },
+    {
+        "id": 403,
+        "word": "vehicle",
+        "definition": "a thing used for transporting people or goods",
+        "example": "Understanding the meaning of \"vehicle\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 404,
+        "word": "via",
+        "definition": "traveling through a place en route to a destination",
+        "example": "Understanding the meaning of \"via\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 405,
+        "word": "virtual",
+        "definition": "almost or nearly as described, but not completely",
+        "example": "Understanding the meaning of \"virtual\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 406,
+        "word": "visible",
+        "definition": "able to be seen",
+        "example": "Understanding the meaning of \"visible\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 407,
+        "word": "vision",
+        "definition": "the faculty or state of being able to see",
+        "example": "Understanding the meaning of \"vision\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 408,
+        "word": "volume",
+        "definition": "the amount of space that a substance or object occupies",
+        "example": "Understanding the meaning of \"volume\" is important for communication.",
+        "topic": "General",
+        "level": "Band 6"
+    },
+    {
+        "id": 409,
+        "word": "voluntary",
+        "definition": "done, given, or acting of one's own free will",
+        "example": "Understanding the meaning of \"voluntary\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    },
+    {
+        "id": 410,
+        "word": "widespread",
+        "definition": "found or distributed over a large area or number of people",
+        "example": "Understanding the meaning of \"widespread\" is important for communication.",
+        "topic": "General",
+        "level": "Band 7"
+    }
+]
