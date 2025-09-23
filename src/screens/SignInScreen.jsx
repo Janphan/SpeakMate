@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground, StatusBar } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api/firebaseConfig";
-import { mystyle, signup_signin_style } from '../utils/mystyle';
-import Icon from 'react-native-vector-icons/Feather';
+import { mystyle } from '../utils/mystyle';
+import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 
 const SignInScreen = ({ navigation }) => {
@@ -50,67 +50,207 @@ const SignInScreen = ({ navigation }) => {
             source={{ uri: mystyle.signin_background }}
             style={styles.background}
         >
-            <View style={styles.container}>
-                <Text style={styles.title}>SpeakMate</Text>
-                <Text style={styles.subtitle}>Welcome Back! Please Sign In.</Text>
-                <TextInput
-                    placeholder="✉️ Email"
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    style={styles.input}
-                    textContentType="emailAddress"
-                />
+            <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+            <View style={styles.overlay} />
 
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        placeholder="🔑 Password"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry={!showPassword}
-                        style={styles.input}
-                        textContentType="password"
-                    />
-                    <TouchableOpacity
-                        onPress={() => setShowPassword(!showPassword)}
-                        style={styles.eyeIcon}
-                    >
-                        <Icon name={showPassword ? "eye-off" : "eye"} size={18} color="#666" />
-                    </TouchableOpacity>
+            <View style={styles.container}>
+                {/* Header Section */}
+                <View style={styles.headerSection}>
+                    <View style={styles.logoContainer}>
+                        <Icon source="account-voice" size={60} color="#fff" />
+                    </View>
+                    <Text style={styles.title}>SpeakMate</Text>
+                    <Text style={styles.subtitle}>Welcome Back! Please Sign In.</Text>
                 </View>
 
-                <TouchableOpacity
-                    onPress={handleSignIn}
-                    style={styles.button}
-                    disabled={loading}
-                >
-                    <Text style={styles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
-                </TouchableOpacity>
+                {/* Form Card */}
+                <Card style={styles.formCard}>
+                    <Card.Content style={styles.formContent}>
+                        {/* Email Input */}
+                        <View style={styles.inputContainer}>
+                            <Icon source="email" size={20} color="#5e7055" style={styles.inputIcon} />
+                            <TextInput
+                                placeholder="Email Address"
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                style={styles.input}
+                                textContentType="emailAddress"
+                                placeholderTextColor="#888"
+                            />
+                        </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
-                    <Text style={styles.link}>Don't have an account? Sign Up</Text>
-                </TouchableOpacity>
+                        {/* Password Input */}
+                        <View style={styles.inputContainer}>
+                            <Icon source="lock" size={20} color="#5e7055" style={styles.inputIcon} />
+                            <TextInput
+                                placeholder="Password"
+                                value={password}
+                                onChangeText={setPassword}
+                                secureTextEntry={!showPassword}
+                                style={styles.input}
+                                textContentType="password"
+                                placeholderTextColor="#888"
+                            />
+                            <TouchableOpacity
+                                onPress={() => setShowPassword(!showPassword)}
+                                style={styles.eyeIcon}
+                            >
+                                <Icon source={showPassword ? "eye-off" : "eye"} size={20} color="#666" />
+                            </TouchableOpacity>
+                        </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("ResetPasswordScreen")}>
-                    <Text style={styles.link}>Forgot Password?</Text>
-                </TouchableOpacity>
+                        {/* Sign In Button */}
+                        <TouchableOpacity
+                            onPress={handleSignIn}
+                            style={[styles.signInButton, loading && styles.disabledButton]}
+                            disabled={loading}
+                        >
+                            <Text style={styles.signInButtonText}>
+                                {loading ? "Signing In..." : "Sign In"}
+                            </Text>
+                        </TouchableOpacity>
+
+                        {/* Navigation Links */}
+                        <View style={styles.linksContainer}>
+                            <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
+                                <Text style={styles.link}>Don't have an account? Sign Up</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => navigation.navigate("ResetPasswordScreen")}>
+                                <Text style={styles.forgotLink}>Forgot Password?</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Card.Content>
+                </Card>
             </View>
         </ImageBackground>
     );
 };
 
 const styles = StyleSheet.create({
-    ...signup_signin_style,
+    background: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+    },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        zIndex: 1,
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+        zIndex: 2,
+    },
+    headerSection: {
+        alignItems: 'center',
+        marginBottom: 40,
+    },
+    logoContainer: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 2,
+        borderColor: 'rgba(255, 255, 255, 0.3)',
+    },
+    title: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginBottom: 8,
+        textShadowColor: 'rgba(0, 0, 0, 0.3)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 3,
+    },
+    subtitle: {
+        fontSize: 16,
+        color: '#fff',
+        textAlign: 'center',
+        opacity: 0.9,
+        textShadowColor: 'rgba(0, 0, 0, 0.3)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+    },
+    formCard: {
+        width: '100%',
+        maxWidth: 350,
+        borderRadius: 16,
+        elevation: 8,
+        backgroundColor: '#fff',
+    },
+    formContent: {
+        paddingVertical: 30,
+        paddingHorizontal: 20,
+    },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '100%',
-        position: 'relative',
+        backgroundColor: '#f8f9fa',
+        borderRadius: 12,
+        marginBottom: 16,
+        paddingHorizontal: 16,
+        paddingVertical: 4,
+        borderWidth: 1,
+        borderColor: '#e9ecef',
+    },
+    inputIcon: {
+        marginRight: 12,
+    },
+    input: {
+        flex: 1,
+        fontSize: 16,
+        paddingVertical: 12,
+        color: '#333',
     },
     eyeIcon: {
-        position: 'absolute',
-        right: 10,
+        padding: 8,
+    },
+    signInButton: {
+        backgroundColor: '#5e7055',
+        borderRadius: 12,
+        paddingVertical: 16,
+        alignItems: 'center',
+        marginTop: 8,
+        marginBottom: 24,
+        elevation: 2,
+    },
+    disabledButton: {
+        backgroundColor: '#a5b5a0',
+        elevation: 0,
+    },
+    signInButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+    },
+    linksContainer: {
+        alignItems: 'center',
+        gap: 12,
+    },
+    link: {
+        color: '#5e7055',
+        fontSize: 14,
+        fontWeight: '500',
+        textAlign: 'center',
+    },
+    forgotLink: {
+        color: '#666',
+        fontSize: 14,
+        textAlign: 'center',
+        textDecorationLine: 'underline',
     },
 });
 
