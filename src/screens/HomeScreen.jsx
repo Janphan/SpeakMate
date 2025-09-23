@@ -21,102 +21,125 @@ export default function HomeScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
+                {/* Header Section */}
+                <View style={styles.headerSection}>
+                    <View style={styles.welcomeContainer}>
+                        {user && (
+                            <>
+                                {user.photoURL && (
+                                    <Image source={{ uri: user.photoURL }} style={styles.avatar} />
+                                )}
+                                <View style={styles.welcomeTextContainer}>
+                                    <Text style={styles.greetingText}>Welcome back! 👋</Text>
+                                    <Text style={styles.userName}>{user.displayName || "Learner"}</Text>
+                                </View>
+                            </>
+                        )}
+                    </View>
+                </View>
+
                 {/* Main Content */}
                 <View style={styles.mainContent}>
-                    {/* User Info */}
-                    {user && (
-                        <View style={styles.userInfo}>
-                            {user.photoURL && (
-                                <Image source={{ uri: user.photoURL }} style={styles.avatar} />
-                            )}
-                            <Text style={styles.userName}>Welcome {user.displayName || "No Name"} 💖</Text>
-                        </View>
-                    )}
 
-                    {/* Stats Preview */}
-                    <Card
-                        style={styles.statsCard}
-                        onPress={() => navigation.navigate('StatisticsScreen')}
-                        accessibilityLabel="View full statistics"
-                    >
-                        <Card.Content style={styles.statsCardContent}>
-                            <Text style={styles.statsTitle}>Your Progress 📊</Text>
-                            <View style={styles.statsRow}>
-                                <View style={styles.statsLabelContainer}>
-                                    <Icon source="fire" size={20} color="#ff5722" />
-                                    <Text style={styles.statsLabel}>Streak:</Text>
+                    {/* Quick Stats Dashboard */}
+                    <View style={styles.dashboardGrid}>
+                        <Card style={styles.statCard}>
+                            <Card.Content style={styles.statCardContent}>
+                                <View style={styles.statIconContainer}>
+                                    <Icon source="fire" size={28} color="#ff5722" />
                                 </View>
-                                <Text style={styles.statsValue}>
-                                    {isLoadingStats ? '...' : `${statistics.streakDays} days`}
+                                <Text style={styles.statNumber}>
+                                    {isLoadingStats ? '...' : statistics.streakDays}
                                 </Text>
-                            </View>
-                            <View style={styles.statsRow}>
-                                <View style={styles.statsLabelContainer}>
-                                    <Icon source="book" size={20} color="#007bff" />
-                                    <Text style={styles.statsLabel}>Total Sessions:</Text>
+                                <Text style={styles.statLabel}>Day Streak</Text>
+                            </Card.Content>
+                        </Card>
+
+                        <Card style={styles.statCard}>
+                            <Card.Content style={styles.statCardContent}>
+                                <View style={styles.statIconContainer}>
+                                    <Icon source="book-open-variant" size={28} color="#4caf50" />
                                 </View>
-                                <Text style={styles.statsValue}>
+                                <Text style={styles.statNumber}>
                                     {isLoadingStats ? '...' : statistics.totalSessions}
                                 </Text>
+                                <Text style={styles.statLabel}>Sessions</Text>
+                            </Card.Content>
+                        </Card>
+                    </View>
+
+                    {/* Progress Overview */}
+                    <Card style={styles.progressCard}>
+                        <Card.Content style={styles.progressCardContent}>
+                            <View style={styles.progressHeader}>
+                                <Text style={styles.progressTitle}>📈 Your Journey</Text>
+                                <TouchableOpacity
+                                    onPress={() => navigation.navigate('StatisticsScreen')}
+                                    style={styles.viewMoreButton}
+                                >
+                                    <Text style={styles.viewMoreText}>View Details</Text>
+                                    <Icon source="chevron-right" size={20} color="#5e7055" />
+                                </TouchableOpacity>
                             </View>
-                            <Text style={styles.statsLink} onPress={() => navigation.navigate("StatisticsScreen")}>Tap to view more</Text>
+                            <Text style={styles.progressSubtitle}>
+                                {isLoadingStats
+                                    ? "Loading your progress... ⏳"
+                                    : statistics.streakDays > 0
+                                        ? `Amazing! You're on a ${statistics.streakDays} day streak! Keep going! 🚀`
+                                        : "Ready to start your speaking journey? Let's begin! 🌟"
+                                }
+                            </Text>
                         </Card.Content>
                     </Card>
 
                     {/* Level Selection */}
-                    <View style={styles.menuContainer}>
-                        <Menu
-                            visible={visible}
-                            onDismiss={() => setVisible(false)}
-                            anchor={
-                                <TouchableOpacity onPress={() => setVisible(true)} style={signup_signin_style.button}>
-                                    <Text style={signup_signin_style.buttonText}>Choose your level</Text>
-                                </TouchableOpacity>
-                            }
-                            anchorPosition='bottom'
-                            contentStyle={mystyle.menuItemStyle}
-                        >
-                            <Menu.Item
-                                onPress={() => {
-                                    setSelectedLevel('Band 5-6');
-                                    setVisible(false);
-                                    navigation.navigate("TopicList", { level: 'band 5-6' });
-                                }}
-                                title="Band 5-6"
-                            />
-                            <Menu.Item
-                                onPress={() => {
-                                    setSelectedLevel('Band 6-7');
-                                    setVisible(false);
-                                    navigation.navigate("TopicList", { level: 'band 6-7' });
-                                }}
-                                title="Band 6-7"
-                            />
-                            <Menu.Item
-                                onPress={() => {
-                                    setSelectedLevel('Band 7-8');
-                                    setVisible(false);
-                                    navigation.navigate("TopicList", { level: 'band 7-8' });
-                                }}
-                                title="Band 7-8"
-                            />
-                        </Menu>
-                        <View style={styles.levelDisplay}>
-                            <Text style={styles.levelText}>Current Level: {selectedLevel} ✅</Text>
-                        </View>
-                    </View>
-
-                    {/* Motivational Message */}
-                    <View style={styles.motivation}>
-                        <Text style={styles.motivationText}>
-                            {isLoadingStats
-                                ? "Loading your progress... ⏳"
-                                : statistics.streakDays > 0
-                                    ? `Keep it up! You're on a ${statistics.streakDays} day streak! 🔥`
-                                    : "Start your practice streak today! 🚀"
-                            }
-                        </Text>
-                    </View>
+                    <Card style={styles.levelCard}>
+                        <Card.Content style={styles.levelCardContent}>
+                            <Text style={styles.levelCardTitle}>🎯 Choose Your Challenge</Text>
+                            <View style={styles.menuContainer}>
+                                <Menu
+                                    visible={visible}
+                                    onDismiss={() => setVisible(false)}
+                                    anchor={
+                                        <TouchableOpacity onPress={() => setVisible(true)} style={styles.levelButton}>
+                                            <Text style={styles.levelButtonText}>Select IELTS Level</Text>
+                                            <Icon source="chevron-down" size={20} color="#fff" />
+                                        </TouchableOpacity>
+                                    }
+                                    anchorPosition='bottom'
+                                    contentStyle={mystyle.menuItemStyle}
+                                >
+                                    <Menu.Item
+                                        onPress={() => {
+                                            setSelectedLevel('Band 5-6');
+                                            setVisible(false);
+                                            navigation.navigate("TopicList", { level: 'band 5-6' });
+                                        }}
+                                        title="Band 5-6"
+                                    />
+                                    <Menu.Item
+                                        onPress={() => {
+                                            setSelectedLevel('Band 6-7');
+                                            setVisible(false);
+                                            navigation.navigate("TopicList", { level: 'band 6-7' });
+                                        }}
+                                        title="Band 6-7"
+                                    />
+                                    <Menu.Item
+                                        onPress={() => {
+                                            setSelectedLevel('Band 7-8');
+                                            setVisible(false);
+                                            navigation.navigate("TopicList", { level: 'band 7-8' });
+                                        }}
+                                        title="Band 7-8"
+                                    />
+                                </Menu>
+                                <View style={styles.levelDisplay}>
+                                    <Text style={styles.levelText}>Current: {selectedLevel} ✅</Text>
+                                </View>
+                            </View>
+                        </Card.Content>
+                    </Card>
                 </View>
             </View>
         </PaperProvider>
@@ -126,113 +149,194 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f8f9fa',
     },
-    header: {
-        padding: 16,
+    headerSection: {
         backgroundColor: '#5e7055',
-        borderBottomLeftRadius: 16,
-        borderBottomRightRadius: 16,
+        paddingTop: 50,
+        paddingBottom: 20,
+        paddingHorizontal: 20,
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
+        elevation: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
     },
-    headerTitle: {
+    welcomeContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    welcomeTextContainer: {
+        flex: 1,
+        marginLeft: 15,
+    },
+    greetingText: {
+        fontSize: 16,
+        color: '#c8e6c9',
+        fontWeight: '500',
+    },
+    userName: {
         fontSize: 24,
         fontWeight: 'bold',
         color: '#fff',
-        textAlign: 'center',
+        marginTop: 2,
+    },
+    avatar: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        borderWidth: 3,
+        borderColor: '#fff',
     },
     mainContent: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-        padding: 16,
+        padding: 20,
     },
-    userInfo: {
-        alignItems: 'center',
-        marginBottom: 24,
-    },
-    avatar: {
-        width: 64,
-        height: 64,
-        borderRadius: 32,
-        marginBottom: 8,
-    },
-    userName: {
-        fontSize: 30,
-        fontWeight: 'bold',
-        color: '#5e7055',
-    },
-    statsCard: {
-        margin: 16,
-        elevation: 4,
-        borderRadius: 12,
-        backgroundColor: '#fff',
-    },
-    statsCardContent: {
-        padding: 16,
-    },
-    statsTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#5e7055',
-        marginBottom: 12,
-    },
-    statsRow: {
+    dashboardGrid: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 8,
+        marginBottom: 20,
     },
-    statsLabelContainer: {
-        flexDirection: 'row',
+    statCard: {
+        flex: 1,
+        marginHorizontal: 5,
+        borderRadius: 16,
+        elevation: 4,
+        backgroundColor: '#fff',
+    },
+    statCardContent: {
         alignItems: 'center',
-        gap: 8,
+        padding: 20,
     },
-    statsLabel: {
-        fontSize: 16,
-        color: '#666',
+    statIconContainer: {
+        backgroundColor: '#f8f9fa',
+        borderRadius: 50,
+        padding: 12,
+        marginBottom: 10,
     },
-    statsValue: {
-        fontSize: 16,
+    statNumber: {
+        fontSize: 28,
         fontWeight: 'bold',
         color: '#333',
+        marginBottom: 5,
     },
-    statsLink: {
+    statLabel: {
+        fontSize: 14,
+        color: '#666',
+        fontWeight: '500',
+    },
+    progressCard: {
+        borderRadius: 16,
+        marginBottom: 20,
+        elevation: 4,
+        backgroundColor: '#fff',
+    },
+    progressCardContent: {
+        padding: 20,
+    },
+    progressHeader: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    progressTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#5e7055',
+    },
+    viewMoreButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#f0f4f0',
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        borderRadius: 20,
+    },
+    viewMoreText: {
         fontSize: 14,
         color: '#5e7055',
+        fontWeight: '500',
+        marginRight: 4,
+    },
+    progressSubtitle: {
+        fontSize: 16,
+        color: '#666',
+        lineHeight: 24,
+    },
+    levelCard: {
+        borderRadius: 16,
+        marginBottom: 20,
+        elevation: 4,
+        backgroundColor: '#fff',
+    },
+    levelCardContent: {
+        padding: 20,
+    },
+    levelCardTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#5e7055',
+        marginBottom: 15,
         textAlign: 'center',
-        marginTop: 8,
+    },
+    levelButton: {
+        backgroundColor: '#5e7055',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 15,
+        paddingHorizontal: 20,
+        borderRadius: 12,
+        elevation: 2,
+    },
+    levelButtonText: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#fff',
     },
     menuContainer: {
-        padding: 16,
         width: '100%',
     },
     levelDisplay: {
-        marginTop: 8,
-        padding: 8,
+        marginTop: 12,
+        padding: 12,
         backgroundColor: '#e8f5e8',
-        borderRadius: 8,
+        borderRadius: 10,
+        alignItems: 'center',
     },
     levelText: {
         fontSize: 16,
         fontWeight: '600',
         color: '#2e7d2e',
-        textAlign: 'center',
     },
-    startButton: {
-        marginTop: 16,
-        paddingVertical: 8,
-        borderRadius: 12,
-        backgroundColor: '#007bff',
+    motivationCard: {
+        borderRadius: 16,
+        elevation: 4,
+        backgroundColor: '#fff5e6',
+        borderLeftWidth: 4,
+        borderLeftColor: '#ffc107',
     },
-    motivation: {
-        margin: 16,
-        padding: 12,
-        backgroundColor: '#e8f5e8',
-        borderRadius: 8,
+    motivationCardContent: {
+        padding: 20,
+    },
+    motivationHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    motivationTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#f57c00',
+        marginLeft: 8,
     },
     motivationText: {
         fontSize: 16,
-        color: '#2e7d2e',
-        textAlign: 'center',
+        color: '#f57c00',
+        lineHeight: 24,
+        fontStyle: 'italic',
     },
 });
