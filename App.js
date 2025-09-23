@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { IconButton } from 'react-native-paper';
 
 import HomeScreen from "./src/screens/HomeScreen"
 import SignInScreen from './src/screens/SignInScreen';
@@ -11,10 +10,8 @@ import SignUpScreen from './src/screens/SignUpScreen';
 import SignOutScreen from "./src/screens/SignOutScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import DialogueScreen from './src/screens/DialogueScreen';
-import LetTalk from './src/screens/LetTalk';
 
 import StatisticsScreen from './src/screens/StatisticsScreen';
-import VocabScreen from './src/screens/VocabScreen';
 import CallsScreen from './src/screens/CallsScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import TermsOfServiceScreen from './src/screens/TermsOfServiceScreen';
@@ -29,7 +26,7 @@ import { initializeQuestionBanks } from './src/api/initializeQuestions';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// Tab Navigator for Calls, Progress, and Vocab
+// Tab Navigator for Calls, Progress, and Settings
 function TabNavigator() {
   return (
     <Tab.Navigator
@@ -51,10 +48,9 @@ function TabNavigator() {
             iconName = focused ? 'call' : 'call-outline';
           } else if (route.name === 'Progress') {
             iconName = focused ? 'bar-chart' : 'bar-chart-outline';
-          } else if (route.name === 'Vocab') {
-            iconName = focused ? 'book' : 'book-outline';
-          }
-          else if (route.name === 'Home') {
+          } else if (route.name === 'Settings') {
+            iconName = focused ? 'settings' : 'settings-outline';
+          } else if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
           }
 
@@ -66,19 +62,12 @@ function TabNavigator() {
     >
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
-          headerRight: () => (
-            <IconButton
-              icon="cog"
-              size={24}
-              onPress={() => navigation.navigate("SettingsScreen")}
-              style={{ marginRight: 10 }}
-            />
-          ), headerTitle: "",
+          headerTitle: "",
         }}
       />
       <Tab.Screen name="Calls" component={CallsScreen} options={{ headerShown: false }} />
       <Tab.Screen name="Progress" component={StatisticsScreen} options={{ headerShown: false }} />
-      <Tab.Screen name="Vocab" component={VocabScreen} options={{ headerShown: false }} />
+      <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
 
     </Tab.Navigator>
   );
@@ -106,7 +95,6 @@ export default function App() {
           component={ConversationDetailsScreen}
           options={{ title: 'Conversation Details' }}
         />
-        <Stack.Screen name="LetTalk" component={LetTalk} />
         <Stack.Screen name="TopicList" component={TopicList} />
         <Stack.Screen name="Feedback" component={Feedback} />
         <Stack.Screen name="StatisticsScreen" component={StatisticsScreen} />

@@ -1,13 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
-import { IconButton } from 'react-native-paper';
 
 import HomeScreen from "../screens/HomeScreen"
 import StatisticsScreen from '../screens/StatisticsScreen';
-import VocabScreen from '../screens/VocabScreen';
 import CallsScreen from '../screens/CallsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 const Tab = createBottomTabNavigator();
-// Tab Navigator for Calls, Progress, and Vocab
+// Tab Navigator for Calls, Progress, and Settings
 export default function TabNavigator() {
     return (
         <Tab.Navigator
@@ -29,8 +28,8 @@ export default function TabNavigator() {
                         iconName = focused ? 'call' : 'call-outline';
                     } else if (route.name === 'Progress') {
                         iconName = focused ? 'bar-chart' : 'bar-chart-outline';
-                    } else if (route.name === 'Vocab') {
-                        iconName = focused ? 'book' : 'book-outline';
+                    } else if (route.name === 'Settings') {
+                        iconName = focused ? 'settings' : 'settings-outline';
                     }
                     else if (route.name === 'Home') {
                         iconName = focused ? 'home' : 'home-outline';
@@ -44,19 +43,12 @@ export default function TabNavigator() {
         >
             <Tab.Screen name="Home" component={HomeScreen}
                 options={{
-                    headerRight: () => (
-                        <IconButton
-                            icon="cog"
-                            size={24}
-                            onPress={() => navigation.navigate("SettingsScreen")}
-                            style={{ marginRight: 10 }}
-                        />
-                    ), headerTitle: "",
+                    headerTitle: "",
                 }}
             />
             <Tab.Screen name="Calls" component={CallsScreen} options={{ headerShown: false }} />
             <Tab.Screen name="Progress" component={StatisticsScreen} options={{ headerShown: false }} />
-            <Tab.Screen name="Vocab" component={VocabScreen} options={{ headerShown: false }} />
+            <Tab.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
 
         </Tab.Navigator>
     );

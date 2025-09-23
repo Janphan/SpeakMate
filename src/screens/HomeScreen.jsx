@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { PaperProvider, Menu, Button, IconButton, Card, Icon } from 'react-native-paper';
+import { PaperProvider, Button, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { signup_signin_style, mystyle } from '../utils/mystyle';
 import { useStatistics } from '../hooks/useStatistics';
@@ -9,7 +9,6 @@ export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState('Band 5-6');
     const [user, setUser] = useState(null);
-    const [menuVisible, setMenuVisible] = useState(false);
 
     // Use the statistics hook
     const { statistics, loading: isLoadingStats } = useStatistics();
@@ -22,36 +21,6 @@ export default function HomeScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
-                {/* Settings Menu */}
-                <Menu
-                    visible={menuVisible}
-                    onDismiss={() => setMenuVisible(false)}
-                    anchor={
-                        <IconButton
-                            icon="cog"
-                            size={30}
-                            onPress={() => setMenuVisible(true)}
-                            style={styles.settingsIcon}
-                            accessibilityLabel="Open settings menu"
-                        />
-                    }
-                >
-                    <Menu.Item
-                        onPress={() => {
-                            setMenuVisible(false);
-                            navigation.navigate("SettingsScreen");
-                        }}
-                        title="Settings"
-                    />
-                    <Menu.Item
-                        onPress={() => {
-                            setMenuVisible(false);
-                            navigation.navigate("SignOutScreen");
-                        }}
-                        title="Log Out"
-                    />
-                </Menu>
-
                 {/* Main Content */}
                 <View style={styles.mainContent}>
                     {/* User Info */}
@@ -265,16 +234,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#2e7d2e',
         textAlign: 'center',
-    },
-    settingsIcon: {
-        position: 'absolute',
-        top: 40,
-        right: 20,
-        opacity: 0.7,
-        borderRadius: 50,
-        elevation: 2,
-        shadowColor: '#000',
-        backgroundColor: '#fff',
-        zIndex: 10,
     },
 });

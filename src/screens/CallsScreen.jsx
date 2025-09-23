@@ -32,7 +32,7 @@ export default function CallsScreen({ navigation }) {
         >
             <Text style={styles.title}>{item.header}</Text>
             <Text style={styles.timestamp}>{new Date(item.timestamp.toDate()).toLocaleString()}</Text>
-        <IconButton
+            <IconButton
                 icon="delete"
                 size={24}
                 onPress={() => handleDelete(item.id)}
@@ -46,7 +46,8 @@ export default function CallsScreen({ navigation }) {
             "Are you sure you want to delete this conversation?",
             [
                 { text: "Cancel", style: "cancel" },
-                { text: "Delete",
+                {
+                    text: "Delete",
                     style: "destructive",
                     onPress: async () => {
                         try {
@@ -65,12 +66,6 @@ export default function CallsScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
-                <IconButton
-                    icon="cog"
-                    size={30}
-                    onPress={() => navigation.navigate("SettingsScreen")}
-                    style={styles.settingsIcon}
-                />
                 <Text style={styles.header}>Conversation History</Text>
                 <FlatList
                     data={conversations}
@@ -116,16 +111,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#666',
         marginTop: 5,
-    },
-    settingsIcon: {
-        position: "absolute",
-        top: 40,
-        right: 20,
-        opacity: 0.7,
-        backgroundColor: "#fff",
-        borderRadius: 50,
-        elevation: 2,
-        shadowColor: "#000",
     },
     deleteIcon: {
         position: 'absolute',
