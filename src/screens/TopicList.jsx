@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Card, Icon } from 'react-native-paper';
 
 const topics = [
-    { id: '1', title: 'Work or Study' },
-    { id: '2', title: 'Daily Routine & Free Time' },
-    { id: '3', title: 'Technology & Mobile Phones' },
-    { id: '4', title: 'Health & Fitness' },
-    { id: '5', title: 'Travel & Holidays' },
-    { id: '6', title: 'Environment & Nature' },
+    { id: '1', title: 'Work or Study', icon: 'briefcase', color: '#4caf50' },
+    { id: '2', title: 'Daily Routine & Free Time', icon: 'clock-outline', color: '#2196f3' },
+    { id: '3', title: 'Technology & Mobile Phones', icon: 'cellphone', color: '#9c27b0' },
+    { id: '4', title: 'Health & Fitness', icon: 'heart-pulse', color: '#f44336' },
+    { id: '5', title: 'Travel & Holidays', icon: 'airplane', color: '#ff9800' },
+    { id: '6', title: 'Environment & Nature', icon: 'leaf', color: '#4caf50' },
 ];
 
 export default function TopicList({ navigation, route }) {
@@ -20,20 +21,43 @@ export default function TopicList({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.header}>Topics{level ? ` (${level})` : ''}</Text>
-            <FlatList
-                data={topics}
-                keyExtractor={item => item.id}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={styles.topicItem}
-                        onPress={() => handleTopicPress(item)}
-                    >
-                        <Text style={styles.topicText}>{item.title}</Text>
-                    </TouchableOpacity>
-                )}
-                contentContainerStyle={styles.list}
-            />
+            {/* Header Section */}
+            <View style={styles.headerSection}>
+                <View style={styles.headerContent}>
+                    <Text style={styles.headerTitle}>🎯 Choose Your Topic</Text>
+                    <Text style={styles.headerSubtitle}>
+                        {level ? `Level: ${level.toUpperCase()}` : 'Select a conversation topic'}
+                    </Text>
+                </View>
+            </View>
+
+            {/* Topics List */}
+            <View style={styles.contentSection}>
+                <FlatList
+                    data={topics}
+                    keyExtractor={item => item.id}
+                    renderItem={({ item }) => (
+                        <Card style={styles.topicCard}>
+                            <TouchableOpacity
+                                style={styles.topicItem}
+                                onPress={() => handleTopicPress(item)}
+                                activeOpacity={0.7}
+                            >
+                                <View style={[styles.iconContainer, { backgroundColor: `${item.color}15` }]}>
+                                    <Icon source={item.icon} size={32} color={item.color} />
+                                </View>
+                                <View style={styles.topicContent}>
+                                    <Text style={styles.topicText}>{item.title}</Text>
+                                    <Text style={styles.topicSubtext}>Tap to start conversation</Text>
+                                </View>
+                                <Icon source="chevron-right" size={24} color="#5e7055" />
+                            </TouchableOpacity>
+                        </Card>
+                    )}
+                    contentContainerStyle={styles.list}
+                    showsVerticalScrollIndicator={false}
+                />
+            </View>
         </View>
     );
 }
@@ -41,30 +65,80 @@ export default function TopicList({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingTop: 80,
+        backgroundColor: '#f8f9fa',
+    },
+    headerSection: {
+        backgroundColor: '#5e7055',
+        paddingTop: 50,
+        paddingBottom: 25,
+        paddingHorizontal: 20,
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
+        elevation: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+    },
+    headerContent: {
         alignItems: 'center',
     },
-    header: {
-        fontSize: 24,
+    headerTitle: {
+        fontSize: 28,
         fontWeight: 'bold',
-        marginBottom: 24,
+        color: '#fff',
+        marginBottom: 8,
+        textAlign: 'center',
+    },
+    headerSubtitle: {
+        fontSize: 16,
+        color: '#c8e6c9',
+        textAlign: 'center',
+        fontWeight: '500',
+    },
+    contentSection: {
+        flex: 1,
+        paddingHorizontal: 20,
+        paddingTop: 20,
     },
     list: {
-        width: '100%',
-        alignItems: 'center',
+        paddingBottom: 20,
+    },
+    topicCard: {
+        marginBottom: 15,
+        borderRadius: 16,
+        elevation: 4,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     },
     topicItem: {
-        backgroundColor: '#f0f0f0',
-        padding: 18,
-        borderRadius: 10,
-        marginBottom: 16,
-        width: '90%',
+        flexDirection: 'row',
         alignItems: 'center',
-        elevation: 2,
+        padding: 20,
+    },
+    iconContainer: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 15,
+    },
+    topicContent: {
+        flex: 1,
     },
     topicText: {
         fontSize: 18,
+        fontWeight: '600',
         color: '#333',
+        marginBottom: 4,
+    },
+    topicSubtext: {
+        fontSize: 14,
+        color: '#666',
+        fontStyle: 'italic',
     },
 });
