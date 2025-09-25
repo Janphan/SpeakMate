@@ -1,18 +1,99 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Card, Icon } from 'react-native-paper';
 
 export default function TermsOfServiceScreen({ navigation }) {
+    const termsSection = [
+        {
+            title: "1. Acceptance of Terms",
+            content: "By using SpeakMate, you agree to these terms. If you don't agree, please don't use the app."
+        },
+        {
+            title: "2. How SpeakMate Works",
+            content: "SpeakMate is an AI-powered app that helps you practice English speaking. We analyze your voice to provide feedback and track your progress."
+        },
+        {
+            title: "3. Your Data & Privacy",
+            content: "We collect voice recordings and conversation data to improve your learning experience. Your data is kept secure and used only for educational purposes."
+        },
+        {
+            title: "4. Your Responsibilities",
+            content: "Use the app respectfully and for learning purposes only. Keep your account information secure and don't share inappropriate content."
+        },
+        {
+            title: "5. Service Availability",
+            content: "We try to keep SpeakMate available 24/7, but sometimes we need maintenance or updates. The service may be temporarily unavailable."
+        },
+        {
+            title: "6. Changes to Terms",
+            content: "We may update these terms occasionally. We'll notify you of important changes through the app."
+        }
+    ];
+
     return (
         <View style={styles.container}>
-            {/* Go Back Button */}
-            <IconButton
-                icon="arrow-left"
-                size={24}
-                onPress={() => navigation.goBack()}
-                style={styles.backButton}
-            />
-            <Text style={styles.text}>Terms of Service Screen</Text>
+            {/* Header Section */}
+            <View style={styles.headerSection}>
+                <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => navigation.goBack()}
+                >
+                    <Icon source="arrow-left" size={24} color="#fff" />
+                </TouchableOpacity>
+                <View style={styles.headerContent}>
+                    <Text style={styles.title}>Terms of Service</Text>
+                    <Text style={styles.subtitle}>Please read these terms carefully</Text>
+                </View>
+            </View>
+
+            {/* Content */}
+            <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+                <View style={styles.contentContainer}>
+                    {/* Introduction Card */}
+                    <Card style={styles.introCard}>
+                        <Card.Content style={styles.cardContent}>
+                            <View style={styles.cardHeader}>
+                                <View style={styles.cardIconContainer}>
+                                    <Icon source="file-document-outline" size={24} color="#5e7055" />
+                                </View>
+                                <Text style={styles.cardTitle}>Terms & Conditions</Text>
+                            </View>
+                            <Text style={styles.introText}>
+                                These are the basic terms for using SpeakMate. This is a draft version -
+                                we keep it simple so you can easily understand your rights and responsibilities.
+                            </Text>
+                            <View style={styles.lastUpdatedContainer}>
+                                <Icon source="calendar" size={16} color="#666" />
+                                <Text style={styles.lastUpdatedText}>Draft version - September 2025</Text>
+                            </View>
+                        </Card.Content>
+                    </Card>
+
+                    {/* Terms Sections */}
+                    {termsSection.map((section, index) => (
+                        <Card key={index} style={styles.termCard}>
+                            <Card.Content style={styles.cardContent}>
+                                <Text style={styles.termTitle}>{section.title}</Text>
+                                <Text style={styles.termContent}>{section.content}</Text>
+                            </Card.Content>
+                        </Card>
+                    ))}
+
+                    {/* Agreement Card */}
+                    <Card style={styles.agreementCard}>
+                        <Card.Content style={styles.cardContent}>
+                            <View style={styles.agreementHeader}>
+                                <Icon source="check-circle" size={24} color="#2e7d2e" />
+                                <Text style={styles.agreementTitle}>Agreement Confirmation</Text>
+                            </View>
+                            <Text style={styles.agreementText}>
+                                By continuing to use SpeakMate, you acknowledge that you have read, understood,
+                                and agree to be bound by these Terms of Service.
+                            </Text>
+                        </Card.Content>
+                    </Card>
+                </View>
+            </ScrollView>
         </View>
     );
 }
@@ -20,18 +101,142 @@ export default function TermsOfServiceScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: '#f5f5f5',
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold',
+    headerSection: {
+        backgroundColor: '#5e7055',
+        paddingTop: 50,
+        paddingBottom: 20,
+        paddingHorizontal: 20,
+        borderBottomLeftRadius: 25,
+        borderBottomRightRadius: 25,
+        elevation: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 8,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     backButton: {
-        position: 'absolute',
-        top: 40,
-        left: 20,
-        zIndex: 10,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 16,
+    },
+    headerContent: {
+        flex: 1,
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginBottom: 4,
+    },
+    subtitle: {
+        fontSize: 14,
+        color: '#fff',
+        opacity: 0.9,
+    },
+    scrollContainer: {
+        flex: 1,
+    },
+    contentContainer: {
+        paddingHorizontal: 20,
+        paddingTop: 20,
+        paddingBottom: 20,
+    },
+    introCard: {
+        marginBottom: 20,
+        borderRadius: 16,
+        elevation: 2,
+        backgroundColor: '#fff',
+    },
+    termCard: {
+        marginBottom: 12,
+        borderRadius: 16,
+        elevation: 2,
+        backgroundColor: '#fff',
+    },
+    agreementCard: {
+        marginTop: 8,
+        borderRadius: 16,
+        elevation: 2,
+        backgroundColor: '#e8f5e8',
+        borderWidth: 1,
+        borderColor: '#c8e6c9',
+    },
+    cardContent: {
+        paddingVertical: 20,
+        paddingHorizontal: 16,
+    },
+    cardHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 16,
+    },
+    cardIconContainer: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: '#f0f4f0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 12,
+    },
+    cardTitle: {
+        fontSize: 18,
+        fontWeight: '600',
+        color: '#333',
+    },
+    introText: {
+        fontSize: 14,
+        color: '#666',
+        lineHeight: 22,
+        marginBottom: 16,
+    },
+    lastUpdatedContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingTop: 12,
+        borderTopWidth: 1,
+        borderTopColor: '#f0f0f0',
+    },
+    lastUpdatedText: {
+        fontSize: 12,
+        color: '#666',
+        marginLeft: 6,
+        fontStyle: 'italic',
+    },
+    termTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#333',
+        marginBottom: 12,
+    },
+    termContent: {
+        fontSize: 14,
+        color: '#666',
+        lineHeight: 22,
+    },
+    agreementHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 12,
+    },
+    agreementTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#2e7d2e',
+        marginLeft: 8,
+    },
+    agreementText: {
+        fontSize: 14,
+        color: '#2e7d2e',
+        lineHeight: 22,
+        fontWeight: '500',
     },
 });
