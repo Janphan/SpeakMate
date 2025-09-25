@@ -39,6 +39,8 @@ export default function TabNavigator() {
                 },
                 tabBarActiveTintColor: '#5e7055',
                 tabBarInactiveTintColor: 'gray',
+                tabBarLabelStyle: { fontWeight: 'bold' },
+
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen}
