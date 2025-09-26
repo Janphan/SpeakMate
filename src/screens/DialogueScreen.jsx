@@ -397,7 +397,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         backgroundColor: '#fff',
         elevation: 2,
-        overflow: 'hidden',
+        // Removed overflow: 'hidden' to allow scrolling
     },
     endConversationButton: {
         flexDirection: 'row',
