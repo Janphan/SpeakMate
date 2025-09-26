@@ -74,7 +74,7 @@ export default function HomeScreen({ navigation }) {
                             <View style={styles.progressHeader}>
                                 <Text style={styles.progressTitle}>📈 Your Journey</Text>
                                 <TouchableOpacity
-                                    onPress={() => navigation.navigate('StatisticsScreen')}
+                                    onPress={() => navigation.navigate('Progress')}
                                     style={styles.viewMoreButton}
                                 >
                                     <Text style={styles.viewMoreText}>View Details</Text>
@@ -106,8 +106,8 @@ export default function HomeScreen({ navigation }) {
                                             <Icon source="chevron-down" size={20} color="#fff" />
                                         </TouchableOpacity>
                                     }
-                                    anchorPosition='bottom'
-                                    contentStyle={mystyle.menuItemStyle}
+                                    anchorPosition='top'
+                                    contentStyle={styles.menuContent}
                                 >
                                     <Menu.Item
                                         onPress={() => {
@@ -116,6 +116,9 @@ export default function HomeScreen({ navigation }) {
                                             navigation.navigate("TopicList", { level: 'band 5-6' });
                                         }}
                                         title="Band 5-6"
+                                        titleStyle={styles.menuItemTitle}
+                                        style={styles.menuItem}
+                                        leadingIcon={() => <Icon source="numeric-5-circle" size={20} color="#5e7055" />}
                                     />
                                     <Menu.Item
                                         onPress={() => {
@@ -124,6 +127,9 @@ export default function HomeScreen({ navigation }) {
                                             navigation.navigate("TopicList", { level: 'band 6-7' });
                                         }}
                                         title="Band 6-7"
+                                        titleStyle={styles.menuItemTitle}
+                                        style={styles.menuItem}
+                                        leadingIcon={() => <Icon source="numeric-6-circle" size={20} color="#5e7055" />}
                                     />
                                     <Menu.Item
                                         onPress={() => {
@@ -132,6 +138,9 @@ export default function HomeScreen({ navigation }) {
                                             navigation.navigate("TopicList", { level: 'band 7-8' });
                                         }}
                                         title="Band 7-8"
+                                        titleStyle={styles.menuItemTitle}
+                                        style={styles.menuItem}
+                                        leadingIcon={() => <Icon source="numeric-7-circle" size={20} color="#5e7055" />}
                                     />
                                 </Menu>
                                 <View style={styles.levelDisplay}>
@@ -299,6 +308,8 @@ const styles = StyleSheet.create({
     },
     menuContainer: {
         width: '100%',
+        zIndex: 999,
+        position: 'relative',
     },
     levelDisplay: {
         marginTop: 12,
@@ -338,5 +349,31 @@ const styles = StyleSheet.create({
         color: '#f57c00',
         lineHeight: 24,
         fontStyle: 'italic',
+    },
+    // Menu Styles
+    menuContent: {
+        backgroundColor: '#fff',
+        borderRadius: 12,
+        elevation: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.25,
+        shadowRadius: 12,
+        minWidth: 220,
+        maxWidth: 280,
+        zIndex: 1000,
+        position: 'relative',
+    },
+    menuItem: {
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        marginVertical: 2,
+        borderRadius: 8,
+        marginHorizontal: 8,
+    },
+    menuItemTitle: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#333',
     },
 });

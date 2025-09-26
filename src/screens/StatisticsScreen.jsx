@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     statsGrid: {
-        paddingBottom: 20,
+        paddingBottom: 100,
     },
     statCard: {
         marginBottom: 16,

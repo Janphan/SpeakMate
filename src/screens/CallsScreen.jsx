@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     list: {
-        paddingBottom: 20,
+        paddingBottom: 100,
     },
     conversationCard: {
         marginBottom: 12,

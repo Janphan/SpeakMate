@@ -52,8 +52,6 @@ export default function DialogueScreen({ navigation, route }) {
         }
     }, [recording]);
 
-    console.log("DialogueScreen - Topic:", topic, "Level:", level);
-
     // Text-to-Speech
     const speakText = (text) => {
         Speech.speak(text, {
@@ -322,6 +320,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
         marginBottom: 4,
+        marginTop: 30,
     },
     headerSubtitle: {
         fontSize: 16,

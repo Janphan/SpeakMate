@@ -39,7 +39,64 @@ const SignInScreen = ({ navigation }) => {
             navigation.replace("HomeScreen");
         } catch (error) {
             console.error("Email Sign-In Error:", error);
-            Alert.alert("Error", error.message);
+
+            // Handle specific Firebase auth errors
+            if (error.code === 'auth/invalid-credential') {
+                Alert.alert(
+                    "Account Not Found",
+                    "This email is not registered yet. Would you like to create a new account?",
+                    [
+                        { text: "Cancel", style: "cancel" },
+                        {
+                            text: "Sign Up",
+                            onPress: () => navigation.navigate("SignUpScreen")
+                        }
+                    ]
+                );
+            } else if (error.code === 'auth/user-not-found') {
+                Alert.alert(
+                    "Account Not Found",
+                    "No account found with this email address. Would you like to create one?",
+                    [
+                        { text: "Cancel", style: "cancel" },
+                        {
+                            text: "Sign Up",
+                            onPress: () => navigation.navigate("SignUpScreen")
+                        }
+                    ]
+                );
+            } else if (error.code === 'auth/wrong-password') {
+                Alert.alert(
+                    "Incorrect Password",
+                    "The password you entered is incorrect. Please try again or reset your password.",
+                    [
+                        { text: "Try Again", style: "cancel" },
+                        {
+                            text: "Reset Password",
+                            onPress: () => navigation.navigate("ResetPasswordScreen")
+                        }
+                    ]
+                );
+            } else if (error.code === 'auth/invalid-email') {
+                Alert.alert("Invalid Email", "Please enter a valid email address.");
+            } else if (error.code === 'auth/user-disabled') {
+                Alert.alert("Account Disabled", "This account has been disabled. Please contact support.");
+            } else if (error.code === 'auth/too-many-requests') {
+                Alert.alert(
+                    "Too Many Attempts",
+                    "Too many failed sign-in attempts. Please try again later or reset your password.",
+                    [
+                        { text: "OK", style: "cancel" },
+                        {
+                            text: "Reset Password",
+                            onPress: () => navigation.navigate("ResetPasswordScreen")
+                        }
+                    ]
+                );
+            } else {
+                // Fallback for other errors
+                Alert.alert("Sign In Error", "Unable to sign in. Please check your credentials and try again.");
+            }
         } finally {
             setLoading(false);
         }
