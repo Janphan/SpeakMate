@@ -8,7 +8,7 @@ import {
     useAudioRecorderState,
 } from 'expo-audio';
 import { convertAudioToText } from '../api/speechToText';
-import { getOpenAIResponse } from "../api/AIService";
+import { getOpenAIResponse, resetQuestionTracking } from "../api/AIService";
 import AIResponseDisplay from './AIResponseDisplay';
 import { IconButton, Card, Icon } from 'react-native-paper';
 import { db } from '../api/firebaseConfig';
@@ -34,6 +34,9 @@ export default function DialogueScreen({ navigation, route }) {
     // Initialize session start time and setup audio permissions
     useEffect(() => {
         setSessionStartTime(new Date());
+
+        // Reset question tracking for new conversation
+        resetQuestionTracking();
 
         // Setup audio permissions and mode
         (async () => {
