@@ -9,6 +9,11 @@ const topics = [
     { id: '4', title: 'Health & Fitness', icon: 'heart-pulse', color: '#f44336' },
     { id: '5', title: 'Travel & Holidays', icon: 'airplane', color: '#ff9800' },
     { id: '6', title: 'Environment & Nature', icon: 'leaf', color: '#4caf50' },
+    { id: '7', title: 'Food & Cooking', icon: 'chef-hat', color: '#e91e63' },
+    { id: '8', title: 'Family & Relationships', icon: 'account-group', color: '#3f51b5' },
+    { id: '9', title: 'Education & Learning', icon: 'school', color: '#ff5722' },
+    { id: '10', title: 'Media & Entertainment', icon: 'movie-outline', color: '#795548' },
+    { id: '11', title: 'Transportation & Cities', icon: 'city', color: '#607d8b' },
 ];
 
 export default function TopicList({ navigation, route }) {

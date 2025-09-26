@@ -22,6 +22,7 @@ import TopicList from './src/screens/TopicList';
 import Feedback from './src/screens/Feedback';
 
 import { initializeQuestionBanks } from './src/api/initializeQuestions';
+import { initializeExpandedQuestionBanks } from './src/api/initializeQuestions_expanded';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,7 +75,9 @@ function TabNavigator() {
 }
 
 export default function App() {
+  // Initialize both original and expanded question banks
   initializeQuestionBanks();
+  initializeExpandedQuestionBanks();
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SignInScreen"

@@ -35,10 +35,8 @@ const SignInScreen = ({ navigation }) => {
         setLoading(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            Alert.alert("Success", "Logged in successfully!");
             navigation.replace("HomeScreen");
         } catch (error) {
-            console.error("Email Sign-In Error:", error);
 
             // Handle specific Firebase auth errors
             if (error.code === 'auth/invalid-credential') {
