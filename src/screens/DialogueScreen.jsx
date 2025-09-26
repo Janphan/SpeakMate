@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Alert, TouchableOpacity, Animated } from 'react-native';
-import { Audio } from 'expo-av';
+import {
+    useAudioRecorder,
+    AudioModule,
+    RecordingPresets,
+    setAudioModeAsync,
+    useAudioRecorderState,
+} from 'expo-audio';
 import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse } from "../api/AIService";
 import AIResponseDisplay from './AIResponseDisplay';
@@ -14,25 +20,38 @@ import * as Speech from 'expo-speech';
 
 
 export default function DialogueScreen({ navigation, route }) {
-    const [recording, setRecording] = useState(null);
-    // const [transcription, setTranscription] = useState([]);
+    // Use expo-audio hooks
+    const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
+    const recorderState = useAudioRecorderState(audioRecorder);
     const [aiResponse, setAiResponse] = useState(true);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    // const [analysisResult, setAnalysisResult] = useState(null);
     const { topic, level } = route.params || {};
     const [responseDataList, setResponseDataList] = useState([]);
     const [sessionStartTime, setSessionStartTime] = useState(null);
     const [recordingAnimation] = useState(new Animated.Value(1));
 
-    // Initialize session start time when component mounts
+    // Initialize session start time and setup audio permissions
     useEffect(() => {
         setSessionStartTime(new Date());
+
+        // Setup audio permissions and mode
+        (async () => {
+            const status = await AudioModule.requestRecordingPermissionsAsync();
+            if (!status.granted) {
+                Alert.alert('Permission Required', 'Permission to access microphone was denied');
+                return;
+            }
+            await setAudioModeAsync({
+                playsInSilentMode: true,
+                allowsRecording: true,
+            });
+        })();
     }, []);
 
     // Animation for recording button
     useEffect(() => {
-        if (recording) {
+        if (recorderState.isRecording) {
             Animated.loop(
                 Animated.sequence([
                     Animated.timing(recordingAnimation, {
@@ -50,7 +69,7 @@ export default function DialogueScreen({ navigation, route }) {
         } else {
             recordingAnimation.setValue(1);
         }
-    }, [recording]);
+    }, [recorderState.isRecording]);
 
     // Text-to-Speech
     const speakText = (text) => {
@@ -59,8 +78,6 @@ export default function DialogueScreen({ navigation, route }) {
             pitch: 1.0,
             rate: 1.0,
             onDone: () => {
-                // Speech finished
-                console.log('Speech is done!');
                 setAiResponse(true);
             },
         });
@@ -69,54 +86,34 @@ export default function DialogueScreen({ navigation, route }) {
     // Start Recording
     const startRecording = async () => {
         try {
-            const permissionResponse = await Audio.requestPermissionsAsync();
-
-            if (permissionResponse.status === 'granted') {
-                console.log('Permission granted');
-            } else {
-                Alert.alert('Permission not granted');
-                return;
-            }
-
-            await Audio.setAudioModeAsync({
-                allowsRecordingIOS: true,
-                playsInSilentModeIOS: true,
-            });
-
-            const { recording } = await Audio.Recording.createAsync(
-                Audio.RecordingOptionsPresets.HIGH_QUALITY
-            );
-            setRecording(recording);
+            await audioRecorder.prepareToRecordAsync();
+            audioRecorder.record();
             setAiResponse(false);
         } catch (err) {
             console.error('Failed to start recording', err);
             Alert.alert('Recording Error', 'Failed to start recording. Please try again.');
         }
-    };
-
-    // Stop Recording & Process Audio
+    };    // Stop Recording & Process Audio
     const stopRecording = async () => {
         setIsLoading(true);
-        if (!recording) return;
-
-        await recording.stopAndUnloadAsync();
-        const uri = recording.getURI();
-
-        console.log("uri: ", uri);
-        setRecording(null);
-        console.log("Recording stopped. Sending audio for transcription...");
-
-        if (!uri) {
-            console.error('Failed to get URI for recording');
-            return;
-        }
 
         try {
+            await audioRecorder.stop();
+            const uri = audioRecorder.uri;
+
+            console.log("uri: ", uri);
+            console.log("Recording stopped. Sending audio for transcription...");
+
+            if (!uri) {
+                console.error('Failed to get URI for recording');
+                setIsLoading(false);
+                return;
+            }
+
             const responseData = await convertAudioToText(uri);
             const transcript = responseData.text;
             setResponseDataList(prev => [...prev, responseData]);
             setMsgList(previous => [...previous, { role: 'user', content: transcript }]);
-            // setTranscription(previous => [...previous, transcript]);
             console.log("transcript", transcript);
 
             if (transcript) {
@@ -134,10 +131,8 @@ export default function DialogueScreen({ navigation, route }) {
     // Send Text to OpenAI and Speak Response
     const processOpenAIResponse = async (text) => {
         setIsLoading(true);
-        // Pass topic and level here!
         const aiReply = await getOpenAIResponse(topic.title, level);
         setMsgList(previous => [...previous, { role: 'ai', content: aiReply }]);
-        // setAiResponse(previous => [...previous, aiReply]);
         speakText(aiReply);
         setIsLoading(false);
     };
@@ -148,7 +143,7 @@ export default function DialogueScreen({ navigation, route }) {
             const sessionEndTime = new Date();
             const sessionDuration = sessionStartTime
                 ? Math.round((sessionEndTime - sessionStartTime) / 1000)
-                : 0; // Duration in seconds
+                : 0;
 
             // When starting a new conversation
             await addDoc(collection(db, 'conversations'), {
@@ -249,22 +244,22 @@ export default function DialogueScreen({ navigation, route }) {
                         <TouchableOpacity
                             style={[
                                 styles.recordButton,
-                                recording ? styles.recordingButton : styles.readyButton,
-                                !aiResponse && !recording ? styles.disabledButton : null
+                                recorderState.isRecording ? styles.recordingButton : styles.readyButton,
+                                !aiResponse && !recorderState.isRecording ? styles.disabledButton : null
                             ]}
-                            onPress={recording ? stopRecording : startRecording}
-                            disabled={!aiResponse && !recording}
+                            onPress={recorderState.isRecording ? stopRecording : startRecording}
+                            disabled={!aiResponse && !recorderState.isRecording}
                             activeOpacity={0.8}
                         >
                             <Icon
-                                source={recording ? "stop" : "microphone"}
+                                source={recorderState.isRecording ? "stop" : "microphone"}
                                 size={40}
                                 color="#fff"
                             />
                         </TouchableOpacity>
                     </Animated.View>
                     <Text style={styles.recordButtonLabel}>
-                        {recording ? "Tap to stop recording" : "Tap to start speaking"}
+                        {recorderState.isRecording ? "Tap to stop recording" : "Tap to start speaking"}
                     </Text>
                 </View>
 
