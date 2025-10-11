@@ -8,7 +8,8 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "qr": "node generate-qr.js",
-    "qr-update": "node update-qr.js"
+    "qr-update": "node update-qr.js",
+    "check-usage": "node check-api-usage.js"
   },
   "dependencies": {
     "@expo/metro-runtime": "~6.1.2",

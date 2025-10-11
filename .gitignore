@@ -106,6 +106,10 @@ GoogleService-Info.plist
 build-apk-complete.sh
 setup-eas-env.sh
 
+# API usage monitoring (may contain sensitive output)
+api-usage-report.json
+usage-*.log
+
 # Firebase config (if local)
 firebase-debug.log
 .firebase/

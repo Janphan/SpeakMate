@@ -341,10 +341,25 @@ SpeakMate/
 - **Rotate API keys** regularly
 - **Use Firebase security rules** for database access
 
+### API Key Security (CRITICAL)
+⚠️ **OpenAI API Key Protection:**
+- **Monitor usage**: Set up billing alerts in OpenAI dashboard
+- **Set usage limits**: Hard limit $20/month, soft limit $15/month
+- **Usage tracking**: Check https://platform.openai.com/usage
+- **Rotate keys**: Monthly or if suspicious activity detected
+
+**Cost Protection Measures:**
+```bash
+# Check current API usage
+curl https://api.openai.com/v1/usage \
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+```
+
 ### Build Security
 - **APK is signed** with Expo-managed keystore
 - **Environment variables** are injected securely during build
 - **No sensitive data** stored in source code
+- **API keys** stored securely on EAS servers (not in repository)
 
 ---
 
