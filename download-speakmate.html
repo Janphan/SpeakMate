@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download SpeakMate App</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .qr-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #e9ecef;
+        }
+
+        .qr-code {
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .instructions {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin: 20px 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .features {
+            text-align: left;
+            margin: 20px 0;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .features h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .features ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .features li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .qr-code {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="app-icon">🎤</div>
+        <h1>SpeakMate</h1>
+        <p class="subtitle">AI-Powered English Speaking Practice App</p>
+
+        <div class="qr-container">
+            <img src="speakmate-apk-qr.png" alt="SpeakMate APK Download QR Code" class="qr-code">
+            <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                Scan with your phone camera to download
+            </p>
+        </div>
+
+        <div class="instructions">
+            <h3>📱 How to Install</h3>
+            <ol>
+                <li><strong>Scan QR Code</strong> with your phone camera</li>
+                <li><strong>Download APK</strong> file to your Android device</li>
+                <li><strong>Enable</strong> "Install from Unknown Sources" if prompted</li>
+                <li><strong>Open APK</strong> file to install SpeakMate</li>
+                <li><strong>Grant microphone</strong> permission for voice features</li>
+            </ol>
+        </div>
+
+        <a href="https://expo.dev/artifacts/eas/bwy2PiPnDs4k5DXkXkoFiH.apk" class="download-button">
+            📥 Direct Download APK
+        </a>
+
+        <div class="features">
+            <h3>✨ App Features</h3>
+            <ul>
+                <li>🎯 AI-powered IELTS speaking practice</li>
+                <li>🎤 Real-time speech analysis</li>
+                <li>📊 Performance tracking and statistics</li>
+                <li>🔊 Voice recording and playback</li>
+                <li>📚 Topic-based conversation practice</li>
+                <li>🏆 Progress monitoring and feedback</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>Version 1.0.0 | Build: October 11, 2025</p>
+            <p>Requires Android 7.0 or higher</p>
+        </div>
+    </div>
+</body>
+
+</html>
