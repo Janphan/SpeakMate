@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db, auth } from '../api/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { logger } from '../utils/logger';
 
 // Convert fluency band string to numeric value for averaging
 const fluencyBandToNumber = (bandString) => {
@@ -45,11 +46,11 @@ export const useStatistics = () => {
         const sevenDaysAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
 
         // Initialize statistics
-        let totalSessions = conversations.length;
+        const totalSessions = conversations.length;
         let sessionTimeToday = 0;
         let sessionTime7Days = 0;
         let totalSessionTime = 0;
-        let topicCounts = {};
+        const topicCounts = {};
         let totalIELTSScore = 0;
         let totalWordsSpoken = 0;
         let validScores = 0;
@@ -114,18 +115,15 @@ export const useStatistics = () => {
     };
 
     const estimateSessionTime = (conversation) => {
-        // Use actual session duration if available (new format)
         if (conversation.sessionDuration) {
-            return conversation.sessionDuration; // Already in seconds
+            return conversation.sessionDuration;
         }
 
-        // Fallback: Estimate session time based on messages and analysis
         const messageCount = conversation.messages?.length || 0;
-        const baseTimePerMessage = 45; // seconds per message exchange
+        const baseTimePerMessage = 45;
 
         let estimatedTime = messageCount * baseTimePerMessage;
 
-        // Adjust based on words spoken (if available)
         if (conversation.analysisResult?.totalWords) {
             const wordsPerSecond = 2.5; // Average speaking rate
             const speechTime = conversation.analysisResult.totalWords / wordsPerSecond;
@@ -145,7 +143,7 @@ export const useStatistics = () => {
 
         const uniqueDates = [...new Set(dates)].sort((a, b) => b - a);
 
-        let streak = 0;
+        let streak = 0;  // Likely gets reassigned in loop, so correct
         const today = new Date();
         const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
@@ -203,7 +201,7 @@ export const useStatistics = () => {
                 const parsed = JSON.parse(cachedData);
                 setStatistics(parsed.statistics);
                 setLastUpdated(new Date(parsed.lastUpdated));
-                console.log('Loaded cached statistics');
+                logger.info('Loaded cached statistics');
             } else {
                 // No cached data available
                 setStatistics({
@@ -265,12 +263,16 @@ export const useStatistics = () => {
                 await cacheStatistics(stats, conversations);
 
             } catch (firebaseError) {
-                console.log('Firebase unavailable, loading cached data:', firebaseError.message);
+                logger.error('Firebase unavailable, loading cached data', {
+                    error: firebaseError.message
+                });
                 setIsOffline(true);
                 await loadCachedStatistics();
             }
         } catch (error) {
-            console.error('Error in fetchStatistics:', error);
+            logger.error('Error in fetchStatistics', {
+                error: error.message
+            });
             setIsOffline(true);
             await loadCachedStatistics();
         } finally {

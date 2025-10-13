@@ -1,5 +1,6 @@
 import { db } from './firebaseConfig';
 import { collection, setDoc, doc } from 'firebase/firestore';
+import { logger } from '../utils/logger';
 
 // EXPANDED QUESTION BANK - Comprehensive IELTS Speaking Practice Topics
 export const initializeExpandedQuestionBanks = async () => {
@@ -688,13 +689,15 @@ export const initializeExpandedQuestionBanks = async () => {
             // Create document ID combining topic and level for better organization
             const docId = `${bank.topic}_${bank.level}`.replace(/\s+/g, '_');
             await setDoc(doc(questionsRef, docId), bank);
-            console.log(`Added/updated question bank for ${bank.topic} - ${bank.level}`);
+            logger.info(`Added/updated question bank for ${bank.topic} - ${bank.level}`);
         }
-        console.log('✅ EXPANDED Question banks initialized successfully!');
-        console.log(`📚 Total question banks: ${questionBanks.length}`);
-        console.log(`🎯 Topics covered: ${[...new Set(questionBanks.map(bank => bank.topic))].length}`);
-        console.log(`📈 Difficulty levels: ${[...new Set(questionBanks.map(bank => bank.level))].length}`);
+        logger.info('✅ EXPANDED Question banks initialized successfully!');
+        logger.info(`📚 Total question banks: ${questionBanks.length}`);
+        logger.info(`🎯 Topics covered: ${[...new Set(questionBanks.map(bank => bank.topic))].length}`);
+        logger.info(`📈 Difficulty levels: ${[...new Set(questionBanks.map(bank => bank.level))].length}`);
     } catch (error) {
-        console.error('❌ Error initializing expanded question banks:', error.message);
+        logger.error('❌ Error initializing expanded question banks', {
+            error: error.message
+        });
     }
 };

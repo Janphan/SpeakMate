@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+import { logger } from '../utils/logger';
 const QRCode = require('qrcode');
 const fs = require('fs');
 
@@ -10,7 +10,7 @@ async function getLatestBuildUrl() {
     const execPromise = util.promisify(exec);
 
     try {
-        console.log('🔍 Fetching latest build information...');
+        logger.info('🔍 Fetching latest build information...');
         const { stdout } = await execPromise('npx eas build:list --limit 1 --non-interactive');
 
         // Extract APK URL from output
@@ -19,14 +19,16 @@ async function getLatestBuildUrl() {
 
         if (urlLine && !urlLine.includes('null')) {
             const url = urlLine.split('Application Archive URL')[1].trim();
-            console.log('✅ Found APK URL:', url);
+            logger.info('✅ Found APK URL:', url);
             return url;
         } else {
-            console.log('❌ No APK URL found in latest build');
+            logger.warn('❌ No APK URL found in latest build');
             return null;
         }
     } catch (error) {
-        console.error('❌ Error fetching build info:', error.message);
+        logger.error('❌ Error fetching build info:', {
+            error: error.message
+        });
         return null;
     }
 }
@@ -36,12 +38,12 @@ async function generateQRCodeFromLatestBuild() {
         const apkUrl = await getLatestBuildUrl();
 
         if (!apkUrl) {
-            console.log('⚠️ No valid APK URL found. Using fallback URL...');
+            logger.warn('⚠️ No valid APK URL found. Using fallback URL...');
             // Fallback to current known URL
             apkUrl = 'https://expo.dev/artifacts/eas/bwy2PiPnDs4k5DXkXkoFiH.apk';
         }
 
-        console.log('🎯 Generating QR Code for:', apkUrl);
+        logger.info('🎯 Generating QR Code for:', apkUrl);
 
         // Generate QR code options
         const options = {
@@ -58,20 +60,20 @@ async function generateQRCodeFromLatestBuild() {
 
         // Generate QR code files
         await QRCode.toFile('./speakmate-apk-qr.png', apkUrl, options);
-        console.log('✅ QR Code updated: speakmate-apk-qr.png');
+        logger.info('✅ QR Code updated: speakmate-apk-qr.png');
 
         const svgString = await QRCode.toString(apkUrl, { type: 'svg', width: 512 });
         fs.writeFileSync('./speakmate-apk-qr.svg', svgString);
-        console.log('✅ QR Code updated: speakmate-apk-qr.svg');
+        logger.info('✅ QR Code updated: speakmate-apk-qr.svg');
 
         // Update HTML file with new URL
         updateHtmlFile(apkUrl);
 
-        console.log('\n🎉 QR Code update complete!');
-        console.log('📋 Next steps:');
-        console.log('   1. Share speakmate-apk-qr.png');
-        console.log('   2. Or share download-speakmate.html');
-        console.log('   3. Users can scan QR code to download APK');
+        logger.info('\n🎉 QR Code update complete!');
+        logger.info('📋 Next steps:');
+        logger.info('   1. Share speakmate-apk-qr.png');
+        logger.info('   2. Or share download-speakmate.html');
+        logger.info('   3. Users can scan QR code to download APK');
 
     } catch (error) {
         console.error('❌ Error generating QR code:', error);
@@ -101,9 +103,11 @@ function updateHtmlFile(apkUrl) {
         );
 
         fs.writeFileSync(htmlFile, htmlContent);
-        console.log('✅ HTML file updated: download-speakmate.html');
+        logger.info('✅ HTML file updated: download-speakmate.html');
     } catch (error) {
-        console.log('⚠️ Could not update HTML file:', error.message);
+        logger.error('⚠️ Could not update HTML file:', {
+            error: error.message
+        });
     }
 }
 

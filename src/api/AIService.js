@@ -2,14 +2,15 @@ import axios from 'axios';
 import { OPENAI_API_KEY } from '@env';
 import { db } from './firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
+import { logger } from '../utils/logger';
 
 // Track used questions per conversation session
-let usedQuestions = new Set();
-let currentTopicQuestions = [];
+const usedQuestions = new Set();
+const currentTopicQuestions = [];
 
 // Reset question tracking for new conversation
 export const resetQuestionTracking = () => {
-    console.log('🔄 Resetting question tracking for new conversation');
+    logger.debug('Resetting question tracking for new conversation');
     usedQuestions.clear();
     currentTopicQuestions = [];
 };
@@ -69,11 +70,15 @@ Keep questions varied and engaging to simulate a real IELTS interview.
                 usedQuestions.add(originalIndex);
                 selectedQuestion = selectedQuestionText;
 
-                console.log(`Selected question ${originalIndex + 1}/${currentTopicQuestions.length}: ${selectedQuestion}`);
+                logger.debug('Question selected', {
+                    questionNumber: originalIndex + 1,
+                    totalQuestions: currentTopicQuestions.length,
+                    question: selectedQuestion
+                });
             } else {
                 // All questions used, provide a wrap-up question
                 selectedQuestion = `We've covered many aspects of ${topic.toLowerCase()}. Is there anything else you'd like to share about this topic?`;
-                console.log("All questions used, providing wrap-up question");
+                logger.info("All questions used, providing wrap-up question");
             }
         }
 
@@ -103,7 +108,11 @@ Keep questions varied and engaging to simulate a real IELTS interview.
 
         return response.data.choices[0].message.content.trim();
     } catch (error) {
-        console.error("OpenAI API Error:", error);
+        logger.error("OpenAI API Error", {
+            error: error.message,
+            status: error.response?.status,
+            userInput: userInput?.substring(0, 50) + "..."
+        });
         return "I'm sorry, I couldn't process your request.";
     }
 };

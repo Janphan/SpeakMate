@@ -1,7 +1,9 @@
+import { logger } from '../utils/logger';
+
 export function analyzeSpeech(responses) {
     // Validate input
     if (!Array.isArray(responses) || responses.length === 0) {
-        console.warn('No valid responses provided for analysis.');
+        logger.warn('No valid responses provided for analysis');
         return {
             wpm: '0.00',
             pauseFrequency: '0.00',
@@ -168,7 +170,7 @@ export function analyzeSpeech(responses) {
     }
 
     // Log aggregated results
-    console.log(`Aggregated Speech Analysis:
+    logger.info(`Aggregated Speech Analysis:
     - WPM: ${wpm} (Band 5: 90–110, Band 5.5: 110–130, Band 6: 120–140)
     - Pause Frequency: ${pauseFrequency} pauses per 30s (Band 5: 0–5, Band 5.5: 0–4, Band 6: 0–3)
     - Pause Count: ${pauseCount}

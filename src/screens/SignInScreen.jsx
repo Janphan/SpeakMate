@@ -5,6 +5,7 @@ import { auth } from "../api/firebaseConfig";
 import { colors, spacing } from '../theme';
 import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
+import { logger } from '../utils/logger';
 
 const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -16,10 +17,10 @@ const SignInScreen = ({ navigation }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log('User is signed in:', user.email);
+                logger.info('User is signed in:', user.email);
                 navigation.replace("HomeScreen"); // Auto-navigate if already signed in
             } else {
-                console.log('User is signed out');
+                logger.info('User is signed out');
             }
         });
 

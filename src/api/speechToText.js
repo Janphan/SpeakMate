@@ -1,5 +1,6 @@
 import axios from "axios";
 import { OPENAI_API_KEY } from "@env";
+import { logger } from '../utils/logger';
 
 export const convertAudioToText = async (audioUri) => {
     try {
@@ -24,11 +25,11 @@ export const convertAudioToText = async (audioUri) => {
                 },
             }
         );
-        console.log("Transcription response data:", response.data);
-        console.log("Transcription:", response.data.text);
+        logger.info('Transcription response data', response.data);
+        logger.info('Transcription text', response.data.text);
         return response.data;
     } catch (error) {
-        console.error("Axios upload error:", error);
+        logger.error('Axios upload error', error);
         return null;
     }
 };

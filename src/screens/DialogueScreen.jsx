@@ -17,6 +17,7 @@ import { auth } from '../api/firebaseConfig';
 import uuid from 'react-native-uuid';
 import { analyzeSpeech } from '../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
+import { logger } from '../utils/logger';
 
 
 export default function DialogueScreen({ navigation, route }) {
@@ -104,11 +105,11 @@ export default function DialogueScreen({ navigation, route }) {
             await audioRecorder.stop();
             const uri = audioRecorder.uri;
 
-            console.log("uri: ", uri);
-            console.log("Recording stopped. Sending audio for transcription...");
+            logger.info("uri: ", uri);
+            logger.info("Recording stopped. Sending audio for transcription...");
 
             if (!uri) {
-                console.error('Failed to get URI for recording');
+                logger.error('Failed to get URI for recording');
                 setIsLoading(false);
                 return;
             }
@@ -117,7 +118,7 @@ export default function DialogueScreen({ navigation, route }) {
             const transcript = responseData.text;
             setResponseDataList(prev => [...prev, responseData]);
             setMsgList(previous => [...previous, { role: 'user', content: transcript }]);
-            console.log("transcript", transcript);
+            logger.info("transcript", transcript);
 
             if (transcript) {
                 processOpenAIResponse(transcript);
@@ -163,16 +164,18 @@ export default function DialogueScreen({ navigation, route }) {
                 feedback: analysedSpeech.feedback,
                 analysisResult: analysedSpeech,
             });
-            console.log('Conversation saved to Firestore');
+            logger.info('Conversation saved to Firestore');
         } catch (error) {
-            console.error('Error saving conversation:', error);
+            logger.error('Error saving conversation', {
+                error: error.message
+            });
         }
     };
 
     // End the Conversation
     const endConversation = () => {
         const analysedSpeech = analyzeSpeech(responseDataList);
-        console.log("Analysis Result:", analysedSpeech);
+        logger.info("Analysis Result:", analysedSpeech);
         Alert.alert(
             "End Conversation",
             "Are you sure you want to end the conversation?",

@@ -1,5 +1,6 @@
 import { db } from './firebaseConfig';
 import { collection, setDoc, doc } from 'firebase/firestore';
+import { logger } from '../utils/logger';
 
 // Function to initialize question banks with topic-based document IDs
 export const initializeQuestionBanks = async () => {
@@ -112,10 +113,21 @@ export const initializeQuestionBanks = async () => {
         const questionsRef = collection(db, 'questions');
         for (const bank of questionBanks) {
             await setDoc(doc(questionsRef, bank.topic), bank);
-            console.log(`Added/updated question bank for ${bank.topic}`);
+            logger.info('Question bank updated', {
+                topic: bank.topic,
+                level: bank.level,
+                questionCount: bank.questions.length
+            });
         }
-        console.log('Question banks initialized successfully');
+        logger.info('Question banks initialization completed', {
+            totalBanks: questionBanks.length,
+            topics: questionBanks.map(bank => bank.topic)
+        });
     } catch (error) {
-        console.error('Error initializing question banks:', error.message);
+        logger.error('Error initializing question banks', {
+            error: error.message,
+            code: error.code,
+            bankCount: questionBanks.length
+        });
     }
 };

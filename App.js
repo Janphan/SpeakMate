@@ -43,17 +43,11 @@ function TabNavigator() {
           borderTopWidth: 0,
         },
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Calls') {
-            iconName = focused ? 'call' : 'call-outline';
-          } else if (route.name === 'Progress') {
-            iconName = focused ? 'bar-chart' : 'bar-chart-outline';
-          } else if (route.name === 'Settings') {
-            iconName = focused ? 'settings' : 'settings-outline';
-          } else if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
-          }
+          const iconName =
+            route.name === 'Calls' ? (focused ? 'call' : 'call-outline') :
+              route.name === 'Progress' ? (focused ? 'bar-chart' : 'bar-chart-outline') :
+                route.name === 'Settings' ? (focused ? 'settings' : 'settings-outline') :
+                  (focused ? 'home' : 'home-outline');
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
