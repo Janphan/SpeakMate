@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
 import { Card, Icon } from 'react-native-paper';

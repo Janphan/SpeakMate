@@ -133,7 +133,7 @@ export default function DialogueScreen({ navigation, route }) {
     };
 
     // Send Text to OpenAI and Speak Response
-    const processOpenAIResponse = async (text) => {
+    const processOpenAIResponse = async () => {
         setIsLoading(true);
         const aiReply = await getOpenAIResponse(topic.title, level);
         setMsgList(previous => [...previous, { role: 'ai', content: aiReply }]);

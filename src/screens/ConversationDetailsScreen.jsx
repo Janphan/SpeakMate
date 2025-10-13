@@ -3,7 +3,6 @@ import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert, Touchable
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
-import AIResponseDisplay from './AIResponseDisplay';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);

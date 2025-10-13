@@ -190,7 +190,7 @@ export const useStatistics = () => {
             };
             await AsyncStorage.setItem('statistics_cache', JSON.stringify(cacheData));
         } catch (error) {
-            console.error('Error caching statistics:', error);
+            logger.error('Error caching statistics:', error);
         }
     };
 
@@ -217,7 +217,7 @@ export const useStatistics = () => {
                 });
             }
         } catch (error) {
-            console.error('Error loading cached statistics:', error);
+            logger.error('Error loading cached statistics:', error);
         }
     };
 

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground, StatusBar } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../api/firebaseConfig";
-import { colors, spacing } from '../theme';
 import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logger } from '../utils/logger';
