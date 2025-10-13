@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, StatusBar, Alert } from 'react-native';
 import { signUpUser } from '../api/auth';
 import { Icon, Card } from 'react-native-paper';
+import PropTypes from 'prop-types';
+
+// Import the background image
+const backgroundImage = require('../../assets/sigin_background.jpg');
 
 export default function SignUpScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -30,7 +34,7 @@ export default function SignUpScreen({ navigation }) {
 
     return (
         <ImageBackground
-            source={{ uri: mystyle.signin_background }}
+            source={backgroundImage}
             style={styles.background}
         >
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -120,6 +124,12 @@ export default function SignUpScreen({ navigation }) {
         </ImageBackground>
     );
 }
+
+SignUpScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired,
+    }).isRequired,
+};
 
 const styles = StyleSheet.create({
     background: {

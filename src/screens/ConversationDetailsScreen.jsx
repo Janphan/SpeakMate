@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert, Touchable
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
+import { logger } from '../utils/logger';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -19,10 +20,10 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                     if (docSnap.exists()) {
                         setConversation(docSnap.data());
                     } else {
-                        console.error('No such document!');
+                        logger.error('Document not found', { conversationId });
                     }
                 } catch (error) {
-                    console.error('Error fetching conversation:', error);
+                    logger.error('Error fetching conversation', { error: error.message, conversationId, stack: error.stack });
                 } finally {
                     setIsLoading(false);
                 }

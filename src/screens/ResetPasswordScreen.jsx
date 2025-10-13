@@ -3,6 +3,10 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackgr
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../api/firebaseConfig';
 import { Icon, Card } from 'react-native-paper';
+import PropTypes from 'prop-types';
+
+// Import the background image
+const backgroundImage = require('../../assets/sigin_background.jpg');
 
 export default function ResetPasswordScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -31,7 +35,7 @@ export default function ResetPasswordScreen({ navigation }) {
 
     return (
         <ImageBackground
-            source={{ uri: mystyle.signin_background }}
+            source={backgroundImage}
             style={styles.background}
         >
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -54,7 +58,7 @@ export default function ResetPasswordScreen({ navigation }) {
                         <View style={styles.instructionsContainer}>
                             <Icon source="information" size={20} color="#5e7055" />
                             <Text style={styles.instructionsText}>
-                                We'll send you a link to reset your password
+                                We&apos;ll send you a link to reset your password
                             </Text>
                         </View>
 
@@ -96,6 +100,13 @@ export default function ResetPasswordScreen({ navigation }) {
         </ImageBackground>
     );
 }
+
+ResetPasswordScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired,
+        goBack: PropTypes.func.isRequired,
+    }).isRequired,
+};
 
 const styles = StyleSheet.create({
     background: {

@@ -18,6 +18,7 @@ import uuid from 'react-native-uuid';
 import { analyzeSpeech } from '../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
 import { logger } from '../utils/logger';
+import PropTypes from 'prop-types';
 
 
 export default function DialogueScreen({ navigation, route }) {
@@ -94,7 +95,7 @@ export default function DialogueScreen({ navigation, route }) {
             audioRecorder.record();
             setAiResponse(false);
         } catch (err) {
-            console.error('Failed to start recording', err);
+            logger.error('Failed to start recording', { error: err.message, stack: err.stack });
             Alert.alert('Recording Error', 'Failed to start recording. Please try again.');
         }
     };    // Stop Recording & Process Audio
@@ -126,7 +127,7 @@ export default function DialogueScreen({ navigation, route }) {
                 setIsLoading(false);
             }
         } catch (error) {
-            console.error("Transcription error:", error);
+            logger.error('Transcription error', { error: error.message, stack: error.stack });
             setIsLoading(false);
             setTranscription("Transcription failed.");
         }
@@ -287,6 +288,22 @@ export default function DialogueScreen({ navigation, route }) {
         </View>
     );
 }
+
+DialogueScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired,
+        goBack: PropTypes.func.isRequired,
+        replace: PropTypes.func,
+    }).isRequired,
+    route: PropTypes.shape({
+        params: PropTypes.shape({
+            topic: PropTypes.shape({
+                title: PropTypes.string.isRequired,
+            }).isRequired,
+            level: PropTypes.string.isRequired,
+        }).isRequired,
+    }).isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {

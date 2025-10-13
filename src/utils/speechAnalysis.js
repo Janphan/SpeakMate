@@ -21,7 +21,7 @@ export function analyzeSpeech(responses) {
         .map((responseData, index) => {
             // Validate responseData
             if (!responseData || !responseData.words || !Array.isArray(responseData.words) || responseData.words.length === 0) {
-                console.warn(`Invalid or empty response data at index ${index}. Skipping.`);
+                logger.warn('Invalid or empty response data', { index, responseData: !!responseData });
                 return null;
             }
 
@@ -102,7 +102,7 @@ export function analyzeSpeech(responses) {
 
     // Calculate averages across valid results
     if (results.length === 0) {
-        console.warn('No valid results after processing responses.');
+        logger.warn('No valid results after processing responses', { responseCount: responses.length });
         return {
             wpm: '0.00',
             pauseFrequency: '0.00',

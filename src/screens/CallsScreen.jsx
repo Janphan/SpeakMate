@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
 import { Card, Icon } from 'react-native-paper';
+import { logger } from '../utils/logger';
 
 export default function CallsScreen({ navigation }) {
     const [conversations, setConversations] = useState([]);
@@ -18,7 +19,7 @@ export default function CallsScreen({ navigation }) {
                 }));
                 setConversations(data);
             } catch (error) {
-                console.error('Error fetching conversations:', error);
+                logger.error('Error fetching conversations', { error: error.message, stack: error.stack });
             }
         };
 

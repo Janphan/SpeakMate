@@ -5,6 +5,10 @@ import { auth } from "../api/firebaseConfig";
 import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logger } from '../utils/logger';
+import PropTypes from 'prop-types';
+
+// Import the background image
+const backgroundImage = require('../../assets/sigin_background.jpg');
 
 const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
@@ -102,7 +106,7 @@ const SignInScreen = ({ navigation }) => {
 
     return (
         <ImageBackground
-            source={{ uri: mystyle.signin_background }}
+            source={backgroundImage}
             style={styles.background}
         >
             <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
@@ -170,7 +174,7 @@ const SignInScreen = ({ navigation }) => {
                         {/* Navigation Links */}
                         <View style={styles.linksContainer}>
                             <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
-                                <Text style={styles.link}>Don't have an account? Sign Up</Text>
+                                <Text style={styles.link}>Don&apos;t have an account? Sign Up</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={() => navigation.navigate("ResetPasswordScreen")}>
@@ -182,6 +186,13 @@ const SignInScreen = ({ navigation }) => {
             </View>
         </ImageBackground>
     );
+};
+
+SignInScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired,
+        replace: PropTypes.func.isRequired,
+    }).isRequired,
 };
 
 const styles = StyleSheet.create({

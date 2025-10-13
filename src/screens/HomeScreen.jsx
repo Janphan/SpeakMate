@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useStatistics } from '../hooks/useStatistics';
+import PropTypes from 'prop-types';
 
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
@@ -153,6 +154,14 @@ export default function HomeScreen({ navigation }) {
         </PaperProvider>
     );
 }
+
+HomeScreen.propTypes = {
+    navigation: PropTypes.shape({
+        navigate: PropTypes.func.isRequired,
+        replace: PropTypes.func,
+        goBack: PropTypes.func,
+    }).isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {
