@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, StatusBar, Alert } from 'react-native';
 import { signUpUser } from '../api/auth';
-import { mystyle } from '../utils/mystyle';
+import { colors, spacing } from '../theme';
 import { Icon, Card } from 'react-native-paper';
 
 export default function SignUpScreen({ navigation }) {

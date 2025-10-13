@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Button, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
-import { signup_signin_style, mystyle } from '../utils/mystyle';
+import { colors, spacing } from '../theme';
 import { useStatistics } from '../hooks/useStatistics';
 
 export default function HomeScreen({ navigation }) {
