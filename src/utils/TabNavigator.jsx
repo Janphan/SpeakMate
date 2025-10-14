@@ -1,11 +1,28 @@
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
 
 import HomeScreen from "../screens/HomeScreen"
 import StatisticsScreen from '../screens/StatisticsScreen';
 import CallsScreen from '../screens/CallsScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 const Tab = createBottomTabNavigator();
+
+// Helper function to get icon name
+const getTabIconName = (routeName, focused) => {
+    if (routeName === 'Calls') {
+        return focused ? 'call' : 'call-outline';
+    } else if (routeName === 'Progress') {
+        return focused ? 'bar-chart' : 'bar-chart-outline';
+    } else if (routeName === 'Settings') {
+        return focused ? 'settings' : 'settings-outline';
+    } else if (routeName === 'Home') {
+        return focused ? 'home' : 'home-outline';
+    }
+    return 'home-outline';
+};
+
 // Tab Navigator for Calls, Progress, and Settings
 export default function TabNavigator() {
     return (
@@ -21,20 +38,8 @@ export default function TabNavigator() {
                     backgroundColor: '#c2e4ab',
                     borderTopWidth: 0,
                 },
-                tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
-
-                    if (route.name === 'Calls') {
-                        iconName = focused ? 'call' : 'call-outline';
-                    } else if (route.name === 'Progress') {
-                        iconName = focused ? 'bar-chart' : 'bar-chart-outline';
-                    } else if (route.name === 'Settings') {
-                        iconName = focused ? 'settings' : 'settings-outline';
-                    }
-                    else if (route.name === 'Home') {
-                        iconName = focused ? 'home' : 'home-outline';
-                    }
-
+                tabBarIcon: function tabBarIcon({ focused, color, size }) {
+                    const iconName = getTabIconName(route.name, focused);
                     return <Ionicons name={iconName} size={size} color={color} />;
                 },
                 tabBarActiveTintColor: '#5e7055',

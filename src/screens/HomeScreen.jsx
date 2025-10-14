@@ -5,6 +5,11 @@ import { getAuth } from 'firebase/auth';
 import { useStatistics } from '../hooks/useStatistics';
 import PropTypes from 'prop-types';
 
+// Icon components to avoid nested components in render
+const Band5Icon = () => <Icon source="numeric-5-circle" size={20} color="#5e7055" />;
+const Band6Icon = () => <Icon source="numeric-6-circle" size={20} color="#5e7055" />;
+const Band7Icon = () => <Icon source="numeric-7-circle" size={20} color="#5e7055" />;
+
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState('Band 5-6');
@@ -125,7 +130,7 @@ export default function HomeScreen({ navigation }) {
                                         title="Band 5-6"
                                         titleStyle={styles.menuItemTitle}
                                         style={styles.menuItem}
-                                        leadingIcon={() => <Icon source="numeric-5-circle" size={20} color="#5e7055" />}
+                                        leadingIcon={Band5Icon}
                                     />
                                     <Menu.Item
                                         onPress={() => {
@@ -136,7 +141,7 @@ export default function HomeScreen({ navigation }) {
                                         title="Band 6-7"
                                         titleStyle={styles.menuItemTitle}
                                         style={styles.menuItem}
-                                        leadingIcon={() => <Icon source="numeric-6-circle" size={20} color="#5e7055" />}
+                                        leadingIcon={Band6Icon}
                                     />
                                     <Menu.Item
                                         onPress={() => {
@@ -147,7 +152,7 @@ export default function HomeScreen({ navigation }) {
                                         title="Band 7-8"
                                         titleStyle={styles.menuItemTitle}
                                         style={styles.menuItem}
-                                        leadingIcon={() => <Icon source="numeric-7-circle" size={20} color="#5e7055" />}
+                                        leadingIcon={Band7Icon}
                                     />
                                 </Menu>
                                 <View style={styles.levelDisplay}>
