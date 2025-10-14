@@ -1,17 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 import { useStatistics } from '../hooks/useStatistics';
 
 export default function StatisticsScreen() {
-    const navigation = useNavigation();
     const {
         statistics,
         loading,
         isOffline,
-        lastUpdated,
-        refreshStatistics
+        lastUpdated
     } = useStatistics();
 
     const formatTime = (seconds) => {

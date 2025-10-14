@@ -30,7 +30,7 @@ export default function DialogueScreen({ navigation, route }) {
     const [isLoading, setIsLoading] = useState(false);
     const { topic, level } = route.params || {};
     const [responseDataList, setResponseDataList] = useState([]);
-    const [sessionStartTime, setSessionStartTime] = useState(() => new Date());
+    const [sessionStartTime] = useState(() => new Date());
     const [recordingAnimation] = useState(new Animated.Value(1));
 
     // Initialize session start time and setup audio permissions
