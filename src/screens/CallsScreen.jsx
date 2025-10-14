@@ -4,6 +4,7 @@ import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
+import { colors } from '../theme';
 
 export default function CallsScreen({ navigation }) {
     const [conversations, setConversations] = useState([]);
@@ -122,10 +123,10 @@ export default function CallsScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 30,
         paddingHorizontal: 20,
@@ -138,13 +139,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginTop: 10,
         marginBottom: 5,
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
         textAlign: 'center',
     },
@@ -160,7 +161,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     conversationItem: {
         padding: 16,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.background.tertiary,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
     conversationTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 4,
     },
     timestampContainer: {
@@ -193,18 +194,18 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         marginLeft: 4,
     },
     deleteButton: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#fff5f5',
+        backgroundColor: colors.status.error + '10', // Light red background  
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: '#ffe0e0',
+        borderColor: colors.status.error + '30', // Slightly darker red border
     },
     emptyState: {
         flex: 1,
@@ -216,7 +217,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     emptyContent: {
         alignItems: 'center',
@@ -225,13 +226,13 @@ const styles = StyleSheet.create({
     emptyTitle: {
         fontSize: 20,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginTop: 16,
         marginBottom: 8,
     },
     emptyText: {
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         lineHeight: 24,
     },

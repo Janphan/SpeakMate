@@ -4,6 +4,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../api/firebaseConfig';
 import { Icon, Card } from 'react-native-paper';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 // Import the background image
 const backgroundImage = require('../../assets/sigin_background.jpg');
@@ -138,17 +139,17 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: colors.text.light + '30',
     },
     title: {
         fontSize: 36,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 8,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 1, height: 1 },
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         textAlign: 'center',
         opacity: 0.9,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
         maxWidth: 350,
         borderRadius: 16,
         elevation: 8,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     formContent: {
         paddingVertical: 30,
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     instructionsContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         padding: 12,
         borderRadius: 8,
         marginBottom: 20,
@@ -185,19 +186,19 @@ const styles = StyleSheet.create({
     instructionsText: {
         marginLeft: 8,
         fontSize: 14,
-        color: '#5e7055',
+        color: colors.primary,
         flex: 1,
     },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
         borderRadius: 12,
         marginBottom: 20,
         paddingHorizontal: 16,
         paddingVertical: 4,
         borderWidth: 1,
-        borderColor: '#e9ecef',
+        borderColor: colors.border.light,
     },
     inputIcon: {
         marginRight: 12,
@@ -206,10 +207,10 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         paddingVertical: 12,
-        color: '#333',
+        color: colors.text.primary,
     },
     resetButton: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
@@ -217,11 +218,11 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     disabledButton: {
-        backgroundColor: '#a5b5a0',
+        backgroundColor: colors.text.secondary,
         elevation: 0,
     },
     resetButtonText: {
-        color: '#fff',
+        color: colors.text.light,
         fontSize: 16,
         fontWeight: '600',
     },
@@ -229,7 +230,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     link: {
-        color: '#5e7055',
+        color: colors.primary,
         fontSize: 14,
         fontWeight: '500',
         textAlign: 'center',

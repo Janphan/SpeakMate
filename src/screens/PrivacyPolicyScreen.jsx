@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import { colors } from '../theme';
 
 export default function PrivacyPolicyScreen({ navigation }) {
     const privacySection = [
@@ -97,17 +98,17 @@ export default function PrivacyPolicyScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -129,12 +130,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 4,
     },
     subtitle: {
         fontSize: 14,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
     },
     scrollContainer: {
@@ -149,21 +150,21 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     policyCard: {
         marginBottom: 12,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     contactCard: {
         marginTop: 8,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#e3f2fd',
+        backgroundColor: colors.status.info + '20', // Light blue background
         borderWidth: 1,
-        borderColor: '#bbdefb',
+        borderColor: colors.status.info + '40', // Slightly darker blue border
     },
     cardContent: {
         paddingVertical: 20,
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -186,11 +187,11 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
     },
     introText: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         lineHeight: 22,
         marginBottom: 16,
     },
@@ -199,23 +200,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 12,
         borderTopWidth: 1,
-        borderTopColor: '#f0f0f0',
+        borderTopColor: colors.border.light,
     },
     lastUpdatedText: {
         fontSize: 12,
-        color: '#666',
+        color: colors.text.secondary,
         marginLeft: 6,
         fontStyle: 'italic',
     },
     policyTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 12,
     },
     policyContent: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         lineHeight: 22,
     },
     contactHeader: {
@@ -226,12 +227,12 @@ const styles = StyleSheet.create({
     contactTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#3498db',
+        color: colors.status.info,
         marginLeft: 8,
     },
     contactText: {
         fontSize: 14,
-        color: '#3498db',
+        color: colors.status.info,
         lineHeight: 22,
         fontWeight: '500',
     },

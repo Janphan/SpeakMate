@@ -6,6 +6,7 @@ import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logger } from '../utils/logger';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 // Import the background image
 const backgroundImage = require('../../assets/sigin_background.jpg');
@@ -207,7 +208,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)', // Keep rgba for overlay effect
         zIndex: 1,
     },
     container: {
@@ -225,28 +226,28 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: colors.text.light + '30', // White with 30% opacity
     },
     title: {
         fontSize: 36,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 8,
-        textShadowColor: 'rgba(0, 0, 0, 0.3)',
+        textShadowColor: 'rgba(0, 0, 0, 0.3)', // Keep rgba for shadow effect
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 3,
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         textAlign: 'center',
         opacity: 0.9,
-        textShadowColor: 'rgba(0, 0, 0, 0.3)',
+        textShadowColor: 'rgba(0, 0, 0, 0.3)', // Keep rgba for shadow effect
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
     },
@@ -255,7 +256,7 @@ const styles = StyleSheet.create({
         maxWidth: 350,
         borderRadius: 16,
         elevation: 8,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     formContent: {
         paddingVertical: 30,
@@ -264,13 +265,13 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
         borderRadius: 12,
         marginBottom: 16,
         paddingHorizontal: 16,
         paddingVertical: 4,
         borderWidth: 1,
-        borderColor: '#e9ecef',
+        borderColor: colors.border.light,
     },
     inputIcon: {
         marginRight: 12,
@@ -279,13 +280,13 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         paddingVertical: 12,
-        color: '#333',
+        color: colors.text.primary,
     },
     eyeIcon: {
         padding: 8,
     },
     signInButton: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
@@ -294,11 +295,11 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     disabledButton: {
-        backgroundColor: '#a5b5a0',
+        backgroundColor: colors.text.secondary,
         elevation: 0,
     },
     signInButtonText: {
-        color: '#fff',
+        color: colors.text.light,
         fontSize: 16,
         fontWeight: '600',
     },
@@ -307,13 +308,13 @@ const styles = StyleSheet.create({
         gap: 12,
     },
     link: {
-        color: '#5e7055',
+        color: colors.primary,
         fontSize: 14,
         fontWeight: '500',
         textAlign: 'center',
     },
     forgotLink: {
-        color: '#666',
+        color: colors.text.secondary,
         fontSize: 14,
         textAlign: 'center',
         textDecorationLine: 'underline',

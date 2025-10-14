@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'rea
 import { signOut } from 'firebase/auth';
 import { auth } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
+import { colors } from '../theme';
 
 const SettingsScreen = ({ navigation }) => {
     const [isSigningOut, setIsSigningOut] = useState(false);
@@ -103,10 +104,10 @@ const SettingsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 30,
         paddingHorizontal: 20,
@@ -119,13 +120,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginTop: 10,
         marginBottom: 5,
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
         textAlign: 'center',
     },
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
         marginBottom: 12,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     settingsItem: {
         flexDirection: 'row',
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         fontWeight: '500',
-        color: '#333',
+        color: colors.text.primary,
     },
     signOutContainer: {
         paddingHorizontal: 20,
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
     signOutCard: {
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#ff4757',
+        backgroundColor: colors.status.error,
     },
     signOutButton: {
         flexDirection: 'row',
@@ -179,7 +180,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -187,7 +188,7 @@ const styles = StyleSheet.create({
     signOutText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#fff',
+        color: colors.text.light,
     },
 });
 

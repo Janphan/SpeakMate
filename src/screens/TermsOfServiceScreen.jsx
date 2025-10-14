@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import { colors } from '../theme';
 
 export default function TermsOfServiceScreen({ navigation }) {
     const termsSection = [
@@ -38,7 +39,7 @@ export default function TermsOfServiceScreen({ navigation }) {
                     style={styles.backButton}
                     onPress={() => navigation.goBack()}
                 >
-                    <Icon source="arrow-left" size={24} color="#fff" />
+                    <Icon source="arrow-left" size={24} color={colors.text.light} />
                 </TouchableOpacity>
                 <View style={styles.headerContent}>
                     <Text style={styles.title}>Terms of Service</Text>
@@ -54,7 +55,7 @@ export default function TermsOfServiceScreen({ navigation }) {
                         <Card.Content style={styles.cardContent}>
                             <View style={styles.cardHeader}>
                                 <View style={styles.cardIconContainer}>
-                                    <Icon source="file-document-outline" size={24} color="#5e7055" />
+                                    <Icon source="file-document-outline" size={24} color={colors.primary} />
                                 </View>
                                 <Text style={styles.cardTitle}>Terms & Conditions</Text>
                             </View>
@@ -63,7 +64,7 @@ export default function TermsOfServiceScreen({ navigation }) {
                                 we keep it simple so you can easily understand your rights and responsibilities.
                             </Text>
                             <View style={styles.lastUpdatedContainer}>
-                                <Icon source="calendar" size={16} color="#666" />
+                                <Icon source="calendar" size={16} color={colors.text.secondary} />
                                 <Text style={styles.lastUpdatedText}>Draft version - September 2025</Text>
                             </View>
                         </Card.Content>
@@ -83,7 +84,7 @@ export default function TermsOfServiceScreen({ navigation }) {
                     <Card style={styles.agreementCard}>
                         <Card.Content style={styles.cardContent}>
                             <View style={styles.agreementHeader}>
-                                <Icon source="check-circle" size={24} color="#2e7d2e" />
+                                <Icon source="check-circle" size={24} color={colors.status.success} />
                                 <Text style={styles.agreementTitle}>Agreement Confirmation</Text>
                             </View>
                             <Text style={styles.agreementText}>
@@ -101,17 +102,17 @@ export default function TermsOfServiceScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -133,12 +134,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 4,
     },
     subtitle: {
         fontSize: 14,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
     },
     scrollContainer: {
@@ -153,21 +154,21 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     termCard: {
         marginBottom: 12,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     agreementCard: {
         marginTop: 8,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#e8f5e8',
+        backgroundColor: colors.status.successLight,
         borderWidth: 1,
-        borderColor: '#c8e6c9',
+        borderColor: colors.status.success,
     },
     cardContent: {
         paddingVertical: 20,
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -190,11 +191,11 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
     },
     introText: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         lineHeight: 22,
         marginBottom: 16,
     },
@@ -203,23 +204,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 12,
         borderTopWidth: 1,
-        borderTopColor: '#f0f0f0',
+        borderTopColor: colors.border.light,
     },
     lastUpdatedText: {
         fontSize: 12,
-        color: '#666',
+        color: colors.text.secondary,
         marginLeft: 6,
         fontStyle: 'italic',
     },
     termTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 12,
     },
     termContent: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         lineHeight: 22,
     },
     agreementHeader: {
@@ -230,12 +231,12 @@ const styles = StyleSheet.create({
     agreementTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#2e7d2e',
+        color: colors.status.success,
         marginLeft: 8,
     },
     agreementText: {
         fontSize: 14,
-        color: '#2e7d2e',
+        color: colors.status.success,
         lineHeight: 22,
         fontWeight: '500',
     },

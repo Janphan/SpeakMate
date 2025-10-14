@@ -4,6 +4,7 @@ import { doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
+import { colors } from '../theme';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -223,17 +224,17 @@ export default function ConversationDetailsScreen({ route, navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)', // Keep as rgba for transparency
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -255,19 +256,19 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 4,
     },
     subtitle: {
         fontSize: 14,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
     },
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     loadingContent: {
         alignItems: 'center',
@@ -278,7 +279,7 @@ const styles = StyleSheet.create({
     loadingText: {
         marginTop: 16,
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
     },
     errorContainer: {
@@ -291,7 +292,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     errorContent: {
         alignItems: 'center',
@@ -300,13 +301,13 @@ const styles = StyleSheet.create({
     errorTitle: {
         fontSize: 20,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginTop: 16,
         marginBottom: 8,
     },
     errorText: {
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         lineHeight: 24,
     },
@@ -322,19 +323,19 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     feedbackCard: {
         marginBottom: 16,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     emptyCard: {
         marginBottom: 16,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     emptyContent: {
         alignItems: 'center',
@@ -343,13 +344,13 @@ const styles = StyleSheet.create({
     emptyTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginTop: 16,
         marginBottom: 8,
     },
     emptyText: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         lineHeight: 20,
     },
@@ -363,13 +364,13 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         paddingBottom: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#f0f0f0',
+        borderBottomColor: colors.border.medium,
     },
     cardIconContainer: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.background.tertiary,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -380,7 +381,7 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 4,
     },
     timestampContainer: {
@@ -389,7 +390,7 @@ const styles = StyleSheet.create({
     },
     timestamp: {
         fontSize: 12,
-        color: '#666',
+        color: colors.text.secondary,
         marginLeft: 4,
     },
     messagesContainer: {
@@ -409,10 +410,10 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     aiIconContainer: {
-        backgroundColor: '#e8f5e8',
+        backgroundColor: colors.status.success + '30', // Light green background
     },
     userIconContainer: {
-        backgroundColor: '#e3f2fd',
+        backgroundColor: colors.status.info + '30', // Light blue background
     },
     messageContent: {
         flex: 1,
@@ -423,14 +424,14 @@ const styles = StyleSheet.create({
         marginBottom: 4,
     },
     aiRole: {
-        color: '#2e7d2e',
+        color: colors.status.success,
     },
     userRole: {
-        color: '#3a5ca8',
+        color: colors.status.info,
     },
     messageText: {
         fontSize: 14,
-        color: '#333',
+        color: colors.text.primary,
         lineHeight: 20,
     },
     feedbackContent: {
@@ -442,7 +443,7 @@ const styles = StyleSheet.create({
     },
     feedbackText: {
         fontSize: 14,
-        color: '#333',
+        color: colors.text.primary,
         flex: 1,
         marginLeft: 8,
         lineHeight: 20,
@@ -455,14 +456,14 @@ const styles = StyleSheet.create({
     },
     noFeedbackText: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         marginLeft: 8,
         fontStyle: 'italic',
     },
     deleteCard: {
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#ff4757',
+        backgroundColor: colors.status.error,
     },
     deleteButton: {
         flexDirection: 'row',
@@ -483,6 +484,6 @@ const styles = StyleSheet.create({
     deleteText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#fff',
+        color: colors.text.light,
     },
 });

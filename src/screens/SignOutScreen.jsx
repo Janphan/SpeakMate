@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { signOut } from "firebase/auth";
 import { auth } from "../api/firebaseConfig";
+import { colors } from '../theme';
 
 const SignOutScreen = ({ navigation }) => {
     const handleSignOut = async () => {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-        backgroundColor: "#fff",
+        backgroundColor: colors.background.secondary,
     },
     title: {
         fontSize: 20,
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     button: {
-        backgroundColor: "#ff4d4d",
+        backgroundColor: colors.status.error,
         padding: 15,
         borderRadius: 8,
         width: "100%",
@@ -50,18 +51,18 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     buttonText: {
-        color: "#fff",
+        color: colors.text.light,
         fontWeight: "bold",
     },
     cancelButton: {
-        backgroundColor: "#ccc",
+        backgroundColor: colors.text.secondary,
         padding: 15,
         borderRadius: 8,
         width: "100%",
         alignItems: "center",
     },
     cancelButtonText: {
-        color: "#000",
+        color: colors.text.light,
         fontWeight: "bold",
     },
 });

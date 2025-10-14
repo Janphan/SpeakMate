@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
 import { useStatistics } from '../hooks/useStatistics';
+import { colors } from '../theme';
 
 export default function StatisticsScreen() {
     const {
@@ -48,8 +49,8 @@ export default function StatisticsScreen() {
         return (
             <View style={styles.loadingContainer}>
                 <View style={styles.loadingContent}>
-                    <Icon source="chart-line" size={60} color="#5e7055" />
-                    <ActivityIndicator size="large" color="#5e7055" style={styles.loader} />
+                    <Icon source="chart-line" size={60} color={colors.primary} />
+                    <ActivityIndicator size="large" color={colors.primary} style={styles.loader} />
                     <Text style={styles.loadingText}>Loading your statistics...</Text>
                 </View>
             </View>
@@ -61,7 +62,7 @@ export default function StatisticsScreen() {
             {/* Header Section */}
             <View style={styles.headerSection}>
                 <View style={styles.headerContent}>
-                    <Icon source="chart-line" size={40} color="#5e7055" />
+                    <Icon source="chart-line" size={40} color={colors.text.light} />
                     <Text style={styles.title}>Your Progress</Text>
                     <Text style={styles.subtitle}>Track your speaking improvement journey</Text>
                 </View>
@@ -72,7 +73,7 @@ export default function StatisticsScreen() {
                 {isOffline && (
                     <Card style={styles.offlineCard}>
                         <Card.Content style={styles.offlineContent}>
-                            <Icon source="wifi-off" size={24} color="#d4ac0d" />
+                            <Icon source="wifi-off" size={24} color={colors.status.warning} />
                             <View style={styles.offlineTextContainer}>
                                 <Text style={styles.offlineText}>Offline Mode</Text>
                                 <Text style={styles.offlineSubtext}>Showing cached data</Text>
@@ -93,7 +94,7 @@ export default function StatisticsScreen() {
                         <Card.Content style={styles.statContent}>
                             <View style={styles.statHeader}>
                                 <View style={styles.statIconContainer}>
-                                    <Icon source="clock" size={24} color="#5e7055" />
+                                    <Icon source="clock" size={24} color={colors.primary} />
                                 </View>
                                 <Text style={styles.statCardTitle}>Time Tracking</Text>
                             </View>
@@ -119,7 +120,7 @@ export default function StatisticsScreen() {
                         <Card.Content style={styles.statContent}>
                             <View style={styles.statHeader}>
                                 <View style={styles.statIconContainer}>
-                                    <Icon source="target" size={24} color="#5e7055" />
+                                    <Icon source="target" size={24} color={colors.primary} />
                                 </View>
                                 <Text style={styles.statCardTitle}>Practice Overview</Text>
                             </View>
@@ -132,7 +133,7 @@ export default function StatisticsScreen() {
                                     <Text style={styles.statLabel}>Current Streak</Text>
                                     <View style={styles.streakContainer}>
                                         <Text style={styles.statValue}>{statistics.streakDays} days</Text>
-                                        <Icon source="fire" size={16} color="#ff6b6b" />
+                                        <Icon source="fire" size={16} color={colors.status.error} />
                                     </View>
                                 </View>
                                 <View style={styles.statRow}>
@@ -150,7 +151,7 @@ export default function StatisticsScreen() {
                         <Card.Content style={styles.statContent}>
                             <View style={styles.statHeader}>
                                 <View style={styles.statIconContainer}>
-                                    <Icon source="trending-up" size={24} color="#5e7055" />
+                                    <Icon source="trending-up" size={24} color={colors.primary} />
                                 </View>
                                 <Text style={styles.statCardTitle}>Performance</Text>
                             </View>
@@ -186,17 +187,17 @@ export default function StatisticsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 20,
         paddingBottom: 30,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -207,13 +208,13 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginTop: 10,
         marginBottom: 5,
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
         textAlign: 'center',
     },
@@ -221,7 +222,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     loadingContent: {
         alignItems: 'center',
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
     loadingText: {
         marginTop: 16,
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
     },
     scrollContainer: {
@@ -241,12 +242,12 @@ const styles = StyleSheet.create({
         paddingTop: 20,
     },
     offlineCard: {
-        backgroundColor: '#fff9c4',
+        backgroundColor: colors.status.warningLight,
         marginBottom: 20,
         borderRadius: 16,
         elevation: 2,
         borderLeftWidth: 4,
-        borderLeftColor: '#d4ac0d',
+        borderLeftColor: colors.status.warning,
     },
     offlineContent: {
         flexDirection: 'row',
@@ -259,17 +260,17 @@ const styles = StyleSheet.create({
     },
     offlineText: {
         fontSize: 16,
-        color: '#d4ac0d',
+        color: colors.status.warning,
         fontWeight: '600',
     },
     offlineSubtext: {
         fontSize: 14,
-        color: '#d4ac0d',
+        color: colors.status.warning,
         opacity: 0.8,
     },
     lastUpdatedText: {
         fontSize: 12,
-        color: '#d4ac0d',
+        color: colors.status.warning,
         marginTop: 2,
     },
     statsGrid: {
@@ -279,7 +280,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     statContent: {
         paddingVertical: 20,
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -302,7 +303,7 @@ const styles = StyleSheet.create({
     statCardTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
     },
     statItems: {
         gap: 12,
@@ -313,17 +314,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 8,
         borderBottomWidth: 1,
-        borderBottomColor: '#f0f0f0',
+        borderBottomColor: colors.border.light,
     },
     statLabel: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         flex: 1,
     },
     statValue: {
         fontSize: 14,
         fontWeight: '600',
-        color: '#5e7055',
+        color: colors.primary,
         textAlign: 'right',
     },
     streakContainer: {

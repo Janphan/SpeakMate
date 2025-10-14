@@ -4,6 +4,7 @@ import { Card, Icon } from 'react-native-paper';
 import * as ImagePicker from 'expo-image-picker';
 import { getAuth, updateProfile } from "firebase/auth";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { colors } from '../theme';
 
 export default function ProfileScreen({ navigation }) {
     const [image, setImage] = useState(null);
@@ -150,12 +151,12 @@ export default function ProfileScreen({ navigation }) {
                                 <View style={styles.infoRow}>
                                     <Icon source={user?.emailVerified ? "check-circle" : "alert-circle"}
                                         size={20}
-                                        color={user?.emailVerified ? "#2e7d2e" : "#ff6b6b"} />
+                                        color={user?.emailVerified ? colors.status.success : colors.status.error} />
                                     <View style={styles.infoContent}>
                                         <Text style={styles.infoLabel}>Email Status</Text>
                                         <Text style={[
                                             styles.infoValue,
-                                            { color: user?.emailVerified ? "#2e7d2e" : "#ff6b6b" }
+                                            { color: user?.emailVerified ? colors.status.success : colors.status.error }
                                         ]}>
                                             {user?.emailVerified ? 'Verified' : 'Not verified'}
                                         </Text>
@@ -187,17 +188,17 @@ export default function ProfileScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 16,
@@ -219,12 +220,12 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 4,
     },
     subtitle: {
         fontSize: 14,
-        color: '#fff',
+        color: colors.text.light,
         opacity: 0.9,
     },
     scrollContainer: {
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     profileCardContent: {
         paddingVertical: 30,
@@ -257,17 +258,17 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 60,
         borderWidth: 4,
-        borderColor: '#5e7055',
+        borderColor: colors.primary,
     },
     defaultAvatar: {
         width: 120,
         height: 120,
         borderRadius: 60,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 4,
-        borderColor: '#5e7055',
+        borderColor: colors.primary,
     },
     cameraButton: {
         position: 'absolute',
@@ -276,18 +277,18 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         borderRadius: 16,
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 4,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
     },
     photoInstruction: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         fontStyle: 'italic',
     },
@@ -295,14 +296,14 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     helpCard: {
         borderRadius: 16,
         elevation: 2,
-        backgroundColor: '#e3f2fd',
+        backgroundColor: colors.status.info + '20', // Light blue background
         borderWidth: 1,
-        borderColor: '#bbdefb',
+        borderColor: colors.status.info + '40', // Slightly darker blue border
     },
     cardContent: {
         paddingVertical: 20,
@@ -314,13 +315,13 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingBottom: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#f0f0f0',
+        borderBottomColor: colors.border.light,
     },
     cardIconContainer: {
         width: 40,
         height: 40,
         borderRadius: 20,
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         justifyContent: 'center',
         alignItems: 'center',
         marginRight: 12,
@@ -328,7 +329,7 @@ const styles = StyleSheet.create({
     cardTitle: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
     },
     infoSection: {
         gap: 16,
@@ -343,13 +344,13 @@ const styles = StyleSheet.create({
     },
     infoLabel: {
         fontSize: 12,
-        color: '#666',
+        color: colors.text.secondary,
         fontWeight: '500',
         marginBottom: 2,
     },
     infoValue: {
         fontSize: 16,
-        color: '#333',
+        color: colors.text.primary,
         fontWeight: '500',
     },
     helpHeader: {
@@ -360,12 +361,12 @@ const styles = StyleSheet.create({
     helpTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#3498db',
+        color: colors.status.info,
         marginLeft: 8,
     },
     helpText: {
         fontSize: 14,
-        color: '#3498db',
+        color: colors.status.info,
         lineHeight: 22,
         fontWeight: '500',
     },

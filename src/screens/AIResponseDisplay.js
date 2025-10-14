@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 const AIResponseDisplay = ({ messages }) => {
     const scrollViewRef = useRef(null);
@@ -73,25 +74,25 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         maxWidth: '90%',
         elevation: 2,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.1,
         shadowRadius: 2,
     },
     userBubble: {
-        backgroundColor: '#e3f2fd',
+        backgroundColor: colors.status.info + '20', // Light blue background
         alignSelf: 'flex-end',
         borderBottomRightRadius: 4,
     },
     aiBubble: {
-        backgroundColor: '#f1f8e9',
+        backgroundColor: colors.status.success + '20', // Light green background
         alignSelf: 'flex-start',
         borderBottomLeftRadius: 4,
     },
     roleLabel: {
         fontSize: 12,
         fontWeight: 'bold',
-        color: '#666',
+        color: colors.text.secondary,
         marginBottom: 5,
         textTransform: 'uppercase',
     },
@@ -100,14 +101,14 @@ const styles = StyleSheet.create({
         lineHeight: 22,
     },
     userText: {
-        color: '#1565c0',
+        color: colors.status.info,
     },
     aiText: {
-        color: '#2e7d32',
+        color: colors.status.success,
     },
     empty: {
         fontSize: 16,
-        color: '#888',
+        color: colors.text.muted,
         textAlign: 'center',
         fontStyle: 'italic',
     },

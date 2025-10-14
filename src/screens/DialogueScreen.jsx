@@ -18,6 +18,7 @@ import uuid from 'react-native-uuid';
 import { analyzeSpeech } from '../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
 import { logger } from '../utils/logger';
+import { colors } from '../theme';
 import PropTypes from 'prop-types';
 
 
@@ -306,17 +307,17 @@ DialogueScreen.propTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 20,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -324,7 +325,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     backButton: {
-        backgroundColor: 'rgba(255,255,255,0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         borderRadius: 20,
         marginRight: 10,
     },
@@ -334,13 +335,13 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 4,
         marginTop: 30,
     },
     headerSubtitle: {
         fontSize: 16,
-        color: '#c8e6c9',
+        color: colors.primaryLight,
         fontWeight: '500',
     },
     mainContent: {
@@ -350,7 +351,7 @@ const styles = StyleSheet.create({
     statusCard: {
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         marginBottom: 30,
     },
     statusCardContent: {
@@ -363,7 +364,7 @@ const styles = StyleSheet.create({
     },
     statusText: {
         fontSize: 16,
-        color: '#333',
+        color: colors.text.primary,
         marginLeft: 12,
         flex: 1,
         lineHeight: 22,
@@ -374,7 +375,7 @@ const styles = StyleSheet.create({
     },
     loadingText: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         marginTop: 10,
         fontStyle: 'italic',
     },
@@ -392,31 +393,31 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
     },
     readyButton: {
-        backgroundColor: '#4caf50',
+        backgroundColor: colors.status.success,
     },
     recordingButton: {
-        backgroundColor: '#f44336',
+        backgroundColor: colors.status.error,
     },
     disabledButton: {
-        backgroundColor: '#bdbdbd',
+        backgroundColor: colors.text.secondary, // Gray color from theme
         elevation: 2,
     },
     recordButtonLabel: {
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         fontWeight: '500',
     },
     messagesContainer: {
         flex: 1,
         borderRadius: 16,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         elevation: 2,
         // Removed overflow: 'hidden' to allow scrolling
     },
@@ -424,13 +425,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         marginHorizontal: 20,
         marginBottom: 20,
         paddingVertical: 15,
         borderRadius: 12,
         elevation: 4,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -438,7 +439,7 @@ const styles = StyleSheet.create({
     endConversationText: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#fff',
+        color: colors.text.light,
         marginLeft: 8,
     },
 });

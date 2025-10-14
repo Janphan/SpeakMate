@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, S
 import { signUpUser } from '../api/auth';
 import { Icon, Card } from 'react-native-paper';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 // Import the background image
 const backgroundImage = require('../../assets/sigin_background.jpg');
@@ -44,7 +45,7 @@ export default function SignUpScreen({ navigation }) {
                 {/* Header Section */}
                 <View style={styles.headerSection}>
                     <View style={styles.logoContainer}>
-                        <Icon source="account-plus" size={60} color="#fff" />
+                        <Icon source="account-plus" size={60} color={colors.text.light} />
                     </View>
                     <Text style={styles.title}>Join SpeakMate</Text>
                     <Text style={styles.subtitle}>Create your account to get started</Text>
@@ -55,20 +56,20 @@ export default function SignUpScreen({ navigation }) {
                     <Card.Content style={styles.formContent}>
                         {/* Name Input */}
                         <View style={styles.inputContainer}>
-                            <Icon source="account" size={20} color="#5e7055" style={styles.inputIcon} />
+                            <Icon source="account" size={20} color={colors.primary} style={styles.inputIcon} />
                             <TextInput
                                 placeholder="Full Name"
                                 value={name}
                                 onChangeText={setName}
                                 style={styles.input}
                                 autoCapitalize="words"
-                                placeholderTextColor="#888"
+                                placeholderTextColor={colors.text.placeholder}
                             />
                         </View>
 
                         {/* Email Input */}
                         <View style={styles.inputContainer}>
-                            <Icon source="email" size={20} color="#5e7055" style={styles.inputIcon} />
+                            <Icon source="email" size={20} color={colors.primary} style={styles.inputIcon} />
                             <TextInput
                                 placeholder="Email Address"
                                 value={email}
@@ -77,13 +78,13 @@ export default function SignUpScreen({ navigation }) {
                                 autoCapitalize="none"
                                 style={styles.input}
                                 textContentType="emailAddress"
-                                placeholderTextColor="#888"
+                                placeholderTextColor={colors.text.placeholder}
                             />
                         </View>
 
                         {/* Password Input */}
                         <View style={styles.inputContainer}>
-                            <Icon source="lock" size={20} color="#5e7055" style={styles.inputIcon} />
+                            <Icon source="lock" size={20} color={colors.primary} style={styles.inputIcon} />
                             <TextInput
                                 placeholder="Password"
                                 value={password}
@@ -91,13 +92,13 @@ export default function SignUpScreen({ navigation }) {
                                 secureTextEntry={!showPassword}
                                 style={styles.input}
                                 textContentType="password"
-                                placeholderTextColor="#888"
+                                placeholderTextColor={colors.text.placeholder}
                             />
                             <TouchableOpacity
                                 onPress={() => setShowPassword(!showPassword)}
                                 style={styles.eyeIcon}
                             >
-                                <Icon source={showPassword ? "eye-off" : "eye"} size={20} color="#666" />
+                                <Icon source={showPassword ? "eye-off" : "eye"} size={20} color={colors.text.secondary} />
                             </TouchableOpacity>
                         </View>
 
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 36,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 8,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
         textShadowOffset: { width: 1, height: 1 },
@@ -179,7 +180,7 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 16,
-        color: '#fff',
+        color: colors.text.light,
         textAlign: 'center',
         opacity: 0.9,
         textShadowColor: 'rgba(0, 0, 0, 0.3)',
@@ -191,7 +192,7 @@ const styles = StyleSheet.create({
         maxWidth: 350,
         borderRadius: 16,
         elevation: 8,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     formContent: {
         paddingVertical: 30,
@@ -200,13 +201,13 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
         borderRadius: 12,
         marginBottom: 16,
         paddingHorizontal: 16,
         paddingVertical: 4,
         borderWidth: 1,
-        borderColor: '#e9ecef',
+        borderColor: colors.border.light,
     },
     inputIcon: {
         marginRight: 12,
@@ -215,13 +216,13 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 16,
         paddingVertical: 12,
-        color: '#333',
+        color: colors.text.primary,
     },
     eyeIcon: {
         padding: 8,
     },
     signUpButton: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
@@ -230,11 +231,11 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     disabledButton: {
-        backgroundColor: '#a5b5a0',
+        backgroundColor: colors.primaryLight,
         elevation: 0,
     },
     signUpButtonText: {
-        color: '#fff',
+        color: colors.text.light,
         fontSize: 16,
         fontWeight: '600',
     },
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     link: {
-        color: '#5e7055',
+        color: colors.primary,
         fontSize: 14,
         fontWeight: '500',
         textAlign: 'center',

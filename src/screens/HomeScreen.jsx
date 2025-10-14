@@ -4,11 +4,12 @@ import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useStatistics } from '../hooks/useStatistics';
 import PropTypes from 'prop-types';
+import { colors } from '../theme';
 
 // Icon components to avoid nested components in render
-const Band5Icon = () => <Icon source="numeric-5-circle" size={20} color="#5e7055" />;
-const Band6Icon = () => <Icon source="numeric-6-circle" size={20} color="#5e7055" />;
-const Band7Icon = () => <Icon source="numeric-7-circle" size={20} color="#5e7055" />;
+const Band5Icon = () => <Icon source="numeric-5-circle" size={20} color={colors.primary} />;
+const Band6Icon = () => <Icon source="numeric-6-circle" size={20} color={colors.primary} />;
+const Band7Icon = () => <Icon source="numeric-7-circle" size={20} color={colors.primary} />;
 
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
@@ -178,17 +179,17 @@ HomeScreen.propTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 20,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -203,13 +204,13 @@ const styles = StyleSheet.create({
     },
     greetingText: {
         fontSize: 16,
-        color: '#c8e6c9',
+        color: colors.primaryLight,
         fontWeight: '500',
     },
     userName: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginTop: 2,
     },
     avatar: {
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 30,
         borderWidth: 3,
-        borderColor: '#fff',
+        borderColor: colors.text.light,
     },
     mainContent: {
         flex: 1,
@@ -233,14 +234,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     statCardContent: {
         alignItems: 'center',
         padding: 20,
     },
     statIconContainer: {
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
         borderRadius: 50,
         padding: 12,
         marginBottom: 10,
@@ -248,19 +249,19 @@ const styles = StyleSheet.create({
     statNumber: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 5,
     },
     statLabel: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         fontWeight: '500',
     },
     progressCard: {
         borderRadius: 16,
         marginBottom: 20,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     progressCardContent: {
         padding: 20,
@@ -274,32 +275,32 @@ const styles = StyleSheet.create({
     progressTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#5e7055',
+        color: colors.primary,
     },
     viewMoreButton: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#f0f4f0',
+        backgroundColor: colors.primaryLight,
         paddingHorizontal: 12,
         paddingVertical: 6,
         borderRadius: 20,
     },
     viewMoreText: {
         fontSize: 14,
-        color: '#5e7055',
+        color: colors.primary,
         fontWeight: '500',
         marginRight: 4,
     },
     progressSubtitle: {
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         lineHeight: 24,
     },
     levelCard: {
         borderRadius: 16,
         marginBottom: 20,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
     },
     levelCardContent: {
         padding: 20,
@@ -307,12 +308,12 @@ const styles = StyleSheet.create({
     levelCardTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#5e7055',
+        color: colors.primary,
         marginBottom: 15,
         textAlign: 'center',
     },
     levelButton: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -324,7 +325,7 @@ const styles = StyleSheet.create({
     levelButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#fff',
+        color: colors.text.light,
     },
     menuContainer: {
         width: '100%',
@@ -334,21 +335,21 @@ const styles = StyleSheet.create({
     levelDisplay: {
         marginTop: 12,
         padding: 12,
-        backgroundColor: '#e8f5e8',
+        backgroundColor: colors.status.success + '20', // Light green background
         borderRadius: 10,
         alignItems: 'center',
     },
     levelText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#2e7d2e',
+        color: colors.status.success,
     },
     // Menu Styles
     menuContent: {
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         borderRadius: 12,
         elevation: 12,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 6 },
         shadowOpacity: 0.25,
         shadowRadius: 12,
@@ -367,6 +368,6 @@ const styles = StyleSheet.create({
     menuItemTitle: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
     },
 });

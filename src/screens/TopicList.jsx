@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import { colors } from '../theme';
 
 const topics = [
     { id: '1', title: 'Work or Study', icon: 'briefcase', color: '#4caf50' },
@@ -70,17 +71,17 @@ export default function TopicList({ navigation, route }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 25,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -91,13 +92,13 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 8,
         textAlign: 'center',
     },
     headerSubtitle: {
         fontSize: 16,
-        color: '#c8e6c9',
+        color: colors.primaryLight,
         textAlign: 'center',
         fontWeight: '500',
     },
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
-        shadowColor: '#000',
+        backgroundColor: colors.background.secondary,
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
@@ -138,12 +139,12 @@ const styles = StyleSheet.create({
     topicText: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#333',
+        color: colors.text.primary,
         marginBottom: 4,
     },
     topicSubtext: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         fontStyle: 'italic',
     },
 });

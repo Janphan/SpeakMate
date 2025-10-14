@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import { colors } from '../theme';
 
 // Feedback expects an 'analysis' prop from analyzeSpeech()
 const Feedback = ({ route, navigation }) => {
@@ -49,32 +50,32 @@ const Feedback = ({ route, navigation }) => {
 
                         <View style={styles.metricsGrid}>
                             <View style={styles.metricItem}>
-                                <View style={[styles.metricIconContainer, { backgroundColor: '#e3f2fd' }]}>
-                                    <Icon source="speedometer" size={24} color="#2196f3" />
+                                <View style={[styles.metricIconContainer, { backgroundColor: colors.status.info + '20' }]}>
+                                    <Icon source="speedometer" size={24} color={colors.status.info} />
                                 </View>
                                 <Text style={styles.metricLabel}>Words/Min</Text>
                                 <Text style={styles.metricValue}>{analysis.wpm}</Text>
                             </View>
 
                             <View style={styles.metricItem}>
-                                <View style={[styles.metricIconContainer, { backgroundColor: '#fff3e0' }]}>
-                                    <Icon source="pause" size={24} color="#ff9800" />
+                                <View style={[styles.metricIconContainer, { backgroundColor: colors.status.warning + '20' }]}>
+                                    <Icon source="pause" size={24} color={colors.status.warning} />
                                 </View>
                                 <Text style={styles.metricLabel}>Pauses</Text>
                                 <Text style={styles.metricValue}>{analysis.pauseCount}</Text>
                             </View>
 
                             <View style={styles.metricItem}>
-                                <View style={[styles.metricIconContainer, { backgroundColor: '#e8f5e8' }]}>
-                                    <Icon source="microphone" size={24} color="#4caf50" />
+                                <View style={[styles.metricIconContainer, { backgroundColor: colors.status.success + '20' }]}>
+                                    <Icon source="microphone" size={24} color={colors.status.success} />
                                 </View>
                                 <Text style={styles.metricLabel}>Clarity</Text>
                                 <Text style={styles.metricValue}>{analysis.clarityScore}</Text>
                             </View>
 
                             <View style={styles.metricItem}>
-                                <View style={[styles.metricIconContainer, { backgroundColor: '#fce4ec' }]}>
-                                    <Icon source="trophy" size={24} color="#e91e63" />
+                                <View style={[styles.metricIconContainer, { backgroundColor: colors.status.error + '20' }]}>
+                                    <Icon source="trophy" size={24} color={colors.status.error} />
                                 </View>
                                 <Text style={styles.metricLabel}>Band</Text>
                                 <Text style={styles.metricValue}>{analysis.fluencyBand}</Text>
@@ -131,17 +132,17 @@ const Feedback = ({ route, navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
     },
     headerSection: {
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingTop: 50,
         paddingBottom: 25,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
         elevation: 8,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
@@ -150,13 +151,13 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 28,
         fontWeight: 'bold',
-        color: '#fff',
+        color: colors.text.light,
         marginBottom: 8,
         textAlign: 'center',
     },
     headerSubtitle: {
         fontSize: 16,
-        color: '#c8e6c9',
+        color: colors.primaryLight,
         textAlign: 'center',
         fontWeight: '500',
     },
@@ -168,14 +169,14 @@ const styles = StyleSheet.create({
     sectionTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#5e7055',
+        color: colors.primary,
         marginBottom: 20,
         textAlign: 'center',
     },
     metricsCard: {
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         marginBottom: 20,
     },
     metricsCardContent: {
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 15,
         padding: 15,
-        backgroundColor: '#f8f9fa',
+        backgroundColor: colors.background.primary,
         borderRadius: 12,
     },
     metricIconContainer: {
@@ -205,7 +206,7 @@ const styles = StyleSheet.create({
     },
     metricLabel: {
         fontSize: 14,
-        color: '#666',
+        color: colors.text.secondary,
         fontWeight: '500',
         marginBottom: 4,
         textAlign: 'center',
@@ -213,13 +214,13 @@ const styles = StyleSheet.create({
     metricValue: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#333',
+        color: colors.text.primary,
         textAlign: 'center',
     },
     feedbackCard: {
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         marginBottom: 20,
     },
     feedbackCardContent: {
@@ -233,10 +234,10 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         marginBottom: 12,
         padding: 12,
-        backgroundColor: '#f0f8f0',
+        backgroundColor: colors.status.success + '20', // Light green background
         borderRadius: 8,
         borderLeftWidth: 3,
-        borderLeftColor: '#4caf50',
+        borderLeftColor: colors.status.success,
     },
     feedbackBullet: {
         marginRight: 10,
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
     },
     feedbackText: {
         fontSize: 15,
-        color: '#333',
+        color: colors.text.primary,
         flex: 1,
         lineHeight: 22,
     },
@@ -252,12 +253,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 15,
-        backgroundColor: '#e3f2fd',
+        backgroundColor: colors.status.info + '20', // Light blue background
         borderRadius: 8,
     },
     noFeedbackText: {
         fontSize: 15,
-        color: '#1976d2',
+        color: colors.status.info,
         marginLeft: 10,
         flex: 1,
         fontStyle: 'italic',
@@ -269,12 +270,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#5e7055',
+        backgroundColor: colors.primary,
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 12,
         elevation: 4,
-        shadowColor: '#000',
+        shadowColor: colors.shadow.color,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -283,31 +284,31 @@ const styles = StyleSheet.create({
     primaryButtonText: {
         fontSize: 18,
         fontWeight: '600',
-        color: '#fff',
+        color: colors.text.light,
         marginLeft: 8,
     },
     secondaryButton: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 12,
         borderWidth: 2,
-        borderColor: '#5e7055',
+        borderColor: colors.primary,
         elevation: 2,
     },
     secondaryButtonText: {
         fontSize: 16,
         fontWeight: '600',
-        color: '#5e7055',
+        color: colors.primary,
         marginLeft: 8,
     },
     errorCard: {
         borderRadius: 16,
         elevation: 4,
-        backgroundColor: '#fff',
+        backgroundColor: colors.background.secondary,
         marginBottom: 20,
     },
     errorCardContent: {
@@ -317,14 +318,14 @@ const styles = StyleSheet.create({
     errorTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#333',
+        color: colors.text.primary,
         marginTop: 15,
         marginBottom: 10,
         textAlign: 'center',
     },
     errorText: {
         fontSize: 16,
-        color: '#666',
+        color: colors.text.secondary,
         textAlign: 'center',
         lineHeight: 24,
     },
