@@ -216,27 +216,6 @@ const styles = StyleSheet.create({
         color: '#333',
         textAlign: 'center',
     },
-    detailMetrics: {
-        backgroundColor: '#f0f4f0',
-        borderRadius: 12,
-        padding: 15,
-    },
-    detailMetricRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 8,
-    },
-    detailLabel: {
-        fontSize: 14,
-        color: '#666',
-        flex: 1,
-    },
-    detailValue: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: '#5e7055',
-    },
     feedbackCard: {
         borderRadius: 16,
         elevation: 4,

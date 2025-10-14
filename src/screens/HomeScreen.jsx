@@ -338,33 +338,6 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#2e7d2e',
     },
-    motivationCard: {
-        borderRadius: 16,
-        elevation: 4,
-        backgroundColor: '#fff5e6',
-        borderLeftWidth: 4,
-        borderLeftColor: '#ffc107',
-    },
-    motivationCardContent: {
-        padding: 20,
-    },
-    motivationHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    motivationTitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#f57c00',
-        marginLeft: 8,
-    },
-    motivationText: {
-        fontSize: 16,
-        color: '#f57c00',
-        lineHeight: 24,
-        fontStyle: 'italic',
-    },
     // Menu Styles
     menuContent: {
         backgroundColor: '#fff',
