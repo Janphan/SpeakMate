@@ -6,7 +6,7 @@ import { logger } from '../utils/logger';
 
 // Track used questions per conversation session
 const usedQuestions = new Set();
-const currentTopicQuestions = [];
+let currentTopicQuestions = [];
 
 // Reset question tracking for new conversation
 export const resetQuestionTracking = () => {
@@ -111,7 +111,8 @@ Keep questions varied and engaging to simulate a real IELTS interview.
         logger.error("OpenAI API Error", {
             error: error.message,
             status: error.response?.status,
-            userInput: userInput?.substring(0, 50) + "..."
+            topic: topic,
+            level: level
         });
         return "I'm sorry, I couldn't process your request.";
     }

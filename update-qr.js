@@ -35,7 +35,7 @@ async function getLatestBuildUrl() {
 
 async function generateQRCodeFromLatestBuild() {
     try {
-        const apkUrl = await getLatestBuildUrl();
+        let apkUrl = await getLatestBuildUrl();
 
         if (!apkUrl) {
             logger.warn('⚠️ No valid APK URL found. Using fallback URL...');

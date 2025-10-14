@@ -8,14 +8,21 @@ import PropTypes from 'prop-types';
 export default function HomeScreen({ navigation }) {
     const [visible, setVisible] = useState(false);
     const [selectedLevel, setSelectedLevel] = useState('Band 5-6');
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        const auth = getAuth();
+        return auth.currentUser;
+    });
 
     // Use the statistics hook
     const { statistics, loading: isLoadingStats } = useStatistics();
 
     useEffect(() => {
         const auth = getAuth();
-        setUser(auth.currentUser);
+        const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+            setUser(currentUser);
+        });
+
+        return unsubscribe;
     }, []);
 
     return (
