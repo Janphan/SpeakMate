@@ -90,14 +90,17 @@ const Feedback = ({ route, navigation }) => {
                         <Text style={styles.sectionTitle}>� Personalized Feedback</Text>
                         <View style={styles.feedbackList}>
                             {analysis.feedback && analysis.feedback.length > 0 ? (
-                                analysis.feedback.map((item, idx) => (
-                                    <View key={idx} style={styles.feedbackItemContainer}>
-                                        <View style={styles.feedbackBullet}>
-                                            <Icon source="check-circle" size={16} color="#4caf50" />
+                                analysis.feedback.map((item) => {
+                                    const itemHash = item.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+                                    return (
+                                        <View key={`analysis-feedback-${itemHash}-${item.length}`} style={styles.feedbackItemContainer}>
+                                            <View style={styles.feedbackBullet}>
+                                                <Icon source="check-circle" size={16} color="#4caf50" />
+                                            </View>
+                                            <Text style={styles.feedbackText}>{item}</Text>
                                         </View>
-                                        <Text style={styles.feedbackText}>{item}</Text>
-                                    </View>
-                                ))
+                                    );
+                                })
                             ) : (
                                 <View style={styles.noFeedbackContainer}>
                                     <Icon source="information" size={24} color="#2196f3" />

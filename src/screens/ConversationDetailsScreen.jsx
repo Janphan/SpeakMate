@@ -138,23 +138,26 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                                 </View>
 
                                 <View style={styles.messagesContainer}>
-                                    {messages.map((msg, idx) => (
-                                        <View key={idx} style={styles.messageRow}>
-                                            <View style={[styles.messageIconContainer, msg.role === 'ai' ? styles.aiIconContainer : styles.userIconContainer]}>
-                                                <Icon
-                                                    source={msg.role === 'ai' ? 'robot' : 'account'}
-                                                    size={16}
-                                                    color={msg.role === 'ai' ? '#2e7d2e' : '#3a5ca8'}
-                                                />
+                                    {messages.map((msg) => {
+                                        const contentHash = msg.content ? msg.content.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0) : Math.random();
+                                        return (
+                                            <View key={`msg-${msg.role}-${contentHash}-${msg.content?.length || 0}`} style={styles.messageRow}>
+                                                <View style={[styles.messageIconContainer, msg.role === 'ai' ? styles.aiIconContainer : styles.userIconContainer]}>
+                                                    <Icon
+                                                        source={msg.role === 'ai' ? 'robot' : 'account'}
+                                                        size={16}
+                                                        color={msg.role === 'ai' ? '#2e7d2e' : '#3a5ca8'}
+                                                    />
+                                                </View>
+                                                <View style={styles.messageContent}>
+                                                    <Text style={[styles.messageRole, msg.role === 'ai' ? styles.aiRole : styles.userRole]}>
+                                                        {msg.role === 'ai' ? 'AI Assistant' : 'You'}
+                                                    </Text>
+                                                    <Text style={styles.messageText}>{msg.content}</Text>
+                                                </View>
                                             </View>
-                                            <View style={styles.messageContent}>
-                                                <Text style={[styles.messageRole, msg.role === 'ai' ? styles.aiRole : styles.userRole]}>
-                                                    {msg.role === 'ai' ? 'AI Assistant' : 'You'}
-                                                </Text>
-                                                <Text style={styles.messageText}>{msg.content}</Text>
-                                            </View>
-                                        </View>
-                                    ))}
+                                        );
+                                    })}
                                 </View>
                             </Card.Content>
                         </Card>
@@ -181,12 +184,15 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                             <View style={styles.feedbackContent}>
                                 {Array.isArray(conversation.feedback) ? (
                                     conversation.feedback.length > 0 ? (
-                                        conversation.feedback.map((item, idx) => (
-                                            <View key={idx} style={styles.feedbackItem}>
-                                                <Icon source="check-circle" size={16} color="#2e7d2e" />
-                                                <Text style={styles.feedbackText}>{item}</Text>
-                                            </View>
-                                        ))
+                                        conversation.feedback.map((item) => {
+                                            const itemHash = item.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+                                            return (
+                                                <View key={`feedback-${itemHash}-${item.length}`} style={styles.feedbackItem}>
+                                                    <Icon source="check-circle" size={16} color="#2e7d2e" />
+                                                    <Text style={styles.feedbackText}>{item}</Text>
+                                                </View>
+                                            );
+                                        })
                                     ) : (
                                         <View style={styles.noFeedbackContainer}>
                                             <Icon source="information-outline" size={20} color="#666" />

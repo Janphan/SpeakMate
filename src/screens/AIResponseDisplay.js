@@ -29,24 +29,27 @@ const AIResponseDisplay = ({ messages }) => {
             showsVerticalScrollIndicator={true}
             showsHorizontalScrollIndicator={false}
         >
-            {messages.map((msg, idx) => (
-                <View key={idx} style={styles.messageWrapper}>
-                    <View style={[
-                        styles.messageBubble,
-                        msg.role === 'user' ? styles.userBubble : styles.aiBubble
-                    ]}>
-                        <Text style={styles.roleLabel}>
-                            {msg.role === 'user' ? '🤩 You' : '🤖 AI Assistant'}
-                        </Text>
-                        <Text style={[
-                            styles.messageText,
-                            msg.role === 'user' ? styles.userText : styles.aiText
+            {messages.map((msg) => {
+                const contentHash = msg.content ? msg.content.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0) : 0;
+                return (
+                    <View key={`${msg.role}-${contentHash}-${msg.content?.length || 0}`} style={styles.messageWrapper}>
+                        <View style={[
+                            styles.messageBubble,
+                            msg.role === 'user' ? styles.userBubble : styles.aiBubble
                         ]}>
-                            {msg.content}
-                        </Text>
+                            <Text style={styles.roleLabel}>
+                                {msg.role === 'user' ? '🤩 You' : '🤖 AI Assistant'}
+                            </Text>
+                            <Text style={[
+                                styles.messageText,
+                                msg.role === 'user' ? styles.userText : styles.aiText
+                            ]}>
+                                {msg.content}
+                            </Text>
+                        </View>
                     </View>
-                </View>
-            ))}
+                );
+            })}
         </ScrollView>
     );
 };

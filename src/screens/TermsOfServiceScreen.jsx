@@ -71,8 +71,8 @@ export default function TermsOfServiceScreen({ navigation }) {
                     </Card>
 
                     {/* Terms Sections */}
-                    {termsSection.map((section, index) => (
-                        <Card key={index} style={styles.termCard}>
+                    {termsSection.map((section) => (
+                        <Card key={`terms-${section.title.replace(/\W/g, '')}`} style={styles.termCard}>
                             <Card.Content style={styles.cardContent}>
                                 <Text style={styles.termTitle}>{section.title}</Text>
                                 <Text style={styles.termContent}>{section.content}</Text>

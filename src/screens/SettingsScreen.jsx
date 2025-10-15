@@ -64,8 +64,8 @@ const SettingsScreen = ({ navigation }) => {
 
             {/* Settings Items */}
             <View style={styles.settingsContainer}>
-                {settingsItems.map((item, index) => (
-                    <Card key={index} style={styles.settingsCard}>
+                {settingsItems.map((item) => (
+                    <Card key={`settings-${item.title.replace(/\s/g, '')}`} style={styles.settingsCard}>
                         <TouchableOpacity
                             style={styles.settingsItem}
                             onPress={item.onPress}

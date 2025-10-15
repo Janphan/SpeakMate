@@ -67,8 +67,8 @@ export default function PrivacyPolicyScreen({ navigation }) {
                     </Card>
 
                     {/* Privacy Sections */}
-                    {privacySection.map((section, index) => (
-                        <Card key={index} style={styles.policyCard}>
+                    {privacySection.map((section) => (
+                        <Card key={`privacy-${section.title.replace(/\W/g, '')}`} style={styles.policyCard}>
                             <Card.Content style={styles.cardContent}>
                                 <Text style={styles.policyTitle}>{section.title}</Text>
                                 <Text style={styles.policyContent}>{section.content}</Text>
