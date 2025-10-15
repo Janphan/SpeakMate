@@ -147,14 +147,15 @@ export const useStatistics = () => {
         });
 
         const uniqueDates = [...new Set(dates)].sort((a, b) => b - a);
+        const dateMap = new Map(uniqueDates.map((date, index) => [index, date]));
 
-        let streak = 0;  // Likely gets reassigned in loop, so correct
+        let streak = 0;
         const today = new Date();
         const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
         for (let i = 0; i < uniqueDates.length; i++) {
             const expectedDate = todayTime - (i * 24 * 60 * 60 * 1000);
-            const currentDate = uniqueDates.at(i);
+            const currentDate = dateMap.get(i);
             if (currentDate === expectedDate) {
                 streak++;
             } else {

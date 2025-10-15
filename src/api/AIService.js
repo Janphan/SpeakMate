@@ -63,7 +63,12 @@ Keep questions varied and engaging to simulate a real IELTS interview.
             if (unusedQuestions.length > 0) {
                 // Pick a random unused question
                 const randomIndex = Math.floor(Math.random() * unusedQuestions.length);
-                const selectedQuestionText = unusedQuestions.at(randomIndex) || unusedQuestions.at(0) || `Tell me about ${topic.toLowerCase()}.`;
+                // Helper function for safe array access
+                const safeArrayAccess = (arr, index) => index >= 0 && index < arr.length ? arr[index] : null;
+
+                const selectedQuestionText = safeArrayAccess(unusedQuestions, randomIndex)
+                    || safeArrayAccess(unusedQuestions, 0)
+                    || `Tell me about ${topic.toLowerCase()}.`;
 
                 // Find the original index and mark it as used
                 const originalIndex = currentTopicQuestions.indexOf(selectedQuestionText);

@@ -1,5 +1,8 @@
 import { logger } from '../utils/logger';
 
+// Helper function for safe array access
+const safeArrayAccess = (arr, index) => index >= 0 && index < arr.length ? arr[index] : null;
+
 export function analyzeSpeech(responses) {
     // Validate input
     if (!Array.isArray(responses) || responses.length === 0) {
@@ -36,9 +39,9 @@ export function analyzeSpeech(responses) {
             // Calculate pause frequency (>0.5s gaps) using word-level timestamps
             let pauseCount = 0;
             let pauseDuration = 0;
-            for (let i = 1; i < words.length; i++) {
-                const currentWord = words.at(i);
-                const previousWord = words.at(i - 1);
+            for (let i = 0; i < words.length; i++) {
+                const currentWord = safeArrayAccess(words, i);
+                const previousWord = safeArrayAccess(words, i - 1);
                 if (currentWord && previousWord &&
                     typeof currentWord.start === 'number' &&
                     typeof previousWord.end === 'number') {
@@ -145,9 +148,9 @@ export function analyzeSpeech(responses) {
     // Aggregated pronunciation clarity (average avg_logprob across segments)
     const validSegments = results
         .map((result, idx) => {
-            const response = responses.at(idx);
-            return response && response.segments && Array.isArray(response.segments)
-                ? response.segments.at(0)
+            const response = safeArrayAccess(responses, idx);
+            return response && response.segments && Array.isArray(response.segments) && response.segments.length > 0
+                ? response.segments[0]
                 : null;
         })
         .filter(segment => segment && segment.avg_logprob);
