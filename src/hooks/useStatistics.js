@@ -104,9 +104,7 @@ export const useStatistics = () => {
         }, 'None');
         const averageIELTSBand = validScores > 0 ? totalIELTSScore / validScores : 0;
         const streakDays = calculateStreakDays(conversations);
-        const improvementTrend = calculateImprovementTrend(conversations);
-
-        return {
+        const improvementTrend = calculateImprovementTrend(conversations); return {
             totalSessions,
             sessionTimeToday: Math.round(sessionTimeToday),
             sessionTime7Days: Math.round(sessionTime7Days),
@@ -147,7 +145,6 @@ export const useStatistics = () => {
         });
 
         const uniqueDates = [...new Set(dates)].sort((a, b) => b - a);
-        const dateMap = new Map(uniqueDates.map((date, index) => [index, date]));
 
         let streak = 0;
         const today = new Date();
@@ -155,7 +152,8 @@ export const useStatistics = () => {
 
         for (let i = 0; i < uniqueDates.length; i++) {
             const expectedDate = todayTime - (i * 24 * 60 * 60 * 1000);
-            const currentDate = dateMap.get(i);
+            const currentDate = uniqueDates[i];
+
             if (currentDate === expectedDate) {
                 streak++;
             } else {
@@ -164,9 +162,7 @@ export const useStatistics = () => {
         }
 
         return streak;
-    };
-
-    const calculateImprovementTrend = (conversations) => {
+    }; const calculateImprovementTrend = (conversations) => {
         if (conversations.length < 2) return 'stable';
 
         const recentConversations = conversations.slice(0, 5);
