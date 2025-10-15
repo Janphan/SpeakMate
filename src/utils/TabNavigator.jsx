@@ -23,31 +23,36 @@ const getTabIconName = (routeName, focused) => {
     return 'home-outline';
 };
 
+// Tab icon component - defined outside render to prevent recreation
+const TabBarIcon = React.memo(({ route, focused, color, size }) => {
+    const iconName = getTabIconName(route.name, focused);
+    return <Ionicons name={iconName} size={size} color={color} />;
+});
+
+TabBarIcon.displayName = 'TabBarIcon';
+
+// Screen options function - defined outside to prevent recreation
+const getScreenOptions = ({ route }) => ({
+    headerShown: route.name !== 'Home',
+    tabBarStyle: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        elevation: 0,
+        backgroundColor: '#c2e4ab',
+        borderTopWidth: 0,
+    },
+    tabBarIcon: (props) => <TabBarIcon route={route} {...props} />,
+    tabBarActiveTintColor: '#5e7055',
+    tabBarInactiveTintColor: 'gray',
+    tabBarLabelStyle: { fontWeight: 'bold' },
+});
+
 // Tab Navigator for Calls, Progress, and Settings
 export default function TabNavigator() {
     return (
-        <Tab.Navigator
-            screenOptions={({ route }) => ({
-                headerShown: route.name !== 'Home',
-                tabBarStyle: {
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    elevation: 0,
-                    backgroundColor: '#c2e4ab',
-                    borderTopWidth: 0,
-                },
-                tabBarIcon: function tabBarIcon({ focused, color, size }) {
-                    const iconName = getTabIconName(route.name, focused);
-                    return <Ionicons name={iconName} size={size} color={color} />;
-                },
-                tabBarActiveTintColor: '#5e7055',
-                tabBarInactiveTintColor: 'gray',
-                tabBarLabelStyle: { fontWeight: 'bold' },
-
-            })}
-        >
+        <Tab.Navigator screenOptions={getScreenOptions}>
             <Tab.Screen name="Home" component={HomeScreen}
                 options={{
                     headerTitle: "",
