@@ -37,10 +37,16 @@ export function analyzeSpeech(responses) {
             let pauseCount = 0;
             let pauseDuration = 0;
             for (let i = 1; i < words.length; i++) {
-                const gap = words[i].start - words[i - 1].end;
-                if (gap > 0.5) {
-                    pauseCount++;
-                    pauseDuration += gap;
+                const currentWord = words.at(i);
+                const previousWord = words.at(i - 1);
+                if (currentWord && previousWord &&
+                    typeof currentWord.start === 'number' &&
+                    typeof previousWord.end === 'number') {
+                    const gap = currentWord.start - previousWord.end;
+                    if (gap > 0.5) {
+                        pauseCount++;
+                        pauseDuration += gap;
+                    }
                 }
             }
             const pauseFrequency = totalDuration > 0 ? (pauseCount / (totalDuration / 30)) : 0;
@@ -138,7 +144,12 @@ export function analyzeSpeech(responses) {
 
     // Aggregated pronunciation clarity (average avg_logprob across segments)
     const validSegments = results
-        .map((result, idx) => (responses[idx].segments || [])[0])
+        .map((result, idx) => {
+            const response = responses.at(idx);
+            return response && response.segments && Array.isArray(response.segments)
+                ? response.segments.at(0)
+                : null;
+        })
         .filter(segment => segment && segment.avg_logprob);
     const clarityScore = validSegments.length > 0
         ? (validSegments.reduce((sum, segment) => sum + segment.avg_logprob, 0) / validSegments.length > -0.3 ? 'High' :

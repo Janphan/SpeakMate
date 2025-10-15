@@ -11,11 +11,16 @@ class Logger {
 
     // Log levels: debug < info < warn < error
     shouldLog(level) {
-        const levels = { debug: 0, info: 1, warn: 2, error: 3 };
-        return levels[level] >= levels[this.logLevel];
-    }
-
-    formatMessage(level, message, context = {}) {
+        const levels = new Map([
+            ['debug', 0],
+            ['info', 1],
+            ['warn', 2],
+            ['error', 3]
+        ]);
+        const levelValue = levels.get(level) ?? -1;
+        const currentLevelValue = levels.get(this.logLevel) ?? 0;
+        return levelValue >= currentLevelValue;
+    } formatMessage(level, message, context = {}) {
         const timestamp = new Date().toISOString();
         const contextStr = Object.keys(context).length > 0 ? JSON.stringify(context) : '';
         return `[${timestamp}] ${level.toUpperCase()}: ${message} ${contextStr}`;

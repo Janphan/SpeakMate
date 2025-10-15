@@ -50,7 +50,7 @@ export const useStatistics = () => {
         let sessionTimeToday = 0;
         let sessionTime7Days = 0;
         let totalSessionTime = 0;
-        const topicCounts = {};
+        const topicCounts = new Map();
         let totalIELTSScore = 0;
         let totalWordsSpoken = 0;
         let validScores = 0;
@@ -75,7 +75,10 @@ export const useStatistics = () => {
 
             // Topic tracking
             const topic = conversation.topic || 'Unknown';
-            topicCounts[topic] = (topicCounts[topic] || 0) + 1;
+            if (typeof topic === 'string' && topic.length > 0) {
+                const currentCount = topicCounts.get(topic) || 0;
+                topicCounts.set(topic, currentCount + 1);
+            }
 
             // IELTS band tracking (from speech analysis fluency band)
             if (conversation.analysisResult?.fluencyBand) {
@@ -94,9 +97,11 @@ export const useStatistics = () => {
 
         // Calculate derived statistics
         const averageSessionTime = totalSessions > 0 ? totalSessionTime / totalSessions : 0;
-        const mostPracticedTopic = Object.keys(topicCounts).reduce((a, b) =>
-            topicCounts[a] > topicCounts[b] ? a : b, 'None'
-        );
+        const mostPracticedTopic = Array.from(topicCounts.keys()).reduce((a, b) => {
+            const countA = topicCounts.get(a) || 0;
+            const countB = topicCounts.get(b) || 0;
+            return countA > countB ? a : b;
+        }, 'None');
         const averageIELTSBand = validScores > 0 ? totalIELTSScore / validScores : 0;
         const streakDays = calculateStreakDays(conversations);
         const improvementTrend = calculateImprovementTrend(conversations);
@@ -149,7 +154,8 @@ export const useStatistics = () => {
 
         for (let i = 0; i < uniqueDates.length; i++) {
             const expectedDate = todayTime - (i * 24 * 60 * 60 * 1000);
-            if (uniqueDates[i] === expectedDate) {
+            const currentDate = uniqueDates.at(i);
+            if (currentDate === expectedDate) {
                 streak++;
             } else {
                 break;
