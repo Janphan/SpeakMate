@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import HeaderSection from '../components/HeaderSection';
 import { colors } from '../theme';
 
 // Feedback expects an 'analysis' prop from analyzeSpeech()
@@ -10,10 +11,11 @@ const Feedback = ({ route, navigation }) => {
     if (!analysis) {
         return (
             <View style={styles.container}>
-                <View style={styles.headerSection}>
-                    <Text style={styles.headerTitle}>📊 Speech Analysis</Text>
-                    <Text style={styles.headerSubtitle}>No feedback available</Text>
-                </View>
+                <HeaderSection
+                    icon="chart-line"
+                    title="📊 Speech Analysis"
+                    subtitle="No feedback available"
+                />
                 <View style={styles.mainContent}>
                     <Card style={styles.errorCard}>
                         <Card.Content style={styles.errorCardContent}>
@@ -35,11 +37,11 @@ const Feedback = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <Text style={styles.headerTitle}>� Performance Report</Text>
-                <Text style={styles.headerSubtitle}>Your speaking analysis & feedback</Text>
-            </View>
+            <HeaderSection
+                icon="chart-line"
+                title="🎯 Performance Report"
+                subtitle="Your speaking analysis & feedback"
+            />
 
             {/* Main Content */}
             <ScrollView style={styles.mainContent} showsVerticalScrollIndicator={false}>
@@ -136,33 +138,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 25,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        alignItems: 'center',
-    },
-    headerTitle: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginBottom: 8,
-        textAlign: 'center',
-    },
-    headerSubtitle: {
-        fontSize: 16,
-        color: colors.primaryLight,
-        textAlign: 'center',
-        fontWeight: '500',
     },
     mainContent: {
         flex: 1,

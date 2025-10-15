@@ -5,6 +5,7 @@ import { db } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
 import { colors } from '../theme';
+import HeaderSection from '../components/HeaderSection';
 
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
@@ -74,15 +75,11 @@ export default function ConversationDetailsScreen({ route, navigation }) {
     if (!conversation) {
         return (
             <View style={styles.container}>
-                <View style={styles.headerSection}>
-                    <TouchableOpacity
-                        style={styles.backButton}
-                        onPress={() => navigation.goBack()}
-                    >
-                        <Icon source="arrow-left" size={24} color="#fff" />
-                    </TouchableOpacity>
-                    <Text style={styles.title}>Conversation Details</Text>
-                </View>
+                <HeaderSection
+                    title="Conversation Details"
+                    showBackButton
+                    onBackPress={() => navigation.goBack()}
+                />
                 <View style={styles.errorContainer}>
                     <Card style={styles.errorCard}>
                         <Card.Content style={styles.errorContent}>
@@ -100,19 +97,12 @@ export default function ConversationDetailsScreen({ route, navigation }) {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Icon source="arrow-left" size={24} color="#fff" />
-                </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    <Text style={styles.title}>Conversation Details</Text>
-                    <Text style={styles.subtitle}>{conversation.header || 'View your conversation'}</Text>
-                </View>
-            </View>
+            <HeaderSection
+                title="Conversation Details"
+                subtitle={conversation.header || 'View your conversation'}
+                showBackButton
+                onBackPress={() => navigation.goBack()}
+            />
 
             {/* Content */}
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
@@ -231,44 +221,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 20,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    backButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)', // Keep as rgba for transparency
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 16,
-    },
-    headerContent: {
-        flex: 1,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginBottom: 4,
-    },
-    subtitle: {
-        fontSize: 14,
-        color: colors.text.light,
-        opacity: 0.9,
     },
     loadingContainer: {
         flex: 1,

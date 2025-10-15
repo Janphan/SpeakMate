@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
 import { colors } from '../theme';
+import HeaderSection from '../components/HeaderSection';
 
 const topics = [
     { id: '1', title: 'Work or Study', icon: 'briefcase', color: '#4caf50' },
@@ -27,15 +28,10 @@ export default function TopicList({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <View style={styles.headerContent}>
-                    <Text style={styles.headerTitle}>🎯 Choose Your Topic</Text>
-                    <Text style={styles.headerSubtitle}>
-                        {level ? `Level: ${level.toUpperCase()}` : 'Select a conversation topic'}
-                    </Text>
-                </View>
-            </View>
+            <HeaderSection
+                title="🎯 Choose Your Topic"
+                subtitle={level ? `Level: ${level.toUpperCase()}` : 'Select a conversation topic'}
+            />
 
             {/* Topics List */}
             <View style={styles.contentSection}>
@@ -72,35 +68,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 25,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-    },
-    headerContent: {
-        alignItems: 'center',
-    },
-    headerTitle: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginBottom: 8,
-        textAlign: 'center',
-    },
-    headerSubtitle: {
-        fontSize: 16,
-        color: colors.primaryLight,
-        textAlign: 'center',
-        fontWeight: '500',
     },
     contentSection: {
         flex: 1,

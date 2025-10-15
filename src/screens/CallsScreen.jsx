@@ -5,6 +5,7 @@ import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/fi
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
 import { colors } from '../theme';
+import HeaderSection from '../components/HeaderSection';
 
 export default function CallsScreen({ navigation }) {
     const [conversations, setConversations] = useState([]);
@@ -83,14 +84,12 @@ export default function CallsScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <View style={styles.headerContent}>
-                    <Icon source="history" size={40} color="#5e7055" />
-                    <Text style={styles.title}>Conversation History</Text>
-                    <Text style={styles.subtitle}>Review your past speaking sessions</Text>
-                </View>
-            </View>
+            <HeaderSection
+                title="Conversation History"
+                subtitle="Review your past speaking sessions"
+                iconName="history"
+                iconColor="#5e7055"
+            />
 
             {/* Content */}
             <View style={styles.contentContainer}>
@@ -124,30 +123,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 30,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-    },
-    headerContent: {
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    subtitle: {
-        fontSize: 16,
-        color: colors.text.light,
-        opacity: 0.9,
-        textAlign: 'center',
     },
     contentContainer: {
         flex: 1,

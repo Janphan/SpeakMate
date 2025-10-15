@@ -20,6 +20,7 @@ import * as Speech from 'expo-speech';
 import { logger } from '../utils/logger';
 import { colors } from '../theme';
 import PropTypes from 'prop-types';
+import HeaderSection from '../components/HeaderSection';
 
 
 export default function DialogueScreen({ navigation, route }) {
@@ -195,22 +196,12 @@ export default function DialogueScreen({ navigation, route }) {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <IconButton
-                    icon="arrow-left"
-                    size={24}
-                    iconColor="#fff"
-                    onPress={() => navigation.navigate("HomeScreen")}
-                    style={styles.backButton}
-                />
-                <View style={styles.headerContent}>
-                    <Text style={styles.headerTitle}>🎤 AI Voice Practice</Text>
-                    <Text style={styles.headerSubtitle}>
-                        {topic?.title} • {level}
-                    </Text>
-                </View>
-            </View>
+            <HeaderSection
+                title="🎤 AI Voice Practice"
+                subtitle={`${topic?.title} • ${level}`}
+                showBackButton
+                onBackPress={() => navigation.navigate("HomeScreen")}
+            />
 
             {/* Main Content */}
             <View style={styles.mainContent}>
@@ -308,41 +299,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 20,
-        paddingBottom: 20,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    backButton: {
-        backgroundColor: colors.text.light + '20', // White with 20% opacity
-        borderRadius: 20,
-        marginRight: 10,
-    },
-    headerContent: {
-        flex: 1,
-    },
-    headerTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginBottom: 4,
-        marginTop: 30,
-    },
-    headerSubtitle: {
-        fontSize: 16,
-        color: colors.primaryLight,
-        fontWeight: '500',
     },
     mainContent: {
         flex: 1,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
+import HeaderSection from '../components/HeaderSection';
 import { useStatistics } from '../hooks/useStatistics';
 import { colors } from '../theme';
 
@@ -59,14 +60,11 @@ export default function StatisticsScreen() {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <View style={styles.headerContent}>
-                    <Icon source="chart-line" size={40} color={colors.text.light} />
-                    <Text style={styles.title}>Your Progress</Text>
-                    <Text style={styles.subtitle}>Track your speaking improvement journey</Text>
-                </View>
-            </View>
+            <HeaderSection
+                icon="chart-line"
+                title="Your Progress"
+                subtitle="Track your speaking improvement journey"
+            />
 
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 {/* Offline Status */}
@@ -188,35 +186,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 20,
-        paddingBottom: 30,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-    },
-    headerContent: {
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    subtitle: {
-        fontSize: 16,
-        color: colors.text.light,
-        opacity: 0.9,
-        textAlign: 'center',
     },
     loadingContainer: {
         flex: 1,

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useStatistics } from '../hooks/useStatistics';
+import HeaderSection from '../components/HeaderSection';
 import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
@@ -34,8 +35,7 @@ export default function HomeScreen({ navigation }) {
     return (
         <PaperProvider>
             <View style={styles.container}>
-                {/* Header Section */}
-                <View style={styles.headerSection}>
+                <HeaderSection>
                     <View style={styles.welcomeContainer}>
                         {user && (
                             <>
@@ -49,7 +49,7 @@ export default function HomeScreen({ navigation }) {
                             </>
                         )}
                     </View>
-                </View>
+                </HeaderSection>
 
                 {/* Main Content */}
                 <View style={styles.mainContent}>
@@ -180,19 +180,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 20,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
     },
     welcomeContainer: {
         flexDirection: 'row',

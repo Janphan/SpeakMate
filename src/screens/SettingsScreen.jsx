@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'rea
 import { signOut } from 'firebase/auth';
 import { auth } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
+import HeaderSection from '../components/HeaderSection';
 import { colors } from '../theme';
 
 const SettingsScreen = ({ navigation }) => {
@@ -53,14 +54,12 @@ const SettingsScreen = ({ navigation }) => {
 
     return (
         <ScrollView style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <View style={styles.headerContent}>
-                    <Icon source="cog" size={40} color="#5e7055" />
-                    <Text style={styles.title}>Settings</Text>
-                    <Text style={styles.subtitle}>Manage your account and preferences</Text>
-                </View>
-            </View>
+            <HeaderSection
+                icon="cog"
+                title="Settings"
+                subtitle="Manage your account and preferences"
+                iconColor="#5e7055"
+            />
 
             {/* Settings Items */}
             <View style={styles.settingsContainer}>
@@ -105,30 +104,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 30,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 20,
-        borderBottomRightRadius: 20,
-    },
-    headerContent: {
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginTop: 10,
-        marginBottom: 5,
-    },
-    subtitle: {
-        fontSize: 16,
-        color: colors.text.light,
-        opacity: 0.9,
-        textAlign: 'center',
     },
     settingsContainer: {
         paddingHorizontal: 20,

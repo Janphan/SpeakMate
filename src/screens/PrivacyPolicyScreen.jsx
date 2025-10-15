@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
 import { colors } from '../theme';
+import HeaderSection from '../components/HeaderSection';
 
 export default function PrivacyPolicyScreen({ navigation }) {
     const privacySection = [
@@ -29,19 +30,12 @@ export default function PrivacyPolicyScreen({ navigation }) {
 
     return (
         <View style={styles.container}>
-            {/* Header Section */}
-            <View style={styles.headerSection}>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => navigation.goBack()}
-                >
-                    <Icon source="arrow-left" size={24} color="#fff" />
-                </TouchableOpacity>
-                <View style={styles.headerContent}>
-                    <Text style={styles.title}>Privacy Policy</Text>
-                    <Text style={styles.subtitle}>How we protect your data</Text>
-                </View>
-            </View>
+            <HeaderSection
+                title="Privacy Policy"
+                subtitle="How we protect your data"
+                showBackButton
+                onBackPress={() => navigation.goBack()}
+            />
 
             {/* Content */}
             <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
@@ -99,44 +93,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
-    },
-    headerSection: {
-        backgroundColor: colors.primary,
-        paddingTop: 50,
-        paddingBottom: 20,
-        paddingHorizontal: 20,
-        borderBottomLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        elevation: 8,
-        shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    backButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: colors.text.light + '20', // White with 20% opacity
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 16,
-    },
-    headerContent: {
-        flex: 1,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: colors.text.light,
-        marginBottom: 4,
-    },
-    subtitle: {
-        fontSize: 14,
-        color: colors.text.light,
-        opacity: 0.9,
     },
     scrollContainer: {
         flex: 1,
