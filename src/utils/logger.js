@@ -28,7 +28,7 @@ class Logger {
 
     debug(message, context = {}) {
         if (this.shouldLog('debug')) {
-            logger.debug(this.formatMessage('debug', message, context));
+            console.debug(this.formatMessage('debug', message, context));
         }
     }
 

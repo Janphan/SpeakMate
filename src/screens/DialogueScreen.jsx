@@ -27,15 +27,14 @@ export default function DialogueScreen({ navigation, route }) {
     // Use expo-audio hooks
     const audioRecorder = useAudioRecorder(RecordingPresets.HIGH_QUALITY);
     const recorderState = useAudioRecorderState(audioRecorder);
+
     const [aiResponse, setAiResponse] = useState(true);
     const [msg_list, setMsgList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const { topic, level } = route.params || {};
     const [responseDataList, setResponseDataList] = useState([]);
     const [sessionStartTime] = useState(() => new Date());
-    const [recordingAnimation] = useState(new Animated.Value(1));
-
-    // Initialize session start time and setup audio permissions
+    const [recordingAnimation] = useState(new Animated.Value(1));    // Initialize session start time and setup audio permissions
     useEffect(() => {
         // Reset question tracking for new conversation
         resetQuestionTracking();
