@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { logger } from '../utils/logger';
 const QRCode = require('qrcode');
 const fs = require('fs');
 
@@ -7,20 +6,20 @@ const fs = require('fs');
 const logger = {
     info: (message, context = '') => {
         const timestamp = new Date().toISOString();
-        logger.info(`[${timestamp}] INFO: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
+        console.log(`[${timestamp}] INFO: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
     },
     success: (message, context = '') => {
         const timestamp = new Date().toISOString();
-        logger.info(`[${timestamp}] SUCCESS: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
+        console.log(`[${timestamp}] SUCCESS: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
     },
     error: (message, context = '') => {
         const timestamp = new Date().toISOString();
-        logger.error(`[${timestamp}] ERROR: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
+        console.error(`[${timestamp}] ERROR: ${message}${context ? ' ' + JSON.stringify(context) : ''}`);
     }
 };
 
-// Your APK download URL
-const APK_URL = 'https://expo.dev/artifacts/eas/bwy2PiPnDs4k5DXkXkoFiH.apk';
+// Updated APK download URL from latest build
+const APK_URL = 'https://expo.dev/artifacts/eas/acMwQsJ9WWfUDPP8pjaedn.apk';
 
 async function generateQRCode() {
     try {
