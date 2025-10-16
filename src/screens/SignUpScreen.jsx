@@ -62,7 +62,7 @@ export default function SignUpScreen({ navigation }) {
                                 onChangeText={setName}
                                 style={styles.input}
                                 autoCapitalize="words"
-                                placeholderTextColor={colors.text.placeholder}
+                                placeholderTextColor={colors.text.secondary}
                             />
                         </View>
 
@@ -77,7 +77,7 @@ export default function SignUpScreen({ navigation }) {
                                 autoCapitalize="none"
                                 style={styles.input}
                                 textContentType="emailAddress"
-                                placeholderTextColor={colors.text.placeholder}
+                                placeholderTextColor={colors.text.secondary}
                             />
                         </View>
 
@@ -91,7 +91,7 @@ export default function SignUpScreen({ navigation }) {
                                 secureTextEntry={!showPassword}
                                 style={styles.input}
                                 textContentType="password"
-                                placeholderTextColor={colors.text.placeholder}
+                                placeholderTextColor={colors.text.secondary}
                             />
                             <TouchableOpacity
                                 onPress={() => setShowPassword(!showPassword)}
