@@ -19,7 +19,6 @@ import { analyzeSpeech } from '../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
 import { logger } from '../utils/logger';
 import { colors } from '../theme';
-import PropTypes from 'prop-types';
 import HeaderSection from '../components/HeaderSection';
 
 
@@ -277,22 +276,6 @@ export default function DialogueScreen({ navigation, route }) {
         </View>
     );
 }
-
-DialogueScreen.propTypes = {
-    navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired,
-        goBack: PropTypes.func.isRequired,
-        replace: PropTypes.func,
-    }).isRequired,
-    route: PropTypes.shape({
-        params: PropTypes.shape({
-            topic: PropTypes.shape({
-                title: PropTypes.string.isRequired,
-            }).isRequired,
-            level: PropTypes.string.isRequired,
-        }).isRequired,
-    }).isRequired,
-};
 
 const styles = StyleSheet.create({
     container: {

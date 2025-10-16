@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackgr
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../api/firebaseConfig';
 import { Icon, Card } from 'react-native-paper';
-import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
 // Import the background image
@@ -101,13 +100,6 @@ export default function ResetPasswordScreen({ navigation }) {
         </ImageBackground>
     );
 }
-
-ResetPasswordScreen.propTypes = {
-    navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired,
-        goBack: PropTypes.func.isRequired,
-    }).isRequired,
-};
 
 const styles = StyleSheet.create({
     background: {

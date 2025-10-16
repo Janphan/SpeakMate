@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
 const AIResponseDisplay = ({ messages }) => {
@@ -116,18 +115,5 @@ const styles = StyleSheet.create({
         fontStyle: 'italic',
     },
 });
-
-AIResponseDisplay.propTypes = {
-    messages: PropTypes.arrayOf(
-        PropTypes.shape({
-            role: PropTypes.oneOf(['user', 'ai']).isRequired,
-            content: PropTypes.string.isRequired,
-        })
-    ),
-};
-
-AIResponseDisplay.defaultProps = {
-    messages: [],
-};
 
 export default AIResponseDisplay;

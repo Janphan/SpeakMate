@@ -4,7 +4,6 @@ import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useStatistics } from '../hooks/useStatistics';
 import HeaderSection from '../components/HeaderSection';
-import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
 // Icon components to avoid nested components in render
@@ -167,14 +166,6 @@ export default function HomeScreen({ navigation }) {
         </PaperProvider>
     );
 }
-
-HomeScreen.propTypes = {
-    navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired,
-        replace: PropTypes.func,
-        goBack: PropTypes.func,
-    }).isRequired,
-};
 
 const styles = StyleSheet.create({
     container: {

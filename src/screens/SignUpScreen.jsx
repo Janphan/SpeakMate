@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, StatusBar, Alert } from 'react-native';
 import { signUpUser } from '../api/auth';
 import { Icon, Card } from 'react-native-paper';
-import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
 // Import the background image
@@ -125,12 +124,6 @@ export default function SignUpScreen({ navigation }) {
         </ImageBackground>
     );
 }
-
-SignUpScreen.propTypes = {
-    navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired,
-    }).isRequired,
-};
 
 const styles = StyleSheet.create({
     background: {

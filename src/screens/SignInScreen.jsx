@@ -5,7 +5,6 @@ import { auth } from "../api/firebaseConfig";
 import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { logger } from '../utils/logger';
-import PropTypes from 'prop-types';
 import { colors } from '../theme';
 
 // Import the background image
@@ -187,13 +186,6 @@ const SignInScreen = ({ navigation }) => {
             </View>
         </ImageBackground>
     );
-};
-
-SignInScreen.propTypes = {
-    navigation: PropTypes.shape({
-        navigate: PropTypes.func.isRequired,
-        replace: PropTypes.func.isRequired,
-    }).isRequired,
 };
 
 const styles = StyleSheet.create({
