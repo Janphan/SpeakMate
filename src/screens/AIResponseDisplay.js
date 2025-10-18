@@ -28,10 +28,11 @@ const AIResponseDisplay = ({ messages }) => {
             showsVerticalScrollIndicator={true}
             showsHorizontalScrollIndicator={false}
         >
-            {messages.map((msg) => {
-                const contentHash = msg.content ? msg.content.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0) : 0;
+            {messages.map((msg, index) => {
+                // Use index + role + first few chars of content for unique key
+                const contentPreview = msg.content ? msg.content.substring(0, 20).replace(/\s/g, '') : '';
                 return (
-                    <View key={`${msg.role}-${contentHash}-${msg.content?.length || 0}`} style={styles.messageWrapper}>
+                    <View key={`message-${index}-${msg.role}-${contentPreview}`} style={styles.messageWrapper}>
                         <View style={[
                             styles.messageBubble,
                             msg.role === 'user' ? styles.userBubble : styles.aiBubble

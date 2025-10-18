@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
+import { useFocusEffect } from '@react-navigation/native';
 import { useStatistics } from '../hooks/useStatistics';
 import HeaderSection from '../components/HeaderSection';
 import { colors } from '../theme';
@@ -20,7 +21,7 @@ export default function HomeScreen({ navigation }) {
     });
 
     // Use the statistics hook
-    const { statistics, loading: isLoadingStats } = useStatistics();
+    const { statistics, loading: isLoadingStats, refreshStatistics } = useStatistics();
 
     useEffect(() => {
         const auth = getAuth();
@@ -30,6 +31,13 @@ export default function HomeScreen({ navigation }) {
 
         return unsubscribe;
     }, []);
+
+    // Refresh statistics when screen comes into focus (to catch deleted conversations)
+    useFocusEffect(
+        React.useCallback(() => {
+            refreshStatistics();
+        }, [refreshStatistics])
+    );
 
     return (
         <PaperProvider>

@@ -76,8 +76,20 @@ function TabNavigator() {
 
 export default function App() {
   // Initialize both original and expanded question banks
-  initializeQuestionBanks();
-  initializeExpandedQuestionBanks();
+  React.useEffect(() => {
+    const initializeQuestions = async () => {
+      try {
+        console.log('Initializing question banks...');
+        await initializeQuestionBanks();
+        await initializeExpandedQuestionBanks();
+        console.log('Question banks initialization completed');
+      } catch (error) {
+        console.error('Failed to initialize question banks:', error);
+      }
+    };
+    initializeQuestions();
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SignInScreen"

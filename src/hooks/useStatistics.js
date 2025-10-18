@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db, auth } from '../api/firebaseConfig';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -224,15 +224,26 @@ export const useStatistics = () => {
         }
     };
 
-    const fetchStatistics = async () => {
+    const fetchStatistics = useCallback(async () => {
         try {
             setLoading(true);
             setIsOffline(false);
             const userId = auth.currentUser?.uid;
 
             if (!userId) {
-                // If no user, try to load cached data
-                await loadCachedStatistics();
+                logger.warn('No authenticated user found for statistics');
+                // If no user, set empty statistics
+                setStatistics({
+                    totalSessions: 0,
+                    sessionTimeToday: 0,
+                    sessionTime7Days: 0,
+                    averageSessionTime: 0,
+                    streakDays: 0,
+                    mostPracticedTopic: 'No data available',
+                    averageIELTSBand: 0,
+                    totalWordsSpoken: 0,
+                    improvementTrend: 'stable'
+                });
                 return;
             }
 
@@ -250,6 +261,11 @@ export const useStatistics = () => {
                     id: doc.id,
                     ...doc.data()
                 }));
+
+                logger.info('Fetched conversations for user', {
+                    userId,
+                    conversationCount: conversations.length
+                });
 
                 // Sort by timestamp in JavaScript instead of Firestore
                 conversations.sort((a, b) => {
@@ -281,11 +297,46 @@ export const useStatistics = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, []); // Empty dependencies array since we access auth.currentUser directly
 
     useEffect(() => {
-        fetchStatistics();
-    }, []);
+        let mounted = true;
+
+        const initializeStatistics = async () => {
+            if (mounted) {
+                await fetchStatistics();
+            }
+        };
+
+        initializeStatistics();
+
+        // Listen for auth state changes only once
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            if (!mounted) return;
+
+            if (user) {
+                await fetchStatistics();
+            } else {
+                // Clear statistics when user logs out
+                setStatistics({
+                    totalSessions: 0,
+                    sessionTimeToday: 0,
+                    sessionTime7Days: 0,
+                    averageSessionTime: 0,
+                    streakDays: 0,
+                    mostPracticedTopic: 'No data available',
+                    averageIELTSBand: 0,
+                    totalWordsSpoken: 0,
+                    improvementTrend: 'stable'
+                });
+            }
+        });
+
+        return () => {
+            mounted = false;
+            unsubscribe();
+        };
+    }, [fetchStatistics]); // Now fetchStatistics is stable due to useCallback
 
     return {
         statistics,

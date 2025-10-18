@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, ScrollView, Alert, TouchableOpacity } from 'react-native';
 import { doc, getDoc, deleteDoc } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import { db } from '../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
@@ -10,6 +11,7 @@ import HeaderSection from '../components/HeaderSection';
 export default function ConversationDetailsScreen({ route, navigation }) {
     const [conversation, setConversation] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [isUnauthorized, setIsUnauthorized] = useState(false);
 
     const { conversationId } = route.params || {};
 
@@ -17,12 +19,36 @@ export default function ConversationDetailsScreen({ route, navigation }) {
         const fetchConversation = async () => {
             if (conversationId) {
                 try {
+                    const auth = getAuth();
+                    const currentUser = auth.currentUser;
+
+                    if (!currentUser) {
+                        logger.warn('No authenticated user found');
+                        setIsUnauthorized(true);
+                        setIsLoading(false);
+                        return;
+                    }
+
                     const docRef = doc(db, 'conversations', conversationId);
                     const docSnap = await getDoc(docRef);
+
                     if (docSnap.exists()) {
-                        setConversation(docSnap.data());
+                        const conversationData = docSnap.data();
+
+                        // Verify the conversation belongs to the current user
+                        if (conversationData.userId !== currentUser.uid) {
+                            logger.warn('Unauthorized access attempt', {
+                                conversationId,
+                                userId: currentUser.uid,
+                                conversationUserId: conversationData.userId
+                            });
+                            setIsUnauthorized(true);
+                        } else {
+                            setConversation(conversationData);
+                        }
                     } else {
                         logger.error('Document not found', { conversationId });
+                        setConversation(null);
                     }
                 } catch (error) {
                     logger.error('Error fetching conversation', { error: error.message, conversationId, stack: error.stack });
@@ -67,6 +93,27 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                     <Icon source="message-processing" size={60} color="#5e7055" />
                     <ActivityIndicator size="large" color="#5e7055" style={styles.loader} />
                     <Text style={styles.loadingText}>Loading conversation...</Text>
+                </View>
+            </View>
+        );
+    }
+
+    if (isUnauthorized) {
+        return (
+            <View style={styles.container}>
+                <HeaderSection
+                    title="Conversation Details"
+                    showBackButton
+                    onBackPress={() => navigation.goBack()}
+                />
+                <View style={styles.errorContainer}>
+                    <Card style={styles.errorCard}>
+                        <Card.Content style={styles.errorContent}>
+                            <Icon source="shield-alert" size={60} color="#ff4757" />
+                            <Text style={styles.errorTitle}>Access Denied</Text>
+                            <Text style={styles.errorText}>You don't have permission to view this conversation.</Text>
+                        </Card.Content>
+                    </Card>
                 </View>
             </View>
         );
@@ -128,10 +175,9 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                                 </View>
 
                                 <View style={styles.messagesContainer}>
-                                    {messages.map((msg) => {
-                                        const contentHash = msg.content ? msg.content.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0) : Math.random();
+                                    {messages.map((msg, index) => {
                                         return (
-                                            <View key={`msg-${msg.role}-${contentHash}-${msg.content?.length || 0}`} style={styles.messageRow}>
+                                            <View key={`msg-${index}-${msg.role}`} style={styles.messageRow}>
                                                 <View style={[styles.messageIconContainer, msg.role === 'ai' ? styles.aiIconContainer : styles.userIconContainer]}>
                                                     <Icon
                                                         source={msg.role === 'ai' ? 'robot' : 'account'}
@@ -174,10 +220,9 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                             <View style={styles.feedbackContent}>
                                 {Array.isArray(conversation.feedback) ? (
                                     conversation.feedback.length > 0 ? (
-                                        conversation.feedback.map((item) => {
-                                            const itemHash = item.split('').reduce((a, b) => { a = ((a << 5) - a) + b.charCodeAt(0); return a & a; }, 0);
+                                        conversation.feedback.map((item, index) => {
                                             return (
-                                                <View key={`feedback-${itemHash}-${item.length}`} style={styles.feedbackItem}>
+                                                <View key={`feedback-${index}`} style={styles.feedbackItem}>
                                                     <Icon source="check-circle" size={16} color="#2e7d2e" />
                                                     <Text style={styles.feedbackText}>{item}</Text>
                                                 </View>

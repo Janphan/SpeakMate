@@ -9,8 +9,12 @@ const usedQuestions = new Set();
 let currentTopicQuestions = [];
 
 // Reset question tracking for new conversation
-export const resetQuestionTracking = () => {
-    logger.debug('Resetting question tracking for new conversation');
+export const resetQuestionTracking = (newTopic = null) => {
+    logger.debug('Resetting question tracking for new conversation', {
+        previouslyUsed: usedQuestions.size,
+        totalQuestions: currentTopicQuestions.length,
+        newTopic: newTopic
+    });
     usedQuestions.clear();
     currentTopicQuestions = [];
 };
@@ -29,55 +33,57 @@ export const getQuestionProgress = () => {
 
 // Get a random unused question for the topic from Firestore
 export const getOpenAIResponse = async (topic, level) => {
-    const systemPrompt = `
-You are an IELTS speaking examiner named "LetTalk".
-ONLY ask the user one question at a time from the provided list of questions about "${topic}".
-Do NOT repeat questions that have already been asked.
-Do NOT add greetings, explanations, or feedback.
-Do NOT answer the question yourself.
-Just ask the next question from the list naturally and conversationally.
-Use simple, natural language appropriate for Band ${level}.
-Keep questions varied and engaging to simulate a real IELTS interview.
-    `;
-
     try {
-        // Fetch questions only if we don't have them cached or if it's a new topic
-        if (currentTopicQuestions.length === 0) {
-            const questionDocRef = doc(db, 'questions', topic);
-            const questionDocSnap = await getDoc(questionDocRef);
+        // Always fetch fresh questions for the topic to ensure we have the latest data
+        logger.info('Fetching questions for topic', { topic: topic });
+        const questionDocRef = doc(db, 'questions', topic);
+        const questionDocSnap = await getDoc(questionDocRef);
 
-            if (questionDocSnap.exists()) {
-                const questions = questionDocSnap.data().questions;
-                if (questions && questions.length > 0) {
-                    currentTopicQuestions = [...questions]; // Cache the questions
+        if (questionDocSnap.exists()) {
+            const questions = questionDocSnap.data().questions;
+            if (questions && questions.length > 0) {
+                // Only update cache if we don't have questions or if it's a different set
+                if (currentTopicQuestions.length === 0 ||
+                    JSON.stringify(currentTopicQuestions) !== JSON.stringify(questions)) {
+                    currentTopicQuestions = [...questions];
+                    logger.info('Questions loaded for topic', {
+                        topic: topic,
+                        questionCount: questions.length
+                    });
                 }
             }
+        } else {
+            logger.warn('No questions found for topic in Firestore', {
+                topic: topic,
+                message: 'Question document does not exist - check if initializeQuestionBanks completed successfully'
+            });
         }
 
         let selectedQuestion = `Let's begin. Tell me about ${topic.toLowerCase()}.`;
 
         if (currentTopicQuestions.length > 0) {
-            // Find unused questions
-            const unusedQuestions = currentTopicQuestions.filter((_, index) => !usedQuestions.has(index));
+            // Find unused question indices
+            const unusedQuestionIndices = [];
+            for (let i = 0; i < currentTopicQuestions.length; i++) {
+                if (!usedQuestions.has(i)) {
+                    unusedQuestionIndices.push(i);
+                }
+            }
 
-            if (unusedQuestions.length > 0) {
-                // Pick a random unused question
-                const randomIndex = Math.floor(Math.random() * unusedQuestions.length);
-                // Helper function for safe array access
-                const safeArrayAccess = (arr, index) => index >= 0 && index < arr.length ? arr[index] : null;
+            if (unusedQuestionIndices.length > 0) {
+                // Pick a random unused question index
+                const randomIndexPosition = Math.floor(Math.random() * unusedQuestionIndices.length);
+                const selectedQuestionIndex = unusedQuestionIndices[randomIndexPosition];
 
-                const selectedQuestionText = safeArrayAccess(unusedQuestions, randomIndex)
-                    || safeArrayAccess(unusedQuestions, 0)
-                    || `Tell me about ${topic.toLowerCase()}.`;
-
-                // Find the original index and mark it as used
-                const originalIndex = currentTopicQuestions.indexOf(selectedQuestionText);
-                usedQuestions.add(originalIndex);
-                selectedQuestion = selectedQuestionText;
+                // Get the question text and mark the index as used
+                selectedQuestion = currentTopicQuestions[selectedQuestionIndex];
+                usedQuestions.add(selectedQuestionIndex);
 
                 logger.debug('Question selected', {
-                    questionNumber: originalIndex + 1,
+                    questionIndex: selectedQuestionIndex,
+                    questionNumber: selectedQuestionIndex + 1,
                     totalQuestions: currentTopicQuestions.length,
+                    remainingQuestions: unusedQuestionIndices.length - 1,
                     question: selectedQuestion
                 });
             } else {
@@ -87,31 +93,13 @@ Keep questions varied and engaging to simulate a real IELTS interview.
             }
         }
 
-        const response = await axios.post(
-            "https://api.openai.com/v1/chat/completions",
-            {
-                model: "gpt-4o-mini",
-                messages: [
-                    {
-                        role: "system",
-                        content: systemPrompt,
-                    },
-                    {
-                        role: "user",
-                        content: selectedQuestion,
-                    }
-                ],
-                temperature: 0.8,
-            },
-            {
-                headers: {
-                    "Authorization": `Bearer ${OPENAI_API_KEY}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+        // Return the selected question directly - no need for OpenAI to generate it
+        logger.info('Returning selected question', {
+            selectedQuestion: selectedQuestion,
+            topic: topic
+        });
 
-        return response.data.choices[0].message.content.trim();
+        return selectedQuestion;
     } catch (error) {
         logger.error("OpenAI API Error", {
             error: error.message,

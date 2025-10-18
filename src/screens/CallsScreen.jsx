@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
-import { collection, getDocs, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, doc, deleteDoc, where } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
 import { colors } from '../theme';
@@ -13,13 +14,34 @@ export default function CallsScreen({ navigation }) {
     useEffect(() => {
         const fetchConversations = async () => {
             try {
-                const q = query(collection(db, 'conversations'), orderBy('timestamp', 'desc'));
+                const auth = getAuth();
+                const currentUser = auth.currentUser;
+
+                if (!currentUser) {
+                    logger.warn('No authenticated user found');
+                    setConversations([]);
+                    return;
+                }
+
+                const q = query(
+                    collection(db, 'conversations'),
+                    where('userId', '==', currentUser.uid)
+                );
                 const querySnapshot = await getDocs(q);
                 const data = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 }));
-                setConversations(data);
+
+                // Sort by timestamp in descending order (newest first) in memory
+                const sortedData = data.sort((a, b) => {
+                    if (a.timestamp && b.timestamp) {
+                        return b.timestamp.toDate() - a.timestamp.toDate();
+                    }
+                    return 0;
+                });
+
+                setConversations(sortedData);
             } catch (error) {
                 logger.error('Error fetching conversations', { error: error.message, stack: error.stack });
             }

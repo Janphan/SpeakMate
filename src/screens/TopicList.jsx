@@ -5,17 +5,21 @@ import { colors } from '../theme';
 import HeaderSection from '../components/HeaderSection';
 
 const topics = [
-    { id: '1', title: 'Work or Study', icon: 'briefcase', color: '#4caf50' },
-    { id: '2', title: 'Daily Routine & Free Time', icon: 'clock-outline', color: '#2196f3' },
-    { id: '3', title: 'Technology & Mobile Phones', icon: 'cellphone', color: '#9c27b0' },
-    { id: '4', title: 'Health & Fitness', icon: 'heart-pulse', color: '#f44336' },
-    { id: '5', title: 'Travel & Holidays', icon: 'airplane', color: '#ff9800' },
-    { id: '6', title: 'Environment & Nature', icon: 'leaf', color: '#4caf50' },
-    { id: '7', title: 'Food & Cooking', icon: 'chef-hat', color: '#e91e63' },
-    { id: '8', title: 'Family & Relationships', icon: 'account-group', color: '#3f51b5' },
-    { id: '9', title: 'Education & Learning', icon: 'school', color: '#ff5722' },
-    { id: '10', title: 'Media & Entertainment', icon: 'movie-outline', color: '#795548' },
-    { id: '11', title: 'Transportation & Cities', icon: 'city', color: '#607d8b' },
+    { id: '1', title: 'Hometown & Accommodation', icon: 'home-city', color: '#4caf50' },
+    { id: '2', title: 'Work & Study', icon: 'briefcase', color: '#2196f3' },
+    { id: '3', title: 'Weather & Seasons', icon: 'weather-partly-cloudy', color: '#03a9f4' },
+    { id: '4', title: 'Sports & Health', icon: 'heart-pulse', color: '#f44336' },
+    { id: '5', title: 'Travel & Music', icon: 'airplane', color: '#ff9800' },
+    { id: '6', title: 'Family & Personal Life', icon: 'account-group', color: '#e91e63' },
+    { id: '7', title: 'Books & Reading', icon: 'book-open-variant', color: '#3f51b5' },
+    { id: '8', title: 'Technology & Internet', icon: 'laptop', color: '#9c27b0' },
+    { id: '9', title: 'Entertainment & TV', icon: 'television', color: '#795548' },
+    { id: '10', title: 'Personal Items & Lifestyle', icon: 'shopping', color: '#607d8b' },
+    { id: '11', title: 'Photography & Art', icon: 'camera', color: '#ff5722' },
+    { id: '12', title: 'Social Behavior & Communication', icon: 'account-multiple-outline', color: '#009688' },
+    { id: '13', title: 'Daily Life & Transportation', icon: 'car', color: '#8bc34a' },
+    { id: '14', title: 'Outdoor Activities & Nature', icon: 'nature-people', color: '#4caf50' },
+    { id: '15', title: 'Advertising & Celebrity', icon: 'star-circle', color: '#ffc107' },
 ];
 
 export default function TopicList({ navigation, route }) {
