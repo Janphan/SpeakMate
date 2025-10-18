@@ -1,8 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, SafeAreaView, Dimensions } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
 import { colors } from '../theme';
 import HeaderSection from '../components/HeaderSection';
+
+// Get screen dimensions for responsive design
+const { width: screenWidth } = Dimensions.get('window');
 
 const topics = [
     { id: '1', title: 'Hometown & Accommodation', icon: 'home-city', color: '#4caf50' },
@@ -31,7 +34,7 @@ export default function TopicList({ navigation, route }) {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <HeaderSection
                 title="🎯 Choose Your Topic"
                 subtitle={level ? `Level: ${level.toUpperCase()}` : 'Select a conversation topic'}
@@ -64,7 +67,7 @@ export default function TopicList({ navigation, route }) {
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -75,11 +78,11 @@ const styles = StyleSheet.create({
     },
     contentSection: {
         flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingHorizontal: Math.max(16, screenWidth * 0.04),
+        paddingTop: 16,
     },
     list: {
-        paddingBottom: 20,
+        paddingBottom: 100, // Extra space for bottom navigation
     },
     topicCard: {
         marginBottom: 15,

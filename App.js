@@ -48,9 +48,11 @@ const getScreenOptions = ({ route }) => ({
     bottom: 0,
     left: 0,
     right: 0,
-    elevation: 0,
+    elevation: 5,
     backgroundColor: '#c2e4ab',
     borderTopWidth: 0,
+    height: 60, // Fixed height for consistency
+    paddingBottom: 5, // Safe area padding
   },
   tabBarIcon: (props) => <TabBarIcon route={route} {...props} />,
   tabBarActiveTintColor: '#5e7055',

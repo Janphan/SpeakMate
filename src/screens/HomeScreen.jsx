@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, SafeAreaView, Dimensions } from 'react-native';
 import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useFocusEffect } from '@react-navigation/native';
 import { useStatistics } from '../hooks/useStatistics';
 import HeaderSection from '../components/HeaderSection';
 import { colors } from '../theme';
+
+// Get screen dimensions for responsive design
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 // Icon components to avoid nested components in render
 const Band5Icon = () => <Icon source="numeric-5-circle" size={20} color={colors.primary} />;
@@ -41,136 +44,142 @@ export default function HomeScreen({ navigation }) {
 
     return (
         <PaperProvider>
-            <View style={styles.container}>
-                <HeaderSection>
-                    <View style={styles.welcomeContainer}>
-                        {user && (
-                            <>
-                                {user.photoURL && (
-                                    <Image source={{ uri: user.photoURL }} style={styles.avatar} />
-                                )}
-                                <View style={styles.welcomeTextContainer}>
-                                    <Text style={styles.greetingText}>Welcome back! 👋</Text>
-                                    <Text style={styles.userName}>{user.displayName || "Learner"}</Text>
+            <SafeAreaView style={styles.container}>
+                <ScrollView
+                    style={styles.scrollView}
+                    contentContainerStyle={styles.scrollContent}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <HeaderSection>
+                        <View style={styles.welcomeContainer}>
+                            {user && (
+                                <>
+                                    {user.photoURL && (
+                                        <Image source={{ uri: user.photoURL }} style={styles.avatar} />
+                                    )}
+                                    <View style={styles.welcomeTextContainer}>
+                                        <Text style={styles.greetingText}>Welcome back! 👋</Text>
+                                        <Text style={styles.userName}>{user.displayName || "Learner"}</Text>
+                                    </View>
+                                </>
+                            )}
+                        </View>
+                    </HeaderSection>
+
+                    {/* Main Content */}
+                    <View style={styles.mainContent}>
+
+                        {/* Quick Stats Dashboard */}
+                        <View style={styles.dashboardGrid}>
+                            <Card style={styles.statCard}>
+                                <Card.Content style={styles.statCardContent}>
+                                    <View style={styles.statIconContainer}>
+                                        <Icon source="fire" size={28} color="#ff5722" />
+                                    </View>
+                                    <Text style={styles.statNumber}>
+                                        {isLoadingStats ? '...' : statistics.streakDays}
+                                    </Text>
+                                    <Text style={styles.statLabel}>Day Streak</Text>
+                                </Card.Content>
+                            </Card>
+
+                            <Card style={styles.statCard}>
+                                <Card.Content style={styles.statCardContent}>
+                                    <View style={styles.statIconContainer}>
+                                        <Icon source="book-open-variant" size={28} color="#4caf50" />
+                                    </View>
+                                    <Text style={styles.statNumber}>
+                                        {isLoadingStats ? '...' : statistics.totalSessions}
+                                    </Text>
+                                    <Text style={styles.statLabel}>Sessions</Text>
+                                </Card.Content>
+                            </Card>
+                        </View>
+
+                        {/* Progress Overview */}
+                        <Card style={styles.progressCard}>
+                            <Card.Content style={styles.progressCardContent}>
+                                <View style={styles.progressHeader}>
+                                    <Text style={styles.progressTitle}>📈 Your Journey</Text>
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate('Progress')}
+                                        style={styles.viewMoreButton}
+                                    >
+                                        <Text style={styles.viewMoreText}>View Details</Text>
+                                        <Icon source="chevron-right" size={20} color="#5e7055" />
+                                    </TouchableOpacity>
                                 </View>
-                            </>
-                        )}
-                    </View>
-                </HeaderSection>
-
-                {/* Main Content */}
-                <View style={styles.mainContent}>
-
-                    {/* Quick Stats Dashboard */}
-                    <View style={styles.dashboardGrid}>
-                        <Card style={styles.statCard}>
-                            <Card.Content style={styles.statCardContent}>
-                                <View style={styles.statIconContainer}>
-                                    <Icon source="fire" size={28} color="#ff5722" />
-                                </View>
-                                <Text style={styles.statNumber}>
-                                    {isLoadingStats ? '...' : statistics.streakDays}
-                                </Text>
-                                <Text style={styles.statLabel}>Day Streak</Text>
-                            </Card.Content>
-                        </Card>
-
-                        <Card style={styles.statCard}>
-                            <Card.Content style={styles.statCardContent}>
-                                <View style={styles.statIconContainer}>
-                                    <Icon source="book-open-variant" size={28} color="#4caf50" />
-                                </View>
-                                <Text style={styles.statNumber}>
-                                    {isLoadingStats ? '...' : statistics.totalSessions}
-                                </Text>
-                                <Text style={styles.statLabel}>Sessions</Text>
-                            </Card.Content>
-                        </Card>
-                    </View>
-
-                    {/* Progress Overview */}
-                    <Card style={styles.progressCard}>
-                        <Card.Content style={styles.progressCardContent}>
-                            <View style={styles.progressHeader}>
-                                <Text style={styles.progressTitle}>📈 Your Journey</Text>
-                                <TouchableOpacity
-                                    onPress={() => navigation.navigate('Progress')}
-                                    style={styles.viewMoreButton}
-                                >
-                                    <Text style={styles.viewMoreText}>View Details</Text>
-                                    <Icon source="chevron-right" size={20} color="#5e7055" />
-                                </TouchableOpacity>
-                            </View>
-                            <Text style={styles.progressSubtitle}>
-                                {isLoadingStats
-                                    ? "Loading your progress... ⏳"
-                                    : statistics.streakDays > 0
-                                        ? `Amazing! You're on a ${statistics.streakDays} day streak! Keep going! 🚀`
-                                        : "Ready to start your speaking journey? Let's begin! 🌟"
-                                }
-                            </Text>
-                        </Card.Content>
-                    </Card>
-
-                    {/* Level Selection */}
-                    <Card style={styles.levelCard}>
-                        <Card.Content style={styles.levelCardContent}>
-                            <Text style={styles.levelCardTitle}>🎯 Choose Your Challenge</Text>
-                            <View style={styles.menuContainer}>
-                                <Menu
-                                    visible={visible}
-                                    onDismiss={() => setVisible(false)}
-                                    anchor={
-                                        <TouchableOpacity onPress={() => setVisible(true)} style={styles.levelButton}>
-                                            <Text style={styles.levelButtonText}>Select IELTS Level</Text>
-                                            <Icon source="chevron-down" size={20} color="#fff" />
-                                        </TouchableOpacity>
+                                <Text style={styles.progressSubtitle}>
+                                    {isLoadingStats
+                                        ? "Loading your progress... ⏳"
+                                        : statistics.streakDays > 0
+                                            ? `Amazing! You're on a ${statistics.streakDays} day streak! Keep going! 🚀`
+                                            : "Ready to start your speaking journey? Let's begin! 🌟"
                                     }
-                                    anchorPosition='top'
-                                    contentStyle={styles.menuContent}
-                                >
-                                    <Menu.Item
-                                        onPress={() => {
-                                            setSelectedLevel('Band 5-6');
-                                            setVisible(false);
-                                            navigation.navigate("TopicList", { level: 'band 5-6' });
-                                        }}
-                                        title="Band 5-6"
-                                        titleStyle={styles.menuItemTitle}
-                                        style={styles.menuItem}
-                                        leadingIcon={Band5Icon}
-                                    />
-                                    <Menu.Item
-                                        onPress={() => {
-                                            setSelectedLevel('Band 6-7');
-                                            setVisible(false);
-                                            navigation.navigate("TopicList", { level: 'band 6-7' });
-                                        }}
-                                        title="Band 6-7"
-                                        titleStyle={styles.menuItemTitle}
-                                        style={styles.menuItem}
-                                        leadingIcon={Band6Icon}
-                                    />
-                                    <Menu.Item
-                                        onPress={() => {
-                                            setSelectedLevel('Band 7-8');
-                                            setVisible(false);
-                                            navigation.navigate("TopicList", { level: 'band 7-8' });
-                                        }}
-                                        title="Band 7-8"
-                                        titleStyle={styles.menuItemTitle}
-                                        style={styles.menuItem}
-                                        leadingIcon={Band7Icon}
-                                    />
-                                </Menu>
-                                <View style={styles.levelDisplay}>
-                                    <Text style={styles.levelText}>Current: {selectedLevel} ✅</Text>
+                                </Text>
+                            </Card.Content>
+                        </Card>
+
+                        {/* Level Selection */}
+                        <Card style={styles.levelCard}>
+                            <Card.Content style={styles.levelCardContent}>
+                                <Text style={styles.levelCardTitle}>🎯 Choose Your Challenge</Text>
+                                <View style={styles.menuContainer}>
+                                    <Menu
+                                        visible={visible}
+                                        onDismiss={() => setVisible(false)}
+                                        anchor={
+                                            <TouchableOpacity onPress={() => setVisible(true)} style={styles.levelButton}>
+                                                <Text style={styles.levelButtonText}>Select IELTS Level</Text>
+                                                <Icon source="chevron-down" size={20} color="#fff" />
+                                            </TouchableOpacity>
+                                        }
+                                        anchorPosition='top'
+                                        contentStyle={styles.menuContent}
+                                    >
+                                        <Menu.Item
+                                            onPress={() => {
+                                                setSelectedLevel('Band 5-6');
+                                                setVisible(false);
+                                                navigation.navigate("TopicList", { level: 'band 5-6' });
+                                            }}
+                                            title="Band 5-6"
+                                            titleStyle={styles.menuItemTitle}
+                                            style={styles.menuItem}
+                                            leadingIcon={Band5Icon}
+                                        />
+                                        <Menu.Item
+                                            onPress={() => {
+                                                setSelectedLevel('Band 6-7');
+                                                setVisible(false);
+                                                navigation.navigate("TopicList", { level: 'band 6-7' });
+                                            }}
+                                            title="Band 6-7"
+                                            titleStyle={styles.menuItemTitle}
+                                            style={styles.menuItem}
+                                            leadingIcon={Band6Icon}
+                                        />
+                                        <Menu.Item
+                                            onPress={() => {
+                                                setSelectedLevel('Band 7-8');
+                                                setVisible(false);
+                                                navigation.navigate("TopicList", { level: 'band 7-8' });
+                                            }}
+                                            title="Band 7-8"
+                                            titleStyle={styles.menuItemTitle}
+                                            style={styles.menuItem}
+                                            leadingIcon={Band7Icon}
+                                        />
+                                    </Menu>
+                                    <View style={styles.levelDisplay}>
+                                        <Text style={styles.levelText}>Current: {selectedLevel} ✅</Text>
+                                    </View>
                                 </View>
-                            </View>
-                        </Card.Content>
-                    </Card>
-                </View>
-            </View>
+                            </Card.Content>
+                        </Card>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         </PaperProvider>
     );
 }
@@ -179,6 +188,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background.primary,
+    },
+    scrollView: {
+        flex: 1,
+    },
+    scrollContent: {
+        flexGrow: 1,
+        paddingBottom: 100, // Extra space for bottom navigation
     },
     welcomeContainer: {
         flexDirection: 'row',
@@ -208,7 +224,8 @@ const styles = StyleSheet.create({
     },
     mainContent: {
         flex: 1,
-        padding: 20,
+        paddingHorizontal: Math.max(20, screenWidth * 0.05), // Responsive padding
+        paddingVertical: 20,
     },
     dashboardGrid: {
         flexDirection: 'row',
@@ -315,8 +332,9 @@ const styles = StyleSheet.create({
     },
     menuContainer: {
         width: '100%',
-        zIndex: 999,
+        zIndex: 1000,
         position: 'relative',
+        minHeight: 120, // Ensure space for menu dropdown
     },
     levelDisplay: {
         marginTop: 12,
@@ -334,15 +352,14 @@ const styles = StyleSheet.create({
     menuContent: {
         backgroundColor: colors.background.secondary,
         borderRadius: 12,
-        elevation: 12,
+        elevation: 15,
         shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.25,
-        shadowRadius: 12,
-        minWidth: 220,
-        maxWidth: 280,
-        zIndex: 1000,
-        position: 'relative',
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 15,
+        minWidth: Math.min(220, screenWidth * 0.6), // Responsive width
+        maxWidth: Math.min(280, screenWidth * 0.8),
+        marginTop: 5, // Space from anchor
     },
     menuItem: {
         paddingVertical: 12,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Alert, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Alert, TouchableOpacity, Animated, SafeAreaView, Dimensions } from 'react-native';
 import {
     useAudioRecorder,
     AudioModule,
@@ -21,6 +21,8 @@ import { logger } from '../utils/logger';
 import { colors } from '../theme';
 import HeaderSection from '../components/HeaderSection';
 
+// Get screen dimensions for responsive design
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 export default function DialogueScreen({ navigation, route }) {
     // Use expo-audio hooks
@@ -193,7 +195,7 @@ export default function DialogueScreen({ navigation, route }) {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <HeaderSection
                 title="🎤 AI Voice Practice"
                 subtitle={`${topic?.title} • ${level}`}
@@ -273,7 +275,7 @@ export default function DialogueScreen({ navigation, route }) {
                 <Icon source="check-circle" size={24} color="#fff" />
                 <Text style={styles.endConversationText}>Finish Session</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 }
 
@@ -284,7 +286,9 @@ const styles = StyleSheet.create({
     },
     mainContent: {
         flex: 1,
-        padding: 20,
+        paddingHorizontal: Math.max(16, screenWidth * 0.04),
+        paddingVertical: 16,
+        paddingBottom: 100, // Extra space for bottom navigation
     },
     statusCard: {
         borderRadius: 16,

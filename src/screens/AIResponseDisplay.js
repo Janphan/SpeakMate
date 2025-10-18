@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { colors } from '../theme';
+import { responsive } from '../utils/responsive';
 
 const AIResponseDisplay = ({ messages }) => {
     const scrollViewRef = useRef(null);
@@ -65,9 +66,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     contentContainer: {
-        paddingVertical: 20,
-        paddingHorizontal: 15,
-        paddingBottom: 100, // Extra space to prevent content being hidden behind fixed elements
+        paddingVertical: responsive.padding.medium,
+        paddingHorizontal: responsive.padding.medium,
+        paddingBottom: responsive.safeBottom, // Extra space for bottom navigation
     },
     messageWrapper: {
         marginBottom: 15,
