@@ -35,14 +35,21 @@ Ready to try SpeakMate? Download the latest APK:
 
 ## Prerequisites
 
-- Node.js >= 20.19.4
-- npm >= 10.7.0
+- Node.js >= 20.15.1
+- npm >= 10.7.0  
 - Expo SDK 54
 - Expo Go app (latest version) on your mobile device
 
 ✅ Real-life Conversation Scenarios (Travel, Job Interview, Daily Chat, etc.)
 
-✅ User Progress Tracking (Fluency score, mistake tracking)
+✅ User Progress Tracking (Fluency score, streak counting, session statistics)
+
+## Project Status
+
+🎯 **Current Version:** 1.0.0  
+🚀 **Status:** Production Ready  
+📱 **Platform:** Android (iOS compatible)  
+🔧 **Architecture:** React Native + Expo Managed Workflow  
 
 ## Getting Started
 
@@ -56,6 +63,13 @@ Follow these steps to clone the repository and run the app on a mobile device.
 - Open the App on Your Device:
 - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
 - The app should open in Expo Go, allowing you to test the application on your mobile device.
+
+## Available Scripts
+
+- `npm start` - Start the Expo development server
+- `npm run qr` - Generate QR code for APK download
+- `npm run qr-update` - Update QR code with latest build
+- `npm run check-usage` - Check OpenAI API usage
 
 ## Technology Stack
 ### Frontend:

@@ -150,14 +150,32 @@ export const useStatistics = () => {
         const today = new Date();
         const todayTime = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
 
-        for (let i = 0; i < uniqueDates.length; i++) {
-            const expectedDate = todayTime - (i * 24 * 60 * 60 * 1000);
-            const currentDate = uniqueDates[i];
+        // Check if there's a session today first
+        const hasSessionToday = uniqueDates.includes(todayTime);
 
-            if (currentDate === expectedDate) {
-                streak++;
-            } else {
-                break;
+        if (!hasSessionToday) {
+            // No session today, check from yesterday
+            for (let i = 0; i < uniqueDates.length; i++) {
+                const expectedDate = todayTime - ((i + 1) * 24 * 60 * 60 * 1000); // Start from yesterday
+                const currentDate = uniqueDates[i];
+
+                if (currentDate === expectedDate) {
+                    streak++;
+                } else {
+                    break;
+                }
+            }
+        } else {
+            // Has session today, start counting from today
+            for (let i = 0; i < uniqueDates.length; i++) {
+                const expectedDate = todayTime - (i * 24 * 60 * 60 * 1000); // Start from today
+                const currentDate = uniqueDates[i];
+
+                if (currentDate === expectedDate) {
+                    streak++;
+                } else {
+                    break;
+                }
             }
         }
 
