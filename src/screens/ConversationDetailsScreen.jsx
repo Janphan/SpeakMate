@@ -77,7 +77,7 @@ export default function ConversationDetailsScreen({ route, navigation }) {
                             await deleteDoc(doc(db, 'conversations', conversationId));
                             Alert.alert("Deleted", "Conversation deleted successfully.");
                             navigation.goBack();
-                        } catch (error) {
+                        } catch {
                             Alert.alert("Error", "Failed to delete conversation.");
                         }
                     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
-import { collection, getDocs, orderBy, query, doc, deleteDoc, where } from 'firebase/firestore';
+import { collection, getDocs, query, doc, deleteDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Card, Icon } from 'react-native-paper';
 import { logger } from '../utils/logger';
@@ -95,7 +95,7 @@ export default function CallsScreen({ navigation }) {
                             await deleteDoc(doc(db, 'conversations', id));
                             setConversations((prev) => prev.filter((item) => item.id !== id));
                             Alert.alert("Deleted", "Conversation deleted successfully.");
-                        } catch (error) {
+                        } catch {
                             Alert.alert("Error", "Failed to delete conversation.");
                         }
                     }

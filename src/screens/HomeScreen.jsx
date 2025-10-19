@@ -8,7 +8,7 @@ import HeaderSection from '../components/HeaderSection';
 import { colors } from '../theme';
 
 // Get screen dimensions for responsive design
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 // Icon components to avoid nested components in render
 const Band5Icon = () => <Icon source="numeric-5-circle" size={20} color={colors.primary} />;

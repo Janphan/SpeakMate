@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
 import { colors } from '../theme';
 import HeaderSection from '../components/HeaderSection';

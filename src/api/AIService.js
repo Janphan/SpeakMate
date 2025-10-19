@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { OPENAI_API_KEY } from '@env';
 import { db } from './firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import { logger } from '../utils/logger';

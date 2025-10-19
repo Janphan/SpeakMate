@@ -10,7 +10,7 @@ import {
 import { convertAudioToText } from '../api/speechToText';
 import { getOpenAIResponse, resetQuestionTracking } from "../api/AIService";
 import AIResponseDisplay from './AIResponseDisplay';
-import { IconButton, Card, Icon } from 'react-native-paper';
+import { Card, Icon } from 'react-native-paper';
 import { db } from '../api/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth } from '../api/firebaseConfig';
@@ -22,7 +22,7 @@ import { colors } from '../theme';
 import HeaderSection from '../components/HeaderSection';
 
 // Get screen dimensions for responsive design
-const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 export default function DialogueScreen({ navigation, route }) {
     // Use expo-audio hooks
