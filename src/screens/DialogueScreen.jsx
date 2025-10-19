@@ -218,7 +218,7 @@ export default function DialogueScreen({ navigation, route }) {
                                 {isLoading
                                     ? "Processing your speech..."
                                     : aiResponse
-                                        ? "Ready to listen! Tap the microphone to speak"
+                                        ? "Tap the microphone to speak"
                                         : "Recording... Speak clearly"
                                 }
                             </Text>
@@ -250,13 +250,13 @@ export default function DialogueScreen({ navigation, route }) {
                         >
                             <Icon
                                 source={recorderState.isRecording ? "stop" : "microphone"}
-                                size={40}
+                                size={28}
                                 color="#fff"
                             />
                         </TouchableOpacity>
                     </Animated.View>
                     <Text style={styles.recordButtonLabel}>
-                        {recorderState.isRecording ? "Tap to stop recording" : "Tap to start speaking"}
+                        {recorderState.isRecording ? "Stop" : "Speak"}
                     </Text>
                 </View>
 
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal: Math.max(16, screenWidth * 0.04),
         paddingVertical: 16,
-        paddingBottom: 100, // Extra space for bottom navigation
+        paddingBottom: 20, // Reduced space - conversation area extends more
     },
     statusCard: {
         borderRadius: 16,
@@ -323,22 +323,22 @@ const styles = StyleSheet.create({
     },
     controlsContainer: {
         alignItems: 'center',
-        marginBottom: 30,
+        marginBottom: 20,
     },
     recordButtonContainer: {
-        marginBottom: 15,
+        marginBottom: 10,
     },
     recordButton: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: 70,
+        height: 70,
+        borderRadius: 35,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 8,
+        elevation: 6,
         shadowColor: colors.shadow.color,
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+        shadowRadius: 6,
     },
     readyButton: {
         backgroundColor: colors.status.success,
@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     recordButtonLabel: {
-        fontSize: 16,
+        fontSize: 14,
         color: colors.text.secondary,
         textAlign: 'center',
         fontWeight: '500',
