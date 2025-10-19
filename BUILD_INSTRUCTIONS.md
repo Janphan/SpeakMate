@@ -2,9 +2,9 @@
 
 ## 🎉 **Build Status: SUCCESS**
 
-**Last Successful Build**: October 16, 2025  
-**APK Download**: https://expo.dev/artifacts/eas/acMwQsJ9WWfUDPP8pjaedn.apk  
-**Build ID**: 4a877d41-be27-4c09-8738-352144349fc9
+**Last Successful Build**: October 19, 2025  
+**APK Download**: https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk  
+**Build ID**: 91812f8a-40e8-4355-83e0-76fca1166198
 
 ---
 
@@ -181,7 +181,8 @@ npx eas build --platform android --profile preview-apk --clear-cache
 ### Method 2: Direct Download
 1. **Get APK URL** from successful build output
 2. **Open browser** on Android device
-3. **Navigate to APK URL**: https://expo.dev/artifacts/eas/acMwQsJ9WWfUDPP8pjaedn.apk
+**Direct Download**: Open browser on Android device
+3. **Navigate to APK URL**: https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk
 4. **Download and install** the APK
 5. **Enable "Install from Unknown Sources"** if prompted
 
@@ -376,14 +377,14 @@ curl https://api.openai.com/v1/usage \
 - **React Native Guide**: https://reactnative.dev/docs/getting-started
 
 ### Last Successful Build Details
-- **Build ID**: 4a877d41-be27-4c09-8738-352144349fc9
+- **Build ID**: 91812f8a-40e8-4355-83e0-76fca1166198
 - **Platform**: Android
 - **Profile**: production-apk
 - **SDK Version**: 54.0.0
-- **App Version**: 1.0.0 (Version Code: 2)
+- **App Version**: 1.0.0 (Version Code: 3)
 - **Status**: ✅ SUCCESS
-- **Build Time**: ~1h 40m
-- **APK Size**: ~25MB
+- **Build Time**: ~15m
+- **APK Size**: ~22MB
 
 ---
 
@@ -513,6 +514,6 @@ jobs:
 
 ---
 
-*Last updated: October 16, 2025*  
+*Last updated: October 19, 2025*  
 *Build system: EAS Build (Managed Workflow)*  
 *Target: Android APK for distribution*

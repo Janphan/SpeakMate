@@ -19,12 +19,12 @@ const logger = {
 };
 
 // Updated APK download URL from latest build
-const APK_URL = 'https://expo.dev/artifacts/eas/acMwQsJ9WWfUDPP8pjaedn.apk';
+const apkUrl = 'https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk';
 
 async function generateQRCode() {
     try {
         logger.info('Generating QR Code for SpeakMate APK');
-        logger.info('APK URL configured', { url: APK_URL });
+        logger.info('APK URL configured', { url: apkUrl });
 
         // Generate QR code options
         const options = {
@@ -40,17 +40,17 @@ async function generateQRCode() {
         };
 
         // Generate QR code as PNG file
-        await QRCode.toFile('./speakmate-apk-qr.png', APK_URL, options);
+        await QRCode.toFile('./speakmate-apk-qr.png', apkUrl, options);
         logger.success('QR Code PNG generated', { file: 'speakmate-apk-qr.png', size: '512x512' });
 
         // Generate QR code as SVG file (scalable)
-        const svgString = await QRCode.toString(APK_URL, { type: 'svg', width: 512 });
+        const svgString = await QRCode.toString(apkUrl, { type: 'svg', width: 512 });
         fs.writeFileSync('./speakmate-apk-qr.svg', svgString);
         logger.success('QR Code SVG generated', { file: 'speakmate-apk-qr.svg', format: 'scalable' });
 
         // Generate QR code in terminal (for quick view)
         logger.info('QR Code preview (scan with phone)');
-        const terminalQR = await QRCode.toString(APK_URL, { type: 'terminal', small: true });
+        const terminalQR = await QRCode.toString(apkUrl, { type: 'terminal', small: true });
         logger.info(terminalQR);
 
         logger.success('QR Code generation complete');

@@ -12,7 +12,7 @@ SpeakMate is a mobile app designed for IELTS learners aiming to improve their sp
 
 Ready to try SpeakMate? Download the latest APK:
 
-[![Download APK](https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android)](https://expo.dev/artifacts/eas/acMwQsJ9WWfUDPP8pjaedn.apk)
+[![Download APK](https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android)](https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk)
 
 **QR Code for mobile download:**
 
@@ -20,7 +20,9 @@ Ready to try SpeakMate? Download the latest APK:
 
 *Scan with your phone camera to download directly*
 
-**Latest Build:** October 16, 2025 - Includes critical bug fixes and UI improvements
+**Latest Build:** October 19, 2025 - Includes streak calculation fixes and updated documentation
+
+📋 **For detailed build instructions and APK generation, see [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)**
 
 ## Core Features:
 
