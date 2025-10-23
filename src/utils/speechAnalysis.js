@@ -54,14 +54,19 @@ export function analyzeSpeech(responses) {
             }
             const pauseFrequency = totalDuration > 0 ? (pauseCount / (totalDuration / 30)) : 0;
 
-            // Determine fluency band for individual response
             let fluencyBand = 'Below Band 5';
             const roundedPause = Math.round(pauseFrequency);
-            if (wpm >= 120 && wpm <= 140 && (roundedPause >= 0 && roundedPause <= 3)) {
+
+            if (wpm > 140 && roundedPause <= 1) {
+                fluencyBand = 'Band 6+';
+            }
+            else if (wpm >= 120 && wpm <= 140 && roundedPause >= 1 && roundedPause <= 2) {
                 fluencyBand = 'Band 6';
-            } else if (wpm >= 110 && wpm <= 130 && (roundedPause >= 0 && roundedPause <= 4)) {
+            }
+            else if (wpm >= 110 && wpm <= 130 && roundedPause >= 2 && roundedPause <= 4) {
                 fluencyBand = 'Band 5.5';
-            } else if (wpm >= 90 && wpm < 110 && (roundedPause >= 0 && roundedPause <= 5)) {
+            }
+            else if (wpm >= 90 && wpm <= 110 && roundedPause >= 3 && roundedPause <= 5) {
                 fluencyBand = 'Band 5';
             }
 
@@ -73,12 +78,14 @@ export function analyzeSpeech(responses) {
 
             // Feedback for individual response
             const feedback = [];
-            if (fluencyBand === 'Band 5') {
-                feedback.push('Fluency at Band 5. Increase speed slightly and reduce pauses if applicable.');
-            } else if (fluencyBand === 'Band 5.5') {
-                feedback.push('Fluency at Band 5.5. Maintain consistent pacing and natural pauses.');
+            if (fluencyBand === 'Band 6+') {
+                feedback.push('Excellent fluency at Band 6+! Your speech rate is advanced level.');
             } else if (fluencyBand === 'Band 6') {
                 feedback.push('Great job! Fluency aligns with Band 6.');
+            } else if (fluencyBand === 'Band 5.5') {
+                feedback.push('Fluency at Band 5.5. Maintain consistent pacing and natural pauses.');
+            } else if (fluencyBand === 'Band 5') {
+                feedback.push('Fluency at Band 5. Increase speed slightly and reduce pauses if applicable.');
             } else {
                 feedback.push('Fluency below Band 5. Focus on increasing speech rate.');
             }
@@ -137,11 +144,18 @@ export function analyzeSpeech(responses) {
     // Determine aggregated fluency band
     let fluencyBand = 'Below Band 5';
     const roundedPause = Math.round(parseFloat(pauseFrequency));
-    if (wpm >= 120 && wpm <= 140 && (roundedPause >= 0 && roundedPause <= 3)) {
+
+    // Prioritize highest band: Check Band 6+ first (future extension for advanced users)
+    if (wpm > 140 && roundedPause <= 1) {
+        fluencyBand = 'Band 6+';
+    }
+    else if (wpm >= 120 && wpm <= 140 && roundedPause >= 1 && roundedPause <= 2) {
         fluencyBand = 'Band 6';
-    } else if (wpm >= 110 && wpm <= 130 && (roundedPause >= 0 && roundedPause <= 4)) {
+    }
+    else if (wpm >= 110 && wpm <= 130 && roundedPause >= 2 && roundedPause <= 4) {
         fluencyBand = 'Band 5.5';
-    } else if (wpm >= 90 && wpm < 110 && (roundedPause >= 0 && roundedPause <= 5)) {
+    }
+    else if (wpm >= 90 && wpm <= 110 && roundedPause >= 3 && roundedPause <= 5) {
         fluencyBand = 'Band 5';
     }
 
@@ -161,12 +175,14 @@ export function analyzeSpeech(responses) {
 
     // Generate aggregated feedback
     const feedback = [];
-    if (fluencyBand === 'Band 5') {
-        feedback.push(`Average fluency at Band 5 (${wpm} WPM, ${pauseFrequency} pauses per 30s). Increase speed slightly for improvement.`);
-    } else if (fluencyBand === 'Band 5.5') {
-        feedback.push(`Good average fluency at Band 5.5 (${wpm} WPM, ${pauseFrequency} pauses per 30s). Maintain consistency to reach Band 6.`);
+    if (fluencyBand === 'Band 6+') {
+        feedback.push(`Outstanding average fluency at Band 6+! Your speech rate (${wpm} WPM) and pause frequency (${pauseFrequency} per 30s) exceed Band 6 standards.`);
     } else if (fluencyBand === 'Band 6') {
         feedback.push(`Excellent average fluency! Your speech rate (${wpm} WPM) and pause frequency (${pauseFrequency} per 30s) align with Band 6.`);
+    } else if (fluencyBand === 'Band 5.5') {
+        feedback.push(`Good average fluency at Band 5.5 (${wpm} WPM, ${pauseFrequency} pauses per 30s). Maintain consistency to reach Band 6.`);
+    } else if (fluencyBand === 'Band 5') {
+        feedback.push(`Average fluency at Band 5 (${wpm} WPM, ${pauseFrequency} pauses per 30s). Increase speed slightly for improvement.`);
     } else {
         feedback.push(`Average fluency below Band 5 (${wpm} WPM, ${pauseFrequency} pauses per 30s). Adjust speech rate to 90–140 WPM.`);
     }
@@ -185,8 +201,8 @@ export function analyzeSpeech(responses) {
 
     // Log aggregated results
     logger.info(`Aggregated Speech Analysis:
-    - WPM: ${wpm} (Band 5: 90–110, Band 5.5: 110–130, Band 6: 120–140)
-    - Pause Frequency: ${pauseFrequency} pauses per 30s (Band 5: 0–5, Band 5.5: 0–4, Band 6: 0–3)
+    - WPM: ${wpm} (Band 5: 90–110, Band 5.5: 110–130, Band 6: 120–140, Band 6+: >140)
+    - Pause Frequency: ${pauseFrequency} pauses per 30s (Band 5: 3–5, Band 5.5: 2–4, Band 6: 1–2, Band 6+: ≤1)
     - Pause Count: ${pauseCount}
     - Pause Duration: ${pauseDuration}s
     - Fluency Band: ${fluencyBand}
