@@ -114,6 +114,11 @@ usage-*.log
 firebase-debug.log
 .firebase/
 
+# Firebase service account keys (CRITICAL: Never commit these)
+*firebase-adminsdk*.json
+*serviceAccountKey*.json
+speakmate-*-firebase-adminsdk-*.json
+
 # Temporary files
 tmp/
 temp/

@@ -66,12 +66,33 @@ Follow these steps to clone the repository and run the app on a mobile device.
 - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
 - The app should open in Expo Go, allowing you to test the application on your mobile device.
 
+### 🔥 Firebase Setup (Required)
+
+⚠️ **Important:** Before running the app, you need to set up Firebase and initialize the question banks.
+
+1. **Set up Firebase security rules** and **initialize question banks** using the admin script
+2. **See [FIREBASE_SETUP_GUIDE.md](FIREBASE_SETUP_GUIDE.md)** for complete instructions
+
+**Quick setup:**
+```bash
+# After setting up Firebase project and downloading service account key
+npm run init-questions /path/to/your/serviceAccountKey.json
+```
+
+This setup ensures:
+- ✅ Questions are securely initialized with admin privileges
+- ✅ Proper Firebase security rules are in place
+- ✅ Users can access questions after authentication
+- ✅ No permission errors during app usage
+
 ## Available Scripts
 
 - `npm start` - Start the Expo development server
 - `npm run qr` - Generate QR code for APK download
 - `npm run qr-update` - Update QR code with latest build
 - `npm run check-usage` - Check OpenAI API usage
+- `npm run init-questions` - Initialize Firebase question banks (requires service account key)
+- `npm run init-questions:help` - Show help for question bank initialization
 
 ## Technology Stack
 ### Frontend:

@@ -1,0 +1,372 @@
+/*
+Comprehensive admin initialization script for seeding all question collections.
+This script initializes all question banks with admin privileges.
+
+Usage:
+  node scripts/init_question_banks_admin.js /path/to/serviceAccountKey.json
+
+This script uses Firebase Admin SDK to bypass security rules and populate the questions collection.
+*/
+
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp } = require('firebase-admin/firestore');
+const fs = require('fs');
+const path = require('path');
+
+function getAllQuestionBanks() {
+    return [
+        {
+            topic: 'Hometown & Accommodation',
+            level: 'Band 5-6',
+            questions: [
+                'Where is your hometown?',
+                'What do you like about your hometown?',
+                'How important is your hometown to you?',
+                'Do you think you will continue to live in your hometown?',
+                'How has your hometown changed over the years?',
+                'What is your hometown famous for?',
+                'Tell me about the kind of accommodation you live in?',
+                'Do you live in a house or a flat?',
+                'How long have you lived there?',
+                'Is there anything you would like to change about the place you live in?',
+                'Who do you live with?',
+                'What is your favourite room in your home?',
+                'Do you like visitors coming to your home?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Work & Study',
+            level: 'Band 5-6',
+            questions: [
+                'Do you work or study?',
+                'Do you enjoy your job/studies?',
+                'What responsibilities do you have at work/university?',
+                'What is your typical day like?',
+                'What would you change about your job/studies?',
+                'What job do you think you will be doing in five years?',
+                'What was your first day at work/university like?',
+                'What is your major?',
+                'Why did you choose that subject/career?',
+                'What is the most difficult part of your job/studies?',
+                'Do you get on well with your co-workers/classmates?',
+                'Have you done any volunteer work? Why or why not?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Weather & Seasons',
+            level: 'Band 5-6',
+            questions: [
+                'How is the weather today?',
+                "What's your favourite kind of weather?",
+                'Is there any type of weather you really don\'t like?',
+                'What is the climate like in your country?',
+                'Does the weather affect people\'s lives in your country?',
+                'Does bad weather ever affect transport in your country?',
+                'Which season did you enjoy the most when you were a child?',
+                'Do you usually pay attention to the weather forecasts?',
+                'Has the weather changed much in your country in recent years?',
+                "What's the best season of the year?",
+                'What do people normally do in that season?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Sports & Health',
+            level: 'Band 5-6',
+            questions: [
+                'Do you play any sports?',
+                'Do you watch sports on TV?',
+                'What is the most popular sport in your country?',
+                'How do you keep healthy?',
+                'How often do you exercise?',
+                'Do you pay attention to your diet?',
+                'Is it important for children to play sports?',
+                'Have your health habits changed recently?',
+                'Do you prefer exercising alone or with others?',
+                'Do you prefer eating at home or eating out?',
+                'Do you like ordering food to be delivered?',
+                'Do you eat meals differently now compared to when you were little?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Travel & Music',
+            level: 'Band 5-6',
+            questions: [
+                'Do you like to travel?',
+                'Where was the last place you visited on holiday?',
+                'Would you like to go back there again?',
+                'What kind of tourist destinations do you usually prefer?',
+                'What do you like to do on holiday?',
+                'Do you prefer traveling alone or with others?',
+                "What's the best way to save money while traveling?",
+                'Has a foreign visitor ever stayed at your home?',
+                'How do you listen to music?',
+                'When do you listen to music?',
+                "What's your favorite kind of music?",
+                'What kinds of music are popular in your country?',
+                'Do you like to listen to live music?',
+                'Have you ever been to a concert before?',
+                'How much time do you spend listening to music every day?',
+                'What is your favorite song?',
+                'Do you like to sing along to your favorite songs?',
+                'Are you learning to play a musical instrument at the moment?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Family & Personal Life',
+            level: 'Band 5-6',
+            questions: [
+                'How many people are there in your immediate family?',
+                'Who do you get on best within your family?',
+                'Do you have a large extended family?',
+                'What do you do together with your family?',
+                'Why is family important to you?',
+                'Do you do housework at home?',
+                'What kind of housework do you often do?',
+                'Did you do housework when you were a child?',
+                'Do you think that children should do housework?',
+                'Do you have a lot of friends?',
+                'Who is your best friend and why?',
+                'Who would you most like to be friends with and why?',
+                'What kind of person can you make friends with easily?',
+                'Which is more important to you, friends or family?',
+                'Who was your favorite teacher in high school?',
+                "What's your favorite subject in high school?",
+                'Do you still remember what happened on your first day of high school?',
+                'Do you still keep in touch with your friends from high school?',
+                'Do you miss your life in high school?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Books & Reading',
+            level: 'Band 5-6',
+            questions: [
+                'How often do you read?',
+                'Do you like reading books? Why?',
+                'Do you have many books at home?',
+                'Do you prefer to buy books or borrow them?',
+                'What are the benefits of reading?',
+                'What book would you take on a long journey?',
+                'How easy is it for you to read books in English?',
+                'Have you given up reading a book recently?',
+                'What kind of people like reading and what kind of people don\'t like reading very much?',
+                'Do you often read newspapers?',
+                'Do you prefer to read local news or international news?',
+                'Which is more popular where you live, newspapers or magazines?',
+                'Do many people today read newspapers?',
+                'In the future, do you think more people than today will read magazines, or fewer people?',
+                'Do you think newspapers will be very important to you in the future?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Technology & Internet',
+            level: 'Band 5-6',
+            questions: [
+                'Do you use computers?',
+                'What do you use a computer to do?',
+                'Did you use computers when you were little?',
+                'How important is the Internet to you?',
+                'Do you use the Internet more for work or in your free time?',
+                'Do you think you use the Internet too much?',
+                'What are your favourite websites?',
+                'What are the positive and negative things about the Internet?',
+                'How will technology develop in the future?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Entertainment & TV',
+            level: 'Band 5-6',
+            questions: [
+                'Do you like watching TV?',
+                'How often do you watch TV?',
+                'What kind of TV programmes do you like to watch?',
+                'What are the most popular TV shows in your country?',
+                'Has the internet affected your viewing habits?',
+                'What is your favourite TV show now?',
+                'What was your favourite show when you were a child?',
+                'Do you like watching TV shows from other countries?',
+                'How often do you go to the cinema?',
+                'Are cinema tickets expensive in your country?',
+                'What are the advantages of seeing a film at the cinema?',
+                'Do you usually watch films alone or with others?',
+                'Which actor would you like to play you in a film?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Personal Items & Lifestyle',
+            level: 'Band 5-6',
+            questions: [
+                'What is your favourite item of clothing?',
+                'Are there any traditional clothes in your country?',
+                'Where do you usually purchase your clothes?',
+                'Have you ever bought clothes online?',
+                'Do you usually carry a bag when you go out?',
+                'What do you put in your bag?',
+                'What types of bags do you like?',
+                'What colors do you like?',
+                "What's the most popular color in your country?",
+                'Do you like to wear dark or bright colors?',
+                "What's the difference between men and women's preference for colors?",
+                'Do colors affect your mood?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Photography & Art',
+            level: 'Band 5-6',
+            questions: [
+                'Do you like to take photographs?',
+                'How often do you take photographs?',
+                'Who do you usually take photos of?',
+                'Do you prefer to take pictures of people or of scenery?',
+                'How do you keep your photos?',
+                'Do you prefer to take photos yourself or to have other people take photos?',
+                'Are there any photos on the walls of your home?',
+                'Do you like art?',
+                'Do you think art classes are necessary?',
+                'How do you think art classes affect children\'s development?',
+                'What kind of paintings do people in your country like?',
+                'What benefits can you get from painting as a hobby?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Social Behavior & Communication',
+            level: 'Band 5-6',
+            questions: [
+                'What do you think patience is?',
+                'Do you think patience is important?',
+                'Do you think you are an patient person?',
+                'Have you ever lost your patience?',
+                'Are you a polite person?',
+                'Who taught you to be polite?',
+                'Is it important to be polite?',
+                'What do you do if others are not polite to you?',
+                'When do you send gifts?',
+                'When was the last time you received a gift?',
+                'Have you received a gift you didn\'t like?',
+                'How do you feel when you receive a gift?',
+                'Do people in your country send gifts to show their generosity?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Daily Life & Transportation',
+            level: 'Band 5-6',
+            questions: [
+                'Do you prefer public transportation or private transportation?',
+                "What's the most popular means of transportation in your hometown?",
+                'Is it easy to catch a bus in your country?',
+                'Is driving to work popular in your country?',
+                'Do you mind noises?',
+                'What types of noise do you come across in your daily life?',
+                'Are there any sounds that you like?',
+                'Do you think there\'s too much noise in modern society?',
+                'What do you do in your free time?',
+                'Has your life changed much in the last year?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Outdoor Activities & Nature',
+            level: 'Band 5-6',
+            questions: [
+                'Do you like outdoor activities?',
+                'What outdoor sports do you like?',
+                'How much time do you spend outdoors every week?',
+                'What types of outdoor activities are popular in your country?',
+                'Do you prefer indoor or outdoor activities? Why?',
+                'Have you ever taken a ride on a boat?',
+                'Do you like traveling by boat?',
+                'What are the advantages of travelling by boat?',
+                'Do people in your country like to travel by boat?',
+                'Will it get more popular in the future?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+        {
+            topic: 'Advertising & Celebrity',
+            level: 'Band 5-6',
+            questions: [
+                'Do you like watching advertisements?',
+                'Will you buy something because of an advertisement?',
+                'How do you feel when you see pop-up ads on the internet?',
+                'Do you like funny or serious advertisements?',
+                'What makes a good advertisement?',
+                'Who is your favorite celebrity?',
+                'Do you like any foreign celebrities?',
+                'Would you want to be a celebrity in the future?',
+                'Do you think we should protect famous people\'s privacy?',
+                'How do celebrities influence their fans in your country?',
+            ],
+            createdAt: Timestamp.now(),
+        },
+    ];
+}
+
+async function main() {
+    const keyPath = process.argv[2];
+    if (!keyPath) {
+        console.error('Usage: node scripts/init_question_banks_admin.js /path/to/serviceAccountKey.json');
+        process.exit(1);
+    }
+
+    if (!fs.existsSync(keyPath)) {
+        console.error('Service account key file not found:', keyPath);
+        process.exit(1);
+    }
+
+    const serviceAccount = require(path.resolve(keyPath));
+
+    initializeApp({ credential: cert(serviceAccount) });
+    const db = getFirestore();
+
+    const questionBanks = getAllQuestionBanks();
+
+    try {
+        console.log('🚀 Starting comprehensive question banks initialization...');
+        console.log(`📚 Total question banks to process: ${questionBanks.length}`);
+
+        let successCount = 0;
+        let errorCount = 0;
+
+        for (const bank of questionBanks) {
+            try {
+                // Create document ID combining topic and level for better organization
+                const docId = `${bank.topic}_${bank.level}`.replace(/\s+/g, '_').replace(/&/g, 'and');
+                await db.collection('questions').doc(docId).set(bank);
+                console.log(`✅ ${docId} (${bank.questions.length} questions)`);
+                successCount++;
+            } catch (error) {
+                console.error(`❌ Failed to write ${bank.topic} - ${bank.level}:`, error.message);
+                errorCount++;
+            }
+        }
+
+        console.log('\n🎉 Question banks initialization completed!');
+        console.log(`✅ Successfully written: ${successCount} question banks`);
+        console.log(`❌ Failed: ${errorCount} question banks`);
+        console.log(`📊 Topics covered: ${[...new Set(questionBanks.map(bank => bank.topic))].length}`);
+        console.log(`📈 Difficulty levels: ${[...new Set(questionBanks.map(bank => bank.level))].length}`);
+
+        const totalQuestions = questionBanks.reduce((total, bank) => total + bank.questions.length, 0);
+        console.log(`❓ Total questions: ${totalQuestions}`);
+
+    } catch (err) {
+        console.error('💥 Initialization failed:', err);
+        process.exit(2);
+    }
+}
+
+main().catch(err => {
+    console.error('Unexpected error:', err);
+    process.exit(3);
+});
