@@ -112,12 +112,14 @@ usage-*.log
 
 # Firebase config (if local)
 firebase-debug.log
+firestore-debug.log
 .firebase/
 
 # Firebase service account keys (CRITICAL: Never commit these)
 *firebase-adminsdk*.json
 *serviceAccountKey*.json
 speakmate-*-firebase-adminsdk-*.json
+firebase/config/*firebase-adminsdk*.json
 
 # Temporary files
 tmp/

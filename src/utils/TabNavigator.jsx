@@ -2,9 +2,9 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 
 import HomeScreen from "../screens/HomeScreen"
-import StatisticsScreen from '../screens/StatisticsScreen';
-import CallsScreen from '../screens/CallsScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import StatisticsScreen from '../screens/profile/StatisticsScreen';
+import CallsScreen from '../screens/practice/CallsScreen';
+import SettingsScreen from '../screens/profile/SettingsScreen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();

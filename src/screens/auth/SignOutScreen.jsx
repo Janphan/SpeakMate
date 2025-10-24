@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { signOut } from "firebase/auth";
-import { auth } from "../api/firebaseConfig";
-import { colors } from '../theme';
+import { auth } from "../../api/firebaseConfig";
+import { colors } from '../../theme';
 
 const SignOutScreen = ({ navigation }) => {
     const handleSignOut = async () => {

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground, StatusBar } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../api/firebaseConfig";
+import { auth } from "../../api/firebaseConfig";
 import { Icon, Card } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
-import { logger } from '../utils/logger';
-import { colors } from '../theme';
+import { logger } from '../../utils/logger';
+import { colors } from '../../theme';
 
 // Import the background image
-const backgroundImage = require('../../assets/sigin_background.jpg');
+const backgroundImage = require('../../../assets/sigin_background.jpg');
 
 const SignInScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");

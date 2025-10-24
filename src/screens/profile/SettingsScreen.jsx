@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert, ScrollView } from 'react-native';
 import { signOut } from 'firebase/auth';
-import { auth } from '../api/firebaseConfig';
+import { auth } from '../../api/firebaseConfig';
 import { Card, Icon } from 'react-native-paper';
-import HeaderSection from '../components/HeaderSection';
-import { colors } from '../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
+import { colors } from '../../theme';
 
 const SettingsScreen = ({ navigation }) => {
     const [isSigningOut, setIsSigningOut] = useState(false);

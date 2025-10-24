@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
-import HeaderSection from '../components/HeaderSection';
-import { useStatistics } from '../hooks/useStatistics';
-import { colors } from '../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
+import { useStatistics } from '../../hooks/useStatistics';
+import { colors } from '../../theme';
 
 export default function StatisticsScreen() {
     const {

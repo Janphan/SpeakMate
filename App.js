@@ -5,21 +5,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 import HomeScreen from "./src/screens/HomeScreen"
-import SignInScreen from './src/screens/SignInScreen';
-import SignUpScreen from './src/screens/SignUpScreen';
-import SignOutScreen from "./src/screens/SignOutScreen";
-import SettingsScreen from "./src/screens/SettingsScreen";
-import DialogueScreen from './src/screens/DialogueScreen';
+import SignInScreen from './src/screens/auth/SignInScreen';
+import SignUpScreen from './src/screens/auth/SignUpScreen';
+import SignOutScreen from "./src/screens/auth/SignOutScreen";
+import SettingsScreen from "./src/screens/profile/SettingsScreen";
+import DialogueScreen from './src/screens/practice/DialogueScreen';
 
-import StatisticsScreen from './src/screens/StatisticsScreen';
-import CallsScreen from './src/screens/CallsScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import TermsOfServiceScreen from './src/screens/TermsOfServiceScreen';
-import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
-import ResetPasswordScreen from './src/screens/ResetPasswordScreen';
-import ConversationDetailsScreen from './src/screens/ConversationDetailsScreen';
-import TopicList from './src/screens/TopicList';
-import Feedback from './src/screens/Feedback';
+import StatisticsScreen from './src/screens/profile/StatisticsScreen';
+import CallsScreen from './src/screens/practice/CallsScreen';
+import ProfileScreen from './src/screens/profile/ProfileScreen';
+import TermsOfServiceScreen from './src/screens/legal/TermsOfServiceScreen';
+import PrivacyPolicyScreen from './src/screens/legal/PrivacyPolicyScreen';
+import ResetPasswordScreen from './src/screens/auth/ResetPasswordScreen';
+import ConversationDetailsScreen from './src/screens/practice/ConversationDetailsScreen';
+import TopicList from './src/screens/practice/TopicList';
+import Feedback from './src/screens/practice/Feedback';
 
 
 const Stack = createNativeStackNavigator();

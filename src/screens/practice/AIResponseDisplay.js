@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { colors } from '../theme';
-import { responsive } from '../utils/responsive';
+import { colors } from '../../theme';
+import { responsive } from '../../utils/responsive';
 
 const AIResponseDisplay = ({ messages }) => {
     const scrollViewRef = useRef(null);

@@ -22,7 +22,7 @@ Ready to try SpeakMate? Download the latest APK:
 
 **Latest Build:** October 19, 2025 - Includes streak calculation fixes and updated documentation
 
-📋 **For detailed build instructions and APK generation, see [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md)**
+📋 **For detailed build instructions and APK generation, see [docs/BUILD_INSTRUCTIONS.md](docs/BUILD_INSTRUCTIONS.md)**
 
 ## Core Features:
 
@@ -35,16 +35,131 @@ Ready to try SpeakMate? Download the latest APK:
 	- Feedback is mapped to IELTS bands (5, 5.5, 6) and includes personalized advice to help you improve your fluency and pronunciation.
 	- You receive instant feedback on your speaking rate, hesitations, and clarity, with actionable tips for progress.
 
+✅ Real-life Conversation Scenarios (Travel, Job Interview, Daily Chat, etc.)
+
+✅ User Progress Tracking (Fluency score, streak counting, session statistics)
+
+## 📂 Project Structure
+
+```
+SpeakMate/
+├── 📱 App Core
+│   ├── App.js                           # Main app entry point
+│   ├── index.js                         # Root index file
+│   └── app.json                         # Expo app configuration
+│
+├── 🎨 Source Code (src/)
+│   ├── api/                             # Backend integrations
+│   │   ├── AIService.js                 # OpenAI API integration
+│   │   ├── auth.js                      # Firebase authentication
+│   │   ├── firebaseConfig.js            # Firebase configuration
+│   │   ├── speechToText.js              # Speech recognition
+│   │   └── whisperAI.js                 # Whisper AI integration
+│   │
+│   ├── components/                      # Reusable UI components
+│   │   ├── layout/                      # Layout components
+│   │   │   └── HeaderSection.jsx        # App header component
+│   │   └── ui/                          # UI components (buttons, inputs, etc.)
+│   │
+│   ├── screens/                         # App screens organized by feature
+│   │   ├── auth/                        # Authentication screens
+│   │   │   ├── SignInScreen.jsx         # User login
+│   │   │   ├── SignUpScreen.jsx         # User registration
+│   │   │   ├── SignOutScreen.jsx        # User logout
+│   │   │   └── ResetPasswordScreen.jsx  # Password recovery
+│   │   ├── practice/                    # Practice & conversation screens
+│   │   │   ├── DialogueScreen.jsx       # Conversation interface
+│   │   │   ├── TopicList.jsx            # Topic selection
+│   │   │   ├── VocabScreen.jsx          # Vocabulary practice
+│   │   │   ├── CallsScreen.jsx          # Call history
+│   │   │   ├── ConversationDetailsScreen.jsx # Conversation details
+│   │   │   ├── Feedback.jsx             # AI feedback display
+│   │   │   └── AIResponseDisplay.js     # AI response interface
+│   │   ├── profile/                     # User profile & settings
+│   │   │   ├── ProfileScreen.jsx        # User profile
+│   │   │   ├── SettingsScreen.jsx       # App settings
+│   │   │   └── StatisticsScreen.jsx     # Progress tracking
+│   │   ├── legal/                       # Legal & policy screens
+│   │   │   ├── PrivacyPolicyScreen.jsx  # Privacy policy
+│   │   │   └── TermsOfServiceScreen.jsx # Terms of service
+│   │   └── HomeScreen.jsx               # Main dashboard
+│   │
+│   ├── hooks/                           # Custom React hooks
+│   │   └── useStatistics.js             # Statistics data hook
+│   │
+│   ├── theme/                           # Design system
+│   │   ├── colors.js                    # Color palette
+│   │   ├── typography.js                # Font styles
+│   │   ├── spacing.js                   # Layout spacing
+│   │   └── index.js                     # Theme exports
+│   │
+│   ├── utils/                           # Utility functions
+│   │   ├── logger.js                    # Logging system
+│   │   ├── responsive.js                # Responsive design helpers
+│   │   ├── speechAnalysis.js            # Speech analysis algorithms
+│   │   └── TabNavigator.jsx             # Navigation configuration
+│   │
+│   └── services/                        # Business logic services
+│
+├── 🔥 Firebase Configuration (firebase/)
+│   ├── config/                          # Firebase settings
+│   │   ├── firestore.indexes.json       # Database indexes
+│   │   └── speakmate-*-adminsdk-*.json  # Service account key
+│   ├── rules/                           # Security rules
+│   │   └── firestore.rules              # Firestore access rules
+│   ├── scripts/                         # Firebase utilities
+│   │   ├── simple-rules-test.js         # Rules testing
+│   │   ├── init_question_banks_admin.js # Question bank setup
+│   │   └── init_all_question_banks_admin.js # All questions setup
+│   └── README.md                        # Firebase documentation
+│
+├── 🧪 Testing (tests/)
+│   └── basic.test.js                    # Basic Jest tests
+│
+├── 📜 Scripts (scripts/)
+│   ├── generate-qr.js                   # QR code generation
+│   └── update-qr.js                     # QR code updates
+│
+├── 🎯 Assets & Data
+│   └── assets/                          # Static assets
+│       └── words.json                   # Vocabulary data
+│
+├── ⚙️ Configuration Files
+│   ├── config/                          # Configuration folder
+│   │   ├── babel.config.js              # Babel configuration
+│   │   ├── metro.config.js              # Metro bundler config
+│   │   ├── eslint.config.js             # ESLint rules
+│   │   ├── .eslintrc.json               # ESLint JSON config
+│   │   └── .prettierrc                  # Prettier formatting
+│   ├── firebase.json                    # Firebase project config
+│   ├── eas.json                         # Expo Application Services
+│   ├── package.json                     # Dependencies & scripts
+│   └── .gitignore                       # Git ignore rules
+│
+└── 📋 Documentation (docs/)
+    ├── README.md                        # Main project documentation
+    ├── BUILD_INSTRUCTIONS.md            # Build & deployment guide
+    ├── JAVA_SETUP_GUIDE.md             # Java environment setup
+    ├── Process.md                       # Development process
+    └── LICENSE                          # Project license
+```
+
+### 🏗️ Architecture Overview
+
+- **Frontend:** React Native with Expo managed workflow
+- **Backend Services:** Firebase (Auth, Firestore, Cloud Functions)
+- **AI Integration:** OpenAI Whisper for speech recognition, GPT for conversations
+- **State Management:** React hooks and context
+- **Navigation:** React Navigation v7
+- **Testing:** Jest for unit tests, Firebase emulators for integration tests
+- **Deployment:** Expo Application Services (EAS) for mobile builds
+
 ## Prerequisites
 
 - Node.js >= 20.15.1
 - npm >= 10.7.0  
 - Expo SDK 54
 - Expo Go app (latest version) on your mobile device
-
-✅ Real-life Conversation Scenarios (Travel, Job Interview, Daily Chat, etc.)
-
-✅ User Progress Tracking (Fluency score, streak counting, session statistics)
 
 ## Project Status
 
@@ -71,7 +186,7 @@ Follow these steps to clone the repository and run the app on a mobile device.
 ⚠️ **Important:** Before running the app, you need to set up Firebase and initialize the question banks.
 
 1. **Set up Firebase security rules** and **initialize question banks** using the admin script
-2. **See [FIREBASE_SETUP_GUIDE.md](FIREBASE_SETUP_GUIDE.md)** for complete instructions
+2. **See [firebase/README.md](firebase/README.md)** for complete Firebase setup instructions
 
 **Quick setup:**
 ```bash

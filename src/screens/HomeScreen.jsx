@@ -4,7 +4,7 @@ import { PaperProvider, Card, Icon, Menu } from 'react-native-paper';
 import { getAuth } from 'firebase/auth';
 import { useFocusEffect } from '@react-navigation/native';
 import { useStatistics } from '../hooks/useStatistics';
-import HeaderSection from '../components/HeaderSection';
+import HeaderSection from '../components/layout/HeaderSection';
 import { colors } from '../theme';
 
 // Get screen dimensions for responsive design

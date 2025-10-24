@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
-import HeaderSection from '../components/HeaderSection';
-import { colors } from '../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
+import { colors } from '../../theme';
 
 // Feedback expects an 'analysis' prop from analyzeSpeech()
 const Feedback = ({ route, navigation }) => {

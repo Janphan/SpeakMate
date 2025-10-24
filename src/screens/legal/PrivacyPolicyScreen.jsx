@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Card, Icon } from 'react-native-paper';
-import { colors } from '../theme';
-import HeaderSection from '../components/HeaderSection';
+import { colors } from '../../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
 
 export default function PrivacyPolicyScreen({ navigation }) {
     const privacySection = [

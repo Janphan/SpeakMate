@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { PaperProvider, IconButton } from 'react-native-paper';
-import { colors } from '../theme';
+import { colors } from '../../theme';
 
 
 export default function VocabScreen({ navigation }) {

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import { db } from '../api/firebaseConfig'; // Firebase Firestore instance
+import { db } from '../../api/firebaseConfig'; // Firebase Firestore instance
 import { collection, getDocs, query, doc, deleteDoc, where } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { Card, Icon } from 'react-native-paper';
-import { logger } from '../utils/logger';
-import { colors } from '../theme';
-import HeaderSection from '../components/HeaderSection';
+import { logger } from '../../utils/logger';
+import { colors } from '../../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
 
 export default function CallsScreen({ navigation }) {
     const [conversations, setConversations] = useState([]);

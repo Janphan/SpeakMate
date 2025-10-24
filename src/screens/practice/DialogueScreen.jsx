@@ -7,19 +7,19 @@ import {
     setAudioModeAsync,
     useAudioRecorderState,
 } from 'expo-audio';
-import { convertAudioToText } from '../api/speechToText';
-import { getOpenAIResponse, resetQuestionTracking } from "../api/AIService";
+import { convertAudioToText } from '../../api/speechToText';
+import { getOpenAIResponse, resetQuestionTracking } from "../../api/AIService";
 import AIResponseDisplay from './AIResponseDisplay';
 import { Card, Icon } from 'react-native-paper';
-import { db } from '../api/firebaseConfig';
+import { db } from '../../api/firebaseConfig';
 import { collection, addDoc } from 'firebase/firestore';
-import { auth } from '../api/firebaseConfig';
+import { auth } from '../../api/firebaseConfig';
 import uuid from 'react-native-uuid';
-import { analyzeSpeech } from '../utils/speechAnalysis';
+import { analyzeSpeech } from '../../utils/speechAnalysis';
 import * as Speech from 'expo-speech';
-import { logger } from '../utils/logger';
-import { colors } from '../theme';
-import HeaderSection from '../components/HeaderSection';
+import { logger } from '../../utils/logger';
+import { colors } from '../../theme';
+import HeaderSection from '../../components/layout/HeaderSection';
 
 // Get screen dimensions for responsive design
 const { width: screenWidth } = Dimensions.get('window');

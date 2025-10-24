@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground, StatusBar, Alert } from 'react-native';
-import { signUpUser } from '../api/auth';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ImageBackground, StatusBar } from 'react-native';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { auth } from '../../api/firebaseConfig';
 import { Icon, Card } from 'react-native-paper';
-import { colors } from '../theme';
+import { colors } from '../../theme';
 
 // Import the background image
-const backgroundImage = require('../../assets/sigin_background.jpg');
+const backgroundImage = require('../../../assets/sigin_background.jpg');
 
-export default function SignUpScreen({ navigation }) {
+export default function ResetPasswordScreen({ navigation }) {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
-    const [showPassword, setShowPassword] = useState(false);
 
-    const handleSignUp = async () => {
-        if (!email || !password || !name) {
-            Alert.alert("Error", "Please fill in all fields");
+    const handlePasswordReset = async () => {
+        if (!email) {
+            Alert.alert("Error", "Please enter your email address.");
             return;
         }
 
         setLoading(true);
         try {
-            await signUpUser(email, password, name);
-            Alert.alert("Success", "Account created successfully!");
-            navigation.navigate("HomeScreen");
+            await sendPasswordResetEmail(auth, email);
+            Alert.alert(
+                "Success",
+                "Password reset email sent! Please check your inbox and follow the instructions to reset your password.",
+                [{ text: "OK", onPress: () => navigation.navigate("SignInScreen") }]
+            );
         } catch (error) {
             Alert.alert("Error", error.message);
         } finally {
@@ -44,31 +45,26 @@ export default function SignUpScreen({ navigation }) {
                 {/* Header Section */}
                 <View style={styles.headerSection}>
                     <View style={styles.logoContainer}>
-                        <Icon source="account-plus" size={60} color={colors.text.light} />
+                        <Icon source="lock-reset" size={60} color="#fff" />
                     </View>
-                    <Text style={styles.title}>Join SpeakMate</Text>
-                    <Text style={styles.subtitle}>Create your account to get started</Text>
+                    <Text style={styles.title}>Reset Password</Text>
+                    <Text style={styles.subtitle}>Enter your email to receive reset instructions</Text>
                 </View>
 
                 {/* Form Card */}
                 <Card style={styles.formCard}>
                     <Card.Content style={styles.formContent}>
-                        {/* Name Input */}
-                        <View style={styles.inputContainer}>
-                            <Icon source="account" size={20} color={colors.primary} style={styles.inputIcon} />
-                            <TextInput
-                                placeholder="Full Name"
-                                value={name}
-                                onChangeText={setName}
-                                style={styles.input}
-                                autoCapitalize="words"
-                                placeholderTextColor={colors.text.secondary}
-                            />
+                        {/* Instructions */}
+                        <View style={styles.instructionsContainer}>
+                            <Icon source="information" size={20} color="#5e7055" />
+                            <Text style={styles.instructionsText}>
+                                We&apos;ll send you a link to reset your password
+                            </Text>
                         </View>
 
                         {/* Email Input */}
                         <View style={styles.inputContainer}>
-                            <Icon source="email" size={20} color={colors.primary} style={styles.inputIcon} />
+                            <Icon source="email" size={20} color="#5e7055" style={styles.inputIcon} />
                             <TextInput
                                 placeholder="Email Address"
                                 value={email}
@@ -77,45 +73,25 @@ export default function SignUpScreen({ navigation }) {
                                 autoCapitalize="none"
                                 style={styles.input}
                                 textContentType="emailAddress"
-                                placeholderTextColor={colors.text.secondary}
+                                placeholderTextColor="#888"
                             />
                         </View>
 
-                        {/* Password Input */}
-                        <View style={styles.inputContainer}>
-                            <Icon source="lock" size={20} color={colors.primary} style={styles.inputIcon} />
-                            <TextInput
-                                placeholder="Password"
-                                value={password}
-                                onChangeText={setPassword}
-                                secureTextEntry={!showPassword}
-                                style={styles.input}
-                                textContentType="password"
-                                placeholderTextColor={colors.text.secondary}
-                            />
-                            <TouchableOpacity
-                                onPress={() => setShowPassword(!showPassword)}
-                                style={styles.eyeIcon}
-                            >
-                                <Icon source={showPassword ? "eye-off" : "eye"} size={20} color={colors.text.secondary} />
-                            </TouchableOpacity>
-                        </View>
-
-                        {/* Sign Up Button */}
+                        {/* Reset Button */}
                         <TouchableOpacity
-                            onPress={handleSignUp}
-                            style={[styles.signUpButton, loading && styles.disabledButton]}
+                            onPress={handlePasswordReset}
+                            style={[styles.resetButton, loading && styles.disabledButton]}
                             disabled={loading}
                         >
-                            <Text style={styles.signUpButtonText}>
-                                {loading ? "Creating Account..." : "Sign Up"}
+                            <Text style={styles.resetButtonText}>
+                                {loading ? "Sending..." : "Send Reset Email"}
                             </Text>
                         </TouchableOpacity>
 
                         {/* Navigation Link */}
                         <View style={styles.linksContainer}>
-                            <TouchableOpacity onPress={() => navigation.navigate("SignInScreen")}>
-                                <Text style={styles.link}>Already have an account? Sign In</Text>
+                            <TouchableOpacity onPress={() => navigation.goBack()}>
+                                <Text style={styles.link}>Back to Sign In</Text>
                             </TouchableOpacity>
                         </View>
                     </Card.Content>
@@ -155,12 +131,12 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50,
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        backgroundColor: colors.text.light + '20', // White with 20% opacity
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
         borderWidth: 2,
-        borderColor: 'rgba(255, 255, 255, 0.3)',
+        borderColor: colors.text.light + '30',
     },
     title: {
         fontSize: 36,
@@ -191,12 +167,26 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         paddingHorizontal: 20,
     },
+    instructionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: colors.primaryLight,
+        padding: 12,
+        borderRadius: 8,
+        marginBottom: 20,
+    },
+    instructionsText: {
+        marginLeft: 8,
+        fontSize: 14,
+        color: colors.primary,
+        flex: 1,
+    },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: colors.background.primary,
         borderRadius: 12,
-        marginBottom: 16,
+        marginBottom: 20,
         paddingHorizontal: 16,
         paddingVertical: 4,
         borderWidth: 1,
@@ -211,23 +201,19 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         color: colors.text.primary,
     },
-    eyeIcon: {
-        padding: 8,
-    },
-    signUpButton: {
+    resetButton: {
         backgroundColor: colors.primary,
         borderRadius: 12,
         paddingVertical: 16,
         alignItems: 'center',
-        marginTop: 8,
         marginBottom: 24,
         elevation: 2,
     },
     disabledButton: {
-        backgroundColor: colors.primaryLight,
+        backgroundColor: colors.text.secondary,
         elevation: 0,
     },
-    signUpButtonText: {
+    resetButtonText: {
         color: colors.text.light,
         fontSize: 16,
         fontWeight: '600',
