@@ -2,6 +2,10 @@
 
 SpeakMate is a mobile app designed for IELTS learners aiming to improve their speaking proficiency, especially targeting Band 5–6. Built with React Native and integrated with Firebase for authentication, data storage, and progress tracking, SpeakMate leverages OpenAI Whisper for real-time speech recognition and natural language processing. The app transcribes user responses, provides transcripts, confidence scores, and timestamps, and analyzes fluency (speech rate, pauses) and pronunciation (clarity, intonation) according to IELTS band descriptors. SpeakMate offers live feedback, user progress tracking, and realistic conversation scenarios to support effective self-study.
 
+## 📖 Thesis
+
+For more details about this project, refer to the thesis: [https://www.theseus.fi/handle/10024/901588](https://www.theseus.fi/handle/10024/901588)
+
 ## 🎥 Demo Video
 
 [![SpeakMate Demo](https://img.youtube.com/vi/J_tCY55MraA/maxresdefault.jpg)](https://www.youtube.com/watch?v=J_tCY55MraA)
