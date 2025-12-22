@@ -22,7 +22,7 @@ Ready to try SpeakMate? Download the latest APK:
 
 <img src="speakmate-apk-qr.png" alt="Download SpeakMate APK" width="200">
 
-*Scan with your phone camera to download directly*
+_Scan with your phone camera to download directly_
 
 **Latest Build:** October 19, 2025 - Includes streak calculation fixes and updated documentation
 
@@ -34,10 +34,7 @@ Ready to try SpeakMate? Download the latest APK:
 
 ✅ Speech-to-Text & Text-to-Speech (User speaks, AI understands & responds)
 
-✅ Live Feedback on Fluency & Pronunciation
-	- After each response, SpeakMate analyzes your speech using metrics like words per minute (WPM) and pause frequency.
-	- Feedback is mapped to IELTS bands (5, 5.5, 6) and includes personalized advice to help you improve your fluency and pronunciation.
-	- You receive instant feedback on your speaking rate, hesitations, and clarity, with actionable tips for progress.
+✅ Live Feedback on Fluency & Pronunciation - After each response, SpeakMate analyzes your speech using metrics like words per minute (WPM) and pause frequency. - Feedback is mapped to IELTS bands (5, 5.5, 6) and includes personalized advice to help you improve your fluency and pronunciation. - You receive instant feedback on your speaking rate, hesitations, and clarity, with actionable tips for progress.
 
 ✅ Real-life Conversation Scenarios (Travel, Job Interview, Daily Chat, etc.)
 
@@ -161,7 +158,7 @@ SpeakMate/
 ## Prerequisites
 
 - Node.js >= 20.15.1
-- npm >= 10.7.0  
+- npm >= 10.7.0
 - Expo SDK 54
 - Expo Go app (latest version) on your mobile device
 
@@ -170,20 +167,36 @@ SpeakMate/
 🎯 **Current Version:** 1.0.0  
 🚀 **Status:** Production Ready  
 📱 **Platform:** Android (iOS compatible)  
-🔧 **Architecture:** React Native + Expo Managed Workflow  
+🔧 **Architecture:** React Native + Expo Managed Workflow
 
 ## Getting Started
 
 Follow these steps to clone the repository and run the app on a mobile device.
 
-- git clone https://github.com/Janphan/SpeakMate.git
-- cd SpeakMate
-- npm install
-- npx expo start
-- Install the Expo Go App on your mobile device
-- Open the App on Your Device:
-- Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
-- The app should open in Expo Go, allowing you to test the application on your mobile device.
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/Janphan/SpeakMate.git
+   cd SpeakMate
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npx expo start
+   ```
+
+4. **Install the Expo Go App** on your mobile device
+
+5. **Open the App on Your Device:**
+   - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
+   - The app should open in Expo Go, allowing you to test the application on your mobile device.
 
 ### 🔥 Firebase Setup (Required)
 
@@ -193,12 +206,14 @@ Follow these steps to clone the repository and run the app on a mobile device.
 2. **See [firebase/README.md](firebase/README.md)** for complete Firebase setup instructions
 
 **Quick setup:**
+
 ```bash
 # After setting up Firebase project and downloading service account key
 npm run init-questions /path/to/your/serviceAccountKey.json
 ```
 
 This setup ensures:
+
 - ✅ Questions are securely initialized with admin privileges
 - ✅ Proper Firebase security rules are in place
 - ✅ Users can access questions after authentication
@@ -214,7 +229,9 @@ This setup ensures:
 - `npm run init-questions:help` - Show help for question bank initialization
 
 ## Technology Stack
+
 ### Frontend:
+
 - React Native: Cross-platform mobile app development for iOS and Android
 - React Navigation: Stack and tab navigation
 - expo-speech: Text-to-speech functionality
@@ -225,13 +242,16 @@ This setup ensures:
 - expo-status-bar, expo-web-browser: UI enhancements
 
 ### Backend:
+
 - Firebase Authentication: User login and registration
 - Firebase Firestore: Persistent data storage and progress tracking
 
 ### AI & Speech:
+
 - OpenAI Whisper: Real-time speech-to-text and NLP
 
 ### UI and Icons:
+
 - React Native Components and Styling
 - Custom styles and icon libraries
 
@@ -242,6 +262,7 @@ This setup ensures:
 3. View instant feedback on your fluency and pronunciation after each response.
 4. Review your conversation history and progress in the app. (Under development)
 5. Use the feedback and tips to improve your speaking skills and aim for higher IELTS bands.
+
 ## Troubleshooting
 
 - **Expo SDK Compatibility:** Ensure you are using Expo SDK 54 and the required Node.js version.
@@ -278,6 +299,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Contributing
 
 Contributions are welcome! To contribute:
+
 1. Fork the repository
 2. Create a new branch for your feature or fix
 3. Submit a pull request with a clear description of your changes
