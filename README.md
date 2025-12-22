@@ -1,10 +1,31 @@
 # SpeakMate
 
+[![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactnative.dev/)
+[![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)](https://expo.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
+
 SpeakMate is a mobile app designed for IELTS learners aiming to improve their speaking proficiency, especially targeting Band 5–6. Built with React Native and integrated with Firebase for authentication, data storage, and progress tracking, SpeakMate leverages OpenAI Whisper for real-time speech recognition and natural language processing. The app transcribes user responses, provides transcripts, confidence scores, and timestamps, and analyzes fluency (speech rate, pauses) and pronunciation (clarity, intonation) according to IELTS band descriptors. SpeakMate offers live feedback, user progress tracking, and realistic conversation scenarios to support effective self-study.
 
-## 📖 Thesis
+> **🎓 Academic Research:** This project was developed as a Bachelor's Thesis. Read the full paper: [**An AI-Driven Mobile App for IELTS Speaking**](https://www.theseus.fi/handle/10024/901588).
 
-For more details about this project, refer to the thesis: [https://www.theseus.fi/handle/10024/901588](https://www.theseus.fi/handle/10024/901588)
+## 📚 Table of Contents
+
+- [🎥 Demo Video](#-demo-video)
+- [📱 Download APK](#-download-apk)
+- [Core Features](#core-features)
+- [📂 Project Structure](#-project-structure)
+- [📊 Data Schema](#-data-schema)
+- [Prerequisites](#prerequisites)
+- [Project Status](#project-status)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Technology Stack](#technology-stack)
+- [Usage Instructions](#usage-instructions)
+- [Troubleshooting](#troubleshooting)
+- [Environment Variables](#environment-variables-env)
+- [License](#license)
+- [Contributing](#contributing)
 
 ## 🎥 Demo Video
 
@@ -16,11 +37,9 @@ For more details about this project, refer to the thesis: [https://www.theseus.f
 
 Ready to try SpeakMate? Download the latest APK:
 
-[![Download APK](https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android)](https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk)
-
-**QR Code for mobile download:**
-
-<img src="speakmate-apk-qr.png" alt="Download SpeakMate APK" width="200">
+|                                                                          Download APK                                                                          |                              Scan to Install                              |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
+| [![Download APK](https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android)](https://expo.dev/artifacts/eas/iY7M9FrMP9mAsVXbv3YhCQ.apk) | <img src="speakmate-apk-qr.png" alt="Download SpeakMate APK" width="150"> |
 
 _Scan with your phone camera to download directly_
 
@@ -41,6 +60,9 @@ _Scan with your phone camera to download directly_
 ✅ User Progress Tracking (Fluency score, streak counting, session statistics)
 
 ## 📂 Project Structure
+
+<details>
+<summary>Click to expand full file structure</summary>
 
 ```
 SpeakMate/
@@ -145,6 +167,8 @@ SpeakMate/
     └── LICENSE                          # Project license
 ```
 
+</details>
+
 ### 🏗️ Architecture Overview
 
 - **Frontend:** React Native with Expo managed workflow
@@ -154,6 +178,140 @@ SpeakMate/
 - **Navigation:** React Navigation v7
 - **Testing:** Jest for unit tests, Firebase emulators for integration tests
 - **Deployment:** Expo Application Services (EAS) for mobile builds
+
+## 📊 Data Schema
+
+### Firebase Firestore Collections
+
+<details>
+<summary>Click to expand database schema</summary>
+
+#### 🔐 Users Collection (`users`)
+
+```javascript
+{
+  uid: "string",           // Firebase Auth UID
+  email: "string",         // User email
+  displayName: "string",   // User display name
+  createdAt: "timestamp",  // Account creation time
+  lastLoginAt: "timestamp",// Last login time
+  settings: {
+    notifications: "boolean",
+    darkMode: "boolean",
+    speechSpeed: "number"   // TTS speech speed
+  }
+}
+```
+
+#### 💬 Conversations Collection (`conversations`)
+
+```javascript
+{
+  id: "string",            // Auto-generated conversation ID
+  userId: "string",        // Reference to user UID
+  topic: "string",         // Conversation topic (e.g., "Travel", "Job Interview")
+  startTime: "timestamp",  // Conversation start time
+  endTime: "timestamp",    // Conversation end time
+  duration: "number",      // Duration in seconds
+  status: "completed|ongoing|paused",
+  totalWords: "number",    // Total words spoken by user
+  averageBand: "number",   // Average IELTS band score
+  exchanges: [             // Array of conversation exchanges
+    {
+      userText: "string",      // User's transcribed speech
+      aiResponse: "string",    // AI's response
+      timestamp: "timestamp",  // Exchange timestamp
+      fluencyScore: "number",  // Fluency score (0-10)
+      pronunciationScore: "number", // Pronunciation score (0-10)
+      bandLevel: "string",     // IELTS band (e.g., "Band 5.5")
+      wordCount: "number",     // Words in user response
+      pauseCount: "number",    // Number of pauses detected
+      speechRate: "number"     // Words per minute
+    }
+  ],
+  feedback: {
+    overallBand: "string",     // Overall IELTS band
+    fluencyFeedback: "string", // Fluency improvement tips
+    pronunciationFeedback: "string", // Pronunciation tips
+    suggestions: ["string"]    // Array of improvement suggestions
+  }
+}
+```
+
+#### ❓ Questions Collection (`questions`)
+
+```javascript
+{
+  id: "string",            // Auto-generated question ID
+  topic: "string",         // Question category/topic
+  level: "string",         // Target IELTS level (e.g., "Band 5-6")
+  questions: ["string"],   // Array of question strings
+  createdAt: "timestamp",  // Creation timestamp
+  difficulty: "easy|medium|hard",
+  tags: ["string"]         // Search/filter tags
+}
+```
+
+#### 📈 User Statistics Collection (`userStats`)
+
+```javascript
+{
+  userId: "string",        // Reference to user UID
+  totalSessions: "number", // Total conversation sessions
+  totalTime: "number",     // Total practice time (seconds)
+  streakDays: "number",    // Current daily streak
+  lastPracticeDate: "timestamp", // Last practice session
+  averageBand: "number",   // Overall average IELTS band
+  totalWordsSpoken: "number", // Lifetime word count
+  topicStats: {            // Performance by topic
+    "Travel": {
+      sessions: "number",
+      averageBand: "number",
+      totalTime: "number"
+    },
+    "Job Interview": {
+      sessions: "number",
+      averageBand: "number",
+      totalTime: "number"
+    }
+    // ... other topics
+  },
+  monthlyProgress: [       // Monthly performance tracking
+    {
+      month: "string",       // Format: "2025-01"
+      sessions: "number",
+      averageBand: "number",
+      totalTime: "number"
+    }
+  ]
+}
+```
+
+#### 📝 Vocabulary Collection (`vocabulary`) - Static Data
+
+```javascript
+{
+  id: "number",            // Word ID
+  word: "string",          // The vocabulary word
+  definition: "string",    // Word definition
+  example: "string",       // Example sentence
+  topic: "string",         // Category (e.g., "Academic", "Business")
+  level: "string",         // IELTS band level (e.g., "Band 6")
+  phonetic: "string",      // Phonetic pronunciation (optional)
+  synonyms: ["string"],    // Array of synonyms (optional)
+  partOfSpeech: "string"   // noun, verb, adjective, etc.
+}
+```
+
+</details>
+
+### Data Flow
+
+1. **User Authentication** → Creates/updates `users` collection
+2. **Practice Session** → Creates `conversations` document with real-time exchanges
+3. **Session Completion** → Updates `userStats` with aggregated data
+4. **Progress Tracking** → Queries `conversations` and `userStats` for analytics
+5. **Question Selection** → Retrieves from `questions` collection by topic/level
 
 ## Prerequisites
 
@@ -186,38 +344,34 @@ Follow these steps to clone the repository and run the app on a mobile device.
    npm install
    ```
 
-3. **Start the development server:**
+3. **🔥 Firebase Setup (Required):**
+   ⚠️ **Important:** Set up Firebase before starting the app to avoid crashes.
+
+   - **See [firebase/README.md](firebase/README.md)** for complete Firebase setup instructions
+   - **Quick setup:**
+     ```bash
+     # After setting up Firebase project and downloading service account key
+     npm run init-questions /path/to/your/serviceAccountKey.json
+     ```
+
+   This ensures:
+
+   - ✅ Questions are initialized with admin privileges
+   - ✅ Proper Firebase security rules are in place
+   - ✅ Users can access questions after authentication
+   - ✅ No permission errors during app usage
+
+4. **Start the development server:**
 
    ```bash
    npx expo start
    ```
 
-4. **Install the Expo Go App** on your mobile device
+5. **Install the Expo Go App** on your mobile device
 
-5. **Open the App on Your Device:**
+6. **Open the App on Your Device:**
    - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
    - The app should open in Expo Go, allowing you to test the application on your mobile device.
-
-### 🔥 Firebase Setup (Required)
-
-⚠️ **Important:** Before running the app, you need to set up Firebase and initialize the question banks.
-
-1. **Set up Firebase security rules** and **initialize question banks** using the admin script
-2. **See [firebase/README.md](firebase/README.md)** for complete Firebase setup instructions
-
-**Quick setup:**
-
-```bash
-# After setting up Firebase project and downloading service account key
-npm run init-questions /path/to/your/serviceAccountKey.json
-```
-
-This setup ensures:
-
-- ✅ Questions are securely initialized with admin privileges
-- ✅ Proper Firebase security rules are in place
-- ✅ Users can access questions after authentication
-- ✅ No permission errors during app usage
 
 ## Available Scripts
 
@@ -291,6 +445,8 @@ WEB_CLIENT_ID=your_web_client_id
 ```
 
 Replace each value with your actual credentials. These are required for OpenAI Whisper, Firebase, and Google authentication features to work correctly.
+
+> ⚠️ **Security Warning:** Never commit your `.env` file to GitHub. Ensure it is listed in your `.gitignore` file to protect your API keys.
 
 ## License
 

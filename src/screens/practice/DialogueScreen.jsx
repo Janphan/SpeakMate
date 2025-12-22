@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Alert, TouchableOpacity, Animated, SafeAreaView, Dimensions } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Alert, TouchableOpacity, Animated, Dimensions } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     useAudioRecorder,
     AudioModule,
