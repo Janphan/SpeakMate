@@ -8,35 +8,27 @@ import { SPEECH_ANALYSIS_CONFIG } from '../config/speechAnalysisConfig';
 /**
  * Analyzes speech responses for IELTS speaking assessment
  */
-
 export function analyzeSpeech(responses) {
-    // Use modular validation
     const inputValidation = validateInput(responses);
     if (!inputValidation.isValid) {
         return inputValidation.errorResult;
     }
 
-    // Process each response using modular components
     const results = responses
         .map((responseData, index) => {
-            // Validate individual response
             if (!validateResponseData(responseData, index)) {
                 return null;
             }
 
-            // Extract basic metrics using calculation utilities
             const wordMetrics = calculateWordMetrics(responseData);
             const pauseMetrics = calculatePauseMetrics(responseData);
             
-            // Determine fluency band with duration check
             const fluencyBand = hasMinimumDuration(wordMetrics.totalDuration) 
                 ? determineFluencyBand(wordMetrics.wpm, pauseMetrics.pauseFrequency, wordMetrics.totalDuration)
                 : 'Insufficient Data';
 
-            // Analyze pronunciation clarity
             const clarityScore = analyzePronunciation(responseData.segments || []);
 
-            // Generate feedback for this individual response
             const analysis = {
                 fluencyBand,
                 wpm: wordMetrics.wpm,
@@ -59,7 +51,6 @@ export function analyzeSpeech(responses) {
         })
         .filter(result => result !== null);
 
-    // Calculate averages across valid results
     if (results.length === 0) {
         logger.warn('No valid results after processing responses', { responseCount: responses.length });
         return {
@@ -73,6 +64,7 @@ export function analyzeSpeech(responses) {
             individualResults: [],
         };
     }
+
     const aggregatedMetrics = calculateAggregatedMetrics(results);
     const fluencyBand = determineFluencyBand(
         parseFloat(aggregatedMetrics.wpm), 

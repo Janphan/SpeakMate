@@ -18,7 +18,7 @@ describe('Basic Jest Test', () => {
         const path = require('path');
 
         // Check if firestore.rules exists
-        const rulesPath = path.join(__dirname, '..', 'firestore.rules');
+        const rulesPath = path.join(__dirname, '..', 'firebase', 'rules', 'firestore.rules');
         expect(fs.existsSync(rulesPath)).toBe(true);
     });
 });
