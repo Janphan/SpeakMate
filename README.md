@@ -317,8 +317,10 @@ SpeakMate/
 
 - Node.js >= 20.15.1
 - npm >= 10.7.0
-- Expo SDK 54
-- Expo Go app (latest version) on your mobile device
+- Expo SDK 56
+- **For physical device:** Expo Go app (latest version) on your mobile device
+- **For Android emulator:** Android Studio with AVD Manager set up
+- **For iOS simulator (macOS only):** Xcode 16+
 
 ## Project Status
 
@@ -367,11 +369,21 @@ Follow these steps to clone the repository and run the app on a mobile device.
    npx expo start
    ```
 
-5. **Install the Expo Go App** on your mobile device
+5. **Open the App on an Emulator or Physical Device:**
 
-6. **Open the App on Your Device:**
-   - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (for iOS) or Expo Go app (for Android).
-   - The app should open in Expo Go, allowing you to test the application on your mobile device.
+   ### 📱 On a Physical Device (Expo Go)
+   - Install the **Expo Go** app on your mobile device
+   - Scan the QR code shown in your terminal or in the Expo DevTools in your browser with your mobile device's camera (iOS) or Expo Go app (Android)
+
+   ### 🤖 On an Android Emulator
+   - Open **Android Studio** → **Virtual Device Manager** and start an emulator
+   - With the emulator running, press **`a`** in the Expo terminal (or run `npx expo start --android`)
+   - The app will install and launch automatically on the emulator
+
+   ### 🍎 On an iOS Simulator (macOS only)
+   - Open **Xcode** → **Settings** → **Platforms** and ensure iOS simulator tools are installed
+   - Press **`i`** in the Expo terminal (or run `npx expo start --ios`)
+   - The app will install and launch automatically on the simulator
 
 ## Available Scripts
 
@@ -419,7 +431,7 @@ Follow these steps to clone the repository and run the app on a mobile device.
 
 ## Troubleshooting
 
-- **Expo SDK Compatibility:** Ensure you are using Expo SDK 54 and the required Node.js version.
+- **Expo SDK Compatibility:** Ensure you are using Expo SDK 56 and the required Node.js version.
 - **Microphone Permissions:** Grant microphone access when prompted. If speech recognition fails, check device permissions.
 - **API Keys:** Make sure your OpenAI and Firebase credentials are set up in your environment files.
 - **Audio Issues:** If audio recording or playback fails, update Expo Go and check device compatibility.

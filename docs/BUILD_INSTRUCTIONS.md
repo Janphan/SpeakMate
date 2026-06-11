@@ -380,7 +380,7 @@ curl https://api.openai.com/v1/usage \
 - **Build ID**: 91812f8a-40e8-4355-83e0-76fca1166198
 - **Platform**: Android
 - **Profile**: production-apk
-- **SDK Version**: 54.0.0
+- **SDK Version**: 56.0.0
 - **App Version**: 1.0.0 (Version Code: 3)
 - **Status**: ✅ SUCCESS
 - **Build Time**: ~15m
