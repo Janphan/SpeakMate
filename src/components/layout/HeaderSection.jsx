@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../../theme';
@@ -11,7 +11,9 @@ const HeaderSection = ({
     iconColor = colors.text.light,
     titleColor = colors.text.light,
     subtitleColor = colors.text.light,
-    children
+    children,
+    showBackButton,
+    onBackPress
 }) => {
     const insets = useSafeAreaInsets();
 
@@ -23,6 +25,14 @@ const HeaderSection = ({
                 paddingTop: insets.top + 20
             }
         ]}>
+            {showBackButton && (
+                <TouchableOpacity
+                    onPress={onBackPress}
+                    style={styles.backButton}
+                >
+                    <Icon source="arrow-left" size={24} color={colors.text.light} />
+                </TouchableOpacity>
+            )}
             <View style={styles.headerContent}>
                 {icon && <Icon source={icon} size={40} color={iconColor} />}
                 {title && <Text style={[styles.title, { color: titleColor }]}>{title}</Text>}
@@ -44,6 +54,18 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 8,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 50,
+        left: 10,
+        zIndex: 10,
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     headerContent: {
         alignItems: 'center',

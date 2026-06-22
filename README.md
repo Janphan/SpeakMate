@@ -49,15 +49,17 @@ _Scan with your phone camera to download directly_
 
 ## Core Features:
 
-✅ Voice Call with OpenAI (Two-way conversation with real-time responses)
+✅ **IELTS Speaking Simulation (Part 1-2-3)** — Full test flow: Part 1 Q&A, Part 2 Cue Card with 60s preparation timer, Part 3 abstract discussion
 
-✅ Speech-to-Text & Text-to-Speech (User speaks, AI understands & responds)
+✅ **Level-Aware Question Bank** — Questions organized by IELTS band (5-6, 6-7, 7-8) with increasing complexity and abstraction
 
-✅ Live Feedback on Fluency & Pronunciation - After each response, SpeakMate analyzes your speech using metrics like words per minute (WPM) and pause frequency. - Feedback is mapped to IELTS bands (5, 5.5, 6) and includes personalized advice to help you improve your fluency and pronunciation. - You receive instant feedback on your speaking rate, hesitations, and clarity, with actionable tips for progress.
+✅ **Speech-to-Text & Text-to-Speech** — Powered by OpenAI Whisper for transcription; AI asks questions aloud via expo-speech
 
-✅ Real-life Conversation Scenarios (Travel, Job Interview, Daily Chat, etc.)
+✅ **Live Feedback on Fluency & Pronunciation** — WPM, pause frequency, clarity score, and IELTS band mapping with personalized advice
 
-✅ User Progress Tracking (Fluency score, streak counting, session statistics)
+✅ **Real-life Conversation Scenarios** — 9 topics covering Hometown, Technology, Health, Travel, Environment, Food, Family, Education, Media, Daily Routine, and Transportation
+
+✅ **User Progress Tracking** — Session history, streak counting, detailed statistics per topic and band level
 
 ## 📂 Project Structure
 
@@ -73,7 +75,8 @@ SpeakMate/
 │
 ├── 🎨 Source Code (src/)
 │   ├── api/                             # Backend integrations
-│   │   ├── AIService.js                 # OpenAI API integration
+│   │   ├── AIService.js                 # Question fetching (level-aware, Part 1-2-3)
+│   │   ├── initializeQuestions_ielts.js # IELTS question bank data (Part 1-2-3 structure)
 │   │   ├── auth.js                      # Firebase authentication
 │   │   ├── firebaseConfig.js            # Firebase configuration
 │   │   ├── speechToText.js              # Speech recognition
@@ -91,7 +94,7 @@ SpeakMate/
 │   │   │   ├── SignOutScreen.jsx        # User logout
 │   │   │   └── ResetPasswordScreen.jsx  # Password recovery
 │   │   ├── practice/                    # Practice & conversation screens
-│   │   │   ├── DialogueScreen.jsx       # Conversation interface
+│   │   │   ├── DialogueScreen.jsx       # IELTS Part 1-2-3 conversation flow
 │   │   │   ├── TopicList.jsx            # Topic selection
 │   │   │   ├── VocabScreen.jsx          # Vocabulary practice
 │   │   │   ├── CallsScreen.jsx          # Call history
@@ -133,7 +136,8 @@ SpeakMate/
 │   ├── scripts/                         # Firebase utilities
 │   │   ├── simple-rules-test.js         # Rules testing
 │   │   ├── init_question_banks_admin.js # Question bank setup
-│   │   └── init_all_question_banks_admin.js # All questions setup
+│   │   ├── init_all_question_banks_admin.js # All questions setup
+│   │   └── init_ielts_questions_admin.js # IELTS Part 1-2-3 question banks
 │   └── README.md                        # Firebase documentation
 │
 ├── 🧪 Testing (tests/)
@@ -240,15 +244,21 @@ SpeakMate/
 
 #### ❓ Questions Collection (`questions`)
 
+Documents are keyed by `${topic}_${level}` (e.g., `Hometown_&_Accommodation_Band_6-7`).
+
 ```javascript
 {
-  id: "string",            // Auto-generated question ID
   topic: "string",         // Question category/topic
   level: "string",         // Target IELTS level (e.g., "Band 5-6")
-  questions: ["string"],   // Array of question strings
-  createdAt: "timestamp",  // Creation timestamp
-  difficulty: "easy|medium|hard",
-  tags: ["string"]         // Search/filter tags
+  part1: ["string"],       // Part 1: Familiar topic questions (personal/factual)
+  part2: [                 // Part 2: Cue cards with prompts
+    {
+      cueCard: "string",       // The main topic to speak about
+      prompts: ["string"]      // Bullet points to guide the answer
+    }
+  ],
+  part3: ["string"],       // Part 3: Abstract discussion questions
+  createdAt: "timestamp"   // Creation timestamp
 }
 ```
 
@@ -311,7 +321,8 @@ SpeakMate/
 2. **Practice Session** → Creates `conversations` document with real-time exchanges
 3. **Session Completion** → Updates `userStats` with aggregated data
 4. **Progress Tracking** → Queries `conversations` and `userStats` for analytics
-5. **Question Selection** → Retrieves from `questions` collection by topic/level
+5. **Question Selection** → Retrieves from `questions` collection by topic + level (combined document ID)
+6. **IELTS Part Flow** → Part 1 (5 familiar questions) → Part 2 (cue card + 60s prep timer) → Part 3 (abstract discussion)
 
 ## Prerequisites
 
@@ -350,15 +361,20 @@ Follow these steps to clone the repository and run the app on a mobile device.
    ⚠️ **Important:** Set up Firebase before starting the app to avoid crashes.
 
    - **See [firebase/README.md](firebase/README.md)** for complete Firebase setup instructions
-   - **Quick setup:**
+   - **Quick setup (basic questions):**
      ```bash
      # After setting up Firebase project and downloading service account key
      npm run init-questions /path/to/your/serviceAccountKey.json
+     ```
+   - **IELTS Part 1-2-3 question banks (recommended):**
+     ```bash
+     npm run init-questions:ielts /path/to/your/serviceAccountKey.json
      ```
 
    This ensures:
 
    - ✅ Questions are initialized with admin privileges
+   - ✅ Level-aware questions (Band 5-6, 6-7, 7-8) with Part 1-2-3 structure
    - ✅ Proper Firebase security rules are in place
    - ✅ Users can access questions after authentication
    - ✅ No permission errors during app usage
@@ -391,8 +407,10 @@ Follow these steps to clone the repository and run the app on a mobile device.
 - `npm run qr` - Generate QR code for APK download
 - `npm run qr-update` - Update QR code with latest build
 - `npm run check-usage` - Check OpenAI API usage
-- `npm run init-questions` - Initialize Firebase question banks (requires service account key)
+- `npm run init-questions` - Initialize basic Firebase question banks (requires service account key)
 - `npm run init-questions:help` - Show help for question bank initialization
+- `npm run init-questions:ielts` - Initialize IELTS Part 1-2-3 question banks across 9 topics × 3 levels
+- `npm run init-questions:ielts:help` - Show help for IELTS bank initialization
 
 ## Technology Stack
 
@@ -423,11 +441,13 @@ Follow these steps to clone the repository and run the app on a mobile device.
 
 ## Usage Instructions
 
-1. Select a conversation scenario (e.g., Travel, Job Interview).
-2. Tap the microphone to start speaking. Your speech is transcribed and analyzed in real time.
-3. View instant feedback on your fluency and pronunciation after each response.
-4. Review your conversation history and progress in the app. (Under development)
-5. Use the feedback and tips to improve your speaking skills and aim for higher IELTS bands.
+1. **Select IELTS Level** on the Home screen (Band 5-6, 6-7, or 7-8).
+2. **Choose a topic** (Hometown, Technology, Health, Travel, etc.).
+3. **Part 1 (4-5 min):** Answer 5 familiar questions about yourself. Tap the microphone to respond to each.
+4. **Part 2 (3-4 min):** A cue card appears with a topic and bullet prompts. Use the 60-second timer to prepare, then speak for 1-2 minutes.
+5. **Part 3 (4-5 min):** Discuss 4-5 abstract questions related to the topic in depth.
+6. **View Feedback:** After completing all parts, review your WPM, clarity score, IELTS band, and personalized improvement tips.
+7. **Track Progress:** Review your session history and statistics in the Calls and Progress tabs.
 
 ## Troubleshooting
 
