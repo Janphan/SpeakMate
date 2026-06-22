@@ -12,6 +12,8 @@
     "check-usage": "node check-api-usage.js",
     "init-questions": "node firebase/scripts/init_question_banks_admin.js",
     "init-questions:help": "echo 'Usage: npm run init-questions /path/to/serviceAccountKey.json'",
+    "init-questions:ielts": "node firebase/scripts/init_ielts_questions_admin.js",
+    "init-questions:ielts:help": "echo 'Usage: npm run init-questions:ielts /path/to/serviceAccountKey.json'",
     "test": "npx jest tests/basic.test.js",
     "test:rules": "node firebase/scripts/simple-rules-test.js",
     "emulators:start": "firebase emulators:start --only firestore,auth"
