@@ -386,12 +386,12 @@ export default function DialogueScreen({ navigation, route }) {
                         </Card>
 
                         <View style={styles.controlsContainer}>
-                            {aiResponse && !isSessionComplete && (
+                            {!isSessionComplete && (
                                 <Animated.View style={[styles.recordButtonContainer, { transform: [{ scale: recordingAnimation }] }]}>
                                     <TouchableOpacity
                                         style={[styles.recordButton, recorderState.isRecording ? styles.recordingButton : styles.readyButton]}
                                         onPress={recorderState.isRecording ? stopRecording : startRecording}
-                                        disabled={!aiResponse && !recorderState.isRecording}
+                                        disabled={isTimerRunning}
                                         activeOpacity={0.8}
                                     >
                                         <Icon
@@ -402,27 +402,14 @@ export default function DialogueScreen({ navigation, route }) {
                                     </TouchableOpacity>
                                 </Animated.View>
                             )}
-                            {!aiResponse && currentPart === 2 && !isTimerRunning && (
-                                <TouchableOpacity
-                                    style={styles.recordButton}
-                                    onPress={startRecording}
-                                    activeOpacity={0.8}
-                                >
-                                    <Icon source="microphone" size={28} color="#fff" />
-                                </TouchableOpacity>
-                            )}
                             <Text style={styles.recordButtonLabel}>
                                 {isSessionComplete
                                     ? "Session Completed"
                                     : recorderState.isRecording
                                         ? "Tap to stop"
-                                        : aiResponse && currentPart !== 2
-                                            ? "Tap to speak"
-                                            : currentPart === 2 && !isTimerRunning
-                                                ? "Tap to speak your answer"
-                                                : currentPart === 2 && isTimerRunning
-                                                    ? "Preparing..."
-                                                    : ""
+                                        : isTimerRunning
+                                            ? "Preparing..."
+                                            : "Tap to speak"
                                 }
                             </Text>
                         </View>
