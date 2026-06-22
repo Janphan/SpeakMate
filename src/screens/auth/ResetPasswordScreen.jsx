@@ -42,6 +42,14 @@ export default function ResetPasswordScreen({ navigation }) {
             <View style={styles.overlay} />
 
             <View style={styles.container}>
+                {/* Back Button */}
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                    style={styles.backButton}
+                >
+                    <Icon source="arrow-left" size={24} color="#fff" />
+                </TouchableOpacity>
+
                 {/* Header Section */}
                 <View style={styles.headerSection}>
                     <View style={styles.logoContainer}>
@@ -122,6 +130,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         zIndex: 2,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 60,
+        left: 20,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 10,
     },
     headerSection: {
         alignItems: 'center',

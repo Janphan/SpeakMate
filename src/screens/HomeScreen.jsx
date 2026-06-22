@@ -84,17 +84,22 @@ export default function HomeScreen({ navigation }) {
                                 </Card.Content>
                             </Card>
 
-                            <Card style={styles.statCard}>
-                                <Card.Content style={styles.statCardContent}>
-                                    <View style={styles.statIconContainer}>
-                                        <Icon source="book-open-variant" size={28} color="#4caf50" />
-                                    </View>
-                                    <Text style={styles.statNumber}>
-                                        {isLoadingStats ? '...' : statistics.totalSessions}
-                                    </Text>
-                                    <Text style={styles.statLabel}>Sessions</Text>
-                                </Card.Content>
-                            </Card>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('Calls')}
+                                style={styles.statCardTouchable}
+                            >
+                                <Card style={styles.statCard}>
+                                    <Card.Content style={styles.statCardContent}>
+                                        <View style={styles.statIconContainer}>
+                                            <Icon source="book-open-variant" size={28} color="#4caf50" />
+                                        </View>
+                                        <Text style={styles.statNumber}>
+                                            {isLoadingStats ? '...' : statistics.totalSessions}
+                                        </Text>
+                                        <Text style={styles.statLabel}>Sessions</Text>
+                                    </Card.Content>
+                                </Card>
+                            </TouchableOpacity>
                         </View>
 
                         {/* Progress Overview */}
@@ -222,6 +227,10 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         borderWidth: 3,
         borderColor: colors.text.light,
+    },
+    statCardTouchable: {
+        flex: 1,
+        marginHorizontal: 5,
     },
     mainContent: {
         flex: 1,

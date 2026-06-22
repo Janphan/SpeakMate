@@ -39,6 +39,8 @@ export default function TopicList({ navigation, route }) {
             <HeaderSection
                 title="🎯 Choose Your Topic"
                 subtitle={level ? `Level: ${level.toUpperCase()}` : 'Select a conversation topic'}
+                showBackButton
+                onBackPress={() => navigation.goBack()}
             />
 
             {/* Topics List */}
